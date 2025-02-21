@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/bugwozi-main/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/bugwozi-main/tsconfig.app.json"
+  },
+  "projects": {
+    "bugwozi-auth": {
+      "type": "application",
+      "root": "apps/bugwozi-auth",
+      "entryFile": "main",
+      "sourceRoot": "apps/bugwozi-auth/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/bugwozi-auth/tsconfig.app.json"
+      }
+    },
+    "bugwozi-main": {
+      "type": "application",
+      "root": "apps/bugwozi-main",
+      "entryFile": "main",
+      "sourceRoot": "apps/bugwozi-main/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/bugwozi-main/tsconfig.app.json"
+      }
+    },
+    "file": {
+      "type": "library",
+      "root": "libs/file",
+      "entryFile": "index",
+      "sourceRoot": "libs/file/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/file/tsconfig.lib.json"
+      }
+    },
+    "hash": {
+      "type": "library",
+      "root": "libs/hash",
+      "entryFile": "index",
+      "sourceRoot": "libs/hash/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/hash/tsconfig.lib.json"
+      }
+    },
+    "prisma": {
+      "type": "library",
+      "root": "libs/prisma",
+      "entryFile": "index",
+      "sourceRoot": "libs/prisma/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/prisma/tsconfig.lib.json"
+      }
+    },
+    "redis-cache": {
+      "type": "library",
+      "root": "libs/redis-cache",
+      "entryFile": "index",
+      "sourceRoot": "libs/redis-cache/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/redis-cache/tsconfig.lib.json"
+      }
+    },
+    "request": {
+      "type": "library",
+      "root": "libs/request",
+      "entryFile": "index",
+      "sourceRoot": "libs/request/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/request/tsconfig.lib.json"
+      }
+    },
+    "utils": {
+      "type": "library",
+      "root": "libs/utils",
+      "entryFile": "index",
+      "sourceRoot": "libs/utils/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/utils/tsconfig.lib.json"
+      }
+    },
+    "bugwozi-file": {
+      "type": "application",
+      "root": "apps/bugwozi-file",
+      "entryFile": "main",
+      "sourceRoot": "apps/bugwozi-file/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/bugwozi-file/tsconfig.app.json"
+      }
+    },
+    "bugwozi-job": {
+      "type": "application",
+      "root": "apps/bugwozi-job",
+      "entryFile": "main",
+      "sourceRoot": "apps/bugwozi-job/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/bugwozi-job/tsconfig.app.json"
+      }
+    }
+  },
+  "monorepo": true,
+  "root": "apps/bugwozi-main"
+}
