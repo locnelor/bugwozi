@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { BugwoziJobModule } from './../src/bugwozi-job.module';
+import { BugwoziJobModule } from '../src/bugwozi-job.module';
 
 describe('BugwoziJobController (e2e)', () => {
   let app: INestApplication;
