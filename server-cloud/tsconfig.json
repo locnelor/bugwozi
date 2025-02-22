@@ -1,0 +1,59 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2021",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@app/file": [
+        "libs/file/src"
+      ],
+      "@app/file/*": [
+        "libs/file/src/*"
+      ],
+      "@app/hash": [
+        "libs/hash/src"
+      ],
+      "@app/hash/*": [
+        "libs/hash/src/*"
+      ],
+      "@app/prisma": [
+        "libs/prisma/src"
+      ],
+      "@app/prisma/*": [
+        "libs/prisma/src/*"
+      ],
+      "@app/redis-cache": [
+        "libs/redis-cache/src"
+      ],
+      "@app/redis-cache/*": [
+        "libs/redis-cache/src/*"
+      ],
+      "@app/request": [
+        "libs/request/src"
+      ],
+      "@app/request/*": [
+        "libs/request/src/*"
+      ],
+      "@app/utils": [
+        "libs/utils/src"
+      ],
+      "@app/utils/*": [
+        "libs/utils/src/*"
+      ]
+    }
+  }
+}

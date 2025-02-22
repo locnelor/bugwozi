@@ -1,0 +1,27 @@
+{
+  "moduleFileExtensions": [
+    "js",
+    "json",
+    "ts"
+  ],
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "testRegex": ".e2e-spec.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "@app/file/(.*)": "<rootDir>/../libs/file/src/$1",
+    "@app/file": "<rootDir>/../libs/file/src",
+    "@app/hash/(.*)": "<rootDir>/../libs/hash/src/$1",
+    "@app/hash": "<rootDir>/../libs/hash/src",
+    "@app/prisma/(.*)": "<rootDir>/../libs/prisma/src/$1",
+    "@app/prisma": "<rootDir>/../libs/prisma/src",
+    "@app/redis-cache/(.*)": "<rootDir>/../libs/redis-cache/src/$1",
+    "@app/redis-cache": "<rootDir>/../libs/redis-cache/src",
+    "@app/request/(.*)": "<rootDir>/../libs/request/src/$1",
+    "@app/request": "<rootDir>/../libs/request/src",
+    "@app/utils/(.*)": "<rootDir>/../libs/utils/src/$1",
+    "@app/utils": "<rootDir>/../libs/utils/src"
+  }
+}

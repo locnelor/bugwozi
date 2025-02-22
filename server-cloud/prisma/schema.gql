@@ -1,0 +1,84 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type SysMenuEntity {
+  id: Int!
+  createAt: DateTime!
+  updateAt: DateTime!
+  name: String!
+  path: String!
+  role: Int!
+  comment: String
+  parentId: Int
+  parent: SysMenuEntity
+  children: [SysMenuEntity!]
+  sys_menu_on_role: [SysMenuOnRoleEntity!]
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type SysMenuOnRoleEntity {
+  power: Int!
+  sys_roleId: Int!
+  sys_menuId: Int!
+  role: SysRoleEntity
+  menu: SysMenuEntity
+}
+
+type SysRoleEntity {
+  id: Int!
+  createAt: DateTime!
+  updateAt: DateTime!
+  name: String!
+  status: Boolean!
+  comment: String
+  sys_menu_on_role: [SysMenuOnRoleEntity!]
+  sys_user: [SysUserEntity!]
+}
+
+type SysUserEntity {
+  id: Int!
+  createAt: DateTime!
+  updateAt: DateTime!
+  name: String!
+  account: String!
+  sys_roleId: Int!
+  loginId: String
+  role: SysRoleEntity
+}
+
+type UserPagination {
+  total: Int!
+  page: Int!
+  size: Int!
+  data: [SysUserEntity!]!
+}
+
+type Query {
+  viewer: SysUserEntity!
+  isAdmin: Boolean!
+  findUsers(page: Int!, size: Int!, id: Int, account: String, name: String, sys_roleId: Int): UserPagination!
+  getMenu: [SysMenuEntity!]!
+  getRole(id: Int, name: String, status: Boolean, comment: String): [SysRoleEntity!]!
+}
+
+type Mutation {
+  initAdmin(account: String!, password: String!, name: String!): Boolean!
+  auth(account: String!, password: String!): String!
+  createUser(name: String!, account: String!, password: String!, sys_roleId: Int): SysUserEntity!
+  updateUser(id: Int!, account: String, password: String, name: String, sys_roleId: Int): SysUserEntity!
+  deleteUser(id: Int!): SysUserEntity!
+  createRole(name: String!, status: Boolean! = true, comment: String, sys_menu_on_role: [SysMenuOnRoleInput!]): SysRoleEntity!
+  updateRole(id: Int!, name: String, status: Boolean, comment: String, sys_menu_on_role: [SysMenuOnRoleInput!]): SysRoleEntity!
+  deleteRole(ids: [Int!]!): Int!
+}
+
+input SysMenuOnRoleInput {
+  sys_roleId: Int
+  sys_menuId: Int
+  power: Int!
+}
