@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model sys_user {
+  id         Int       @id @default(autoincrement())
+  createAt   DateTime  @default(now())
+  updateAt   DateTime  @default(now()) @updatedAt
+  name       String
+  account    String    @unique
+  role       sys_role? @relation(fields: [sys_roleId], references: [id])
+  sys_roleId Int?
+  password   String
+  salt       String
+  loginId    String?
+}
+
+//权限菜单
+model sys_menu {
+  id               Int                @id @default(autoincrement())
+  createAt         DateTime           @default(now())
+  updateAt         DateTime           @default(now()) @updatedAt
+  name             String
+  path             String             @unique
+  role             Int
+  comment          String?            @db.Text
+  parent           sys_menu?          @relation("SysMenuParent", fields: [parentId], references: [id])
+  parentId         Int?
+  children         sys_menu[]         @relation("SysMenuParent")
+  sys_menu_on_role sys_menu_on_role[]
+}
+
+//权限树 on 角色
+model sys_menu_on_role {
+  role       sys_role @relation(fields: [sys_roleId], references: [id])
+  sys_roleId Int
+  menu       sys_menu @relation(fields: [sys_menuId], references: [id])
+  sys_menuId Int
+  power      Int      @default(0)
+
+  @@id([sys_roleId, sys_menuId])
+}
+
+// 角色
+model sys_role {
+  id               Int                @id @default(autoincrement())
+  createAt         DateTime           @default(now())
+  updateAt         DateTime           @default(now()) @updatedAt
+  name             String             @unique
+  status           Boolean            @default(true)
+  comment          String?            @db.LongText
+  sys_menu_on_role sys_menu_on_role[]
+  sys_user         sys_user[]
+}
