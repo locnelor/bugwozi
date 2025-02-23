@@ -12,16 +12,6 @@ type Tag {
   exampleField: Int!
 }
 
-type Kgnb {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-type Auth {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
 type User {
   """Example field (placeholder)"""
   exampleField: Int!
@@ -52,18 +42,40 @@ type Notification {
   exampleField: Int!
 }
 
+type BlogUserEntity {
+  id: Int!
+  createAt: DateTime!
+  updateAt: DateTime!
+  name: String!
+  blog_quote: [BlogQuoteEntity!]
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type BlogQuoteEntity {
+  id: Int!
+  createAt: DateTime!
+  updateAt: DateTime!
+  content: String!
+  creator: BlogUserEntity
+  user_id: Int
+}
+
 type Query {
   posts: [Post!]!
   post(id: Int!): Post!
   tag(id: Int!): Tag!
-  kgnb(id: Int!): Kgnb!
-  auth(id: Int!): Auth!
   user(id: Int!): User!
   comment(id: Int!): Comment!
   category(id: Int!): Category!
   like(id: Int!): Like!
   search(id: Int!): Search!
   notification(id: Int!): Notification!
+  quotes: [Int!]!
+  quote(id: Int!): BlogQuoteEntity!
 }
 
 type Mutation {
@@ -73,12 +85,6 @@ type Mutation {
   createTag(createTagInput: CreateTagInput!): Tag!
   updateTag(updateTagInput: UpdateTagInput!): Tag!
   removeTag(id: Int!): Tag!
-  createKgnb(createKgnbInput: CreateKgnbInput!): Kgnb!
-  updateKgnb(updateKgnbInput: UpdateKgnbInput!): Kgnb!
-  removeKgnb(id: Int!): Kgnb!
-  createAuth(createAuthInput: CreateAuthInput!): Auth!
-  updateAuth(updateAuthInput: UpdateAuthInput!): Auth!
-  removeAuth(id: Int!): Auth!
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: Int!): User!
@@ -97,6 +103,9 @@ type Mutation {
   createNotification(createNotificationInput: CreateNotificationInput!): Notification!
   updateNotification(updateNotificationInput: UpdateNotificationInput!): Notification!
   removeNotification(id: Int!): Notification!
+  createQuote(createQuoteInput: CreateQuoteInput!): BlogQuoteEntity!
+  updateQuote(updateQuoteInput: UpdateQuoteInput!): BlogQuoteEntity!
+  removeQuote(id: Int!): BlogQuoteEntity!
 }
 
 input CreatePostInput {
@@ -116,28 +125,6 @@ input CreateTagInput {
 }
 
 input UpdateTagInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
-}
-
-input CreateKgnbInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdateKgnbInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
-}
-
-input CreateAuthInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdateAuthInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!
@@ -204,6 +191,17 @@ input CreateNotificationInput {
 }
 
 input UpdateNotificationInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateQuoteInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateQuoteInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!

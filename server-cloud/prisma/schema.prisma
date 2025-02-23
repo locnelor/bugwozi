@@ -60,3 +60,20 @@ model sys_role {
   sys_menu_on_role sys_menu_on_role[]
   sys_user         sys_user[]
 }
+
+model blog_user {
+  id         Int          @id @default(autoincrement())
+  createAt   DateTime     @default(now())
+  updateAt   DateTime     @default(now()) @updatedAt
+  name       String
+  blog_quote blog_quote[]
+}
+
+model blog_quote {
+  id       Int        @id @default(autoincrement())
+  createAt DateTime   @default(now())
+  updateAt DateTime   @default(now()) @updatedAt
+  content  String     @db.LongText
+  creator  blog_user? @relation(fields: [user_id], references: [id])
+  user_id  Int?
+}

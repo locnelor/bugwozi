@@ -7,7 +7,6 @@ import { ApolloDriver } from '@nestjs/apollo';
 import { join } from 'path';
 import { PostsModule } from './posts/posts.module';
 import { TagModule } from './tag/tag.module';
-import { KgnbModule } from './kgnb/kgnb.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { CommentModule } from './comment/comment.module';
@@ -15,17 +14,52 @@ import { CategoryModule } from './category/category.module';
 import { LikeModule } from './like/like.module';
 import { SearchModule } from './search/search.module';
 import { NotificationModule } from './notification/notification.module';
+import { QuotesModule } from './quotes/quotes.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    GraphQLModule.forRoot({
+    GraphQLModule.forRootAsync({
       driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), 'prisma/schema.gql'),
+      useFactory: async () => {
+        return {
+          driver: ApolloDriver,
+          subscriptions: {
+            'graphql-ws': {
+              onConnect: (context: any) => {
+                const {
+                  connectionParams,
+                  extra
+                } = context;
+                const { Authorization } = connectionParams;
+                extra.Authorization = Authorization;
+              },
+            }
+          },
+          autoSchemaFile: join(process.cwd(), 'prisma/schema.gql'),
+          definitions: {
+            path: join(__dirname, 'types/graphql.ts'),
+          },
+          playground: true,
+
+          context: ({ req, res, connection = {} as any, extra }) => {
+            const raw = (req || connection.context || extra.request)
+            if (!!extra?.Authorization && !!raw.headers && !raw.headers.authorization) {
+              raw.headers.authorization = extra?.Authorization
+            }
+            return {
+              req: raw,
+              res,
+              trackErrors(errors) {
+                console.log("app.module", errors)
+              },
+            };
+          },
+        }
+      }
     }),
     PostsModule,
     TagModule,
-    KgnbModule,
     AuthModule,
     UserModule,
     CommentModule,
@@ -33,8 +67,11 @@ import { NotificationModule } from './notification/notification.module';
     LikeModule,
     SearchModule,
     NotificationModule,
+    QuotesModule,
   ],
   controllers: [BugwoziBlogController],
-  providers: [BugwoziBlogService],
+  providers: [
+    BugwoziBlogService,
+  ],
 })
 export class BugwoziBlogModule { }

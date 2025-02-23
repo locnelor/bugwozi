@@ -10,14 +10,14 @@ export class BugwoziGatewayController {
   constructor(
     private readonly bugwoziGatewayService: BugwoziGatewayService,
     @Inject('BUGWOZI_AUTH')
-    private readonly auth: ClientProxy,
+    private readonly authClient: ClientProxy,
     private readonly config: ConfigService,
     private readonly httpService: HttpService
   ) { }
 
   @Get()
-  getHello(): string {
-    return this.bugwoziGatewayService.getHello();
+  getHello() {
+    return firstValueFrom(this.authClient.send({ cmd: "login" }, { a: 1, b: 2 }))
   }
 
   @Get("/blog/graphql")
