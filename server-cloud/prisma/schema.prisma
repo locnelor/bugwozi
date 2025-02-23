@@ -62,11 +62,33 @@ model sys_role {
 }
 
 model blog_user {
-  id         Int          @id @default(autoincrement())
-  createAt   DateTime     @default(now())
-  updateAt   DateTime     @default(now()) @updatedAt
-  name       String
-  blog_quote blog_quote[]
+  id           Int            @id @default(autoincrement())
+  createAt     DateTime       @default(now())
+  updateAt     DateTime       @default(now()) @updatedAt
+  name         String
+  account      String?        @unique
+  password     String
+  salt         String
+  blog_quote   blog_quote[]
+  blog_account blog_account[]
+}
+
+enum BlogAccountProvider {
+  wechat
+  github
+  email
+  phone
+}
+
+model blog_account {
+  createAt    DateTime            @default(now())
+  updateAt    DateTime            @default(now()) @updatedAt
+  provider    BlogAccountProvider
+  provider_id String
+  user        blog_user           @relation(fields: [blog_userId], references: [id])
+  blog_userId Int
+
+  @@id([provider, provider_id])
 }
 
 model blog_quote {

@@ -5,4 +5,5 @@ export class BugwoziAuthService {
   getHello(): string {
     return 'Hello World!';
   }
+  
 }
