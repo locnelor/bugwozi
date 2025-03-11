@@ -62,6 +62,42 @@
         "tsConfigPath": "libs/utils/tsconfig.lib.json"
       }
     },
+    "error": {
+      "type": "library",
+      "root": "libs/error",
+      "entryFile": "index",
+      "sourceRoot": "libs/error/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/error/tsconfig.lib.json"
+      }
+    },
+    "log": {
+      "type": "library",
+      "root": "libs/log",
+      "entryFile": "index",
+      "sourceRoot": "libs/log/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/log/tsconfig.lib.json"
+      }
+    },
+    "auth": {
+      "type": "library",
+      "root": "libs/auth",
+      "entryFile": "index",
+      "sourceRoot": "libs/auth/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/auth/tsconfig.lib.json"
+      }
+    },
+    "auth-util": {
+      "type": "library",
+      "root": "libs/auth-util",
+      "entryFile": "index",
+      "sourceRoot": "libs/auth-util/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/auth-util/tsconfig.lib.json"
+      }
+    },
     "bugwozi-file": {
       "type": "application",
       "root": "apps/bugwozi-file",

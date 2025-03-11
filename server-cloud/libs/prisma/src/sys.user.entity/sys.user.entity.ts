@@ -1,10 +1,10 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql";
-import { BaseEntity } from "../base.entity/base.entity";
 import { sys_user } from "@prisma/client";
 import { SysRoleEntity } from "../sys.role.entity/sys.role.entity";
+import { UbaseEntity } from "../ubase.entity/ubase.entity";
 
 @ObjectType()
-export class SysUserEntity extends BaseEntity implements sys_user {
+export class SysUserEntity extends UbaseEntity implements sys_user {
   password: string;
   salt: string;
 

@@ -11,17 +11,18 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/apps/locnelor/main",
+    "start:prod": "node dist/apps/bugwozi-gateway/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./apps/locnelor/test/jest-e2e.json"
+    "test:e2e": "jest --config ./apps/bugwozi-gateway/test/jest-e2e.json"
   },
   "dependencies": {
     "@apollo/gateway": "^2.10.0",
     "@nestjs-modules/ioredis": "^2.0.2",
+    "@nestjs-modules/mailer": "^2.0.2",
     "@nestjs/apollo": "^12.2.2",
     "@nestjs/axios": "^3.0.0",
     "@nestjs/common": "^10.4.15",
@@ -41,6 +42,7 @@
     "body-parser-xml": "^2.0.5",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "dayjs": "^1.11.13",
     "express": "^4.21.2",
     "ioredis": "^5.5.0",
     "joi": "^17.13.3",
@@ -100,7 +102,15 @@
       "^@app/prisma(|/.*)$": "<rootDir>/libs/prisma/src/$1",
       "^@app/redis-cache(|/.*)$": "<rootDir>/libs/redis-cache/src/$1",
       "^@app/request(|/.*)$": "<rootDir>/libs/request/src/$1",
-      "^@app/utils(|/.*)$": "<rootDir>/libs/utils/src/$1"
+      "^@app/utils(|/.*)$": "<rootDir>/libs/utils/src/$1",
+      "^@app/error(|/.*)$": "<rootDir>/libs/error/src/$1",
+      "^@app/log(|/.*)$": "<rootDir>/libs/log/src/$1",
+      "^@app/auth-util(|/.*)$": "<rootDir>/libs/auth-util/src/$1"
     }
+  },
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "@nestjs/core"
+    ]
   }
 }

@@ -5,8 +5,16 @@ import { MessagePattern } from '@nestjs/microservices';
 export class AuthController {
   constructor() { }
 
-  @MessagePattern("")
-  async handle(data: any) {
 
-  }
+  // /**
+  //  * 根据key生成验证码
+  //  * 节流
+  //  * 多种验证方式。
+  //  */
+  // @MessagePattern({ login: "getCode" })
+  // getCode({ key }) {
+  //   return {
+      
+  //   }
+  // }
 }

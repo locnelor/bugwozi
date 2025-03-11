@@ -10,10 +10,14 @@ import { WechatModule } from './wechat/wechat.module';
 import { TokenModule } from './token/token.module';
 import { SmsModule } from './sms/sms.module';
 import { EmailModule } from './email/email.module';
-
+import * as Joi from 'joi'
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      validationSchema: Joi.object({
+        
+      })
+    }),
     AuthModule,
     LocalModule,
     GithubModule,

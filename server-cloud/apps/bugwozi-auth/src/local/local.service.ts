@@ -1,7 +1,8 @@
 import { HashService } from '@app/hash';
 import { PrismaService } from '@app/prisma';
 import { Injectable } from '@nestjs/common';
-import { AuthService } from '../auth/auth.service';
+import { AuthService, AuthType } from '../auth/auth.service';
+import { NotFoundAccountException, WrongPasswordException } from '@app/error/http.error';
 
 @Injectable()
 export class LocalService {
@@ -11,7 +12,7 @@ export class LocalService {
     private readonly auth: AuthService
   ) { }
 
-  async loginBlog(
+  async blogLogin(
     account: string,
     password: string,
   ) {
@@ -20,12 +21,13 @@ export class LocalService {
         account
       }
     })
-    // if(!user){
-    //   throw 
-    // }
-    this.hash.verifyPassword(password)
-    // return this.prisma.blog_user.findUnique({
-
-    // })  
+    if (!user) throw NotFoundAccountException
+    const isMatch = this.hash.verifyPassword(password, user.salt, user.password)
+    if (!isMatch) throw WrongPasswordException
+    return this.auth.getToken({
+      type: AuthType.blog,
+      sub: user.id,
+      crypto: user.password
+    }, user)
   }
 }

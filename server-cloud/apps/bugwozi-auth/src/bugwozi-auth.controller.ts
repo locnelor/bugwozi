@@ -3,14 +3,14 @@ import { BugwoziAuthService } from './bugwozi-auth.service';
 
 @Controller()
 export class BugwoziAuthController {
-  constructor(private readonly bugwoziAuthService: BugwoziAuthService) {}
+  constructor(private readonly bugwoziAuthService: BugwoziAuthService) { }
 
   @Get()
   getHello(): string {
     return this.bugwoziAuthService.getHello();
   }
 
-  // @MessagePattern({ cmd: 'login' })
+  // @MessagePatter({ cmd: 'login' })
   // handleLogin(data: { username: string; password: string }) {
   //   console.log(`收到登录请求:`, data);
   //   if (data.username === 'test' && data.password === '123456') {
@@ -19,5 +19,5 @@ export class BugwoziAuthController {
   //   return { message: '登录失败', error: '用户名或密码错误' };
   // }
 
-  
+
 }

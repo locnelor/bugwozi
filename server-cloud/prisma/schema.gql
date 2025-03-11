@@ -12,6 +12,30 @@ type Tag {
   exampleField: Int!
 }
 
+type BlogQuoteEntity {
+  id: Int!
+  createAt: DateTime!
+  updateAt: DateTime!
+  content: String!
+  creator: BlogUserEntity
+  user_id: Int
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type BlogUserEntity {
+  id: Int!
+  createAt: DateTime!
+  updateAt: DateTime!
+  account: String!
+  name: String!
+  blog_quote: [BlogQuoteEntity!]
+  access_token: String
+}
+
 type User {
   """Example field (placeholder)"""
   exampleField: Int!
@@ -42,28 +66,6 @@ type Notification {
   exampleField: Int!
 }
 
-type BlogUserEntity {
-  id: Int!
-  createAt: DateTime!
-  updateAt: DateTime!
-  name: String!
-  blog_quote: [BlogQuoteEntity!]
-}
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
-
-type BlogQuoteEntity {
-  id: Int!
-  createAt: DateTime!
-  updateAt: DateTime!
-  content: String!
-  creator: BlogUserEntity
-  user_id: Int
-}
-
 type Query {
   posts: [Post!]!
   post(id: Int!): Post!
@@ -85,6 +87,9 @@ type Mutation {
   createTag(createTagInput: CreateTagInput!): Tag!
   updateTag(updateTagInput: UpdateTagInput!): Tag!
   removeTag(id: Int!): Tag!
+  auth(account: String!, password: String!): BlogUserEntity!
+  getEmailCode(email: String!): Boolean!
+  loginByEmailCode(email: String!, code: String!): BlogUserEntity!
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: Int!): User!
