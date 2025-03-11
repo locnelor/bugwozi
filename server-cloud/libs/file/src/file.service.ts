@@ -7,13 +7,20 @@ import { cwd } from 'process';
 export class FileService {
   constructor() { }
   public static readonly Root = cwd();
+  private readonly Assets = join(FileService.Root, "assets")
+  public makeAssets(path: string) {
+    const s = join(this.Assets, path)
+    if (!existsSync(s)) {
+      mkdirSync(s, { recursive: true })
+    }
+    return s;
+  }
   public static getSSLKey() {
     return readFileSync(join(this.Root, "keys", "ssh.key"))
   }
   public static getSSLPem() {
     return readFileSync(join(this.Root, "keys", "ssh.pem"))
   }
-  private readonly Assets = join(FileService.Root, "assets")
   private readonly configFile = join(this.Assets, "config.json")
   public getConfig() {
     try {

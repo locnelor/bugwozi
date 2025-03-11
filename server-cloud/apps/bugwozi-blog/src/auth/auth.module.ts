@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { AuthResolver } from './auth.resolver';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ConfigModule } from '@nestjs/config';
+import { AuthUtilModule } from '@app/auth-util';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -17,6 +18,7 @@ import { ConfigModule } from '@nestjs/config';
         },
       ]
     }),
+    AuthUtilModule
   ],
   providers: [AuthResolver, AuthService],
   exports: [AuthService]

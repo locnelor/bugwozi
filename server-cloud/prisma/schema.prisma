@@ -11,19 +11,37 @@ datasource db {
 }
 
 model sys_user {
-  id         Int       @id @default(autoincrement())
-  createAt   DateTime  @default(now())
-  updateAt   DateTime  @default(now()) @updatedAt
-  name       String
-  account    String    @unique
-  role       sys_role? @relation(fields: [sys_roleId], references: [id])
-  sys_roleId Int?
-  password   String
-  salt       String
-  loginId    String?
+  uid         String        @id @default(uuid())
+  createAt    DateTime      @default(now())
+  updateAt    DateTime      @default(now()) @updatedAt
+  name        String
+  password    String
+  salt        String
+  sys_account sys_account[]
+  sys_role    sys_role?     @relation(fields: [sys_roleId], references: [id])
+  sys_roleId  Int?
 }
 
-//权限菜单
+enum AccountProvider {
+  wechat
+  github
+  qq
+  email
+  phone
+}
+
+model sys_account {
+  createAt    DateTime        @default(now())
+  updateAt    DateTime        @default(now()) @updatedAt
+  provider    AccountProvider
+  provider_id String
+  user        sys_user?       @relation(fields: [sys_userUid], references: [uid])
+  sys_userUid String?
+
+  @@id([provider, provider_id])
+}
+
+// //权限菜单
 model sys_menu {
   id               Int                @id @default(autoincrement())
   createAt         DateTime           @default(now())
@@ -38,7 +56,7 @@ model sys_menu {
   sys_menu_on_role sys_menu_on_role[]
 }
 
-//权限树 on 角色
+// //权限树 on 角色
 model sys_menu_on_role {
   role       sys_role @relation(fields: [sys_roleId], references: [id])
   sys_roleId Int
@@ -49,7 +67,7 @@ model sys_menu_on_role {
   @@id([sys_roleId, sys_menuId])
 }
 
-// 角色
+// // 角色
 model sys_role {
   id               Int                @id @default(autoincrement())
   createAt         DateTime           @default(now())
@@ -62,18 +80,8 @@ model sys_role {
 }
 
 model blog_user {
-  id         Int          @id @default(autoincrement())
-  createAt   DateTime     @default(now())
-  updateAt   DateTime     @default(now()) @updatedAt
-  name       String
-  blog_quote blog_quote[]
-}
-
-model blog_quote {
-  id       Int        @id @default(autoincrement())
-  createAt DateTime   @default(now())
-  updateAt DateTime   @default(now()) @updatedAt
-  content  String     @db.LongText
-  creator  blog_user? @relation(fields: [user_id], references: [id])
-  user_id  Int?
+  uid      String   @id @default(uuid())
+  createAt DateTime @default(now())
+  updateAt DateTime @default(now()) @updatedAt
+  name     String
 }

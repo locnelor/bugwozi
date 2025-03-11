@@ -53,6 +53,24 @@
       ],
       "@app/utils/*": [
         "libs/utils/src/*"
+      ],
+      "@app/error": [
+        "libs/error/src"
+      ],
+      "@app/error/*": [
+        "libs/error/src/*"
+      ],
+      "@app/log": [
+        "libs/log/src"
+      ],
+      "@app/log/*": [
+        "libs/log/src/*"
+      ],
+      "@app/auth-util": [
+        "libs/auth-util/src"
+      ],
+      "@app/auth-util/*": [
+        "libs/auth-util/src/*"
       ]
     }
   }
