@@ -1,0 +1,14 @@
+{
+  "name": "@pkg/next",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "license": "ISC",
+  "dependencies": {
+    "next-intl": "^4.0.2",
+    "@internal/tsconfig": "workspace:*"
+  },
+  "files": [
+    "./index.ts"
+  ]
+}

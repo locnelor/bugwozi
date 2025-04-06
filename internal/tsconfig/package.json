@@ -1,0 +1,16 @@
+{
+  "name": "@internal/tsconfig",
+  "version": "1.0.0",
+  "license": "ISC",
+  "type": "module",
+  "files": [
+    "base.json",
+    "node.json",
+    "nextjs.json",
+    "nestjs.json",
+    "react-library.json",
+    "library.json",
+    "web.json",
+    "prisma.json"
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/sys-gateway/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/sys-gateway/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/sys-gateway",
+  "projects": {
+    "sys-auth": {
+      "type": "application",
+      "root": "apps/sys-auth",
+      "entryFile": "main",
+      "sourceRoot": "apps/sys-auth/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/sys-auth/tsconfig.app.json"
+      }
+    },
+    "sys-file": {
+      "type": "application",
+      "root": "apps/sys-file",
+      "entryFile": "main",
+      "sourceRoot": "apps/sys-file/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/sys-file/tsconfig.app.json"
+      }
+    },
+    "sys-gateway": {
+      "type": "application",
+      "root": "apps/sys-gateway",
+      "entryFile": "main",
+      "sourceRoot": "apps/sys-gateway/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/sys-gateway/tsconfig.app.json"
+      }
+    },
+    "sys-job": {
+      "type": "application",
+      "root": "apps/sys-job",
+      "entryFile": "main",
+      "sourceRoot": "apps/sys-job/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/sys-job/tsconfig.app.json"
+      }
+    },
+    "error": {
+      "type": "library",
+      "root": "libs/error",
+      "entryFile": "index",
+      "sourceRoot": "libs/error/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/error/tsconfig.lib.json"
+      }
+    },
+    "file": {
+      "type": "library",
+      "root": "libs/file",
+      "entryFile": "index",
+      "sourceRoot": "libs/file/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/file/tsconfig.lib.json"
+      }
+    },
+    "hash": {
+      "type": "library",
+      "root": "libs/hash",
+      "entryFile": "index",
+      "sourceRoot": "libs/hash/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/hash/tsconfig.lib.json"
+      }
+    },
+    "prisma": {
+      "type": "library",
+      "root": "libs/prisma",
+      "entryFile": "index",
+      "sourceRoot": "libs/prisma/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/prisma/tsconfig.lib.json"
+      }
+    },
+    "redis-cache": {
+      "type": "library",
+      "root": "libs/redis-cache",
+      "entryFile": "index",
+      "sourceRoot": "libs/redis-cache/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/redis-cache/tsconfig.lib.json"
+      }
+    },
+    "request": {
+      "type": "library",
+      "root": "libs/request",
+      "entryFile": "index",
+      "sourceRoot": "libs/request/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/request/tsconfig.lib.json"
+      }
+    },
+    "utils": {
+      "type": "library",
+      "root": "libs/utils",
+      "entryFile": "index",
+      "sourceRoot": "libs/utils/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/utils/tsconfig.lib.json"
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "@script/turbo-run",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "stub": "pnpm unbuild --stub"
+  },
+  "license": "ISC",
+  "bin": {
+    "turbo-run": "./bin/turbo-run.mjs"
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "exports": {
+    ".": {
+      "default": "./dist/index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "dependencies": {
+    "cac": "^6.7.14",
+    "@internal/tsconfig": "workspace:*",
+    "unbuild": "^3.5.0"
+  }
+}
