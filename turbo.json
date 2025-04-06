@@ -11,10 +11,12 @@
     "NODE_ENV",
     ".env"
   ],
-
   "tasks": {
     "dev": {
-      "dependsOn": ["^build"],
+      "dependsOn": [
+        "^db:generate",
+        "^build"
+      ],
       "outputs": [],
       "cache": false,
       "persistent": true

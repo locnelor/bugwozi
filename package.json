@@ -14,7 +14,8 @@
     "db:pull": "turbo run db:pull",
     "db:seed": "turbo run db:seed",
     "dev:api": "turbo run dev --filter @web/api",
-    "dev:blog": "turbo run dev --filter @web/blog"
+    "dev:blog": "turbo run dev --filter @web/blog",
+    "db:generate": "turbo run db:generate"
   },
   "dependencies": {
     "@prisma/client": "^6.5.0",
