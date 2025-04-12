@@ -32,9 +32,9 @@ export class SysGatewayController {
     return res.data;
   }
 
-  @Post('/blog/graphql')
+  @Post('/study/graphql')
   async getBlog(@Body() body: any, @Req() req: express.Request) {
-    const targetUrl = `http://localhost:${this.config.get('PORT_BLOG')}/graphql`;
+    const targetUrl = `http://localhost:${this.config.get('PORT_STUDY')}/graphql`;
     const res = await firstValueFrom(
       this.httpService.post(targetUrl, body, {
         headers: req.headers,

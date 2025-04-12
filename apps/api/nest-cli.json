@@ -10,40 +10,22 @@
   "monorepo": true,
   "root": "apps/sys-gateway",
   "projects": {
-    "sys-auth": {
+    "admin-book": {
       "type": "application",
-      "root": "apps/sys-auth",
+      "root": "apps/admin-book",
       "entryFile": "main",
-      "sourceRoot": "apps/sys-auth/src",
+      "sourceRoot": "apps/admin-book/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/sys-auth/tsconfig.app.json"
+        "tsConfigPath": "apps/admin-book/tsconfig.app.json"
       }
     },
-    "sys-file": {
+    "bugwozi": {
       "type": "application",
-      "root": "apps/sys-file",
+      "root": "apps/bugwozi",
       "entryFile": "main",
-      "sourceRoot": "apps/sys-file/src",
+      "sourceRoot": "apps/bugwozi/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/sys-file/tsconfig.app.json"
-      }
-    },
-    "sys-gateway": {
-      "type": "application",
-      "root": "apps/sys-gateway",
-      "entryFile": "main",
-      "sourceRoot": "apps/sys-gateway/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/sys-gateway/tsconfig.app.json"
-      }
-    },
-    "sys-job": {
-      "type": "application",
-      "root": "apps/sys-job",
-      "entryFile": "main",
-      "sourceRoot": "apps/sys-job/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/sys-job/tsconfig.app.json"
+        "tsConfigPath": "apps/bugwozi/tsconfig.app.json"
       }
     },
     "error": {
@@ -98,6 +80,42 @@
       "sourceRoot": "libs/request/src",
       "compilerOptions": {
         "tsConfigPath": "libs/request/tsconfig.lib.json"
+      }
+    },
+    "study-room": {
+      "type": "application",
+      "root": "apps/study-room",
+      "entryFile": "main",
+      "sourceRoot": "apps/study-room/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/study-room/tsconfig.app.json"
+      }
+    },
+    "sys-auth": {
+      "type": "application",
+      "root": "apps/sys-auth",
+      "entryFile": "main",
+      "sourceRoot": "apps/sys-auth/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/sys-auth/tsconfig.app.json"
+      }
+    },
+    "sys-file": {
+      "type": "application",
+      "root": "apps/sys-file",
+      "entryFile": "main",
+      "sourceRoot": "apps/sys-file/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/sys-file/tsconfig.app.json"
+      }
+    },
+    "sys-gateway": {
+      "type": "application",
+      "root": "apps/sys-gateway",
+      "entryFile": "main",
+      "sourceRoot": "apps/sys-gateway/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/sys-gateway/tsconfig.app.json"
       }
     },
     "utils": {

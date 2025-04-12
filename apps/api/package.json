@@ -25,6 +25,9 @@
   },
   "dependencies": {
     "@internal/tsconfig": "workspace:*",
+    "@pkg/types": "workspace:*",
+    "@pkg/database": "workspace:*",
+    "@nestjs/apollo": "^13.1.0",
     "@nestjs/axios": "^4.0.0",
     "@nestjs/common": "^11.0.1",
     "@nestjs/config": "^4.0.2",
@@ -34,7 +37,7 @@
     "@nestjs/microservices": "^11.0.12",
     "@nestjs/passport": "^11.0.5",
     "@nestjs/platform-express": "^11.0.1",
-    "@pkg/database": "workspace:*",
+    "@nestjs/swagger": "^11.1.2",
     "express": "^4.21.2",
     "joi": "^17.13.3",
     "passport-jwt": "^4.0.1",
