@@ -59,6 +59,11 @@ export type blog_categories = $Result.DefaultSelection<Prisma.$blog_categoriesPa
  */
 export type blog_posts = $Result.DefaultSelection<Prisma.$blog_postsPayload>
 /**
+ * Model blog_notice
+ * 
+ */
+export type blog_notice = $Result.DefaultSelection<Prisma.$blog_noticePayload>
+/**
  * Model blog_posts_on_tags
  * 
  */
@@ -73,6 +78,11 @@ export type blog_tag = $Result.DefaultSelection<Prisma.$blog_tagPayload>
  * 
  */
 export type file_user = $Result.DefaultSelection<Prisma.$file_userPayload>
+/**
+ * Model file_keys
+ * 
+ */
+export type file_keys = $Result.DefaultSelection<Prisma.$file_keysPayload>
 /**
  * Model file_config
  * 
@@ -133,6 +143,46 @@ export type book_borrow_history = $Result.DefaultSelection<Prisma.$book_borrow_h
  * 
  */
 export type book_rating = $Result.DefaultSelection<Prisma.$book_ratingPayload>
+/**
+ * Model study_user
+ * 
+ */
+export type study_user = $Result.DefaultSelection<Prisma.$study_userPayload>
+/**
+ * Model study_store
+ * 
+ */
+export type study_store = $Result.DefaultSelection<Prisma.$study_storePayload>
+/**
+ * Model study_floor
+ * 
+ */
+export type study_floor = $Result.DefaultSelection<Prisma.$study_floorPayload>
+/**
+ * Model study_room
+ * 
+ */
+export type study_room = $Result.DefaultSelection<Prisma.$study_roomPayload>
+/**
+ * Model study_seat
+ * 
+ */
+export type study_seat = $Result.DefaultSelection<Prisma.$study_seatPayload>
+/**
+ * Model study_reservation
+ * 
+ */
+export type study_reservation = $Result.DefaultSelection<Prisma.$study_reservationPayload>
+/**
+ * Model study_message
+ * 
+ */
+export type study_message = $Result.DefaultSelection<Prisma.$study_messagePayload>
+/**
+ * Model study_announcement
+ * 
+ */
+export type study_announcement = $Result.DefaultSelection<Prisma.$study_announcementPayload>
 
 /**
  * Enums
@@ -398,6 +448,16 @@ export class PrismaClient<
   get blog_posts(): Prisma.blog_postsDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.blog_notice`: Exposes CRUD operations for the **blog_notice** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Blog_notices
+    * const blog_notices = await prisma.blog_notice.findMany()
+    * ```
+    */
+  get blog_notice(): Prisma.blog_noticeDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.blog_posts_on_tags`: Exposes CRUD operations for the **blog_posts_on_tags** model.
     * Example usage:
     * ```ts
@@ -426,6 +486,16 @@ export class PrismaClient<
     * ```
     */
   get file_user(): Prisma.file_userDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.file_keys`: Exposes CRUD operations for the **file_keys** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more File_keys
+    * const file_keys = await prisma.file_keys.findMany()
+    * ```
+    */
+  get file_keys(): Prisma.file_keysDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.file_config`: Exposes CRUD operations for the **file_config** model.
@@ -546,6 +616,86 @@ export class PrismaClient<
     * ```
     */
   get book_rating(): Prisma.book_ratingDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.study_user`: Exposes CRUD operations for the **study_user** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Study_users
+    * const study_users = await prisma.study_user.findMany()
+    * ```
+    */
+  get study_user(): Prisma.study_userDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.study_store`: Exposes CRUD operations for the **study_store** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Study_stores
+    * const study_stores = await prisma.study_store.findMany()
+    * ```
+    */
+  get study_store(): Prisma.study_storeDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.study_floor`: Exposes CRUD operations for the **study_floor** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Study_floors
+    * const study_floors = await prisma.study_floor.findMany()
+    * ```
+    */
+  get study_floor(): Prisma.study_floorDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.study_room`: Exposes CRUD operations for the **study_room** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Study_rooms
+    * const study_rooms = await prisma.study_room.findMany()
+    * ```
+    */
+  get study_room(): Prisma.study_roomDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.study_seat`: Exposes CRUD operations for the **study_seat** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Study_seats
+    * const study_seats = await prisma.study_seat.findMany()
+    * ```
+    */
+  get study_seat(): Prisma.study_seatDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.study_reservation`: Exposes CRUD operations for the **study_reservation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Study_reservations
+    * const study_reservations = await prisma.study_reservation.findMany()
+    * ```
+    */
+  get study_reservation(): Prisma.study_reservationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.study_message`: Exposes CRUD operations for the **study_message** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Study_messages
+    * const study_messages = await prisma.study_message.findMany()
+    * ```
+    */
+  get study_message(): Prisma.study_messageDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.study_announcement`: Exposes CRUD operations for the **study_announcement** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Study_announcements
+    * const study_announcements = await prisma.study_announcement.findMany()
+    * ```
+    */
+  get study_announcement(): Prisma.study_announcementDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -995,9 +1145,11 @@ export namespace Prisma {
     blog_user: 'blog_user',
     blog_categories: 'blog_categories',
     blog_posts: 'blog_posts',
+    blog_notice: 'blog_notice',
     blog_posts_on_tags: 'blog_posts_on_tags',
     blog_tag: 'blog_tag',
     file_user: 'file_user',
+    file_keys: 'file_keys',
     file_config: 'file_config',
     file_user_on_media: 'file_user_on_media',
     file_block: 'file_block',
@@ -1009,7 +1161,15 @@ export namespace Prisma {
     book_category: 'book_category',
     book_borrowed: 'book_borrowed',
     book_borrow_history: 'book_borrow_history',
-    book_rating: 'book_rating'
+    book_rating: 'book_rating',
+    study_user: 'study_user',
+    study_store: 'study_store',
+    study_floor: 'study_floor',
+    study_room: 'study_room',
+    study_seat: 'study_seat',
+    study_reservation: 'study_reservation',
+    study_message: 'study_message',
+    study_announcement: 'study_announcement'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1028,7 +1188,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "sys_user" | "sys_account" | "sys_menu" | "sys_user_ban_menu" | "sys_menu_on_role" | "sys_role" | "blog_user" | "blog_categories" | "blog_posts" | "blog_posts_on_tags" | "blog_tag" | "file_user" | "file_config" | "file_user_on_media" | "file_block" | "file_media" | "file_media_on_folder" | "file_folder" | "book_user" | "book_book" | "book_category" | "book_borrowed" | "book_borrow_history" | "book_rating"
+      modelProps: "sys_user" | "sys_account" | "sys_menu" | "sys_user_ban_menu" | "sys_menu_on_role" | "sys_role" | "blog_user" | "blog_categories" | "blog_posts" | "blog_notice" | "blog_posts_on_tags" | "blog_tag" | "file_user" | "file_keys" | "file_config" | "file_user_on_media" | "file_block" | "file_media" | "file_media_on_folder" | "file_folder" | "book_user" | "book_book" | "book_category" | "book_borrowed" | "book_borrow_history" | "book_rating" | "study_user" | "study_store" | "study_floor" | "study_room" | "study_seat" | "study_reservation" | "study_message" | "study_announcement"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1626,6 +1786,72 @@ export namespace Prisma {
           }
         }
       }
+      blog_notice: {
+        payload: Prisma.$blog_noticePayload<ExtArgs>
+        fields: Prisma.blog_noticeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.blog_noticeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$blog_noticePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.blog_noticeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$blog_noticePayload>
+          }
+          findFirst: {
+            args: Prisma.blog_noticeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$blog_noticePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.blog_noticeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$blog_noticePayload>
+          }
+          findMany: {
+            args: Prisma.blog_noticeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$blog_noticePayload>[]
+          }
+          create: {
+            args: Prisma.blog_noticeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$blog_noticePayload>
+          }
+          createMany: {
+            args: Prisma.blog_noticeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.blog_noticeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$blog_noticePayload>
+          }
+          update: {
+            args: Prisma.blog_noticeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$blog_noticePayload>
+          }
+          deleteMany: {
+            args: Prisma.blog_noticeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.blog_noticeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.blog_noticeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$blog_noticePayload>
+          }
+          aggregate: {
+            args: Prisma.Blog_noticeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBlog_notice>
+          }
+          groupBy: {
+            args: Prisma.blog_noticeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Blog_noticeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.blog_noticeCountArgs<ExtArgs>
+            result: $Utils.Optional<Blog_noticeCountAggregateOutputType> | number
+          }
+        }
+      }
       blog_posts_on_tags: {
         payload: Prisma.$blog_posts_on_tagsPayload<ExtArgs>
         fields: Prisma.blog_posts_on_tagsFieldRefs
@@ -1821,6 +2047,72 @@ export namespace Prisma {
           count: {
             args: Prisma.file_userCountArgs<ExtArgs>
             result: $Utils.Optional<File_userCountAggregateOutputType> | number
+          }
+        }
+      }
+      file_keys: {
+        payload: Prisma.$file_keysPayload<ExtArgs>
+        fields: Prisma.file_keysFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.file_keysFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$file_keysPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.file_keysFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$file_keysPayload>
+          }
+          findFirst: {
+            args: Prisma.file_keysFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$file_keysPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.file_keysFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$file_keysPayload>
+          }
+          findMany: {
+            args: Prisma.file_keysFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$file_keysPayload>[]
+          }
+          create: {
+            args: Prisma.file_keysCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$file_keysPayload>
+          }
+          createMany: {
+            args: Prisma.file_keysCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.file_keysDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$file_keysPayload>
+          }
+          update: {
+            args: Prisma.file_keysUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$file_keysPayload>
+          }
+          deleteMany: {
+            args: Prisma.file_keysDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.file_keysUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.file_keysUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$file_keysPayload>
+          }
+          aggregate: {
+            args: Prisma.File_keysAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFile_keys>
+          }
+          groupBy: {
+            args: Prisma.file_keysGroupByArgs<ExtArgs>
+            result: $Utils.Optional<File_keysGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.file_keysCountArgs<ExtArgs>
+            result: $Utils.Optional<File_keysCountAggregateOutputType> | number
           }
         }
       }
@@ -2616,6 +2908,534 @@ export namespace Prisma {
           }
         }
       }
+      study_user: {
+        payload: Prisma.$study_userPayload<ExtArgs>
+        fields: Prisma.study_userFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.study_userFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_userPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.study_userFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_userPayload>
+          }
+          findFirst: {
+            args: Prisma.study_userFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_userPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.study_userFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_userPayload>
+          }
+          findMany: {
+            args: Prisma.study_userFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_userPayload>[]
+          }
+          create: {
+            args: Prisma.study_userCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_userPayload>
+          }
+          createMany: {
+            args: Prisma.study_userCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.study_userDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_userPayload>
+          }
+          update: {
+            args: Prisma.study_userUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_userPayload>
+          }
+          deleteMany: {
+            args: Prisma.study_userDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.study_userUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.study_userUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_userPayload>
+          }
+          aggregate: {
+            args: Prisma.Study_userAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStudy_user>
+          }
+          groupBy: {
+            args: Prisma.study_userGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Study_userGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.study_userCountArgs<ExtArgs>
+            result: $Utils.Optional<Study_userCountAggregateOutputType> | number
+          }
+        }
+      }
+      study_store: {
+        payload: Prisma.$study_storePayload<ExtArgs>
+        fields: Prisma.study_storeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.study_storeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_storePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.study_storeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_storePayload>
+          }
+          findFirst: {
+            args: Prisma.study_storeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_storePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.study_storeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_storePayload>
+          }
+          findMany: {
+            args: Prisma.study_storeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_storePayload>[]
+          }
+          create: {
+            args: Prisma.study_storeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_storePayload>
+          }
+          createMany: {
+            args: Prisma.study_storeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.study_storeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_storePayload>
+          }
+          update: {
+            args: Prisma.study_storeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_storePayload>
+          }
+          deleteMany: {
+            args: Prisma.study_storeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.study_storeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.study_storeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_storePayload>
+          }
+          aggregate: {
+            args: Prisma.Study_storeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStudy_store>
+          }
+          groupBy: {
+            args: Prisma.study_storeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Study_storeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.study_storeCountArgs<ExtArgs>
+            result: $Utils.Optional<Study_storeCountAggregateOutputType> | number
+          }
+        }
+      }
+      study_floor: {
+        payload: Prisma.$study_floorPayload<ExtArgs>
+        fields: Prisma.study_floorFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.study_floorFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_floorPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.study_floorFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_floorPayload>
+          }
+          findFirst: {
+            args: Prisma.study_floorFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_floorPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.study_floorFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_floorPayload>
+          }
+          findMany: {
+            args: Prisma.study_floorFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_floorPayload>[]
+          }
+          create: {
+            args: Prisma.study_floorCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_floorPayload>
+          }
+          createMany: {
+            args: Prisma.study_floorCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.study_floorDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_floorPayload>
+          }
+          update: {
+            args: Prisma.study_floorUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_floorPayload>
+          }
+          deleteMany: {
+            args: Prisma.study_floorDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.study_floorUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.study_floorUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_floorPayload>
+          }
+          aggregate: {
+            args: Prisma.Study_floorAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStudy_floor>
+          }
+          groupBy: {
+            args: Prisma.study_floorGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Study_floorGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.study_floorCountArgs<ExtArgs>
+            result: $Utils.Optional<Study_floorCountAggregateOutputType> | number
+          }
+        }
+      }
+      study_room: {
+        payload: Prisma.$study_roomPayload<ExtArgs>
+        fields: Prisma.study_roomFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.study_roomFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_roomPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.study_roomFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_roomPayload>
+          }
+          findFirst: {
+            args: Prisma.study_roomFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_roomPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.study_roomFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_roomPayload>
+          }
+          findMany: {
+            args: Prisma.study_roomFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_roomPayload>[]
+          }
+          create: {
+            args: Prisma.study_roomCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_roomPayload>
+          }
+          createMany: {
+            args: Prisma.study_roomCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.study_roomDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_roomPayload>
+          }
+          update: {
+            args: Prisma.study_roomUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_roomPayload>
+          }
+          deleteMany: {
+            args: Prisma.study_roomDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.study_roomUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.study_roomUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_roomPayload>
+          }
+          aggregate: {
+            args: Prisma.Study_roomAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStudy_room>
+          }
+          groupBy: {
+            args: Prisma.study_roomGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Study_roomGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.study_roomCountArgs<ExtArgs>
+            result: $Utils.Optional<Study_roomCountAggregateOutputType> | number
+          }
+        }
+      }
+      study_seat: {
+        payload: Prisma.$study_seatPayload<ExtArgs>
+        fields: Prisma.study_seatFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.study_seatFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_seatPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.study_seatFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_seatPayload>
+          }
+          findFirst: {
+            args: Prisma.study_seatFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_seatPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.study_seatFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_seatPayload>
+          }
+          findMany: {
+            args: Prisma.study_seatFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_seatPayload>[]
+          }
+          create: {
+            args: Prisma.study_seatCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_seatPayload>
+          }
+          createMany: {
+            args: Prisma.study_seatCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.study_seatDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_seatPayload>
+          }
+          update: {
+            args: Prisma.study_seatUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_seatPayload>
+          }
+          deleteMany: {
+            args: Prisma.study_seatDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.study_seatUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.study_seatUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_seatPayload>
+          }
+          aggregate: {
+            args: Prisma.Study_seatAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStudy_seat>
+          }
+          groupBy: {
+            args: Prisma.study_seatGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Study_seatGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.study_seatCountArgs<ExtArgs>
+            result: $Utils.Optional<Study_seatCountAggregateOutputType> | number
+          }
+        }
+      }
+      study_reservation: {
+        payload: Prisma.$study_reservationPayload<ExtArgs>
+        fields: Prisma.study_reservationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.study_reservationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_reservationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.study_reservationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_reservationPayload>
+          }
+          findFirst: {
+            args: Prisma.study_reservationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_reservationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.study_reservationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_reservationPayload>
+          }
+          findMany: {
+            args: Prisma.study_reservationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_reservationPayload>[]
+          }
+          create: {
+            args: Prisma.study_reservationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_reservationPayload>
+          }
+          createMany: {
+            args: Prisma.study_reservationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.study_reservationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_reservationPayload>
+          }
+          update: {
+            args: Prisma.study_reservationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_reservationPayload>
+          }
+          deleteMany: {
+            args: Prisma.study_reservationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.study_reservationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.study_reservationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_reservationPayload>
+          }
+          aggregate: {
+            args: Prisma.Study_reservationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStudy_reservation>
+          }
+          groupBy: {
+            args: Prisma.study_reservationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Study_reservationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.study_reservationCountArgs<ExtArgs>
+            result: $Utils.Optional<Study_reservationCountAggregateOutputType> | number
+          }
+        }
+      }
+      study_message: {
+        payload: Prisma.$study_messagePayload<ExtArgs>
+        fields: Prisma.study_messageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.study_messageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_messagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.study_messageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_messagePayload>
+          }
+          findFirst: {
+            args: Prisma.study_messageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_messagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.study_messageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_messagePayload>
+          }
+          findMany: {
+            args: Prisma.study_messageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_messagePayload>[]
+          }
+          create: {
+            args: Prisma.study_messageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_messagePayload>
+          }
+          createMany: {
+            args: Prisma.study_messageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.study_messageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_messagePayload>
+          }
+          update: {
+            args: Prisma.study_messageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_messagePayload>
+          }
+          deleteMany: {
+            args: Prisma.study_messageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.study_messageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.study_messageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_messagePayload>
+          }
+          aggregate: {
+            args: Prisma.Study_messageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStudy_message>
+          }
+          groupBy: {
+            args: Prisma.study_messageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Study_messageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.study_messageCountArgs<ExtArgs>
+            result: $Utils.Optional<Study_messageCountAggregateOutputType> | number
+          }
+        }
+      }
+      study_announcement: {
+        payload: Prisma.$study_announcementPayload<ExtArgs>
+        fields: Prisma.study_announcementFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.study_announcementFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_announcementPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.study_announcementFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_announcementPayload>
+          }
+          findFirst: {
+            args: Prisma.study_announcementFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_announcementPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.study_announcementFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_announcementPayload>
+          }
+          findMany: {
+            args: Prisma.study_announcementFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_announcementPayload>[]
+          }
+          create: {
+            args: Prisma.study_announcementCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_announcementPayload>
+          }
+          createMany: {
+            args: Prisma.study_announcementCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.study_announcementDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_announcementPayload>
+          }
+          update: {
+            args: Prisma.study_announcementUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_announcementPayload>
+          }
+          deleteMany: {
+            args: Prisma.study_announcementDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.study_announcementUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.study_announcementUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$study_announcementPayload>
+          }
+          aggregate: {
+            args: Prisma.Study_announcementAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStudy_announcement>
+          }
+          groupBy: {
+            args: Prisma.study_announcementGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Study_announcementGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.study_announcementCountArgs<ExtArgs>
+            result: $Utils.Optional<Study_announcementCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2709,9 +3529,11 @@ export namespace Prisma {
     blog_user?: blog_userOmit
     blog_categories?: blog_categoriesOmit
     blog_posts?: blog_postsOmit
+    blog_notice?: blog_noticeOmit
     blog_posts_on_tags?: blog_posts_on_tagsOmit
     blog_tag?: blog_tagOmit
     file_user?: file_userOmit
+    file_keys?: file_keysOmit
     file_config?: file_configOmit
     file_user_on_media?: file_user_on_mediaOmit
     file_block?: file_blockOmit
@@ -2724,6 +3546,14 @@ export namespace Prisma {
     book_borrowed?: book_borrowedOmit
     book_borrow_history?: book_borrow_historyOmit
     book_rating?: book_ratingOmit
+    study_user?: study_userOmit
+    study_store?: study_storeOmit
+    study_floor?: study_floorOmit
+    study_room?: study_roomOmit
+    study_seat?: study_seatOmit
+    study_reservation?: study_reservationOmit
+    study_message?: study_messageOmit
+    study_announcement?: study_announcementOmit
   }
 
   /* Types for Logging */
@@ -3073,11 +3903,13 @@ export namespace Prisma {
   export type File_userCountOutputType = {
     medias: number
     folders: number
+    keys: number
   }
 
   export type File_userCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     medias?: boolean | File_userCountOutputTypeCountMediasArgs
     folders?: boolean | File_userCountOutputTypeCountFoldersArgs
+    keys?: boolean | File_userCountOutputTypeCountKeysArgs
   }
 
   // Custom InputTypes
@@ -3103,6 +3935,13 @@ export namespace Prisma {
    */
   export type File_userCountOutputTypeCountFoldersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: file_folderWhereInput
+  }
+
+  /**
+   * File_userCountOutputType without action
+   */
+  export type File_userCountOutputTypeCountKeysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: file_keysWhereInput
   }
 
 
@@ -3321,6 +4160,170 @@ export namespace Prisma {
    */
   export type Book_categoryCountOutputTypeCountBooksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: book_bookWhereInput
+  }
+
+
+  /**
+   * Count Type Study_userCountOutputType
+   */
+
+  export type Study_userCountOutputType = {
+    reservation: number
+    message: number
+  }
+
+  export type Study_userCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    reservation?: boolean | Study_userCountOutputTypeCountReservationArgs
+    message?: boolean | Study_userCountOutputTypeCountMessageArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Study_userCountOutputType without action
+   */
+  export type Study_userCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Study_userCountOutputType
+     */
+    select?: Study_userCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Study_userCountOutputType without action
+   */
+  export type Study_userCountOutputTypeCountReservationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: study_reservationWhereInput
+  }
+
+  /**
+   * Study_userCountOutputType without action
+   */
+  export type Study_userCountOutputTypeCountMessageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: study_messageWhereInput
+  }
+
+
+  /**
+   * Count Type Study_storeCountOutputType
+   */
+
+  export type Study_storeCountOutputType = {
+    floors: number
+  }
+
+  export type Study_storeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    floors?: boolean | Study_storeCountOutputTypeCountFloorsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Study_storeCountOutputType without action
+   */
+  export type Study_storeCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Study_storeCountOutputType
+     */
+    select?: Study_storeCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Study_storeCountOutputType without action
+   */
+  export type Study_storeCountOutputTypeCountFloorsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: study_floorWhereInput
+  }
+
+
+  /**
+   * Count Type Study_floorCountOutputType
+   */
+
+  export type Study_floorCountOutputType = {
+    studyRooms: number
+  }
+
+  export type Study_floorCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    studyRooms?: boolean | Study_floorCountOutputTypeCountStudyRoomsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Study_floorCountOutputType without action
+   */
+  export type Study_floorCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Study_floorCountOutputType
+     */
+    select?: Study_floorCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Study_floorCountOutputType without action
+   */
+  export type Study_floorCountOutputTypeCountStudyRoomsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: study_roomWhereInput
+  }
+
+
+  /**
+   * Count Type Study_roomCountOutputType
+   */
+
+  export type Study_roomCountOutputType = {
+    seats: number
+  }
+
+  export type Study_roomCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    seats?: boolean | Study_roomCountOutputTypeCountSeatsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Study_roomCountOutputType without action
+   */
+  export type Study_roomCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Study_roomCountOutputType
+     */
+    select?: Study_roomCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Study_roomCountOutputType without action
+   */
+  export type Study_roomCountOutputTypeCountSeatsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: study_seatWhereInput
+  }
+
+
+  /**
+   * Count Type Study_seatCountOutputType
+   */
+
+  export type Study_seatCountOutputType = {
+    reservations: number
+  }
+
+  export type Study_seatCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    reservations?: boolean | Study_seatCountOutputTypeCountReservationsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Study_seatCountOutputType without action
+   */
+  export type Study_seatCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Study_seatCountOutputType
+     */
+    select?: Study_seatCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Study_seatCountOutputType without action
+   */
+  export type Study_seatCountOutputTypeCountReservationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: study_reservationWhereInput
   }
 
 
@@ -12137,6 +13140,866 @@ export namespace Prisma {
 
 
   /**
+   * Model blog_notice
+   */
+
+  export type AggregateBlog_notice = {
+    _count: Blog_noticeCountAggregateOutputType | null
+    _min: Blog_noticeMinAggregateOutputType | null
+    _max: Blog_noticeMaxAggregateOutputType | null
+  }
+
+  export type Blog_noticeMinAggregateOutputType = {
+    uid: string | null
+    createAt: Date | null
+    updateAt: Date | null
+  }
+
+  export type Blog_noticeMaxAggregateOutputType = {
+    uid: string | null
+    createAt: Date | null
+    updateAt: Date | null
+  }
+
+  export type Blog_noticeCountAggregateOutputType = {
+    uid: number
+    createAt: number
+    updateAt: number
+    _all: number
+  }
+
+
+  export type Blog_noticeMinAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+  }
+
+  export type Blog_noticeMaxAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+  }
+
+  export type Blog_noticeCountAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    _all?: true
+  }
+
+  export type Blog_noticeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which blog_notice to aggregate.
+     */
+    where?: blog_noticeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of blog_notices to fetch.
+     */
+    orderBy?: blog_noticeOrderByWithRelationInput | blog_noticeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: blog_noticeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` blog_notices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` blog_notices.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned blog_notices
+    **/
+    _count?: true | Blog_noticeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Blog_noticeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Blog_noticeMaxAggregateInputType
+  }
+
+  export type GetBlog_noticeAggregateType<T extends Blog_noticeAggregateArgs> = {
+        [P in keyof T & keyof AggregateBlog_notice]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBlog_notice[P]>
+      : GetScalarType<T[P], AggregateBlog_notice[P]>
+  }
+
+
+
+
+  export type blog_noticeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: blog_noticeWhereInput
+    orderBy?: blog_noticeOrderByWithAggregationInput | blog_noticeOrderByWithAggregationInput[]
+    by: Blog_noticeScalarFieldEnum[] | Blog_noticeScalarFieldEnum
+    having?: blog_noticeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Blog_noticeCountAggregateInputType | true
+    _min?: Blog_noticeMinAggregateInputType
+    _max?: Blog_noticeMaxAggregateInputType
+  }
+
+  export type Blog_noticeGroupByOutputType = {
+    uid: string
+    createAt: Date
+    updateAt: Date
+    _count: Blog_noticeCountAggregateOutputType | null
+    _min: Blog_noticeMinAggregateOutputType | null
+    _max: Blog_noticeMaxAggregateOutputType | null
+  }
+
+  type GetBlog_noticeGroupByPayload<T extends blog_noticeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Blog_noticeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Blog_noticeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Blog_noticeGroupByOutputType[P]>
+            : GetScalarType<T[P], Blog_noticeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type blog_noticeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    uid?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+  }, ExtArgs["result"]["blog_notice"]>
+
+
+
+  export type blog_noticeSelectScalar = {
+    uid?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+  }
+
+  export type blog_noticeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createAt" | "updateAt", ExtArgs["result"]["blog_notice"]>
+
+  export type $blog_noticePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "blog_notice"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      uid: string
+      createAt: Date
+      updateAt: Date
+    }, ExtArgs["result"]["blog_notice"]>
+    composites: {}
+  }
+
+  type blog_noticeGetPayload<S extends boolean | null | undefined | blog_noticeDefaultArgs> = $Result.GetResult<Prisma.$blog_noticePayload, S>
+
+  type blog_noticeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<blog_noticeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Blog_noticeCountAggregateInputType | true
+    }
+
+  export interface blog_noticeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['blog_notice'], meta: { name: 'blog_notice' } }
+    /**
+     * Find zero or one Blog_notice that matches the filter.
+     * @param {blog_noticeFindUniqueArgs} args - Arguments to find a Blog_notice
+     * @example
+     * // Get one Blog_notice
+     * const blog_notice = await prisma.blog_notice.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends blog_noticeFindUniqueArgs>(args: SelectSubset<T, blog_noticeFindUniqueArgs<ExtArgs>>): Prisma__blog_noticeClient<$Result.GetResult<Prisma.$blog_noticePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Blog_notice that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {blog_noticeFindUniqueOrThrowArgs} args - Arguments to find a Blog_notice
+     * @example
+     * // Get one Blog_notice
+     * const blog_notice = await prisma.blog_notice.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends blog_noticeFindUniqueOrThrowArgs>(args: SelectSubset<T, blog_noticeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__blog_noticeClient<$Result.GetResult<Prisma.$blog_noticePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Blog_notice that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {blog_noticeFindFirstArgs} args - Arguments to find a Blog_notice
+     * @example
+     * // Get one Blog_notice
+     * const blog_notice = await prisma.blog_notice.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends blog_noticeFindFirstArgs>(args?: SelectSubset<T, blog_noticeFindFirstArgs<ExtArgs>>): Prisma__blog_noticeClient<$Result.GetResult<Prisma.$blog_noticePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Blog_notice that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {blog_noticeFindFirstOrThrowArgs} args - Arguments to find a Blog_notice
+     * @example
+     * // Get one Blog_notice
+     * const blog_notice = await prisma.blog_notice.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends blog_noticeFindFirstOrThrowArgs>(args?: SelectSubset<T, blog_noticeFindFirstOrThrowArgs<ExtArgs>>): Prisma__blog_noticeClient<$Result.GetResult<Prisma.$blog_noticePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Blog_notices that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {blog_noticeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Blog_notices
+     * const blog_notices = await prisma.blog_notice.findMany()
+     * 
+     * // Get first 10 Blog_notices
+     * const blog_notices = await prisma.blog_notice.findMany({ take: 10 })
+     * 
+     * // Only select the `uid`
+     * const blog_noticeWithUidOnly = await prisma.blog_notice.findMany({ select: { uid: true } })
+     * 
+     */
+    findMany<T extends blog_noticeFindManyArgs>(args?: SelectSubset<T, blog_noticeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$blog_noticePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Blog_notice.
+     * @param {blog_noticeCreateArgs} args - Arguments to create a Blog_notice.
+     * @example
+     * // Create one Blog_notice
+     * const Blog_notice = await prisma.blog_notice.create({
+     *   data: {
+     *     // ... data to create a Blog_notice
+     *   }
+     * })
+     * 
+     */
+    create<T extends blog_noticeCreateArgs>(args: SelectSubset<T, blog_noticeCreateArgs<ExtArgs>>): Prisma__blog_noticeClient<$Result.GetResult<Prisma.$blog_noticePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Blog_notices.
+     * @param {blog_noticeCreateManyArgs} args - Arguments to create many Blog_notices.
+     * @example
+     * // Create many Blog_notices
+     * const blog_notice = await prisma.blog_notice.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends blog_noticeCreateManyArgs>(args?: SelectSubset<T, blog_noticeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Blog_notice.
+     * @param {blog_noticeDeleteArgs} args - Arguments to delete one Blog_notice.
+     * @example
+     * // Delete one Blog_notice
+     * const Blog_notice = await prisma.blog_notice.delete({
+     *   where: {
+     *     // ... filter to delete one Blog_notice
+     *   }
+     * })
+     * 
+     */
+    delete<T extends blog_noticeDeleteArgs>(args: SelectSubset<T, blog_noticeDeleteArgs<ExtArgs>>): Prisma__blog_noticeClient<$Result.GetResult<Prisma.$blog_noticePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Blog_notice.
+     * @param {blog_noticeUpdateArgs} args - Arguments to update one Blog_notice.
+     * @example
+     * // Update one Blog_notice
+     * const blog_notice = await prisma.blog_notice.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends blog_noticeUpdateArgs>(args: SelectSubset<T, blog_noticeUpdateArgs<ExtArgs>>): Prisma__blog_noticeClient<$Result.GetResult<Prisma.$blog_noticePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Blog_notices.
+     * @param {blog_noticeDeleteManyArgs} args - Arguments to filter Blog_notices to delete.
+     * @example
+     * // Delete a few Blog_notices
+     * const { count } = await prisma.blog_notice.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends blog_noticeDeleteManyArgs>(args?: SelectSubset<T, blog_noticeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Blog_notices.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {blog_noticeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Blog_notices
+     * const blog_notice = await prisma.blog_notice.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends blog_noticeUpdateManyArgs>(args: SelectSubset<T, blog_noticeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Blog_notice.
+     * @param {blog_noticeUpsertArgs} args - Arguments to update or create a Blog_notice.
+     * @example
+     * // Update or create a Blog_notice
+     * const blog_notice = await prisma.blog_notice.upsert({
+     *   create: {
+     *     // ... data to create a Blog_notice
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Blog_notice we want to update
+     *   }
+     * })
+     */
+    upsert<T extends blog_noticeUpsertArgs>(args: SelectSubset<T, blog_noticeUpsertArgs<ExtArgs>>): Prisma__blog_noticeClient<$Result.GetResult<Prisma.$blog_noticePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Blog_notices.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {blog_noticeCountArgs} args - Arguments to filter Blog_notices to count.
+     * @example
+     * // Count the number of Blog_notices
+     * const count = await prisma.blog_notice.count({
+     *   where: {
+     *     // ... the filter for the Blog_notices we want to count
+     *   }
+     * })
+    **/
+    count<T extends blog_noticeCountArgs>(
+      args?: Subset<T, blog_noticeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Blog_noticeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Blog_notice.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Blog_noticeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Blog_noticeAggregateArgs>(args: Subset<T, Blog_noticeAggregateArgs>): Prisma.PrismaPromise<GetBlog_noticeAggregateType<T>>
+
+    /**
+     * Group by Blog_notice.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {blog_noticeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends blog_noticeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: blog_noticeGroupByArgs['orderBy'] }
+        : { orderBy?: blog_noticeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, blog_noticeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBlog_noticeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the blog_notice model
+   */
+  readonly fields: blog_noticeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for blog_notice.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__blog_noticeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the blog_notice model
+   */ 
+  interface blog_noticeFieldRefs {
+    readonly uid: FieldRef<"blog_notice", 'String'>
+    readonly createAt: FieldRef<"blog_notice", 'DateTime'>
+    readonly updateAt: FieldRef<"blog_notice", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * blog_notice findUnique
+   */
+  export type blog_noticeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the blog_notice
+     */
+    select?: blog_noticeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the blog_notice
+     */
+    omit?: blog_noticeOmit<ExtArgs> | null
+    /**
+     * Filter, which blog_notice to fetch.
+     */
+    where: blog_noticeWhereUniqueInput
+  }
+
+  /**
+   * blog_notice findUniqueOrThrow
+   */
+  export type blog_noticeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the blog_notice
+     */
+    select?: blog_noticeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the blog_notice
+     */
+    omit?: blog_noticeOmit<ExtArgs> | null
+    /**
+     * Filter, which blog_notice to fetch.
+     */
+    where: blog_noticeWhereUniqueInput
+  }
+
+  /**
+   * blog_notice findFirst
+   */
+  export type blog_noticeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the blog_notice
+     */
+    select?: blog_noticeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the blog_notice
+     */
+    omit?: blog_noticeOmit<ExtArgs> | null
+    /**
+     * Filter, which blog_notice to fetch.
+     */
+    where?: blog_noticeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of blog_notices to fetch.
+     */
+    orderBy?: blog_noticeOrderByWithRelationInput | blog_noticeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for blog_notices.
+     */
+    cursor?: blog_noticeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` blog_notices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` blog_notices.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of blog_notices.
+     */
+    distinct?: Blog_noticeScalarFieldEnum | Blog_noticeScalarFieldEnum[]
+  }
+
+  /**
+   * blog_notice findFirstOrThrow
+   */
+  export type blog_noticeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the blog_notice
+     */
+    select?: blog_noticeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the blog_notice
+     */
+    omit?: blog_noticeOmit<ExtArgs> | null
+    /**
+     * Filter, which blog_notice to fetch.
+     */
+    where?: blog_noticeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of blog_notices to fetch.
+     */
+    orderBy?: blog_noticeOrderByWithRelationInput | blog_noticeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for blog_notices.
+     */
+    cursor?: blog_noticeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` blog_notices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` blog_notices.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of blog_notices.
+     */
+    distinct?: Blog_noticeScalarFieldEnum | Blog_noticeScalarFieldEnum[]
+  }
+
+  /**
+   * blog_notice findMany
+   */
+  export type blog_noticeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the blog_notice
+     */
+    select?: blog_noticeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the blog_notice
+     */
+    omit?: blog_noticeOmit<ExtArgs> | null
+    /**
+     * Filter, which blog_notices to fetch.
+     */
+    where?: blog_noticeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of blog_notices to fetch.
+     */
+    orderBy?: blog_noticeOrderByWithRelationInput | blog_noticeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing blog_notices.
+     */
+    cursor?: blog_noticeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` blog_notices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` blog_notices.
+     */
+    skip?: number
+    distinct?: Blog_noticeScalarFieldEnum | Blog_noticeScalarFieldEnum[]
+  }
+
+  /**
+   * blog_notice create
+   */
+  export type blog_noticeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the blog_notice
+     */
+    select?: blog_noticeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the blog_notice
+     */
+    omit?: blog_noticeOmit<ExtArgs> | null
+    /**
+     * The data needed to create a blog_notice.
+     */
+    data?: XOR<blog_noticeCreateInput, blog_noticeUncheckedCreateInput>
+  }
+
+  /**
+   * blog_notice createMany
+   */
+  export type blog_noticeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many blog_notices.
+     */
+    data: blog_noticeCreateManyInput | blog_noticeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * blog_notice update
+   */
+  export type blog_noticeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the blog_notice
+     */
+    select?: blog_noticeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the blog_notice
+     */
+    omit?: blog_noticeOmit<ExtArgs> | null
+    /**
+     * The data needed to update a blog_notice.
+     */
+    data: XOR<blog_noticeUpdateInput, blog_noticeUncheckedUpdateInput>
+    /**
+     * Choose, which blog_notice to update.
+     */
+    where: blog_noticeWhereUniqueInput
+  }
+
+  /**
+   * blog_notice updateMany
+   */
+  export type blog_noticeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update blog_notices.
+     */
+    data: XOR<blog_noticeUpdateManyMutationInput, blog_noticeUncheckedUpdateManyInput>
+    /**
+     * Filter which blog_notices to update
+     */
+    where?: blog_noticeWhereInput
+    /**
+     * Limit how many blog_notices to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * blog_notice upsert
+   */
+  export type blog_noticeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the blog_notice
+     */
+    select?: blog_noticeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the blog_notice
+     */
+    omit?: blog_noticeOmit<ExtArgs> | null
+    /**
+     * The filter to search for the blog_notice to update in case it exists.
+     */
+    where: blog_noticeWhereUniqueInput
+    /**
+     * In case the blog_notice found by the `where` argument doesn't exist, create a new blog_notice with this data.
+     */
+    create: XOR<blog_noticeCreateInput, blog_noticeUncheckedCreateInput>
+    /**
+     * In case the blog_notice was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<blog_noticeUpdateInput, blog_noticeUncheckedUpdateInput>
+  }
+
+  /**
+   * blog_notice delete
+   */
+  export type blog_noticeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the blog_notice
+     */
+    select?: blog_noticeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the blog_notice
+     */
+    omit?: blog_noticeOmit<ExtArgs> | null
+    /**
+     * Filter which blog_notice to delete.
+     */
+    where: blog_noticeWhereUniqueInput
+  }
+
+  /**
+   * blog_notice deleteMany
+   */
+  export type blog_noticeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which blog_notices to delete
+     */
+    where?: blog_noticeWhereInput
+    /**
+     * Limit how many blog_notices to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * blog_notice without action
+   */
+  export type blog_noticeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the blog_notice
+     */
+    select?: blog_noticeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the blog_notice
+     */
+    omit?: blog_noticeOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Model blog_posts_on_tags
    */
 
@@ -13995,8 +15858,6 @@ export namespace Prisma {
     createAt: Date | null
     updateAt: Date | null
     name: string | null
-    api_key: string | null
-    api_secret: string | null
     is_admin: boolean | null
   }
 
@@ -14005,8 +15866,6 @@ export namespace Prisma {
     createAt: Date | null
     updateAt: Date | null
     name: string | null
-    api_key: string | null
-    api_secret: string | null
     is_admin: boolean | null
   }
 
@@ -14015,8 +15874,6 @@ export namespace Prisma {
     createAt: number
     updateAt: number
     name: number
-    api_key: number
-    api_secret: number
     is_admin: number
     _all: number
   }
@@ -14027,8 +15884,6 @@ export namespace Prisma {
     createAt?: true
     updateAt?: true
     name?: true
-    api_key?: true
-    api_secret?: true
     is_admin?: true
   }
 
@@ -14037,8 +15892,6 @@ export namespace Prisma {
     createAt?: true
     updateAt?: true
     name?: true
-    api_key?: true
-    api_secret?: true
     is_admin?: true
   }
 
@@ -14047,8 +15900,6 @@ export namespace Prisma {
     createAt?: true
     updateAt?: true
     name?: true
-    api_key?: true
-    api_secret?: true
     is_admin?: true
     _all?: true
   }
@@ -14130,8 +15981,6 @@ export namespace Prisma {
     createAt: Date
     updateAt: Date
     name: string
-    api_key: string
-    api_secret: string
     is_admin: boolean
     _count: File_userCountAggregateOutputType | null
     _min: File_userMinAggregateOutputType | null
@@ -14157,12 +16006,11 @@ export namespace Prisma {
     createAt?: boolean
     updateAt?: boolean
     name?: boolean
-    api_key?: boolean
-    api_secret?: boolean
     is_admin?: boolean
     medias?: boolean | file_user$mediasArgs<ExtArgs>
     folders?: boolean | file_user$foldersArgs<ExtArgs>
     file_config?: boolean | file_user$file_configArgs<ExtArgs>
+    keys?: boolean | file_user$keysArgs<ExtArgs>
     _count?: boolean | File_userCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["file_user"]>
 
@@ -14173,16 +16021,15 @@ export namespace Prisma {
     createAt?: boolean
     updateAt?: boolean
     name?: boolean
-    api_key?: boolean
-    api_secret?: boolean
     is_admin?: boolean
   }
 
-  export type file_userOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createAt" | "updateAt" | "name" | "api_key" | "api_secret" | "is_admin", ExtArgs["result"]["file_user"]>
+  export type file_userOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createAt" | "updateAt" | "name" | "is_admin", ExtArgs["result"]["file_user"]>
   export type file_userInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     medias?: boolean | file_user$mediasArgs<ExtArgs>
     folders?: boolean | file_user$foldersArgs<ExtArgs>
     file_config?: boolean | file_user$file_configArgs<ExtArgs>
+    keys?: boolean | file_user$keysArgs<ExtArgs>
     _count?: boolean | File_userCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -14192,14 +16039,13 @@ export namespace Prisma {
       medias: Prisma.$file_user_on_mediaPayload<ExtArgs>[]
       folders: Prisma.$file_folderPayload<ExtArgs>[]
       file_config: Prisma.$file_configPayload<ExtArgs> | null
+      keys: Prisma.$file_keysPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       uid: string
       createAt: Date
       updateAt: Date
       name: string
-      api_key: string
-      api_secret: string
       is_admin: boolean
     }, ExtArgs["result"]["file_user"]>
     composites: {}
@@ -14544,6 +16390,7 @@ export namespace Prisma {
     medias<T extends file_user$mediasArgs<ExtArgs> = {}>(args?: Subset<T, file_user$mediasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$file_user_on_mediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     folders<T extends file_user$foldersArgs<ExtArgs> = {}>(args?: Subset<T, file_user$foldersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$file_folderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     file_config<T extends file_user$file_configArgs<ExtArgs> = {}>(args?: Subset<T, file_user$file_configArgs<ExtArgs>>): Prisma__file_configClient<$Result.GetResult<Prisma.$file_configPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    keys<T extends file_user$keysArgs<ExtArgs> = {}>(args?: Subset<T, file_user$keysArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$file_keysPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -14577,8 +16424,6 @@ export namespace Prisma {
     readonly createAt: FieldRef<"file_user", 'DateTime'>
     readonly updateAt: FieldRef<"file_user", 'DateTime'>
     readonly name: FieldRef<"file_user", 'String'>
-    readonly api_key: FieldRef<"file_user", 'String'>
-    readonly api_secret: FieldRef<"file_user", 'String'>
     readonly is_admin: FieldRef<"file_user", 'Boolean'>
   }
     
@@ -14990,6 +16835,30 @@ export namespace Prisma {
   }
 
   /**
+   * file_user.keys
+   */
+  export type file_user$keysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the file_keys
+     */
+    select?: file_keysSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the file_keys
+     */
+    omit?: file_keysOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: file_keysInclude<ExtArgs> | null
+    where?: file_keysWhereInput
+    orderBy?: file_keysOrderByWithRelationInput | file_keysOrderByWithRelationInput[]
+    cursor?: file_keysWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: File_keysScalarFieldEnum | File_keysScalarFieldEnum[]
+  }
+
+  /**
    * file_user without action
    */
   export type file_userDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -15005,6 +16874,913 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: file_userInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model file_keys
+   */
+
+  export type AggregateFile_keys = {
+    _count: File_keysCountAggregateOutputType | null
+    _min: File_keysMinAggregateOutputType | null
+    _max: File_keysMaxAggregateOutputType | null
+  }
+
+  export type File_keysMinAggregateOutputType = {
+    api_key: string | null
+    api_secret: string | null
+    userId: string | null
+  }
+
+  export type File_keysMaxAggregateOutputType = {
+    api_key: string | null
+    api_secret: string | null
+    userId: string | null
+  }
+
+  export type File_keysCountAggregateOutputType = {
+    api_key: number
+    api_secret: number
+    userId: number
+    _all: number
+  }
+
+
+  export type File_keysMinAggregateInputType = {
+    api_key?: true
+    api_secret?: true
+    userId?: true
+  }
+
+  export type File_keysMaxAggregateInputType = {
+    api_key?: true
+    api_secret?: true
+    userId?: true
+  }
+
+  export type File_keysCountAggregateInputType = {
+    api_key?: true
+    api_secret?: true
+    userId?: true
+    _all?: true
+  }
+
+  export type File_keysAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which file_keys to aggregate.
+     */
+    where?: file_keysWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of file_keys to fetch.
+     */
+    orderBy?: file_keysOrderByWithRelationInput | file_keysOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: file_keysWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` file_keys from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` file_keys.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned file_keys
+    **/
+    _count?: true | File_keysCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: File_keysMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: File_keysMaxAggregateInputType
+  }
+
+  export type GetFile_keysAggregateType<T extends File_keysAggregateArgs> = {
+        [P in keyof T & keyof AggregateFile_keys]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFile_keys[P]>
+      : GetScalarType<T[P], AggregateFile_keys[P]>
+  }
+
+
+
+
+  export type file_keysGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: file_keysWhereInput
+    orderBy?: file_keysOrderByWithAggregationInput | file_keysOrderByWithAggregationInput[]
+    by: File_keysScalarFieldEnum[] | File_keysScalarFieldEnum
+    having?: file_keysScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: File_keysCountAggregateInputType | true
+    _min?: File_keysMinAggregateInputType
+    _max?: File_keysMaxAggregateInputType
+  }
+
+  export type File_keysGroupByOutputType = {
+    api_key: string
+    api_secret: string
+    userId: string
+    _count: File_keysCountAggregateOutputType | null
+    _min: File_keysMinAggregateOutputType | null
+    _max: File_keysMaxAggregateOutputType | null
+  }
+
+  type GetFile_keysGroupByPayload<T extends file_keysGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<File_keysGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof File_keysGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], File_keysGroupByOutputType[P]>
+            : GetScalarType<T[P], File_keysGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type file_keysSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    api_key?: boolean
+    api_secret?: boolean
+    userId?: boolean
+    user?: boolean | file_userDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["file_keys"]>
+
+
+
+  export type file_keysSelectScalar = {
+    api_key?: boolean
+    api_secret?: boolean
+    userId?: boolean
+  }
+
+  export type file_keysOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"api_key" | "api_secret" | "userId", ExtArgs["result"]["file_keys"]>
+  export type file_keysInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | file_userDefaultArgs<ExtArgs>
+  }
+
+  export type $file_keysPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "file_keys"
+    objects: {
+      user: Prisma.$file_userPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      api_key: string
+      api_secret: string
+      userId: string
+    }, ExtArgs["result"]["file_keys"]>
+    composites: {}
+  }
+
+  type file_keysGetPayload<S extends boolean | null | undefined | file_keysDefaultArgs> = $Result.GetResult<Prisma.$file_keysPayload, S>
+
+  type file_keysCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<file_keysFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: File_keysCountAggregateInputType | true
+    }
+
+  export interface file_keysDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['file_keys'], meta: { name: 'file_keys' } }
+    /**
+     * Find zero or one File_keys that matches the filter.
+     * @param {file_keysFindUniqueArgs} args - Arguments to find a File_keys
+     * @example
+     * // Get one File_keys
+     * const file_keys = await prisma.file_keys.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends file_keysFindUniqueArgs>(args: SelectSubset<T, file_keysFindUniqueArgs<ExtArgs>>): Prisma__file_keysClient<$Result.GetResult<Prisma.$file_keysPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one File_keys that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {file_keysFindUniqueOrThrowArgs} args - Arguments to find a File_keys
+     * @example
+     * // Get one File_keys
+     * const file_keys = await prisma.file_keys.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends file_keysFindUniqueOrThrowArgs>(args: SelectSubset<T, file_keysFindUniqueOrThrowArgs<ExtArgs>>): Prisma__file_keysClient<$Result.GetResult<Prisma.$file_keysPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first File_keys that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {file_keysFindFirstArgs} args - Arguments to find a File_keys
+     * @example
+     * // Get one File_keys
+     * const file_keys = await prisma.file_keys.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends file_keysFindFirstArgs>(args?: SelectSubset<T, file_keysFindFirstArgs<ExtArgs>>): Prisma__file_keysClient<$Result.GetResult<Prisma.$file_keysPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first File_keys that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {file_keysFindFirstOrThrowArgs} args - Arguments to find a File_keys
+     * @example
+     * // Get one File_keys
+     * const file_keys = await prisma.file_keys.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends file_keysFindFirstOrThrowArgs>(args?: SelectSubset<T, file_keysFindFirstOrThrowArgs<ExtArgs>>): Prisma__file_keysClient<$Result.GetResult<Prisma.$file_keysPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more File_keys that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {file_keysFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all File_keys
+     * const file_keys = await prisma.file_keys.findMany()
+     * 
+     * // Get first 10 File_keys
+     * const file_keys = await prisma.file_keys.findMany({ take: 10 })
+     * 
+     * // Only select the `api_key`
+     * const file_keysWithApi_keyOnly = await prisma.file_keys.findMany({ select: { api_key: true } })
+     * 
+     */
+    findMany<T extends file_keysFindManyArgs>(args?: SelectSubset<T, file_keysFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$file_keysPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a File_keys.
+     * @param {file_keysCreateArgs} args - Arguments to create a File_keys.
+     * @example
+     * // Create one File_keys
+     * const File_keys = await prisma.file_keys.create({
+     *   data: {
+     *     // ... data to create a File_keys
+     *   }
+     * })
+     * 
+     */
+    create<T extends file_keysCreateArgs>(args: SelectSubset<T, file_keysCreateArgs<ExtArgs>>): Prisma__file_keysClient<$Result.GetResult<Prisma.$file_keysPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many File_keys.
+     * @param {file_keysCreateManyArgs} args - Arguments to create many File_keys.
+     * @example
+     * // Create many File_keys
+     * const file_keys = await prisma.file_keys.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends file_keysCreateManyArgs>(args?: SelectSubset<T, file_keysCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a File_keys.
+     * @param {file_keysDeleteArgs} args - Arguments to delete one File_keys.
+     * @example
+     * // Delete one File_keys
+     * const File_keys = await prisma.file_keys.delete({
+     *   where: {
+     *     // ... filter to delete one File_keys
+     *   }
+     * })
+     * 
+     */
+    delete<T extends file_keysDeleteArgs>(args: SelectSubset<T, file_keysDeleteArgs<ExtArgs>>): Prisma__file_keysClient<$Result.GetResult<Prisma.$file_keysPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one File_keys.
+     * @param {file_keysUpdateArgs} args - Arguments to update one File_keys.
+     * @example
+     * // Update one File_keys
+     * const file_keys = await prisma.file_keys.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends file_keysUpdateArgs>(args: SelectSubset<T, file_keysUpdateArgs<ExtArgs>>): Prisma__file_keysClient<$Result.GetResult<Prisma.$file_keysPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more File_keys.
+     * @param {file_keysDeleteManyArgs} args - Arguments to filter File_keys to delete.
+     * @example
+     * // Delete a few File_keys
+     * const { count } = await prisma.file_keys.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends file_keysDeleteManyArgs>(args?: SelectSubset<T, file_keysDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more File_keys.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {file_keysUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many File_keys
+     * const file_keys = await prisma.file_keys.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends file_keysUpdateManyArgs>(args: SelectSubset<T, file_keysUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one File_keys.
+     * @param {file_keysUpsertArgs} args - Arguments to update or create a File_keys.
+     * @example
+     * // Update or create a File_keys
+     * const file_keys = await prisma.file_keys.upsert({
+     *   create: {
+     *     // ... data to create a File_keys
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the File_keys we want to update
+     *   }
+     * })
+     */
+    upsert<T extends file_keysUpsertArgs>(args: SelectSubset<T, file_keysUpsertArgs<ExtArgs>>): Prisma__file_keysClient<$Result.GetResult<Prisma.$file_keysPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of File_keys.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {file_keysCountArgs} args - Arguments to filter File_keys to count.
+     * @example
+     * // Count the number of File_keys
+     * const count = await prisma.file_keys.count({
+     *   where: {
+     *     // ... the filter for the File_keys we want to count
+     *   }
+     * })
+    **/
+    count<T extends file_keysCountArgs>(
+      args?: Subset<T, file_keysCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], File_keysCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a File_keys.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {File_keysAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends File_keysAggregateArgs>(args: Subset<T, File_keysAggregateArgs>): Prisma.PrismaPromise<GetFile_keysAggregateType<T>>
+
+    /**
+     * Group by File_keys.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {file_keysGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends file_keysGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: file_keysGroupByArgs['orderBy'] }
+        : { orderBy?: file_keysGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, file_keysGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFile_keysGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the file_keys model
+   */
+  readonly fields: file_keysFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for file_keys.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__file_keysClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends file_userDefaultArgs<ExtArgs> = {}>(args?: Subset<T, file_userDefaultArgs<ExtArgs>>): Prisma__file_userClient<$Result.GetResult<Prisma.$file_userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the file_keys model
+   */ 
+  interface file_keysFieldRefs {
+    readonly api_key: FieldRef<"file_keys", 'String'>
+    readonly api_secret: FieldRef<"file_keys", 'String'>
+    readonly userId: FieldRef<"file_keys", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * file_keys findUnique
+   */
+  export type file_keysFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the file_keys
+     */
+    select?: file_keysSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the file_keys
+     */
+    omit?: file_keysOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: file_keysInclude<ExtArgs> | null
+    /**
+     * Filter, which file_keys to fetch.
+     */
+    where: file_keysWhereUniqueInput
+  }
+
+  /**
+   * file_keys findUniqueOrThrow
+   */
+  export type file_keysFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the file_keys
+     */
+    select?: file_keysSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the file_keys
+     */
+    omit?: file_keysOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: file_keysInclude<ExtArgs> | null
+    /**
+     * Filter, which file_keys to fetch.
+     */
+    where: file_keysWhereUniqueInput
+  }
+
+  /**
+   * file_keys findFirst
+   */
+  export type file_keysFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the file_keys
+     */
+    select?: file_keysSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the file_keys
+     */
+    omit?: file_keysOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: file_keysInclude<ExtArgs> | null
+    /**
+     * Filter, which file_keys to fetch.
+     */
+    where?: file_keysWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of file_keys to fetch.
+     */
+    orderBy?: file_keysOrderByWithRelationInput | file_keysOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for file_keys.
+     */
+    cursor?: file_keysWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` file_keys from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` file_keys.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of file_keys.
+     */
+    distinct?: File_keysScalarFieldEnum | File_keysScalarFieldEnum[]
+  }
+
+  /**
+   * file_keys findFirstOrThrow
+   */
+  export type file_keysFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the file_keys
+     */
+    select?: file_keysSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the file_keys
+     */
+    omit?: file_keysOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: file_keysInclude<ExtArgs> | null
+    /**
+     * Filter, which file_keys to fetch.
+     */
+    where?: file_keysWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of file_keys to fetch.
+     */
+    orderBy?: file_keysOrderByWithRelationInput | file_keysOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for file_keys.
+     */
+    cursor?: file_keysWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` file_keys from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` file_keys.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of file_keys.
+     */
+    distinct?: File_keysScalarFieldEnum | File_keysScalarFieldEnum[]
+  }
+
+  /**
+   * file_keys findMany
+   */
+  export type file_keysFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the file_keys
+     */
+    select?: file_keysSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the file_keys
+     */
+    omit?: file_keysOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: file_keysInclude<ExtArgs> | null
+    /**
+     * Filter, which file_keys to fetch.
+     */
+    where?: file_keysWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of file_keys to fetch.
+     */
+    orderBy?: file_keysOrderByWithRelationInput | file_keysOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing file_keys.
+     */
+    cursor?: file_keysWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` file_keys from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` file_keys.
+     */
+    skip?: number
+    distinct?: File_keysScalarFieldEnum | File_keysScalarFieldEnum[]
+  }
+
+  /**
+   * file_keys create
+   */
+  export type file_keysCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the file_keys
+     */
+    select?: file_keysSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the file_keys
+     */
+    omit?: file_keysOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: file_keysInclude<ExtArgs> | null
+    /**
+     * The data needed to create a file_keys.
+     */
+    data: XOR<file_keysCreateInput, file_keysUncheckedCreateInput>
+  }
+
+  /**
+   * file_keys createMany
+   */
+  export type file_keysCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many file_keys.
+     */
+    data: file_keysCreateManyInput | file_keysCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * file_keys update
+   */
+  export type file_keysUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the file_keys
+     */
+    select?: file_keysSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the file_keys
+     */
+    omit?: file_keysOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: file_keysInclude<ExtArgs> | null
+    /**
+     * The data needed to update a file_keys.
+     */
+    data: XOR<file_keysUpdateInput, file_keysUncheckedUpdateInput>
+    /**
+     * Choose, which file_keys to update.
+     */
+    where: file_keysWhereUniqueInput
+  }
+
+  /**
+   * file_keys updateMany
+   */
+  export type file_keysUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update file_keys.
+     */
+    data: XOR<file_keysUpdateManyMutationInput, file_keysUncheckedUpdateManyInput>
+    /**
+     * Filter which file_keys to update
+     */
+    where?: file_keysWhereInput
+    /**
+     * Limit how many file_keys to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * file_keys upsert
+   */
+  export type file_keysUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the file_keys
+     */
+    select?: file_keysSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the file_keys
+     */
+    omit?: file_keysOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: file_keysInclude<ExtArgs> | null
+    /**
+     * The filter to search for the file_keys to update in case it exists.
+     */
+    where: file_keysWhereUniqueInput
+    /**
+     * In case the file_keys found by the `where` argument doesn't exist, create a new file_keys with this data.
+     */
+    create: XOR<file_keysCreateInput, file_keysUncheckedCreateInput>
+    /**
+     * In case the file_keys was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<file_keysUpdateInput, file_keysUncheckedUpdateInput>
+  }
+
+  /**
+   * file_keys delete
+   */
+  export type file_keysDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the file_keys
+     */
+    select?: file_keysSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the file_keys
+     */
+    omit?: file_keysOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: file_keysInclude<ExtArgs> | null
+    /**
+     * Filter which file_keys to delete.
+     */
+    where: file_keysWhereUniqueInput
+  }
+
+  /**
+   * file_keys deleteMany
+   */
+  export type file_keysDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which file_keys to delete
+     */
+    where?: file_keysWhereInput
+    /**
+     * Limit how many file_keys to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * file_keys without action
+   */
+  export type file_keysDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the file_keys
+     */
+    select?: file_keysSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the file_keys
+     */
+    omit?: file_keysOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: file_keysInclude<ExtArgs> | null
   }
 
 
@@ -26746,6 +29522,7787 @@ export namespace Prisma {
 
 
   /**
+   * Model study_user
+   */
+
+  export type AggregateStudy_user = {
+    _count: Study_userCountAggregateOutputType | null
+    _min: Study_userMinAggregateOutputType | null
+    _max: Study_userMaxAggregateOutputType | null
+  }
+
+  export type Study_userMinAggregateOutputType = {
+    uid: string | null
+    createAt: Date | null
+    updateAt: Date | null
+    name: string | null
+    account: string | null
+    password: string | null
+    isAdmin: boolean | null
+  }
+
+  export type Study_userMaxAggregateOutputType = {
+    uid: string | null
+    createAt: Date | null
+    updateAt: Date | null
+    name: string | null
+    account: string | null
+    password: string | null
+    isAdmin: boolean | null
+  }
+
+  export type Study_userCountAggregateOutputType = {
+    uid: number
+    createAt: number
+    updateAt: number
+    name: number
+    account: number
+    password: number
+    isAdmin: number
+    _all: number
+  }
+
+
+  export type Study_userMinAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    name?: true
+    account?: true
+    password?: true
+    isAdmin?: true
+  }
+
+  export type Study_userMaxAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    name?: true
+    account?: true
+    password?: true
+    isAdmin?: true
+  }
+
+  export type Study_userCountAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    name?: true
+    account?: true
+    password?: true
+    isAdmin?: true
+    _all?: true
+  }
+
+  export type Study_userAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which study_user to aggregate.
+     */
+    where?: study_userWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_users to fetch.
+     */
+    orderBy?: study_userOrderByWithRelationInput | study_userOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: study_userWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned study_users
+    **/
+    _count?: true | Study_userCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Study_userMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Study_userMaxAggregateInputType
+  }
+
+  export type GetStudy_userAggregateType<T extends Study_userAggregateArgs> = {
+        [P in keyof T & keyof AggregateStudy_user]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStudy_user[P]>
+      : GetScalarType<T[P], AggregateStudy_user[P]>
+  }
+
+
+
+
+  export type study_userGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: study_userWhereInput
+    orderBy?: study_userOrderByWithAggregationInput | study_userOrderByWithAggregationInput[]
+    by: Study_userScalarFieldEnum[] | Study_userScalarFieldEnum
+    having?: study_userScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Study_userCountAggregateInputType | true
+    _min?: Study_userMinAggregateInputType
+    _max?: Study_userMaxAggregateInputType
+  }
+
+  export type Study_userGroupByOutputType = {
+    uid: string
+    createAt: Date
+    updateAt: Date
+    name: string
+    account: string
+    password: string
+    isAdmin: boolean
+    _count: Study_userCountAggregateOutputType | null
+    _min: Study_userMinAggregateOutputType | null
+    _max: Study_userMaxAggregateOutputType | null
+  }
+
+  type GetStudy_userGroupByPayload<T extends study_userGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Study_userGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Study_userGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Study_userGroupByOutputType[P]>
+            : GetScalarType<T[P], Study_userGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type study_userSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    uid?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    name?: boolean
+    account?: boolean
+    password?: boolean
+    isAdmin?: boolean
+    reservation?: boolean | study_user$reservationArgs<ExtArgs>
+    message?: boolean | study_user$messageArgs<ExtArgs>
+    _count?: boolean | Study_userCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["study_user"]>
+
+
+
+  export type study_userSelectScalar = {
+    uid?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    name?: boolean
+    account?: boolean
+    password?: boolean
+    isAdmin?: boolean
+  }
+
+  export type study_userOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createAt" | "updateAt" | "name" | "account" | "password" | "isAdmin", ExtArgs["result"]["study_user"]>
+  export type study_userInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    reservation?: boolean | study_user$reservationArgs<ExtArgs>
+    message?: boolean | study_user$messageArgs<ExtArgs>
+    _count?: boolean | Study_userCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $study_userPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "study_user"
+    objects: {
+      reservation: Prisma.$study_reservationPayload<ExtArgs>[]
+      message: Prisma.$study_messagePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      uid: string
+      createAt: Date
+      updateAt: Date
+      name: string
+      account: string
+      password: string
+      isAdmin: boolean
+    }, ExtArgs["result"]["study_user"]>
+    composites: {}
+  }
+
+  type study_userGetPayload<S extends boolean | null | undefined | study_userDefaultArgs> = $Result.GetResult<Prisma.$study_userPayload, S>
+
+  type study_userCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<study_userFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Study_userCountAggregateInputType | true
+    }
+
+  export interface study_userDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['study_user'], meta: { name: 'study_user' } }
+    /**
+     * Find zero or one Study_user that matches the filter.
+     * @param {study_userFindUniqueArgs} args - Arguments to find a Study_user
+     * @example
+     * // Get one Study_user
+     * const study_user = await prisma.study_user.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends study_userFindUniqueArgs>(args: SelectSubset<T, study_userFindUniqueArgs<ExtArgs>>): Prisma__study_userClient<$Result.GetResult<Prisma.$study_userPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Study_user that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {study_userFindUniqueOrThrowArgs} args - Arguments to find a Study_user
+     * @example
+     * // Get one Study_user
+     * const study_user = await prisma.study_user.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends study_userFindUniqueOrThrowArgs>(args: SelectSubset<T, study_userFindUniqueOrThrowArgs<ExtArgs>>): Prisma__study_userClient<$Result.GetResult<Prisma.$study_userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Study_user that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_userFindFirstArgs} args - Arguments to find a Study_user
+     * @example
+     * // Get one Study_user
+     * const study_user = await prisma.study_user.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends study_userFindFirstArgs>(args?: SelectSubset<T, study_userFindFirstArgs<ExtArgs>>): Prisma__study_userClient<$Result.GetResult<Prisma.$study_userPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Study_user that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_userFindFirstOrThrowArgs} args - Arguments to find a Study_user
+     * @example
+     * // Get one Study_user
+     * const study_user = await prisma.study_user.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends study_userFindFirstOrThrowArgs>(args?: SelectSubset<T, study_userFindFirstOrThrowArgs<ExtArgs>>): Prisma__study_userClient<$Result.GetResult<Prisma.$study_userPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Study_users that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_userFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Study_users
+     * const study_users = await prisma.study_user.findMany()
+     * 
+     * // Get first 10 Study_users
+     * const study_users = await prisma.study_user.findMany({ take: 10 })
+     * 
+     * // Only select the `uid`
+     * const study_userWithUidOnly = await prisma.study_user.findMany({ select: { uid: true } })
+     * 
+     */
+    findMany<T extends study_userFindManyArgs>(args?: SelectSubset<T, study_userFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$study_userPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Study_user.
+     * @param {study_userCreateArgs} args - Arguments to create a Study_user.
+     * @example
+     * // Create one Study_user
+     * const Study_user = await prisma.study_user.create({
+     *   data: {
+     *     // ... data to create a Study_user
+     *   }
+     * })
+     * 
+     */
+    create<T extends study_userCreateArgs>(args: SelectSubset<T, study_userCreateArgs<ExtArgs>>): Prisma__study_userClient<$Result.GetResult<Prisma.$study_userPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Study_users.
+     * @param {study_userCreateManyArgs} args - Arguments to create many Study_users.
+     * @example
+     * // Create many Study_users
+     * const study_user = await prisma.study_user.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends study_userCreateManyArgs>(args?: SelectSubset<T, study_userCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Study_user.
+     * @param {study_userDeleteArgs} args - Arguments to delete one Study_user.
+     * @example
+     * // Delete one Study_user
+     * const Study_user = await prisma.study_user.delete({
+     *   where: {
+     *     // ... filter to delete one Study_user
+     *   }
+     * })
+     * 
+     */
+    delete<T extends study_userDeleteArgs>(args: SelectSubset<T, study_userDeleteArgs<ExtArgs>>): Prisma__study_userClient<$Result.GetResult<Prisma.$study_userPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Study_user.
+     * @param {study_userUpdateArgs} args - Arguments to update one Study_user.
+     * @example
+     * // Update one Study_user
+     * const study_user = await prisma.study_user.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends study_userUpdateArgs>(args: SelectSubset<T, study_userUpdateArgs<ExtArgs>>): Prisma__study_userClient<$Result.GetResult<Prisma.$study_userPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Study_users.
+     * @param {study_userDeleteManyArgs} args - Arguments to filter Study_users to delete.
+     * @example
+     * // Delete a few Study_users
+     * const { count } = await prisma.study_user.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends study_userDeleteManyArgs>(args?: SelectSubset<T, study_userDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Study_users.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_userUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Study_users
+     * const study_user = await prisma.study_user.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends study_userUpdateManyArgs>(args: SelectSubset<T, study_userUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Study_user.
+     * @param {study_userUpsertArgs} args - Arguments to update or create a Study_user.
+     * @example
+     * // Update or create a Study_user
+     * const study_user = await prisma.study_user.upsert({
+     *   create: {
+     *     // ... data to create a Study_user
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Study_user we want to update
+     *   }
+     * })
+     */
+    upsert<T extends study_userUpsertArgs>(args: SelectSubset<T, study_userUpsertArgs<ExtArgs>>): Prisma__study_userClient<$Result.GetResult<Prisma.$study_userPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Study_users.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_userCountArgs} args - Arguments to filter Study_users to count.
+     * @example
+     * // Count the number of Study_users
+     * const count = await prisma.study_user.count({
+     *   where: {
+     *     // ... the filter for the Study_users we want to count
+     *   }
+     * })
+    **/
+    count<T extends study_userCountArgs>(
+      args?: Subset<T, study_userCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Study_userCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Study_user.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Study_userAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Study_userAggregateArgs>(args: Subset<T, Study_userAggregateArgs>): Prisma.PrismaPromise<GetStudy_userAggregateType<T>>
+
+    /**
+     * Group by Study_user.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_userGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends study_userGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: study_userGroupByArgs['orderBy'] }
+        : { orderBy?: study_userGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, study_userGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStudy_userGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the study_user model
+   */
+  readonly fields: study_userFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for study_user.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__study_userClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    reservation<T extends study_user$reservationArgs<ExtArgs> = {}>(args?: Subset<T, study_user$reservationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$study_reservationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    message<T extends study_user$messageArgs<ExtArgs> = {}>(args?: Subset<T, study_user$messageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$study_messagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the study_user model
+   */ 
+  interface study_userFieldRefs {
+    readonly uid: FieldRef<"study_user", 'String'>
+    readonly createAt: FieldRef<"study_user", 'DateTime'>
+    readonly updateAt: FieldRef<"study_user", 'DateTime'>
+    readonly name: FieldRef<"study_user", 'String'>
+    readonly account: FieldRef<"study_user", 'String'>
+    readonly password: FieldRef<"study_user", 'String'>
+    readonly isAdmin: FieldRef<"study_user", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * study_user findUnique
+   */
+  export type study_userFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_user
+     */
+    select?: study_userSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_user
+     */
+    omit?: study_userOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_userInclude<ExtArgs> | null
+    /**
+     * Filter, which study_user to fetch.
+     */
+    where: study_userWhereUniqueInput
+  }
+
+  /**
+   * study_user findUniqueOrThrow
+   */
+  export type study_userFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_user
+     */
+    select?: study_userSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_user
+     */
+    omit?: study_userOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_userInclude<ExtArgs> | null
+    /**
+     * Filter, which study_user to fetch.
+     */
+    where: study_userWhereUniqueInput
+  }
+
+  /**
+   * study_user findFirst
+   */
+  export type study_userFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_user
+     */
+    select?: study_userSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_user
+     */
+    omit?: study_userOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_userInclude<ExtArgs> | null
+    /**
+     * Filter, which study_user to fetch.
+     */
+    where?: study_userWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_users to fetch.
+     */
+    orderBy?: study_userOrderByWithRelationInput | study_userOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for study_users.
+     */
+    cursor?: study_userWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of study_users.
+     */
+    distinct?: Study_userScalarFieldEnum | Study_userScalarFieldEnum[]
+  }
+
+  /**
+   * study_user findFirstOrThrow
+   */
+  export type study_userFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_user
+     */
+    select?: study_userSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_user
+     */
+    omit?: study_userOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_userInclude<ExtArgs> | null
+    /**
+     * Filter, which study_user to fetch.
+     */
+    where?: study_userWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_users to fetch.
+     */
+    orderBy?: study_userOrderByWithRelationInput | study_userOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for study_users.
+     */
+    cursor?: study_userWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of study_users.
+     */
+    distinct?: Study_userScalarFieldEnum | Study_userScalarFieldEnum[]
+  }
+
+  /**
+   * study_user findMany
+   */
+  export type study_userFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_user
+     */
+    select?: study_userSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_user
+     */
+    omit?: study_userOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_userInclude<ExtArgs> | null
+    /**
+     * Filter, which study_users to fetch.
+     */
+    where?: study_userWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_users to fetch.
+     */
+    orderBy?: study_userOrderByWithRelationInput | study_userOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing study_users.
+     */
+    cursor?: study_userWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_users.
+     */
+    skip?: number
+    distinct?: Study_userScalarFieldEnum | Study_userScalarFieldEnum[]
+  }
+
+  /**
+   * study_user create
+   */
+  export type study_userCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_user
+     */
+    select?: study_userSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_user
+     */
+    omit?: study_userOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_userInclude<ExtArgs> | null
+    /**
+     * The data needed to create a study_user.
+     */
+    data: XOR<study_userCreateInput, study_userUncheckedCreateInput>
+  }
+
+  /**
+   * study_user createMany
+   */
+  export type study_userCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many study_users.
+     */
+    data: study_userCreateManyInput | study_userCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * study_user update
+   */
+  export type study_userUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_user
+     */
+    select?: study_userSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_user
+     */
+    omit?: study_userOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_userInclude<ExtArgs> | null
+    /**
+     * The data needed to update a study_user.
+     */
+    data: XOR<study_userUpdateInput, study_userUncheckedUpdateInput>
+    /**
+     * Choose, which study_user to update.
+     */
+    where: study_userWhereUniqueInput
+  }
+
+  /**
+   * study_user updateMany
+   */
+  export type study_userUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update study_users.
+     */
+    data: XOR<study_userUpdateManyMutationInput, study_userUncheckedUpdateManyInput>
+    /**
+     * Filter which study_users to update
+     */
+    where?: study_userWhereInput
+    /**
+     * Limit how many study_users to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * study_user upsert
+   */
+  export type study_userUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_user
+     */
+    select?: study_userSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_user
+     */
+    omit?: study_userOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_userInclude<ExtArgs> | null
+    /**
+     * The filter to search for the study_user to update in case it exists.
+     */
+    where: study_userWhereUniqueInput
+    /**
+     * In case the study_user found by the `where` argument doesn't exist, create a new study_user with this data.
+     */
+    create: XOR<study_userCreateInput, study_userUncheckedCreateInput>
+    /**
+     * In case the study_user was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<study_userUpdateInput, study_userUncheckedUpdateInput>
+  }
+
+  /**
+   * study_user delete
+   */
+  export type study_userDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_user
+     */
+    select?: study_userSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_user
+     */
+    omit?: study_userOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_userInclude<ExtArgs> | null
+    /**
+     * Filter which study_user to delete.
+     */
+    where: study_userWhereUniqueInput
+  }
+
+  /**
+   * study_user deleteMany
+   */
+  export type study_userDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which study_users to delete
+     */
+    where?: study_userWhereInput
+    /**
+     * Limit how many study_users to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * study_user.reservation
+   */
+  export type study_user$reservationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_reservation
+     */
+    select?: study_reservationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_reservation
+     */
+    omit?: study_reservationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_reservationInclude<ExtArgs> | null
+    where?: study_reservationWhereInput
+    orderBy?: study_reservationOrderByWithRelationInput | study_reservationOrderByWithRelationInput[]
+    cursor?: study_reservationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Study_reservationScalarFieldEnum | Study_reservationScalarFieldEnum[]
+  }
+
+  /**
+   * study_user.message
+   */
+  export type study_user$messageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_message
+     */
+    select?: study_messageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_message
+     */
+    omit?: study_messageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_messageInclude<ExtArgs> | null
+    where?: study_messageWhereInput
+    orderBy?: study_messageOrderByWithRelationInput | study_messageOrderByWithRelationInput[]
+    cursor?: study_messageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Study_messageScalarFieldEnum | Study_messageScalarFieldEnum[]
+  }
+
+  /**
+   * study_user without action
+   */
+  export type study_userDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_user
+     */
+    select?: study_userSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_user
+     */
+    omit?: study_userOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_userInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model study_store
+   */
+
+  export type AggregateStudy_store = {
+    _count: Study_storeCountAggregateOutputType | null
+    _min: Study_storeMinAggregateOutputType | null
+    _max: Study_storeMaxAggregateOutputType | null
+  }
+
+  export type Study_storeMinAggregateOutputType = {
+    uid: string | null
+    createAt: Date | null
+    updateAt: Date | null
+    name: string | null
+    local: string | null
+    address: string | null
+    status: boolean | null
+    remark: string | null
+  }
+
+  export type Study_storeMaxAggregateOutputType = {
+    uid: string | null
+    createAt: Date | null
+    updateAt: Date | null
+    name: string | null
+    local: string | null
+    address: string | null
+    status: boolean | null
+    remark: string | null
+  }
+
+  export type Study_storeCountAggregateOutputType = {
+    uid: number
+    createAt: number
+    updateAt: number
+    name: number
+    local: number
+    address: number
+    status: number
+    remark: number
+    _all: number
+  }
+
+
+  export type Study_storeMinAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    name?: true
+    local?: true
+    address?: true
+    status?: true
+    remark?: true
+  }
+
+  export type Study_storeMaxAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    name?: true
+    local?: true
+    address?: true
+    status?: true
+    remark?: true
+  }
+
+  export type Study_storeCountAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    name?: true
+    local?: true
+    address?: true
+    status?: true
+    remark?: true
+    _all?: true
+  }
+
+  export type Study_storeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which study_store to aggregate.
+     */
+    where?: study_storeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_stores to fetch.
+     */
+    orderBy?: study_storeOrderByWithRelationInput | study_storeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: study_storeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_stores from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_stores.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned study_stores
+    **/
+    _count?: true | Study_storeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Study_storeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Study_storeMaxAggregateInputType
+  }
+
+  export type GetStudy_storeAggregateType<T extends Study_storeAggregateArgs> = {
+        [P in keyof T & keyof AggregateStudy_store]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStudy_store[P]>
+      : GetScalarType<T[P], AggregateStudy_store[P]>
+  }
+
+
+
+
+  export type study_storeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: study_storeWhereInput
+    orderBy?: study_storeOrderByWithAggregationInput | study_storeOrderByWithAggregationInput[]
+    by: Study_storeScalarFieldEnum[] | Study_storeScalarFieldEnum
+    having?: study_storeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Study_storeCountAggregateInputType | true
+    _min?: Study_storeMinAggregateInputType
+    _max?: Study_storeMaxAggregateInputType
+  }
+
+  export type Study_storeGroupByOutputType = {
+    uid: string
+    createAt: Date
+    updateAt: Date
+    name: string
+    local: string
+    address: string
+    status: boolean
+    remark: string | null
+    _count: Study_storeCountAggregateOutputType | null
+    _min: Study_storeMinAggregateOutputType | null
+    _max: Study_storeMaxAggregateOutputType | null
+  }
+
+  type GetStudy_storeGroupByPayload<T extends study_storeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Study_storeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Study_storeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Study_storeGroupByOutputType[P]>
+            : GetScalarType<T[P], Study_storeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type study_storeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    uid?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    name?: boolean
+    local?: boolean
+    address?: boolean
+    status?: boolean
+    remark?: boolean
+    floors?: boolean | study_store$floorsArgs<ExtArgs>
+    _count?: boolean | Study_storeCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["study_store"]>
+
+
+
+  export type study_storeSelectScalar = {
+    uid?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    name?: boolean
+    local?: boolean
+    address?: boolean
+    status?: boolean
+    remark?: boolean
+  }
+
+  export type study_storeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createAt" | "updateAt" | "name" | "local" | "address" | "status" | "remark", ExtArgs["result"]["study_store"]>
+  export type study_storeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    floors?: boolean | study_store$floorsArgs<ExtArgs>
+    _count?: boolean | Study_storeCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $study_storePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "study_store"
+    objects: {
+      floors: Prisma.$study_floorPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      uid: string
+      createAt: Date
+      updateAt: Date
+      name: string
+      local: string
+      address: string
+      status: boolean
+      remark: string | null
+    }, ExtArgs["result"]["study_store"]>
+    composites: {}
+  }
+
+  type study_storeGetPayload<S extends boolean | null | undefined | study_storeDefaultArgs> = $Result.GetResult<Prisma.$study_storePayload, S>
+
+  type study_storeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<study_storeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Study_storeCountAggregateInputType | true
+    }
+
+  export interface study_storeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['study_store'], meta: { name: 'study_store' } }
+    /**
+     * Find zero or one Study_store that matches the filter.
+     * @param {study_storeFindUniqueArgs} args - Arguments to find a Study_store
+     * @example
+     * // Get one Study_store
+     * const study_store = await prisma.study_store.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends study_storeFindUniqueArgs>(args: SelectSubset<T, study_storeFindUniqueArgs<ExtArgs>>): Prisma__study_storeClient<$Result.GetResult<Prisma.$study_storePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Study_store that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {study_storeFindUniqueOrThrowArgs} args - Arguments to find a Study_store
+     * @example
+     * // Get one Study_store
+     * const study_store = await prisma.study_store.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends study_storeFindUniqueOrThrowArgs>(args: SelectSubset<T, study_storeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__study_storeClient<$Result.GetResult<Prisma.$study_storePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Study_store that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_storeFindFirstArgs} args - Arguments to find a Study_store
+     * @example
+     * // Get one Study_store
+     * const study_store = await prisma.study_store.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends study_storeFindFirstArgs>(args?: SelectSubset<T, study_storeFindFirstArgs<ExtArgs>>): Prisma__study_storeClient<$Result.GetResult<Prisma.$study_storePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Study_store that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_storeFindFirstOrThrowArgs} args - Arguments to find a Study_store
+     * @example
+     * // Get one Study_store
+     * const study_store = await prisma.study_store.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends study_storeFindFirstOrThrowArgs>(args?: SelectSubset<T, study_storeFindFirstOrThrowArgs<ExtArgs>>): Prisma__study_storeClient<$Result.GetResult<Prisma.$study_storePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Study_stores that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_storeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Study_stores
+     * const study_stores = await prisma.study_store.findMany()
+     * 
+     * // Get first 10 Study_stores
+     * const study_stores = await prisma.study_store.findMany({ take: 10 })
+     * 
+     * // Only select the `uid`
+     * const study_storeWithUidOnly = await prisma.study_store.findMany({ select: { uid: true } })
+     * 
+     */
+    findMany<T extends study_storeFindManyArgs>(args?: SelectSubset<T, study_storeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$study_storePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Study_store.
+     * @param {study_storeCreateArgs} args - Arguments to create a Study_store.
+     * @example
+     * // Create one Study_store
+     * const Study_store = await prisma.study_store.create({
+     *   data: {
+     *     // ... data to create a Study_store
+     *   }
+     * })
+     * 
+     */
+    create<T extends study_storeCreateArgs>(args: SelectSubset<T, study_storeCreateArgs<ExtArgs>>): Prisma__study_storeClient<$Result.GetResult<Prisma.$study_storePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Study_stores.
+     * @param {study_storeCreateManyArgs} args - Arguments to create many Study_stores.
+     * @example
+     * // Create many Study_stores
+     * const study_store = await prisma.study_store.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends study_storeCreateManyArgs>(args?: SelectSubset<T, study_storeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Study_store.
+     * @param {study_storeDeleteArgs} args - Arguments to delete one Study_store.
+     * @example
+     * // Delete one Study_store
+     * const Study_store = await prisma.study_store.delete({
+     *   where: {
+     *     // ... filter to delete one Study_store
+     *   }
+     * })
+     * 
+     */
+    delete<T extends study_storeDeleteArgs>(args: SelectSubset<T, study_storeDeleteArgs<ExtArgs>>): Prisma__study_storeClient<$Result.GetResult<Prisma.$study_storePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Study_store.
+     * @param {study_storeUpdateArgs} args - Arguments to update one Study_store.
+     * @example
+     * // Update one Study_store
+     * const study_store = await prisma.study_store.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends study_storeUpdateArgs>(args: SelectSubset<T, study_storeUpdateArgs<ExtArgs>>): Prisma__study_storeClient<$Result.GetResult<Prisma.$study_storePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Study_stores.
+     * @param {study_storeDeleteManyArgs} args - Arguments to filter Study_stores to delete.
+     * @example
+     * // Delete a few Study_stores
+     * const { count } = await prisma.study_store.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends study_storeDeleteManyArgs>(args?: SelectSubset<T, study_storeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Study_stores.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_storeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Study_stores
+     * const study_store = await prisma.study_store.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends study_storeUpdateManyArgs>(args: SelectSubset<T, study_storeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Study_store.
+     * @param {study_storeUpsertArgs} args - Arguments to update or create a Study_store.
+     * @example
+     * // Update or create a Study_store
+     * const study_store = await prisma.study_store.upsert({
+     *   create: {
+     *     // ... data to create a Study_store
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Study_store we want to update
+     *   }
+     * })
+     */
+    upsert<T extends study_storeUpsertArgs>(args: SelectSubset<T, study_storeUpsertArgs<ExtArgs>>): Prisma__study_storeClient<$Result.GetResult<Prisma.$study_storePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Study_stores.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_storeCountArgs} args - Arguments to filter Study_stores to count.
+     * @example
+     * // Count the number of Study_stores
+     * const count = await prisma.study_store.count({
+     *   where: {
+     *     // ... the filter for the Study_stores we want to count
+     *   }
+     * })
+    **/
+    count<T extends study_storeCountArgs>(
+      args?: Subset<T, study_storeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Study_storeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Study_store.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Study_storeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Study_storeAggregateArgs>(args: Subset<T, Study_storeAggregateArgs>): Prisma.PrismaPromise<GetStudy_storeAggregateType<T>>
+
+    /**
+     * Group by Study_store.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_storeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends study_storeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: study_storeGroupByArgs['orderBy'] }
+        : { orderBy?: study_storeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, study_storeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStudy_storeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the study_store model
+   */
+  readonly fields: study_storeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for study_store.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__study_storeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    floors<T extends study_store$floorsArgs<ExtArgs> = {}>(args?: Subset<T, study_store$floorsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$study_floorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the study_store model
+   */ 
+  interface study_storeFieldRefs {
+    readonly uid: FieldRef<"study_store", 'String'>
+    readonly createAt: FieldRef<"study_store", 'DateTime'>
+    readonly updateAt: FieldRef<"study_store", 'DateTime'>
+    readonly name: FieldRef<"study_store", 'String'>
+    readonly local: FieldRef<"study_store", 'String'>
+    readonly address: FieldRef<"study_store", 'String'>
+    readonly status: FieldRef<"study_store", 'Boolean'>
+    readonly remark: FieldRef<"study_store", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * study_store findUnique
+   */
+  export type study_storeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_store
+     */
+    select?: study_storeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_store
+     */
+    omit?: study_storeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_storeInclude<ExtArgs> | null
+    /**
+     * Filter, which study_store to fetch.
+     */
+    where: study_storeWhereUniqueInput
+  }
+
+  /**
+   * study_store findUniqueOrThrow
+   */
+  export type study_storeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_store
+     */
+    select?: study_storeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_store
+     */
+    omit?: study_storeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_storeInclude<ExtArgs> | null
+    /**
+     * Filter, which study_store to fetch.
+     */
+    where: study_storeWhereUniqueInput
+  }
+
+  /**
+   * study_store findFirst
+   */
+  export type study_storeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_store
+     */
+    select?: study_storeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_store
+     */
+    omit?: study_storeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_storeInclude<ExtArgs> | null
+    /**
+     * Filter, which study_store to fetch.
+     */
+    where?: study_storeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_stores to fetch.
+     */
+    orderBy?: study_storeOrderByWithRelationInput | study_storeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for study_stores.
+     */
+    cursor?: study_storeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_stores from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_stores.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of study_stores.
+     */
+    distinct?: Study_storeScalarFieldEnum | Study_storeScalarFieldEnum[]
+  }
+
+  /**
+   * study_store findFirstOrThrow
+   */
+  export type study_storeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_store
+     */
+    select?: study_storeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_store
+     */
+    omit?: study_storeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_storeInclude<ExtArgs> | null
+    /**
+     * Filter, which study_store to fetch.
+     */
+    where?: study_storeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_stores to fetch.
+     */
+    orderBy?: study_storeOrderByWithRelationInput | study_storeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for study_stores.
+     */
+    cursor?: study_storeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_stores from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_stores.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of study_stores.
+     */
+    distinct?: Study_storeScalarFieldEnum | Study_storeScalarFieldEnum[]
+  }
+
+  /**
+   * study_store findMany
+   */
+  export type study_storeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_store
+     */
+    select?: study_storeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_store
+     */
+    omit?: study_storeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_storeInclude<ExtArgs> | null
+    /**
+     * Filter, which study_stores to fetch.
+     */
+    where?: study_storeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_stores to fetch.
+     */
+    orderBy?: study_storeOrderByWithRelationInput | study_storeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing study_stores.
+     */
+    cursor?: study_storeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_stores from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_stores.
+     */
+    skip?: number
+    distinct?: Study_storeScalarFieldEnum | Study_storeScalarFieldEnum[]
+  }
+
+  /**
+   * study_store create
+   */
+  export type study_storeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_store
+     */
+    select?: study_storeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_store
+     */
+    omit?: study_storeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_storeInclude<ExtArgs> | null
+    /**
+     * The data needed to create a study_store.
+     */
+    data: XOR<study_storeCreateInput, study_storeUncheckedCreateInput>
+  }
+
+  /**
+   * study_store createMany
+   */
+  export type study_storeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many study_stores.
+     */
+    data: study_storeCreateManyInput | study_storeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * study_store update
+   */
+  export type study_storeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_store
+     */
+    select?: study_storeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_store
+     */
+    omit?: study_storeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_storeInclude<ExtArgs> | null
+    /**
+     * The data needed to update a study_store.
+     */
+    data: XOR<study_storeUpdateInput, study_storeUncheckedUpdateInput>
+    /**
+     * Choose, which study_store to update.
+     */
+    where: study_storeWhereUniqueInput
+  }
+
+  /**
+   * study_store updateMany
+   */
+  export type study_storeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update study_stores.
+     */
+    data: XOR<study_storeUpdateManyMutationInput, study_storeUncheckedUpdateManyInput>
+    /**
+     * Filter which study_stores to update
+     */
+    where?: study_storeWhereInput
+    /**
+     * Limit how many study_stores to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * study_store upsert
+   */
+  export type study_storeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_store
+     */
+    select?: study_storeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_store
+     */
+    omit?: study_storeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_storeInclude<ExtArgs> | null
+    /**
+     * The filter to search for the study_store to update in case it exists.
+     */
+    where: study_storeWhereUniqueInput
+    /**
+     * In case the study_store found by the `where` argument doesn't exist, create a new study_store with this data.
+     */
+    create: XOR<study_storeCreateInput, study_storeUncheckedCreateInput>
+    /**
+     * In case the study_store was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<study_storeUpdateInput, study_storeUncheckedUpdateInput>
+  }
+
+  /**
+   * study_store delete
+   */
+  export type study_storeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_store
+     */
+    select?: study_storeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_store
+     */
+    omit?: study_storeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_storeInclude<ExtArgs> | null
+    /**
+     * Filter which study_store to delete.
+     */
+    where: study_storeWhereUniqueInput
+  }
+
+  /**
+   * study_store deleteMany
+   */
+  export type study_storeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which study_stores to delete
+     */
+    where?: study_storeWhereInput
+    /**
+     * Limit how many study_stores to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * study_store.floors
+   */
+  export type study_store$floorsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_floor
+     */
+    select?: study_floorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_floor
+     */
+    omit?: study_floorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_floorInclude<ExtArgs> | null
+    where?: study_floorWhereInput
+    orderBy?: study_floorOrderByWithRelationInput | study_floorOrderByWithRelationInput[]
+    cursor?: study_floorWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Study_floorScalarFieldEnum | Study_floorScalarFieldEnum[]
+  }
+
+  /**
+   * study_store without action
+   */
+  export type study_storeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_store
+     */
+    select?: study_storeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_store
+     */
+    omit?: study_storeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_storeInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model study_floor
+   */
+
+  export type AggregateStudy_floor = {
+    _count: Study_floorCountAggregateOutputType | null
+    _avg: Study_floorAvgAggregateOutputType | null
+    _sum: Study_floorSumAggregateOutputType | null
+    _min: Study_floorMinAggregateOutputType | null
+    _max: Study_floorMaxAggregateOutputType | null
+  }
+
+  export type Study_floorAvgAggregateOutputType = {
+    floorNumber: number | null
+  }
+
+  export type Study_floorSumAggregateOutputType = {
+    floorNumber: number | null
+  }
+
+  export type Study_floorMinAggregateOutputType = {
+    uid: string | null
+    createAt: Date | null
+    updateAt: Date | null
+    floorNumber: number | null
+    storeId: string | null
+  }
+
+  export type Study_floorMaxAggregateOutputType = {
+    uid: string | null
+    createAt: Date | null
+    updateAt: Date | null
+    floorNumber: number | null
+    storeId: string | null
+  }
+
+  export type Study_floorCountAggregateOutputType = {
+    uid: number
+    createAt: number
+    updateAt: number
+    floorNumber: number
+    storeId: number
+    _all: number
+  }
+
+
+  export type Study_floorAvgAggregateInputType = {
+    floorNumber?: true
+  }
+
+  export type Study_floorSumAggregateInputType = {
+    floorNumber?: true
+  }
+
+  export type Study_floorMinAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    floorNumber?: true
+    storeId?: true
+  }
+
+  export type Study_floorMaxAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    floorNumber?: true
+    storeId?: true
+  }
+
+  export type Study_floorCountAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    floorNumber?: true
+    storeId?: true
+    _all?: true
+  }
+
+  export type Study_floorAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which study_floor to aggregate.
+     */
+    where?: study_floorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_floors to fetch.
+     */
+    orderBy?: study_floorOrderByWithRelationInput | study_floorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: study_floorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_floors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_floors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned study_floors
+    **/
+    _count?: true | Study_floorCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Study_floorAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Study_floorSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Study_floorMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Study_floorMaxAggregateInputType
+  }
+
+  export type GetStudy_floorAggregateType<T extends Study_floorAggregateArgs> = {
+        [P in keyof T & keyof AggregateStudy_floor]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStudy_floor[P]>
+      : GetScalarType<T[P], AggregateStudy_floor[P]>
+  }
+
+
+
+
+  export type study_floorGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: study_floorWhereInput
+    orderBy?: study_floorOrderByWithAggregationInput | study_floorOrderByWithAggregationInput[]
+    by: Study_floorScalarFieldEnum[] | Study_floorScalarFieldEnum
+    having?: study_floorScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Study_floorCountAggregateInputType | true
+    _avg?: Study_floorAvgAggregateInputType
+    _sum?: Study_floorSumAggregateInputType
+    _min?: Study_floorMinAggregateInputType
+    _max?: Study_floorMaxAggregateInputType
+  }
+
+  export type Study_floorGroupByOutputType = {
+    uid: string
+    createAt: Date
+    updateAt: Date
+    floorNumber: number
+    storeId: string
+    _count: Study_floorCountAggregateOutputType | null
+    _avg: Study_floorAvgAggregateOutputType | null
+    _sum: Study_floorSumAggregateOutputType | null
+    _min: Study_floorMinAggregateOutputType | null
+    _max: Study_floorMaxAggregateOutputType | null
+  }
+
+  type GetStudy_floorGroupByPayload<T extends study_floorGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Study_floorGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Study_floorGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Study_floorGroupByOutputType[P]>
+            : GetScalarType<T[P], Study_floorGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type study_floorSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    uid?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    floorNumber?: boolean
+    storeId?: boolean
+    store?: boolean | study_storeDefaultArgs<ExtArgs>
+    studyRooms?: boolean | study_floor$studyRoomsArgs<ExtArgs>
+    _count?: boolean | Study_floorCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["study_floor"]>
+
+
+
+  export type study_floorSelectScalar = {
+    uid?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    floorNumber?: boolean
+    storeId?: boolean
+  }
+
+  export type study_floorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createAt" | "updateAt" | "floorNumber" | "storeId", ExtArgs["result"]["study_floor"]>
+  export type study_floorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    store?: boolean | study_storeDefaultArgs<ExtArgs>
+    studyRooms?: boolean | study_floor$studyRoomsArgs<ExtArgs>
+    _count?: boolean | Study_floorCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $study_floorPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "study_floor"
+    objects: {
+      store: Prisma.$study_storePayload<ExtArgs>
+      studyRooms: Prisma.$study_roomPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      uid: string
+      createAt: Date
+      updateAt: Date
+      floorNumber: number
+      storeId: string
+    }, ExtArgs["result"]["study_floor"]>
+    composites: {}
+  }
+
+  type study_floorGetPayload<S extends boolean | null | undefined | study_floorDefaultArgs> = $Result.GetResult<Prisma.$study_floorPayload, S>
+
+  type study_floorCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<study_floorFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Study_floorCountAggregateInputType | true
+    }
+
+  export interface study_floorDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['study_floor'], meta: { name: 'study_floor' } }
+    /**
+     * Find zero or one Study_floor that matches the filter.
+     * @param {study_floorFindUniqueArgs} args - Arguments to find a Study_floor
+     * @example
+     * // Get one Study_floor
+     * const study_floor = await prisma.study_floor.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends study_floorFindUniqueArgs>(args: SelectSubset<T, study_floorFindUniqueArgs<ExtArgs>>): Prisma__study_floorClient<$Result.GetResult<Prisma.$study_floorPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Study_floor that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {study_floorFindUniqueOrThrowArgs} args - Arguments to find a Study_floor
+     * @example
+     * // Get one Study_floor
+     * const study_floor = await prisma.study_floor.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends study_floorFindUniqueOrThrowArgs>(args: SelectSubset<T, study_floorFindUniqueOrThrowArgs<ExtArgs>>): Prisma__study_floorClient<$Result.GetResult<Prisma.$study_floorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Study_floor that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_floorFindFirstArgs} args - Arguments to find a Study_floor
+     * @example
+     * // Get one Study_floor
+     * const study_floor = await prisma.study_floor.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends study_floorFindFirstArgs>(args?: SelectSubset<T, study_floorFindFirstArgs<ExtArgs>>): Prisma__study_floorClient<$Result.GetResult<Prisma.$study_floorPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Study_floor that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_floorFindFirstOrThrowArgs} args - Arguments to find a Study_floor
+     * @example
+     * // Get one Study_floor
+     * const study_floor = await prisma.study_floor.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends study_floorFindFirstOrThrowArgs>(args?: SelectSubset<T, study_floorFindFirstOrThrowArgs<ExtArgs>>): Prisma__study_floorClient<$Result.GetResult<Prisma.$study_floorPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Study_floors that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_floorFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Study_floors
+     * const study_floors = await prisma.study_floor.findMany()
+     * 
+     * // Get first 10 Study_floors
+     * const study_floors = await prisma.study_floor.findMany({ take: 10 })
+     * 
+     * // Only select the `uid`
+     * const study_floorWithUidOnly = await prisma.study_floor.findMany({ select: { uid: true } })
+     * 
+     */
+    findMany<T extends study_floorFindManyArgs>(args?: SelectSubset<T, study_floorFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$study_floorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Study_floor.
+     * @param {study_floorCreateArgs} args - Arguments to create a Study_floor.
+     * @example
+     * // Create one Study_floor
+     * const Study_floor = await prisma.study_floor.create({
+     *   data: {
+     *     // ... data to create a Study_floor
+     *   }
+     * })
+     * 
+     */
+    create<T extends study_floorCreateArgs>(args: SelectSubset<T, study_floorCreateArgs<ExtArgs>>): Prisma__study_floorClient<$Result.GetResult<Prisma.$study_floorPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Study_floors.
+     * @param {study_floorCreateManyArgs} args - Arguments to create many Study_floors.
+     * @example
+     * // Create many Study_floors
+     * const study_floor = await prisma.study_floor.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends study_floorCreateManyArgs>(args?: SelectSubset<T, study_floorCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Study_floor.
+     * @param {study_floorDeleteArgs} args - Arguments to delete one Study_floor.
+     * @example
+     * // Delete one Study_floor
+     * const Study_floor = await prisma.study_floor.delete({
+     *   where: {
+     *     // ... filter to delete one Study_floor
+     *   }
+     * })
+     * 
+     */
+    delete<T extends study_floorDeleteArgs>(args: SelectSubset<T, study_floorDeleteArgs<ExtArgs>>): Prisma__study_floorClient<$Result.GetResult<Prisma.$study_floorPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Study_floor.
+     * @param {study_floorUpdateArgs} args - Arguments to update one Study_floor.
+     * @example
+     * // Update one Study_floor
+     * const study_floor = await prisma.study_floor.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends study_floorUpdateArgs>(args: SelectSubset<T, study_floorUpdateArgs<ExtArgs>>): Prisma__study_floorClient<$Result.GetResult<Prisma.$study_floorPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Study_floors.
+     * @param {study_floorDeleteManyArgs} args - Arguments to filter Study_floors to delete.
+     * @example
+     * // Delete a few Study_floors
+     * const { count } = await prisma.study_floor.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends study_floorDeleteManyArgs>(args?: SelectSubset<T, study_floorDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Study_floors.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_floorUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Study_floors
+     * const study_floor = await prisma.study_floor.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends study_floorUpdateManyArgs>(args: SelectSubset<T, study_floorUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Study_floor.
+     * @param {study_floorUpsertArgs} args - Arguments to update or create a Study_floor.
+     * @example
+     * // Update or create a Study_floor
+     * const study_floor = await prisma.study_floor.upsert({
+     *   create: {
+     *     // ... data to create a Study_floor
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Study_floor we want to update
+     *   }
+     * })
+     */
+    upsert<T extends study_floorUpsertArgs>(args: SelectSubset<T, study_floorUpsertArgs<ExtArgs>>): Prisma__study_floorClient<$Result.GetResult<Prisma.$study_floorPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Study_floors.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_floorCountArgs} args - Arguments to filter Study_floors to count.
+     * @example
+     * // Count the number of Study_floors
+     * const count = await prisma.study_floor.count({
+     *   where: {
+     *     // ... the filter for the Study_floors we want to count
+     *   }
+     * })
+    **/
+    count<T extends study_floorCountArgs>(
+      args?: Subset<T, study_floorCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Study_floorCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Study_floor.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Study_floorAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Study_floorAggregateArgs>(args: Subset<T, Study_floorAggregateArgs>): Prisma.PrismaPromise<GetStudy_floorAggregateType<T>>
+
+    /**
+     * Group by Study_floor.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_floorGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends study_floorGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: study_floorGroupByArgs['orderBy'] }
+        : { orderBy?: study_floorGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, study_floorGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStudy_floorGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the study_floor model
+   */
+  readonly fields: study_floorFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for study_floor.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__study_floorClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    store<T extends study_storeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, study_storeDefaultArgs<ExtArgs>>): Prisma__study_storeClient<$Result.GetResult<Prisma.$study_storePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    studyRooms<T extends study_floor$studyRoomsArgs<ExtArgs> = {}>(args?: Subset<T, study_floor$studyRoomsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$study_roomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the study_floor model
+   */ 
+  interface study_floorFieldRefs {
+    readonly uid: FieldRef<"study_floor", 'String'>
+    readonly createAt: FieldRef<"study_floor", 'DateTime'>
+    readonly updateAt: FieldRef<"study_floor", 'DateTime'>
+    readonly floorNumber: FieldRef<"study_floor", 'Int'>
+    readonly storeId: FieldRef<"study_floor", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * study_floor findUnique
+   */
+  export type study_floorFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_floor
+     */
+    select?: study_floorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_floor
+     */
+    omit?: study_floorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_floorInclude<ExtArgs> | null
+    /**
+     * Filter, which study_floor to fetch.
+     */
+    where: study_floorWhereUniqueInput
+  }
+
+  /**
+   * study_floor findUniqueOrThrow
+   */
+  export type study_floorFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_floor
+     */
+    select?: study_floorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_floor
+     */
+    omit?: study_floorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_floorInclude<ExtArgs> | null
+    /**
+     * Filter, which study_floor to fetch.
+     */
+    where: study_floorWhereUniqueInput
+  }
+
+  /**
+   * study_floor findFirst
+   */
+  export type study_floorFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_floor
+     */
+    select?: study_floorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_floor
+     */
+    omit?: study_floorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_floorInclude<ExtArgs> | null
+    /**
+     * Filter, which study_floor to fetch.
+     */
+    where?: study_floorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_floors to fetch.
+     */
+    orderBy?: study_floorOrderByWithRelationInput | study_floorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for study_floors.
+     */
+    cursor?: study_floorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_floors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_floors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of study_floors.
+     */
+    distinct?: Study_floorScalarFieldEnum | Study_floorScalarFieldEnum[]
+  }
+
+  /**
+   * study_floor findFirstOrThrow
+   */
+  export type study_floorFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_floor
+     */
+    select?: study_floorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_floor
+     */
+    omit?: study_floorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_floorInclude<ExtArgs> | null
+    /**
+     * Filter, which study_floor to fetch.
+     */
+    where?: study_floorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_floors to fetch.
+     */
+    orderBy?: study_floorOrderByWithRelationInput | study_floorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for study_floors.
+     */
+    cursor?: study_floorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_floors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_floors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of study_floors.
+     */
+    distinct?: Study_floorScalarFieldEnum | Study_floorScalarFieldEnum[]
+  }
+
+  /**
+   * study_floor findMany
+   */
+  export type study_floorFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_floor
+     */
+    select?: study_floorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_floor
+     */
+    omit?: study_floorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_floorInclude<ExtArgs> | null
+    /**
+     * Filter, which study_floors to fetch.
+     */
+    where?: study_floorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_floors to fetch.
+     */
+    orderBy?: study_floorOrderByWithRelationInput | study_floorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing study_floors.
+     */
+    cursor?: study_floorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_floors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_floors.
+     */
+    skip?: number
+    distinct?: Study_floorScalarFieldEnum | Study_floorScalarFieldEnum[]
+  }
+
+  /**
+   * study_floor create
+   */
+  export type study_floorCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_floor
+     */
+    select?: study_floorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_floor
+     */
+    omit?: study_floorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_floorInclude<ExtArgs> | null
+    /**
+     * The data needed to create a study_floor.
+     */
+    data: XOR<study_floorCreateInput, study_floorUncheckedCreateInput>
+  }
+
+  /**
+   * study_floor createMany
+   */
+  export type study_floorCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many study_floors.
+     */
+    data: study_floorCreateManyInput | study_floorCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * study_floor update
+   */
+  export type study_floorUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_floor
+     */
+    select?: study_floorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_floor
+     */
+    omit?: study_floorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_floorInclude<ExtArgs> | null
+    /**
+     * The data needed to update a study_floor.
+     */
+    data: XOR<study_floorUpdateInput, study_floorUncheckedUpdateInput>
+    /**
+     * Choose, which study_floor to update.
+     */
+    where: study_floorWhereUniqueInput
+  }
+
+  /**
+   * study_floor updateMany
+   */
+  export type study_floorUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update study_floors.
+     */
+    data: XOR<study_floorUpdateManyMutationInput, study_floorUncheckedUpdateManyInput>
+    /**
+     * Filter which study_floors to update
+     */
+    where?: study_floorWhereInput
+    /**
+     * Limit how many study_floors to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * study_floor upsert
+   */
+  export type study_floorUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_floor
+     */
+    select?: study_floorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_floor
+     */
+    omit?: study_floorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_floorInclude<ExtArgs> | null
+    /**
+     * The filter to search for the study_floor to update in case it exists.
+     */
+    where: study_floorWhereUniqueInput
+    /**
+     * In case the study_floor found by the `where` argument doesn't exist, create a new study_floor with this data.
+     */
+    create: XOR<study_floorCreateInput, study_floorUncheckedCreateInput>
+    /**
+     * In case the study_floor was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<study_floorUpdateInput, study_floorUncheckedUpdateInput>
+  }
+
+  /**
+   * study_floor delete
+   */
+  export type study_floorDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_floor
+     */
+    select?: study_floorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_floor
+     */
+    omit?: study_floorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_floorInclude<ExtArgs> | null
+    /**
+     * Filter which study_floor to delete.
+     */
+    where: study_floorWhereUniqueInput
+  }
+
+  /**
+   * study_floor deleteMany
+   */
+  export type study_floorDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which study_floors to delete
+     */
+    where?: study_floorWhereInput
+    /**
+     * Limit how many study_floors to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * study_floor.studyRooms
+   */
+  export type study_floor$studyRoomsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_room
+     */
+    select?: study_roomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_room
+     */
+    omit?: study_roomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_roomInclude<ExtArgs> | null
+    where?: study_roomWhereInput
+    orderBy?: study_roomOrderByWithRelationInput | study_roomOrderByWithRelationInput[]
+    cursor?: study_roomWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Study_roomScalarFieldEnum | Study_roomScalarFieldEnum[]
+  }
+
+  /**
+   * study_floor without action
+   */
+  export type study_floorDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_floor
+     */
+    select?: study_floorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_floor
+     */
+    omit?: study_floorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_floorInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model study_room
+   */
+
+  export type AggregateStudy_room = {
+    _count: Study_roomCountAggregateOutputType | null
+    _avg: Study_roomAvgAggregateOutputType | null
+    _sum: Study_roomSumAggregateOutputType | null
+    _min: Study_roomMinAggregateOutputType | null
+    _max: Study_roomMaxAggregateOutputType | null
+  }
+
+  export type Study_roomAvgAggregateOutputType = {
+    capacity: number | null
+  }
+
+  export type Study_roomSumAggregateOutputType = {
+    capacity: number | null
+  }
+
+  export type Study_roomMinAggregateOutputType = {
+    uid: string | null
+    createAt: Date | null
+    updateAt: Date | null
+    name: string | null
+    floorId: string | null
+    capacity: number | null
+    status: boolean | null
+  }
+
+  export type Study_roomMaxAggregateOutputType = {
+    uid: string | null
+    createAt: Date | null
+    updateAt: Date | null
+    name: string | null
+    floorId: string | null
+    capacity: number | null
+    status: boolean | null
+  }
+
+  export type Study_roomCountAggregateOutputType = {
+    uid: number
+    createAt: number
+    updateAt: number
+    name: number
+    floorId: number
+    capacity: number
+    status: number
+    _all: number
+  }
+
+
+  export type Study_roomAvgAggregateInputType = {
+    capacity?: true
+  }
+
+  export type Study_roomSumAggregateInputType = {
+    capacity?: true
+  }
+
+  export type Study_roomMinAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    name?: true
+    floorId?: true
+    capacity?: true
+    status?: true
+  }
+
+  export type Study_roomMaxAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    name?: true
+    floorId?: true
+    capacity?: true
+    status?: true
+  }
+
+  export type Study_roomCountAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    name?: true
+    floorId?: true
+    capacity?: true
+    status?: true
+    _all?: true
+  }
+
+  export type Study_roomAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which study_room to aggregate.
+     */
+    where?: study_roomWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_rooms to fetch.
+     */
+    orderBy?: study_roomOrderByWithRelationInput | study_roomOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: study_roomWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_rooms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_rooms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned study_rooms
+    **/
+    _count?: true | Study_roomCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Study_roomAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Study_roomSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Study_roomMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Study_roomMaxAggregateInputType
+  }
+
+  export type GetStudy_roomAggregateType<T extends Study_roomAggregateArgs> = {
+        [P in keyof T & keyof AggregateStudy_room]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStudy_room[P]>
+      : GetScalarType<T[P], AggregateStudy_room[P]>
+  }
+
+
+
+
+  export type study_roomGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: study_roomWhereInput
+    orderBy?: study_roomOrderByWithAggregationInput | study_roomOrderByWithAggregationInput[]
+    by: Study_roomScalarFieldEnum[] | Study_roomScalarFieldEnum
+    having?: study_roomScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Study_roomCountAggregateInputType | true
+    _avg?: Study_roomAvgAggregateInputType
+    _sum?: Study_roomSumAggregateInputType
+    _min?: Study_roomMinAggregateInputType
+    _max?: Study_roomMaxAggregateInputType
+  }
+
+  export type Study_roomGroupByOutputType = {
+    uid: string
+    createAt: Date
+    updateAt: Date
+    name: string
+    floorId: string
+    capacity: number
+    status: boolean
+    _count: Study_roomCountAggregateOutputType | null
+    _avg: Study_roomAvgAggregateOutputType | null
+    _sum: Study_roomSumAggregateOutputType | null
+    _min: Study_roomMinAggregateOutputType | null
+    _max: Study_roomMaxAggregateOutputType | null
+  }
+
+  type GetStudy_roomGroupByPayload<T extends study_roomGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Study_roomGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Study_roomGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Study_roomGroupByOutputType[P]>
+            : GetScalarType<T[P], Study_roomGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type study_roomSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    uid?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    name?: boolean
+    floorId?: boolean
+    capacity?: boolean
+    status?: boolean
+    floor?: boolean | study_floorDefaultArgs<ExtArgs>
+    seats?: boolean | study_room$seatsArgs<ExtArgs>
+    _count?: boolean | Study_roomCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["study_room"]>
+
+
+
+  export type study_roomSelectScalar = {
+    uid?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    name?: boolean
+    floorId?: boolean
+    capacity?: boolean
+    status?: boolean
+  }
+
+  export type study_roomOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createAt" | "updateAt" | "name" | "floorId" | "capacity" | "status", ExtArgs["result"]["study_room"]>
+  export type study_roomInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    floor?: boolean | study_floorDefaultArgs<ExtArgs>
+    seats?: boolean | study_room$seatsArgs<ExtArgs>
+    _count?: boolean | Study_roomCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $study_roomPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "study_room"
+    objects: {
+      floor: Prisma.$study_floorPayload<ExtArgs>
+      seats: Prisma.$study_seatPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      uid: string
+      createAt: Date
+      updateAt: Date
+      name: string
+      floorId: string
+      capacity: number
+      status: boolean
+    }, ExtArgs["result"]["study_room"]>
+    composites: {}
+  }
+
+  type study_roomGetPayload<S extends boolean | null | undefined | study_roomDefaultArgs> = $Result.GetResult<Prisma.$study_roomPayload, S>
+
+  type study_roomCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<study_roomFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Study_roomCountAggregateInputType | true
+    }
+
+  export interface study_roomDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['study_room'], meta: { name: 'study_room' } }
+    /**
+     * Find zero or one Study_room that matches the filter.
+     * @param {study_roomFindUniqueArgs} args - Arguments to find a Study_room
+     * @example
+     * // Get one Study_room
+     * const study_room = await prisma.study_room.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends study_roomFindUniqueArgs>(args: SelectSubset<T, study_roomFindUniqueArgs<ExtArgs>>): Prisma__study_roomClient<$Result.GetResult<Prisma.$study_roomPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Study_room that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {study_roomFindUniqueOrThrowArgs} args - Arguments to find a Study_room
+     * @example
+     * // Get one Study_room
+     * const study_room = await prisma.study_room.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends study_roomFindUniqueOrThrowArgs>(args: SelectSubset<T, study_roomFindUniqueOrThrowArgs<ExtArgs>>): Prisma__study_roomClient<$Result.GetResult<Prisma.$study_roomPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Study_room that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_roomFindFirstArgs} args - Arguments to find a Study_room
+     * @example
+     * // Get one Study_room
+     * const study_room = await prisma.study_room.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends study_roomFindFirstArgs>(args?: SelectSubset<T, study_roomFindFirstArgs<ExtArgs>>): Prisma__study_roomClient<$Result.GetResult<Prisma.$study_roomPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Study_room that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_roomFindFirstOrThrowArgs} args - Arguments to find a Study_room
+     * @example
+     * // Get one Study_room
+     * const study_room = await prisma.study_room.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends study_roomFindFirstOrThrowArgs>(args?: SelectSubset<T, study_roomFindFirstOrThrowArgs<ExtArgs>>): Prisma__study_roomClient<$Result.GetResult<Prisma.$study_roomPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Study_rooms that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_roomFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Study_rooms
+     * const study_rooms = await prisma.study_room.findMany()
+     * 
+     * // Get first 10 Study_rooms
+     * const study_rooms = await prisma.study_room.findMany({ take: 10 })
+     * 
+     * // Only select the `uid`
+     * const study_roomWithUidOnly = await prisma.study_room.findMany({ select: { uid: true } })
+     * 
+     */
+    findMany<T extends study_roomFindManyArgs>(args?: SelectSubset<T, study_roomFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$study_roomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Study_room.
+     * @param {study_roomCreateArgs} args - Arguments to create a Study_room.
+     * @example
+     * // Create one Study_room
+     * const Study_room = await prisma.study_room.create({
+     *   data: {
+     *     // ... data to create a Study_room
+     *   }
+     * })
+     * 
+     */
+    create<T extends study_roomCreateArgs>(args: SelectSubset<T, study_roomCreateArgs<ExtArgs>>): Prisma__study_roomClient<$Result.GetResult<Prisma.$study_roomPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Study_rooms.
+     * @param {study_roomCreateManyArgs} args - Arguments to create many Study_rooms.
+     * @example
+     * // Create many Study_rooms
+     * const study_room = await prisma.study_room.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends study_roomCreateManyArgs>(args?: SelectSubset<T, study_roomCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Study_room.
+     * @param {study_roomDeleteArgs} args - Arguments to delete one Study_room.
+     * @example
+     * // Delete one Study_room
+     * const Study_room = await prisma.study_room.delete({
+     *   where: {
+     *     // ... filter to delete one Study_room
+     *   }
+     * })
+     * 
+     */
+    delete<T extends study_roomDeleteArgs>(args: SelectSubset<T, study_roomDeleteArgs<ExtArgs>>): Prisma__study_roomClient<$Result.GetResult<Prisma.$study_roomPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Study_room.
+     * @param {study_roomUpdateArgs} args - Arguments to update one Study_room.
+     * @example
+     * // Update one Study_room
+     * const study_room = await prisma.study_room.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends study_roomUpdateArgs>(args: SelectSubset<T, study_roomUpdateArgs<ExtArgs>>): Prisma__study_roomClient<$Result.GetResult<Prisma.$study_roomPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Study_rooms.
+     * @param {study_roomDeleteManyArgs} args - Arguments to filter Study_rooms to delete.
+     * @example
+     * // Delete a few Study_rooms
+     * const { count } = await prisma.study_room.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends study_roomDeleteManyArgs>(args?: SelectSubset<T, study_roomDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Study_rooms.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_roomUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Study_rooms
+     * const study_room = await prisma.study_room.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends study_roomUpdateManyArgs>(args: SelectSubset<T, study_roomUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Study_room.
+     * @param {study_roomUpsertArgs} args - Arguments to update or create a Study_room.
+     * @example
+     * // Update or create a Study_room
+     * const study_room = await prisma.study_room.upsert({
+     *   create: {
+     *     // ... data to create a Study_room
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Study_room we want to update
+     *   }
+     * })
+     */
+    upsert<T extends study_roomUpsertArgs>(args: SelectSubset<T, study_roomUpsertArgs<ExtArgs>>): Prisma__study_roomClient<$Result.GetResult<Prisma.$study_roomPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Study_rooms.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_roomCountArgs} args - Arguments to filter Study_rooms to count.
+     * @example
+     * // Count the number of Study_rooms
+     * const count = await prisma.study_room.count({
+     *   where: {
+     *     // ... the filter for the Study_rooms we want to count
+     *   }
+     * })
+    **/
+    count<T extends study_roomCountArgs>(
+      args?: Subset<T, study_roomCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Study_roomCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Study_room.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Study_roomAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Study_roomAggregateArgs>(args: Subset<T, Study_roomAggregateArgs>): Prisma.PrismaPromise<GetStudy_roomAggregateType<T>>
+
+    /**
+     * Group by Study_room.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_roomGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends study_roomGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: study_roomGroupByArgs['orderBy'] }
+        : { orderBy?: study_roomGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, study_roomGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStudy_roomGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the study_room model
+   */
+  readonly fields: study_roomFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for study_room.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__study_roomClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    floor<T extends study_floorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, study_floorDefaultArgs<ExtArgs>>): Prisma__study_floorClient<$Result.GetResult<Prisma.$study_floorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    seats<T extends study_room$seatsArgs<ExtArgs> = {}>(args?: Subset<T, study_room$seatsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$study_seatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the study_room model
+   */ 
+  interface study_roomFieldRefs {
+    readonly uid: FieldRef<"study_room", 'String'>
+    readonly createAt: FieldRef<"study_room", 'DateTime'>
+    readonly updateAt: FieldRef<"study_room", 'DateTime'>
+    readonly name: FieldRef<"study_room", 'String'>
+    readonly floorId: FieldRef<"study_room", 'String'>
+    readonly capacity: FieldRef<"study_room", 'Int'>
+    readonly status: FieldRef<"study_room", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * study_room findUnique
+   */
+  export type study_roomFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_room
+     */
+    select?: study_roomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_room
+     */
+    omit?: study_roomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_roomInclude<ExtArgs> | null
+    /**
+     * Filter, which study_room to fetch.
+     */
+    where: study_roomWhereUniqueInput
+  }
+
+  /**
+   * study_room findUniqueOrThrow
+   */
+  export type study_roomFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_room
+     */
+    select?: study_roomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_room
+     */
+    omit?: study_roomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_roomInclude<ExtArgs> | null
+    /**
+     * Filter, which study_room to fetch.
+     */
+    where: study_roomWhereUniqueInput
+  }
+
+  /**
+   * study_room findFirst
+   */
+  export type study_roomFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_room
+     */
+    select?: study_roomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_room
+     */
+    omit?: study_roomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_roomInclude<ExtArgs> | null
+    /**
+     * Filter, which study_room to fetch.
+     */
+    where?: study_roomWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_rooms to fetch.
+     */
+    orderBy?: study_roomOrderByWithRelationInput | study_roomOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for study_rooms.
+     */
+    cursor?: study_roomWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_rooms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_rooms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of study_rooms.
+     */
+    distinct?: Study_roomScalarFieldEnum | Study_roomScalarFieldEnum[]
+  }
+
+  /**
+   * study_room findFirstOrThrow
+   */
+  export type study_roomFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_room
+     */
+    select?: study_roomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_room
+     */
+    omit?: study_roomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_roomInclude<ExtArgs> | null
+    /**
+     * Filter, which study_room to fetch.
+     */
+    where?: study_roomWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_rooms to fetch.
+     */
+    orderBy?: study_roomOrderByWithRelationInput | study_roomOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for study_rooms.
+     */
+    cursor?: study_roomWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_rooms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_rooms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of study_rooms.
+     */
+    distinct?: Study_roomScalarFieldEnum | Study_roomScalarFieldEnum[]
+  }
+
+  /**
+   * study_room findMany
+   */
+  export type study_roomFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_room
+     */
+    select?: study_roomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_room
+     */
+    omit?: study_roomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_roomInclude<ExtArgs> | null
+    /**
+     * Filter, which study_rooms to fetch.
+     */
+    where?: study_roomWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_rooms to fetch.
+     */
+    orderBy?: study_roomOrderByWithRelationInput | study_roomOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing study_rooms.
+     */
+    cursor?: study_roomWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_rooms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_rooms.
+     */
+    skip?: number
+    distinct?: Study_roomScalarFieldEnum | Study_roomScalarFieldEnum[]
+  }
+
+  /**
+   * study_room create
+   */
+  export type study_roomCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_room
+     */
+    select?: study_roomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_room
+     */
+    omit?: study_roomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_roomInclude<ExtArgs> | null
+    /**
+     * The data needed to create a study_room.
+     */
+    data: XOR<study_roomCreateInput, study_roomUncheckedCreateInput>
+  }
+
+  /**
+   * study_room createMany
+   */
+  export type study_roomCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many study_rooms.
+     */
+    data: study_roomCreateManyInput | study_roomCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * study_room update
+   */
+  export type study_roomUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_room
+     */
+    select?: study_roomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_room
+     */
+    omit?: study_roomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_roomInclude<ExtArgs> | null
+    /**
+     * The data needed to update a study_room.
+     */
+    data: XOR<study_roomUpdateInput, study_roomUncheckedUpdateInput>
+    /**
+     * Choose, which study_room to update.
+     */
+    where: study_roomWhereUniqueInput
+  }
+
+  /**
+   * study_room updateMany
+   */
+  export type study_roomUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update study_rooms.
+     */
+    data: XOR<study_roomUpdateManyMutationInput, study_roomUncheckedUpdateManyInput>
+    /**
+     * Filter which study_rooms to update
+     */
+    where?: study_roomWhereInput
+    /**
+     * Limit how many study_rooms to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * study_room upsert
+   */
+  export type study_roomUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_room
+     */
+    select?: study_roomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_room
+     */
+    omit?: study_roomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_roomInclude<ExtArgs> | null
+    /**
+     * The filter to search for the study_room to update in case it exists.
+     */
+    where: study_roomWhereUniqueInput
+    /**
+     * In case the study_room found by the `where` argument doesn't exist, create a new study_room with this data.
+     */
+    create: XOR<study_roomCreateInput, study_roomUncheckedCreateInput>
+    /**
+     * In case the study_room was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<study_roomUpdateInput, study_roomUncheckedUpdateInput>
+  }
+
+  /**
+   * study_room delete
+   */
+  export type study_roomDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_room
+     */
+    select?: study_roomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_room
+     */
+    omit?: study_roomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_roomInclude<ExtArgs> | null
+    /**
+     * Filter which study_room to delete.
+     */
+    where: study_roomWhereUniqueInput
+  }
+
+  /**
+   * study_room deleteMany
+   */
+  export type study_roomDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which study_rooms to delete
+     */
+    where?: study_roomWhereInput
+    /**
+     * Limit how many study_rooms to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * study_room.seats
+   */
+  export type study_room$seatsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_seat
+     */
+    select?: study_seatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_seat
+     */
+    omit?: study_seatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_seatInclude<ExtArgs> | null
+    where?: study_seatWhereInput
+    orderBy?: study_seatOrderByWithRelationInput | study_seatOrderByWithRelationInput[]
+    cursor?: study_seatWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Study_seatScalarFieldEnum | Study_seatScalarFieldEnum[]
+  }
+
+  /**
+   * study_room without action
+   */
+  export type study_roomDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_room
+     */
+    select?: study_roomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_room
+     */
+    omit?: study_roomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_roomInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model study_seat
+   */
+
+  export type AggregateStudy_seat = {
+    _count: Study_seatCountAggregateOutputType | null
+    _min: Study_seatMinAggregateOutputType | null
+    _max: Study_seatMaxAggregateOutputType | null
+  }
+
+  export type Study_seatMinAggregateOutputType = {
+    uid: string | null
+    createAt: Date | null
+    updateAt: Date | null
+    seatNumber: string | null
+    roomId: string | null
+    status: boolean | null
+  }
+
+  export type Study_seatMaxAggregateOutputType = {
+    uid: string | null
+    createAt: Date | null
+    updateAt: Date | null
+    seatNumber: string | null
+    roomId: string | null
+    status: boolean | null
+  }
+
+  export type Study_seatCountAggregateOutputType = {
+    uid: number
+    createAt: number
+    updateAt: number
+    seatNumber: number
+    roomId: number
+    status: number
+    _all: number
+  }
+
+
+  export type Study_seatMinAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    seatNumber?: true
+    roomId?: true
+    status?: true
+  }
+
+  export type Study_seatMaxAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    seatNumber?: true
+    roomId?: true
+    status?: true
+  }
+
+  export type Study_seatCountAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    seatNumber?: true
+    roomId?: true
+    status?: true
+    _all?: true
+  }
+
+  export type Study_seatAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which study_seat to aggregate.
+     */
+    where?: study_seatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_seats to fetch.
+     */
+    orderBy?: study_seatOrderByWithRelationInput | study_seatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: study_seatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_seats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_seats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned study_seats
+    **/
+    _count?: true | Study_seatCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Study_seatMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Study_seatMaxAggregateInputType
+  }
+
+  export type GetStudy_seatAggregateType<T extends Study_seatAggregateArgs> = {
+        [P in keyof T & keyof AggregateStudy_seat]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStudy_seat[P]>
+      : GetScalarType<T[P], AggregateStudy_seat[P]>
+  }
+
+
+
+
+  export type study_seatGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: study_seatWhereInput
+    orderBy?: study_seatOrderByWithAggregationInput | study_seatOrderByWithAggregationInput[]
+    by: Study_seatScalarFieldEnum[] | Study_seatScalarFieldEnum
+    having?: study_seatScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Study_seatCountAggregateInputType | true
+    _min?: Study_seatMinAggregateInputType
+    _max?: Study_seatMaxAggregateInputType
+  }
+
+  export type Study_seatGroupByOutputType = {
+    uid: string
+    createAt: Date
+    updateAt: Date
+    seatNumber: string
+    roomId: string
+    status: boolean
+    _count: Study_seatCountAggregateOutputType | null
+    _min: Study_seatMinAggregateOutputType | null
+    _max: Study_seatMaxAggregateOutputType | null
+  }
+
+  type GetStudy_seatGroupByPayload<T extends study_seatGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Study_seatGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Study_seatGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Study_seatGroupByOutputType[P]>
+            : GetScalarType<T[P], Study_seatGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type study_seatSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    uid?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    seatNumber?: boolean
+    roomId?: boolean
+    status?: boolean
+    room?: boolean | study_roomDefaultArgs<ExtArgs>
+    reservations?: boolean | study_seat$reservationsArgs<ExtArgs>
+    _count?: boolean | Study_seatCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["study_seat"]>
+
+
+
+  export type study_seatSelectScalar = {
+    uid?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    seatNumber?: boolean
+    roomId?: boolean
+    status?: boolean
+  }
+
+  export type study_seatOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createAt" | "updateAt" | "seatNumber" | "roomId" | "status", ExtArgs["result"]["study_seat"]>
+  export type study_seatInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    room?: boolean | study_roomDefaultArgs<ExtArgs>
+    reservations?: boolean | study_seat$reservationsArgs<ExtArgs>
+    _count?: boolean | Study_seatCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $study_seatPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "study_seat"
+    objects: {
+      room: Prisma.$study_roomPayload<ExtArgs>
+      reservations: Prisma.$study_reservationPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      uid: string
+      createAt: Date
+      updateAt: Date
+      seatNumber: string
+      roomId: string
+      status: boolean
+    }, ExtArgs["result"]["study_seat"]>
+    composites: {}
+  }
+
+  type study_seatGetPayload<S extends boolean | null | undefined | study_seatDefaultArgs> = $Result.GetResult<Prisma.$study_seatPayload, S>
+
+  type study_seatCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<study_seatFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Study_seatCountAggregateInputType | true
+    }
+
+  export interface study_seatDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['study_seat'], meta: { name: 'study_seat' } }
+    /**
+     * Find zero or one Study_seat that matches the filter.
+     * @param {study_seatFindUniqueArgs} args - Arguments to find a Study_seat
+     * @example
+     * // Get one Study_seat
+     * const study_seat = await prisma.study_seat.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends study_seatFindUniqueArgs>(args: SelectSubset<T, study_seatFindUniqueArgs<ExtArgs>>): Prisma__study_seatClient<$Result.GetResult<Prisma.$study_seatPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Study_seat that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {study_seatFindUniqueOrThrowArgs} args - Arguments to find a Study_seat
+     * @example
+     * // Get one Study_seat
+     * const study_seat = await prisma.study_seat.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends study_seatFindUniqueOrThrowArgs>(args: SelectSubset<T, study_seatFindUniqueOrThrowArgs<ExtArgs>>): Prisma__study_seatClient<$Result.GetResult<Prisma.$study_seatPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Study_seat that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_seatFindFirstArgs} args - Arguments to find a Study_seat
+     * @example
+     * // Get one Study_seat
+     * const study_seat = await prisma.study_seat.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends study_seatFindFirstArgs>(args?: SelectSubset<T, study_seatFindFirstArgs<ExtArgs>>): Prisma__study_seatClient<$Result.GetResult<Prisma.$study_seatPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Study_seat that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_seatFindFirstOrThrowArgs} args - Arguments to find a Study_seat
+     * @example
+     * // Get one Study_seat
+     * const study_seat = await prisma.study_seat.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends study_seatFindFirstOrThrowArgs>(args?: SelectSubset<T, study_seatFindFirstOrThrowArgs<ExtArgs>>): Prisma__study_seatClient<$Result.GetResult<Prisma.$study_seatPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Study_seats that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_seatFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Study_seats
+     * const study_seats = await prisma.study_seat.findMany()
+     * 
+     * // Get first 10 Study_seats
+     * const study_seats = await prisma.study_seat.findMany({ take: 10 })
+     * 
+     * // Only select the `uid`
+     * const study_seatWithUidOnly = await prisma.study_seat.findMany({ select: { uid: true } })
+     * 
+     */
+    findMany<T extends study_seatFindManyArgs>(args?: SelectSubset<T, study_seatFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$study_seatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Study_seat.
+     * @param {study_seatCreateArgs} args - Arguments to create a Study_seat.
+     * @example
+     * // Create one Study_seat
+     * const Study_seat = await prisma.study_seat.create({
+     *   data: {
+     *     // ... data to create a Study_seat
+     *   }
+     * })
+     * 
+     */
+    create<T extends study_seatCreateArgs>(args: SelectSubset<T, study_seatCreateArgs<ExtArgs>>): Prisma__study_seatClient<$Result.GetResult<Prisma.$study_seatPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Study_seats.
+     * @param {study_seatCreateManyArgs} args - Arguments to create many Study_seats.
+     * @example
+     * // Create many Study_seats
+     * const study_seat = await prisma.study_seat.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends study_seatCreateManyArgs>(args?: SelectSubset<T, study_seatCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Study_seat.
+     * @param {study_seatDeleteArgs} args - Arguments to delete one Study_seat.
+     * @example
+     * // Delete one Study_seat
+     * const Study_seat = await prisma.study_seat.delete({
+     *   where: {
+     *     // ... filter to delete one Study_seat
+     *   }
+     * })
+     * 
+     */
+    delete<T extends study_seatDeleteArgs>(args: SelectSubset<T, study_seatDeleteArgs<ExtArgs>>): Prisma__study_seatClient<$Result.GetResult<Prisma.$study_seatPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Study_seat.
+     * @param {study_seatUpdateArgs} args - Arguments to update one Study_seat.
+     * @example
+     * // Update one Study_seat
+     * const study_seat = await prisma.study_seat.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends study_seatUpdateArgs>(args: SelectSubset<T, study_seatUpdateArgs<ExtArgs>>): Prisma__study_seatClient<$Result.GetResult<Prisma.$study_seatPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Study_seats.
+     * @param {study_seatDeleteManyArgs} args - Arguments to filter Study_seats to delete.
+     * @example
+     * // Delete a few Study_seats
+     * const { count } = await prisma.study_seat.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends study_seatDeleteManyArgs>(args?: SelectSubset<T, study_seatDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Study_seats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_seatUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Study_seats
+     * const study_seat = await prisma.study_seat.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends study_seatUpdateManyArgs>(args: SelectSubset<T, study_seatUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Study_seat.
+     * @param {study_seatUpsertArgs} args - Arguments to update or create a Study_seat.
+     * @example
+     * // Update or create a Study_seat
+     * const study_seat = await prisma.study_seat.upsert({
+     *   create: {
+     *     // ... data to create a Study_seat
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Study_seat we want to update
+     *   }
+     * })
+     */
+    upsert<T extends study_seatUpsertArgs>(args: SelectSubset<T, study_seatUpsertArgs<ExtArgs>>): Prisma__study_seatClient<$Result.GetResult<Prisma.$study_seatPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Study_seats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_seatCountArgs} args - Arguments to filter Study_seats to count.
+     * @example
+     * // Count the number of Study_seats
+     * const count = await prisma.study_seat.count({
+     *   where: {
+     *     // ... the filter for the Study_seats we want to count
+     *   }
+     * })
+    **/
+    count<T extends study_seatCountArgs>(
+      args?: Subset<T, study_seatCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Study_seatCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Study_seat.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Study_seatAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Study_seatAggregateArgs>(args: Subset<T, Study_seatAggregateArgs>): Prisma.PrismaPromise<GetStudy_seatAggregateType<T>>
+
+    /**
+     * Group by Study_seat.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_seatGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends study_seatGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: study_seatGroupByArgs['orderBy'] }
+        : { orderBy?: study_seatGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, study_seatGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStudy_seatGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the study_seat model
+   */
+  readonly fields: study_seatFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for study_seat.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__study_seatClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    room<T extends study_roomDefaultArgs<ExtArgs> = {}>(args?: Subset<T, study_roomDefaultArgs<ExtArgs>>): Prisma__study_roomClient<$Result.GetResult<Prisma.$study_roomPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    reservations<T extends study_seat$reservationsArgs<ExtArgs> = {}>(args?: Subset<T, study_seat$reservationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$study_reservationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the study_seat model
+   */ 
+  interface study_seatFieldRefs {
+    readonly uid: FieldRef<"study_seat", 'String'>
+    readonly createAt: FieldRef<"study_seat", 'DateTime'>
+    readonly updateAt: FieldRef<"study_seat", 'DateTime'>
+    readonly seatNumber: FieldRef<"study_seat", 'String'>
+    readonly roomId: FieldRef<"study_seat", 'String'>
+    readonly status: FieldRef<"study_seat", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * study_seat findUnique
+   */
+  export type study_seatFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_seat
+     */
+    select?: study_seatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_seat
+     */
+    omit?: study_seatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_seatInclude<ExtArgs> | null
+    /**
+     * Filter, which study_seat to fetch.
+     */
+    where: study_seatWhereUniqueInput
+  }
+
+  /**
+   * study_seat findUniqueOrThrow
+   */
+  export type study_seatFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_seat
+     */
+    select?: study_seatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_seat
+     */
+    omit?: study_seatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_seatInclude<ExtArgs> | null
+    /**
+     * Filter, which study_seat to fetch.
+     */
+    where: study_seatWhereUniqueInput
+  }
+
+  /**
+   * study_seat findFirst
+   */
+  export type study_seatFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_seat
+     */
+    select?: study_seatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_seat
+     */
+    omit?: study_seatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_seatInclude<ExtArgs> | null
+    /**
+     * Filter, which study_seat to fetch.
+     */
+    where?: study_seatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_seats to fetch.
+     */
+    orderBy?: study_seatOrderByWithRelationInput | study_seatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for study_seats.
+     */
+    cursor?: study_seatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_seats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_seats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of study_seats.
+     */
+    distinct?: Study_seatScalarFieldEnum | Study_seatScalarFieldEnum[]
+  }
+
+  /**
+   * study_seat findFirstOrThrow
+   */
+  export type study_seatFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_seat
+     */
+    select?: study_seatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_seat
+     */
+    omit?: study_seatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_seatInclude<ExtArgs> | null
+    /**
+     * Filter, which study_seat to fetch.
+     */
+    where?: study_seatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_seats to fetch.
+     */
+    orderBy?: study_seatOrderByWithRelationInput | study_seatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for study_seats.
+     */
+    cursor?: study_seatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_seats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_seats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of study_seats.
+     */
+    distinct?: Study_seatScalarFieldEnum | Study_seatScalarFieldEnum[]
+  }
+
+  /**
+   * study_seat findMany
+   */
+  export type study_seatFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_seat
+     */
+    select?: study_seatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_seat
+     */
+    omit?: study_seatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_seatInclude<ExtArgs> | null
+    /**
+     * Filter, which study_seats to fetch.
+     */
+    where?: study_seatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_seats to fetch.
+     */
+    orderBy?: study_seatOrderByWithRelationInput | study_seatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing study_seats.
+     */
+    cursor?: study_seatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_seats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_seats.
+     */
+    skip?: number
+    distinct?: Study_seatScalarFieldEnum | Study_seatScalarFieldEnum[]
+  }
+
+  /**
+   * study_seat create
+   */
+  export type study_seatCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_seat
+     */
+    select?: study_seatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_seat
+     */
+    omit?: study_seatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_seatInclude<ExtArgs> | null
+    /**
+     * The data needed to create a study_seat.
+     */
+    data: XOR<study_seatCreateInput, study_seatUncheckedCreateInput>
+  }
+
+  /**
+   * study_seat createMany
+   */
+  export type study_seatCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many study_seats.
+     */
+    data: study_seatCreateManyInput | study_seatCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * study_seat update
+   */
+  export type study_seatUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_seat
+     */
+    select?: study_seatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_seat
+     */
+    omit?: study_seatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_seatInclude<ExtArgs> | null
+    /**
+     * The data needed to update a study_seat.
+     */
+    data: XOR<study_seatUpdateInput, study_seatUncheckedUpdateInput>
+    /**
+     * Choose, which study_seat to update.
+     */
+    where: study_seatWhereUniqueInput
+  }
+
+  /**
+   * study_seat updateMany
+   */
+  export type study_seatUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update study_seats.
+     */
+    data: XOR<study_seatUpdateManyMutationInput, study_seatUncheckedUpdateManyInput>
+    /**
+     * Filter which study_seats to update
+     */
+    where?: study_seatWhereInput
+    /**
+     * Limit how many study_seats to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * study_seat upsert
+   */
+  export type study_seatUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_seat
+     */
+    select?: study_seatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_seat
+     */
+    omit?: study_seatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_seatInclude<ExtArgs> | null
+    /**
+     * The filter to search for the study_seat to update in case it exists.
+     */
+    where: study_seatWhereUniqueInput
+    /**
+     * In case the study_seat found by the `where` argument doesn't exist, create a new study_seat with this data.
+     */
+    create: XOR<study_seatCreateInput, study_seatUncheckedCreateInput>
+    /**
+     * In case the study_seat was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<study_seatUpdateInput, study_seatUncheckedUpdateInput>
+  }
+
+  /**
+   * study_seat delete
+   */
+  export type study_seatDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_seat
+     */
+    select?: study_seatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_seat
+     */
+    omit?: study_seatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_seatInclude<ExtArgs> | null
+    /**
+     * Filter which study_seat to delete.
+     */
+    where: study_seatWhereUniqueInput
+  }
+
+  /**
+   * study_seat deleteMany
+   */
+  export type study_seatDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which study_seats to delete
+     */
+    where?: study_seatWhereInput
+    /**
+     * Limit how many study_seats to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * study_seat.reservations
+   */
+  export type study_seat$reservationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_reservation
+     */
+    select?: study_reservationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_reservation
+     */
+    omit?: study_reservationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_reservationInclude<ExtArgs> | null
+    where?: study_reservationWhereInput
+    orderBy?: study_reservationOrderByWithRelationInput | study_reservationOrderByWithRelationInput[]
+    cursor?: study_reservationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Study_reservationScalarFieldEnum | Study_reservationScalarFieldEnum[]
+  }
+
+  /**
+   * study_seat without action
+   */
+  export type study_seatDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_seat
+     */
+    select?: study_seatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_seat
+     */
+    omit?: study_seatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_seatInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model study_reservation
+   */
+
+  export type AggregateStudy_reservation = {
+    _count: Study_reservationCountAggregateOutputType | null
+    _min: Study_reservationMinAggregateOutputType | null
+    _max: Study_reservationMaxAggregateOutputType | null
+  }
+
+  export type Study_reservationMinAggregateOutputType = {
+    uid: string | null
+    createAt: Date | null
+    updateAt: Date | null
+    userId: string | null
+    seatId: string | null
+    startTime: Date | null
+    endTime: Date | null
+    status: string | null
+  }
+
+  export type Study_reservationMaxAggregateOutputType = {
+    uid: string | null
+    createAt: Date | null
+    updateAt: Date | null
+    userId: string | null
+    seatId: string | null
+    startTime: Date | null
+    endTime: Date | null
+    status: string | null
+  }
+
+  export type Study_reservationCountAggregateOutputType = {
+    uid: number
+    createAt: number
+    updateAt: number
+    userId: number
+    seatId: number
+    startTime: number
+    endTime: number
+    status: number
+    _all: number
+  }
+
+
+  export type Study_reservationMinAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    userId?: true
+    seatId?: true
+    startTime?: true
+    endTime?: true
+    status?: true
+  }
+
+  export type Study_reservationMaxAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    userId?: true
+    seatId?: true
+    startTime?: true
+    endTime?: true
+    status?: true
+  }
+
+  export type Study_reservationCountAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    userId?: true
+    seatId?: true
+    startTime?: true
+    endTime?: true
+    status?: true
+    _all?: true
+  }
+
+  export type Study_reservationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which study_reservation to aggregate.
+     */
+    where?: study_reservationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_reservations to fetch.
+     */
+    orderBy?: study_reservationOrderByWithRelationInput | study_reservationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: study_reservationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_reservations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_reservations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned study_reservations
+    **/
+    _count?: true | Study_reservationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Study_reservationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Study_reservationMaxAggregateInputType
+  }
+
+  export type GetStudy_reservationAggregateType<T extends Study_reservationAggregateArgs> = {
+        [P in keyof T & keyof AggregateStudy_reservation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStudy_reservation[P]>
+      : GetScalarType<T[P], AggregateStudy_reservation[P]>
+  }
+
+
+
+
+  export type study_reservationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: study_reservationWhereInput
+    orderBy?: study_reservationOrderByWithAggregationInput | study_reservationOrderByWithAggregationInput[]
+    by: Study_reservationScalarFieldEnum[] | Study_reservationScalarFieldEnum
+    having?: study_reservationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Study_reservationCountAggregateInputType | true
+    _min?: Study_reservationMinAggregateInputType
+    _max?: Study_reservationMaxAggregateInputType
+  }
+
+  export type Study_reservationGroupByOutputType = {
+    uid: string
+    createAt: Date
+    updateAt: Date
+    userId: string
+    seatId: string
+    startTime: Date
+    endTime: Date
+    status: string
+    _count: Study_reservationCountAggregateOutputType | null
+    _min: Study_reservationMinAggregateOutputType | null
+    _max: Study_reservationMaxAggregateOutputType | null
+  }
+
+  type GetStudy_reservationGroupByPayload<T extends study_reservationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Study_reservationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Study_reservationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Study_reservationGroupByOutputType[P]>
+            : GetScalarType<T[P], Study_reservationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type study_reservationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    uid?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    userId?: boolean
+    seatId?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    status?: boolean
+    user?: boolean | study_userDefaultArgs<ExtArgs>
+    seat?: boolean | study_seatDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["study_reservation"]>
+
+
+
+  export type study_reservationSelectScalar = {
+    uid?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    userId?: boolean
+    seatId?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    status?: boolean
+  }
+
+  export type study_reservationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createAt" | "updateAt" | "userId" | "seatId" | "startTime" | "endTime" | "status", ExtArgs["result"]["study_reservation"]>
+  export type study_reservationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | study_userDefaultArgs<ExtArgs>
+    seat?: boolean | study_seatDefaultArgs<ExtArgs>
+  }
+
+  export type $study_reservationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "study_reservation"
+    objects: {
+      user: Prisma.$study_userPayload<ExtArgs>
+      seat: Prisma.$study_seatPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      uid: string
+      createAt: Date
+      updateAt: Date
+      userId: string
+      seatId: string
+      startTime: Date
+      endTime: Date
+      status: string
+    }, ExtArgs["result"]["study_reservation"]>
+    composites: {}
+  }
+
+  type study_reservationGetPayload<S extends boolean | null | undefined | study_reservationDefaultArgs> = $Result.GetResult<Prisma.$study_reservationPayload, S>
+
+  type study_reservationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<study_reservationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Study_reservationCountAggregateInputType | true
+    }
+
+  export interface study_reservationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['study_reservation'], meta: { name: 'study_reservation' } }
+    /**
+     * Find zero or one Study_reservation that matches the filter.
+     * @param {study_reservationFindUniqueArgs} args - Arguments to find a Study_reservation
+     * @example
+     * // Get one Study_reservation
+     * const study_reservation = await prisma.study_reservation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends study_reservationFindUniqueArgs>(args: SelectSubset<T, study_reservationFindUniqueArgs<ExtArgs>>): Prisma__study_reservationClient<$Result.GetResult<Prisma.$study_reservationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Study_reservation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {study_reservationFindUniqueOrThrowArgs} args - Arguments to find a Study_reservation
+     * @example
+     * // Get one Study_reservation
+     * const study_reservation = await prisma.study_reservation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends study_reservationFindUniqueOrThrowArgs>(args: SelectSubset<T, study_reservationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__study_reservationClient<$Result.GetResult<Prisma.$study_reservationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Study_reservation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_reservationFindFirstArgs} args - Arguments to find a Study_reservation
+     * @example
+     * // Get one Study_reservation
+     * const study_reservation = await prisma.study_reservation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends study_reservationFindFirstArgs>(args?: SelectSubset<T, study_reservationFindFirstArgs<ExtArgs>>): Prisma__study_reservationClient<$Result.GetResult<Prisma.$study_reservationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Study_reservation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_reservationFindFirstOrThrowArgs} args - Arguments to find a Study_reservation
+     * @example
+     * // Get one Study_reservation
+     * const study_reservation = await prisma.study_reservation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends study_reservationFindFirstOrThrowArgs>(args?: SelectSubset<T, study_reservationFindFirstOrThrowArgs<ExtArgs>>): Prisma__study_reservationClient<$Result.GetResult<Prisma.$study_reservationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Study_reservations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_reservationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Study_reservations
+     * const study_reservations = await prisma.study_reservation.findMany()
+     * 
+     * // Get first 10 Study_reservations
+     * const study_reservations = await prisma.study_reservation.findMany({ take: 10 })
+     * 
+     * // Only select the `uid`
+     * const study_reservationWithUidOnly = await prisma.study_reservation.findMany({ select: { uid: true } })
+     * 
+     */
+    findMany<T extends study_reservationFindManyArgs>(args?: SelectSubset<T, study_reservationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$study_reservationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Study_reservation.
+     * @param {study_reservationCreateArgs} args - Arguments to create a Study_reservation.
+     * @example
+     * // Create one Study_reservation
+     * const Study_reservation = await prisma.study_reservation.create({
+     *   data: {
+     *     // ... data to create a Study_reservation
+     *   }
+     * })
+     * 
+     */
+    create<T extends study_reservationCreateArgs>(args: SelectSubset<T, study_reservationCreateArgs<ExtArgs>>): Prisma__study_reservationClient<$Result.GetResult<Prisma.$study_reservationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Study_reservations.
+     * @param {study_reservationCreateManyArgs} args - Arguments to create many Study_reservations.
+     * @example
+     * // Create many Study_reservations
+     * const study_reservation = await prisma.study_reservation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends study_reservationCreateManyArgs>(args?: SelectSubset<T, study_reservationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Study_reservation.
+     * @param {study_reservationDeleteArgs} args - Arguments to delete one Study_reservation.
+     * @example
+     * // Delete one Study_reservation
+     * const Study_reservation = await prisma.study_reservation.delete({
+     *   where: {
+     *     // ... filter to delete one Study_reservation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends study_reservationDeleteArgs>(args: SelectSubset<T, study_reservationDeleteArgs<ExtArgs>>): Prisma__study_reservationClient<$Result.GetResult<Prisma.$study_reservationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Study_reservation.
+     * @param {study_reservationUpdateArgs} args - Arguments to update one Study_reservation.
+     * @example
+     * // Update one Study_reservation
+     * const study_reservation = await prisma.study_reservation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends study_reservationUpdateArgs>(args: SelectSubset<T, study_reservationUpdateArgs<ExtArgs>>): Prisma__study_reservationClient<$Result.GetResult<Prisma.$study_reservationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Study_reservations.
+     * @param {study_reservationDeleteManyArgs} args - Arguments to filter Study_reservations to delete.
+     * @example
+     * // Delete a few Study_reservations
+     * const { count } = await prisma.study_reservation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends study_reservationDeleteManyArgs>(args?: SelectSubset<T, study_reservationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Study_reservations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_reservationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Study_reservations
+     * const study_reservation = await prisma.study_reservation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends study_reservationUpdateManyArgs>(args: SelectSubset<T, study_reservationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Study_reservation.
+     * @param {study_reservationUpsertArgs} args - Arguments to update or create a Study_reservation.
+     * @example
+     * // Update or create a Study_reservation
+     * const study_reservation = await prisma.study_reservation.upsert({
+     *   create: {
+     *     // ... data to create a Study_reservation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Study_reservation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends study_reservationUpsertArgs>(args: SelectSubset<T, study_reservationUpsertArgs<ExtArgs>>): Prisma__study_reservationClient<$Result.GetResult<Prisma.$study_reservationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Study_reservations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_reservationCountArgs} args - Arguments to filter Study_reservations to count.
+     * @example
+     * // Count the number of Study_reservations
+     * const count = await prisma.study_reservation.count({
+     *   where: {
+     *     // ... the filter for the Study_reservations we want to count
+     *   }
+     * })
+    **/
+    count<T extends study_reservationCountArgs>(
+      args?: Subset<T, study_reservationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Study_reservationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Study_reservation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Study_reservationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Study_reservationAggregateArgs>(args: Subset<T, Study_reservationAggregateArgs>): Prisma.PrismaPromise<GetStudy_reservationAggregateType<T>>
+
+    /**
+     * Group by Study_reservation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_reservationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends study_reservationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: study_reservationGroupByArgs['orderBy'] }
+        : { orderBy?: study_reservationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, study_reservationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStudy_reservationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the study_reservation model
+   */
+  readonly fields: study_reservationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for study_reservation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__study_reservationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends study_userDefaultArgs<ExtArgs> = {}>(args?: Subset<T, study_userDefaultArgs<ExtArgs>>): Prisma__study_userClient<$Result.GetResult<Prisma.$study_userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    seat<T extends study_seatDefaultArgs<ExtArgs> = {}>(args?: Subset<T, study_seatDefaultArgs<ExtArgs>>): Prisma__study_seatClient<$Result.GetResult<Prisma.$study_seatPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the study_reservation model
+   */ 
+  interface study_reservationFieldRefs {
+    readonly uid: FieldRef<"study_reservation", 'String'>
+    readonly createAt: FieldRef<"study_reservation", 'DateTime'>
+    readonly updateAt: FieldRef<"study_reservation", 'DateTime'>
+    readonly userId: FieldRef<"study_reservation", 'String'>
+    readonly seatId: FieldRef<"study_reservation", 'String'>
+    readonly startTime: FieldRef<"study_reservation", 'DateTime'>
+    readonly endTime: FieldRef<"study_reservation", 'DateTime'>
+    readonly status: FieldRef<"study_reservation", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * study_reservation findUnique
+   */
+  export type study_reservationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_reservation
+     */
+    select?: study_reservationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_reservation
+     */
+    omit?: study_reservationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_reservationInclude<ExtArgs> | null
+    /**
+     * Filter, which study_reservation to fetch.
+     */
+    where: study_reservationWhereUniqueInput
+  }
+
+  /**
+   * study_reservation findUniqueOrThrow
+   */
+  export type study_reservationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_reservation
+     */
+    select?: study_reservationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_reservation
+     */
+    omit?: study_reservationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_reservationInclude<ExtArgs> | null
+    /**
+     * Filter, which study_reservation to fetch.
+     */
+    where: study_reservationWhereUniqueInput
+  }
+
+  /**
+   * study_reservation findFirst
+   */
+  export type study_reservationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_reservation
+     */
+    select?: study_reservationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_reservation
+     */
+    omit?: study_reservationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_reservationInclude<ExtArgs> | null
+    /**
+     * Filter, which study_reservation to fetch.
+     */
+    where?: study_reservationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_reservations to fetch.
+     */
+    orderBy?: study_reservationOrderByWithRelationInput | study_reservationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for study_reservations.
+     */
+    cursor?: study_reservationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_reservations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_reservations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of study_reservations.
+     */
+    distinct?: Study_reservationScalarFieldEnum | Study_reservationScalarFieldEnum[]
+  }
+
+  /**
+   * study_reservation findFirstOrThrow
+   */
+  export type study_reservationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_reservation
+     */
+    select?: study_reservationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_reservation
+     */
+    omit?: study_reservationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_reservationInclude<ExtArgs> | null
+    /**
+     * Filter, which study_reservation to fetch.
+     */
+    where?: study_reservationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_reservations to fetch.
+     */
+    orderBy?: study_reservationOrderByWithRelationInput | study_reservationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for study_reservations.
+     */
+    cursor?: study_reservationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_reservations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_reservations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of study_reservations.
+     */
+    distinct?: Study_reservationScalarFieldEnum | Study_reservationScalarFieldEnum[]
+  }
+
+  /**
+   * study_reservation findMany
+   */
+  export type study_reservationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_reservation
+     */
+    select?: study_reservationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_reservation
+     */
+    omit?: study_reservationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_reservationInclude<ExtArgs> | null
+    /**
+     * Filter, which study_reservations to fetch.
+     */
+    where?: study_reservationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_reservations to fetch.
+     */
+    orderBy?: study_reservationOrderByWithRelationInput | study_reservationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing study_reservations.
+     */
+    cursor?: study_reservationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_reservations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_reservations.
+     */
+    skip?: number
+    distinct?: Study_reservationScalarFieldEnum | Study_reservationScalarFieldEnum[]
+  }
+
+  /**
+   * study_reservation create
+   */
+  export type study_reservationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_reservation
+     */
+    select?: study_reservationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_reservation
+     */
+    omit?: study_reservationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_reservationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a study_reservation.
+     */
+    data: XOR<study_reservationCreateInput, study_reservationUncheckedCreateInput>
+  }
+
+  /**
+   * study_reservation createMany
+   */
+  export type study_reservationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many study_reservations.
+     */
+    data: study_reservationCreateManyInput | study_reservationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * study_reservation update
+   */
+  export type study_reservationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_reservation
+     */
+    select?: study_reservationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_reservation
+     */
+    omit?: study_reservationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_reservationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a study_reservation.
+     */
+    data: XOR<study_reservationUpdateInput, study_reservationUncheckedUpdateInput>
+    /**
+     * Choose, which study_reservation to update.
+     */
+    where: study_reservationWhereUniqueInput
+  }
+
+  /**
+   * study_reservation updateMany
+   */
+  export type study_reservationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update study_reservations.
+     */
+    data: XOR<study_reservationUpdateManyMutationInput, study_reservationUncheckedUpdateManyInput>
+    /**
+     * Filter which study_reservations to update
+     */
+    where?: study_reservationWhereInput
+    /**
+     * Limit how many study_reservations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * study_reservation upsert
+   */
+  export type study_reservationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_reservation
+     */
+    select?: study_reservationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_reservation
+     */
+    omit?: study_reservationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_reservationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the study_reservation to update in case it exists.
+     */
+    where: study_reservationWhereUniqueInput
+    /**
+     * In case the study_reservation found by the `where` argument doesn't exist, create a new study_reservation with this data.
+     */
+    create: XOR<study_reservationCreateInput, study_reservationUncheckedCreateInput>
+    /**
+     * In case the study_reservation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<study_reservationUpdateInput, study_reservationUncheckedUpdateInput>
+  }
+
+  /**
+   * study_reservation delete
+   */
+  export type study_reservationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_reservation
+     */
+    select?: study_reservationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_reservation
+     */
+    omit?: study_reservationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_reservationInclude<ExtArgs> | null
+    /**
+     * Filter which study_reservation to delete.
+     */
+    where: study_reservationWhereUniqueInput
+  }
+
+  /**
+   * study_reservation deleteMany
+   */
+  export type study_reservationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which study_reservations to delete
+     */
+    where?: study_reservationWhereInput
+    /**
+     * Limit how many study_reservations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * study_reservation without action
+   */
+  export type study_reservationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_reservation
+     */
+    select?: study_reservationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_reservation
+     */
+    omit?: study_reservationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_reservationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model study_message
+   */
+
+  export type AggregateStudy_message = {
+    _count: Study_messageCountAggregateOutputType | null
+    _min: Study_messageMinAggregateOutputType | null
+    _max: Study_messageMaxAggregateOutputType | null
+  }
+
+  export type Study_messageMinAggregateOutputType = {
+    uid: string | null
+    createAt: Date | null
+    updateAt: Date | null
+    userId: string | null
+    content: string | null
+    reply: string | null
+    status: boolean | null
+  }
+
+  export type Study_messageMaxAggregateOutputType = {
+    uid: string | null
+    createAt: Date | null
+    updateAt: Date | null
+    userId: string | null
+    content: string | null
+    reply: string | null
+    status: boolean | null
+  }
+
+  export type Study_messageCountAggregateOutputType = {
+    uid: number
+    createAt: number
+    updateAt: number
+    userId: number
+    content: number
+    reply: number
+    status: number
+    _all: number
+  }
+
+
+  export type Study_messageMinAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    userId?: true
+    content?: true
+    reply?: true
+    status?: true
+  }
+
+  export type Study_messageMaxAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    userId?: true
+    content?: true
+    reply?: true
+    status?: true
+  }
+
+  export type Study_messageCountAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    userId?: true
+    content?: true
+    reply?: true
+    status?: true
+    _all?: true
+  }
+
+  export type Study_messageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which study_message to aggregate.
+     */
+    where?: study_messageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_messages to fetch.
+     */
+    orderBy?: study_messageOrderByWithRelationInput | study_messageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: study_messageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_messages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_messages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned study_messages
+    **/
+    _count?: true | Study_messageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Study_messageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Study_messageMaxAggregateInputType
+  }
+
+  export type GetStudy_messageAggregateType<T extends Study_messageAggregateArgs> = {
+        [P in keyof T & keyof AggregateStudy_message]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStudy_message[P]>
+      : GetScalarType<T[P], AggregateStudy_message[P]>
+  }
+
+
+
+
+  export type study_messageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: study_messageWhereInput
+    orderBy?: study_messageOrderByWithAggregationInput | study_messageOrderByWithAggregationInput[]
+    by: Study_messageScalarFieldEnum[] | Study_messageScalarFieldEnum
+    having?: study_messageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Study_messageCountAggregateInputType | true
+    _min?: Study_messageMinAggregateInputType
+    _max?: Study_messageMaxAggregateInputType
+  }
+
+  export type Study_messageGroupByOutputType = {
+    uid: string
+    createAt: Date
+    updateAt: Date
+    userId: string
+    content: string
+    reply: string | null
+    status: boolean
+    _count: Study_messageCountAggregateOutputType | null
+    _min: Study_messageMinAggregateOutputType | null
+    _max: Study_messageMaxAggregateOutputType | null
+  }
+
+  type GetStudy_messageGroupByPayload<T extends study_messageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Study_messageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Study_messageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Study_messageGroupByOutputType[P]>
+            : GetScalarType<T[P], Study_messageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type study_messageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    uid?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    userId?: boolean
+    content?: boolean
+    reply?: boolean
+    status?: boolean
+    user?: boolean | study_userDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["study_message"]>
+
+
+
+  export type study_messageSelectScalar = {
+    uid?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    userId?: boolean
+    content?: boolean
+    reply?: boolean
+    status?: boolean
+  }
+
+  export type study_messageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createAt" | "updateAt" | "userId" | "content" | "reply" | "status", ExtArgs["result"]["study_message"]>
+  export type study_messageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | study_userDefaultArgs<ExtArgs>
+  }
+
+  export type $study_messagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "study_message"
+    objects: {
+      user: Prisma.$study_userPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      uid: string
+      createAt: Date
+      updateAt: Date
+      userId: string
+      content: string
+      reply: string | null
+      status: boolean
+    }, ExtArgs["result"]["study_message"]>
+    composites: {}
+  }
+
+  type study_messageGetPayload<S extends boolean | null | undefined | study_messageDefaultArgs> = $Result.GetResult<Prisma.$study_messagePayload, S>
+
+  type study_messageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<study_messageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Study_messageCountAggregateInputType | true
+    }
+
+  export interface study_messageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['study_message'], meta: { name: 'study_message' } }
+    /**
+     * Find zero or one Study_message that matches the filter.
+     * @param {study_messageFindUniqueArgs} args - Arguments to find a Study_message
+     * @example
+     * // Get one Study_message
+     * const study_message = await prisma.study_message.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends study_messageFindUniqueArgs>(args: SelectSubset<T, study_messageFindUniqueArgs<ExtArgs>>): Prisma__study_messageClient<$Result.GetResult<Prisma.$study_messagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Study_message that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {study_messageFindUniqueOrThrowArgs} args - Arguments to find a Study_message
+     * @example
+     * // Get one Study_message
+     * const study_message = await prisma.study_message.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends study_messageFindUniqueOrThrowArgs>(args: SelectSubset<T, study_messageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__study_messageClient<$Result.GetResult<Prisma.$study_messagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Study_message that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_messageFindFirstArgs} args - Arguments to find a Study_message
+     * @example
+     * // Get one Study_message
+     * const study_message = await prisma.study_message.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends study_messageFindFirstArgs>(args?: SelectSubset<T, study_messageFindFirstArgs<ExtArgs>>): Prisma__study_messageClient<$Result.GetResult<Prisma.$study_messagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Study_message that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_messageFindFirstOrThrowArgs} args - Arguments to find a Study_message
+     * @example
+     * // Get one Study_message
+     * const study_message = await prisma.study_message.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends study_messageFindFirstOrThrowArgs>(args?: SelectSubset<T, study_messageFindFirstOrThrowArgs<ExtArgs>>): Prisma__study_messageClient<$Result.GetResult<Prisma.$study_messagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Study_messages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_messageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Study_messages
+     * const study_messages = await prisma.study_message.findMany()
+     * 
+     * // Get first 10 Study_messages
+     * const study_messages = await prisma.study_message.findMany({ take: 10 })
+     * 
+     * // Only select the `uid`
+     * const study_messageWithUidOnly = await prisma.study_message.findMany({ select: { uid: true } })
+     * 
+     */
+    findMany<T extends study_messageFindManyArgs>(args?: SelectSubset<T, study_messageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$study_messagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Study_message.
+     * @param {study_messageCreateArgs} args - Arguments to create a Study_message.
+     * @example
+     * // Create one Study_message
+     * const Study_message = await prisma.study_message.create({
+     *   data: {
+     *     // ... data to create a Study_message
+     *   }
+     * })
+     * 
+     */
+    create<T extends study_messageCreateArgs>(args: SelectSubset<T, study_messageCreateArgs<ExtArgs>>): Prisma__study_messageClient<$Result.GetResult<Prisma.$study_messagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Study_messages.
+     * @param {study_messageCreateManyArgs} args - Arguments to create many Study_messages.
+     * @example
+     * // Create many Study_messages
+     * const study_message = await prisma.study_message.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends study_messageCreateManyArgs>(args?: SelectSubset<T, study_messageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Study_message.
+     * @param {study_messageDeleteArgs} args - Arguments to delete one Study_message.
+     * @example
+     * // Delete one Study_message
+     * const Study_message = await prisma.study_message.delete({
+     *   where: {
+     *     // ... filter to delete one Study_message
+     *   }
+     * })
+     * 
+     */
+    delete<T extends study_messageDeleteArgs>(args: SelectSubset<T, study_messageDeleteArgs<ExtArgs>>): Prisma__study_messageClient<$Result.GetResult<Prisma.$study_messagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Study_message.
+     * @param {study_messageUpdateArgs} args - Arguments to update one Study_message.
+     * @example
+     * // Update one Study_message
+     * const study_message = await prisma.study_message.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends study_messageUpdateArgs>(args: SelectSubset<T, study_messageUpdateArgs<ExtArgs>>): Prisma__study_messageClient<$Result.GetResult<Prisma.$study_messagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Study_messages.
+     * @param {study_messageDeleteManyArgs} args - Arguments to filter Study_messages to delete.
+     * @example
+     * // Delete a few Study_messages
+     * const { count } = await prisma.study_message.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends study_messageDeleteManyArgs>(args?: SelectSubset<T, study_messageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Study_messages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_messageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Study_messages
+     * const study_message = await prisma.study_message.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends study_messageUpdateManyArgs>(args: SelectSubset<T, study_messageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Study_message.
+     * @param {study_messageUpsertArgs} args - Arguments to update or create a Study_message.
+     * @example
+     * // Update or create a Study_message
+     * const study_message = await prisma.study_message.upsert({
+     *   create: {
+     *     // ... data to create a Study_message
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Study_message we want to update
+     *   }
+     * })
+     */
+    upsert<T extends study_messageUpsertArgs>(args: SelectSubset<T, study_messageUpsertArgs<ExtArgs>>): Prisma__study_messageClient<$Result.GetResult<Prisma.$study_messagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Study_messages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_messageCountArgs} args - Arguments to filter Study_messages to count.
+     * @example
+     * // Count the number of Study_messages
+     * const count = await prisma.study_message.count({
+     *   where: {
+     *     // ... the filter for the Study_messages we want to count
+     *   }
+     * })
+    **/
+    count<T extends study_messageCountArgs>(
+      args?: Subset<T, study_messageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Study_messageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Study_message.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Study_messageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Study_messageAggregateArgs>(args: Subset<T, Study_messageAggregateArgs>): Prisma.PrismaPromise<GetStudy_messageAggregateType<T>>
+
+    /**
+     * Group by Study_message.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_messageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends study_messageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: study_messageGroupByArgs['orderBy'] }
+        : { orderBy?: study_messageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, study_messageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStudy_messageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the study_message model
+   */
+  readonly fields: study_messageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for study_message.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__study_messageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends study_userDefaultArgs<ExtArgs> = {}>(args?: Subset<T, study_userDefaultArgs<ExtArgs>>): Prisma__study_userClient<$Result.GetResult<Prisma.$study_userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the study_message model
+   */ 
+  interface study_messageFieldRefs {
+    readonly uid: FieldRef<"study_message", 'String'>
+    readonly createAt: FieldRef<"study_message", 'DateTime'>
+    readonly updateAt: FieldRef<"study_message", 'DateTime'>
+    readonly userId: FieldRef<"study_message", 'String'>
+    readonly content: FieldRef<"study_message", 'String'>
+    readonly reply: FieldRef<"study_message", 'String'>
+    readonly status: FieldRef<"study_message", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * study_message findUnique
+   */
+  export type study_messageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_message
+     */
+    select?: study_messageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_message
+     */
+    omit?: study_messageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_messageInclude<ExtArgs> | null
+    /**
+     * Filter, which study_message to fetch.
+     */
+    where: study_messageWhereUniqueInput
+  }
+
+  /**
+   * study_message findUniqueOrThrow
+   */
+  export type study_messageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_message
+     */
+    select?: study_messageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_message
+     */
+    omit?: study_messageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_messageInclude<ExtArgs> | null
+    /**
+     * Filter, which study_message to fetch.
+     */
+    where: study_messageWhereUniqueInput
+  }
+
+  /**
+   * study_message findFirst
+   */
+  export type study_messageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_message
+     */
+    select?: study_messageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_message
+     */
+    omit?: study_messageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_messageInclude<ExtArgs> | null
+    /**
+     * Filter, which study_message to fetch.
+     */
+    where?: study_messageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_messages to fetch.
+     */
+    orderBy?: study_messageOrderByWithRelationInput | study_messageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for study_messages.
+     */
+    cursor?: study_messageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_messages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_messages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of study_messages.
+     */
+    distinct?: Study_messageScalarFieldEnum | Study_messageScalarFieldEnum[]
+  }
+
+  /**
+   * study_message findFirstOrThrow
+   */
+  export type study_messageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_message
+     */
+    select?: study_messageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_message
+     */
+    omit?: study_messageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_messageInclude<ExtArgs> | null
+    /**
+     * Filter, which study_message to fetch.
+     */
+    where?: study_messageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_messages to fetch.
+     */
+    orderBy?: study_messageOrderByWithRelationInput | study_messageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for study_messages.
+     */
+    cursor?: study_messageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_messages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_messages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of study_messages.
+     */
+    distinct?: Study_messageScalarFieldEnum | Study_messageScalarFieldEnum[]
+  }
+
+  /**
+   * study_message findMany
+   */
+  export type study_messageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_message
+     */
+    select?: study_messageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_message
+     */
+    omit?: study_messageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_messageInclude<ExtArgs> | null
+    /**
+     * Filter, which study_messages to fetch.
+     */
+    where?: study_messageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_messages to fetch.
+     */
+    orderBy?: study_messageOrderByWithRelationInput | study_messageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing study_messages.
+     */
+    cursor?: study_messageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_messages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_messages.
+     */
+    skip?: number
+    distinct?: Study_messageScalarFieldEnum | Study_messageScalarFieldEnum[]
+  }
+
+  /**
+   * study_message create
+   */
+  export type study_messageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_message
+     */
+    select?: study_messageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_message
+     */
+    omit?: study_messageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_messageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a study_message.
+     */
+    data: XOR<study_messageCreateInput, study_messageUncheckedCreateInput>
+  }
+
+  /**
+   * study_message createMany
+   */
+  export type study_messageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many study_messages.
+     */
+    data: study_messageCreateManyInput | study_messageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * study_message update
+   */
+  export type study_messageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_message
+     */
+    select?: study_messageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_message
+     */
+    omit?: study_messageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_messageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a study_message.
+     */
+    data: XOR<study_messageUpdateInput, study_messageUncheckedUpdateInput>
+    /**
+     * Choose, which study_message to update.
+     */
+    where: study_messageWhereUniqueInput
+  }
+
+  /**
+   * study_message updateMany
+   */
+  export type study_messageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update study_messages.
+     */
+    data: XOR<study_messageUpdateManyMutationInput, study_messageUncheckedUpdateManyInput>
+    /**
+     * Filter which study_messages to update
+     */
+    where?: study_messageWhereInput
+    /**
+     * Limit how many study_messages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * study_message upsert
+   */
+  export type study_messageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_message
+     */
+    select?: study_messageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_message
+     */
+    omit?: study_messageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_messageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the study_message to update in case it exists.
+     */
+    where: study_messageWhereUniqueInput
+    /**
+     * In case the study_message found by the `where` argument doesn't exist, create a new study_message with this data.
+     */
+    create: XOR<study_messageCreateInput, study_messageUncheckedCreateInput>
+    /**
+     * In case the study_message was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<study_messageUpdateInput, study_messageUncheckedUpdateInput>
+  }
+
+  /**
+   * study_message delete
+   */
+  export type study_messageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_message
+     */
+    select?: study_messageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_message
+     */
+    omit?: study_messageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_messageInclude<ExtArgs> | null
+    /**
+     * Filter which study_message to delete.
+     */
+    where: study_messageWhereUniqueInput
+  }
+
+  /**
+   * study_message deleteMany
+   */
+  export type study_messageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which study_messages to delete
+     */
+    where?: study_messageWhereInput
+    /**
+     * Limit how many study_messages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * study_message without action
+   */
+  export type study_messageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_message
+     */
+    select?: study_messageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_message
+     */
+    omit?: study_messageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: study_messageInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model study_announcement
+   */
+
+  export type AggregateStudy_announcement = {
+    _count: Study_announcementCountAggregateOutputType | null
+    _min: Study_announcementMinAggregateOutputType | null
+    _max: Study_announcementMaxAggregateOutputType | null
+  }
+
+  export type Study_announcementMinAggregateOutputType = {
+    uid: string | null
+    createAt: Date | null
+    updateAt: Date | null
+    title: string | null
+    content: string | null
+    status: boolean | null
+  }
+
+  export type Study_announcementMaxAggregateOutputType = {
+    uid: string | null
+    createAt: Date | null
+    updateAt: Date | null
+    title: string | null
+    content: string | null
+    status: boolean | null
+  }
+
+  export type Study_announcementCountAggregateOutputType = {
+    uid: number
+    createAt: number
+    updateAt: number
+    title: number
+    content: number
+    status: number
+    _all: number
+  }
+
+
+  export type Study_announcementMinAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    title?: true
+    content?: true
+    status?: true
+  }
+
+  export type Study_announcementMaxAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    title?: true
+    content?: true
+    status?: true
+  }
+
+  export type Study_announcementCountAggregateInputType = {
+    uid?: true
+    createAt?: true
+    updateAt?: true
+    title?: true
+    content?: true
+    status?: true
+    _all?: true
+  }
+
+  export type Study_announcementAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which study_announcement to aggregate.
+     */
+    where?: study_announcementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_announcements to fetch.
+     */
+    orderBy?: study_announcementOrderByWithRelationInput | study_announcementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: study_announcementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_announcements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_announcements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned study_announcements
+    **/
+    _count?: true | Study_announcementCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Study_announcementMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Study_announcementMaxAggregateInputType
+  }
+
+  export type GetStudy_announcementAggregateType<T extends Study_announcementAggregateArgs> = {
+        [P in keyof T & keyof AggregateStudy_announcement]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStudy_announcement[P]>
+      : GetScalarType<T[P], AggregateStudy_announcement[P]>
+  }
+
+
+
+
+  export type study_announcementGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: study_announcementWhereInput
+    orderBy?: study_announcementOrderByWithAggregationInput | study_announcementOrderByWithAggregationInput[]
+    by: Study_announcementScalarFieldEnum[] | Study_announcementScalarFieldEnum
+    having?: study_announcementScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Study_announcementCountAggregateInputType | true
+    _min?: Study_announcementMinAggregateInputType
+    _max?: Study_announcementMaxAggregateInputType
+  }
+
+  export type Study_announcementGroupByOutputType = {
+    uid: string
+    createAt: Date
+    updateAt: Date
+    title: string
+    content: string
+    status: boolean
+    _count: Study_announcementCountAggregateOutputType | null
+    _min: Study_announcementMinAggregateOutputType | null
+    _max: Study_announcementMaxAggregateOutputType | null
+  }
+
+  type GetStudy_announcementGroupByPayload<T extends study_announcementGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Study_announcementGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Study_announcementGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Study_announcementGroupByOutputType[P]>
+            : GetScalarType<T[P], Study_announcementGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type study_announcementSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    uid?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    title?: boolean
+    content?: boolean
+    status?: boolean
+  }, ExtArgs["result"]["study_announcement"]>
+
+
+
+  export type study_announcementSelectScalar = {
+    uid?: boolean
+    createAt?: boolean
+    updateAt?: boolean
+    title?: boolean
+    content?: boolean
+    status?: boolean
+  }
+
+  export type study_announcementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createAt" | "updateAt" | "title" | "content" | "status", ExtArgs["result"]["study_announcement"]>
+
+  export type $study_announcementPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "study_announcement"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      uid: string
+      createAt: Date
+      updateAt: Date
+      title: string
+      content: string
+      status: boolean
+    }, ExtArgs["result"]["study_announcement"]>
+    composites: {}
+  }
+
+  type study_announcementGetPayload<S extends boolean | null | undefined | study_announcementDefaultArgs> = $Result.GetResult<Prisma.$study_announcementPayload, S>
+
+  type study_announcementCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<study_announcementFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Study_announcementCountAggregateInputType | true
+    }
+
+  export interface study_announcementDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['study_announcement'], meta: { name: 'study_announcement' } }
+    /**
+     * Find zero or one Study_announcement that matches the filter.
+     * @param {study_announcementFindUniqueArgs} args - Arguments to find a Study_announcement
+     * @example
+     * // Get one Study_announcement
+     * const study_announcement = await prisma.study_announcement.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends study_announcementFindUniqueArgs>(args: SelectSubset<T, study_announcementFindUniqueArgs<ExtArgs>>): Prisma__study_announcementClient<$Result.GetResult<Prisma.$study_announcementPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Study_announcement that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {study_announcementFindUniqueOrThrowArgs} args - Arguments to find a Study_announcement
+     * @example
+     * // Get one Study_announcement
+     * const study_announcement = await prisma.study_announcement.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends study_announcementFindUniqueOrThrowArgs>(args: SelectSubset<T, study_announcementFindUniqueOrThrowArgs<ExtArgs>>): Prisma__study_announcementClient<$Result.GetResult<Prisma.$study_announcementPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Study_announcement that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_announcementFindFirstArgs} args - Arguments to find a Study_announcement
+     * @example
+     * // Get one Study_announcement
+     * const study_announcement = await prisma.study_announcement.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends study_announcementFindFirstArgs>(args?: SelectSubset<T, study_announcementFindFirstArgs<ExtArgs>>): Prisma__study_announcementClient<$Result.GetResult<Prisma.$study_announcementPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Study_announcement that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_announcementFindFirstOrThrowArgs} args - Arguments to find a Study_announcement
+     * @example
+     * // Get one Study_announcement
+     * const study_announcement = await prisma.study_announcement.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends study_announcementFindFirstOrThrowArgs>(args?: SelectSubset<T, study_announcementFindFirstOrThrowArgs<ExtArgs>>): Prisma__study_announcementClient<$Result.GetResult<Prisma.$study_announcementPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Study_announcements that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_announcementFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Study_announcements
+     * const study_announcements = await prisma.study_announcement.findMany()
+     * 
+     * // Get first 10 Study_announcements
+     * const study_announcements = await prisma.study_announcement.findMany({ take: 10 })
+     * 
+     * // Only select the `uid`
+     * const study_announcementWithUidOnly = await prisma.study_announcement.findMany({ select: { uid: true } })
+     * 
+     */
+    findMany<T extends study_announcementFindManyArgs>(args?: SelectSubset<T, study_announcementFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$study_announcementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Study_announcement.
+     * @param {study_announcementCreateArgs} args - Arguments to create a Study_announcement.
+     * @example
+     * // Create one Study_announcement
+     * const Study_announcement = await prisma.study_announcement.create({
+     *   data: {
+     *     // ... data to create a Study_announcement
+     *   }
+     * })
+     * 
+     */
+    create<T extends study_announcementCreateArgs>(args: SelectSubset<T, study_announcementCreateArgs<ExtArgs>>): Prisma__study_announcementClient<$Result.GetResult<Prisma.$study_announcementPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Study_announcements.
+     * @param {study_announcementCreateManyArgs} args - Arguments to create many Study_announcements.
+     * @example
+     * // Create many Study_announcements
+     * const study_announcement = await prisma.study_announcement.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends study_announcementCreateManyArgs>(args?: SelectSubset<T, study_announcementCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Study_announcement.
+     * @param {study_announcementDeleteArgs} args - Arguments to delete one Study_announcement.
+     * @example
+     * // Delete one Study_announcement
+     * const Study_announcement = await prisma.study_announcement.delete({
+     *   where: {
+     *     // ... filter to delete one Study_announcement
+     *   }
+     * })
+     * 
+     */
+    delete<T extends study_announcementDeleteArgs>(args: SelectSubset<T, study_announcementDeleteArgs<ExtArgs>>): Prisma__study_announcementClient<$Result.GetResult<Prisma.$study_announcementPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Study_announcement.
+     * @param {study_announcementUpdateArgs} args - Arguments to update one Study_announcement.
+     * @example
+     * // Update one Study_announcement
+     * const study_announcement = await prisma.study_announcement.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends study_announcementUpdateArgs>(args: SelectSubset<T, study_announcementUpdateArgs<ExtArgs>>): Prisma__study_announcementClient<$Result.GetResult<Prisma.$study_announcementPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Study_announcements.
+     * @param {study_announcementDeleteManyArgs} args - Arguments to filter Study_announcements to delete.
+     * @example
+     * // Delete a few Study_announcements
+     * const { count } = await prisma.study_announcement.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends study_announcementDeleteManyArgs>(args?: SelectSubset<T, study_announcementDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Study_announcements.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_announcementUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Study_announcements
+     * const study_announcement = await prisma.study_announcement.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends study_announcementUpdateManyArgs>(args: SelectSubset<T, study_announcementUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Study_announcement.
+     * @param {study_announcementUpsertArgs} args - Arguments to update or create a Study_announcement.
+     * @example
+     * // Update or create a Study_announcement
+     * const study_announcement = await prisma.study_announcement.upsert({
+     *   create: {
+     *     // ... data to create a Study_announcement
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Study_announcement we want to update
+     *   }
+     * })
+     */
+    upsert<T extends study_announcementUpsertArgs>(args: SelectSubset<T, study_announcementUpsertArgs<ExtArgs>>): Prisma__study_announcementClient<$Result.GetResult<Prisma.$study_announcementPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Study_announcements.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_announcementCountArgs} args - Arguments to filter Study_announcements to count.
+     * @example
+     * // Count the number of Study_announcements
+     * const count = await prisma.study_announcement.count({
+     *   where: {
+     *     // ... the filter for the Study_announcements we want to count
+     *   }
+     * })
+    **/
+    count<T extends study_announcementCountArgs>(
+      args?: Subset<T, study_announcementCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Study_announcementCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Study_announcement.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Study_announcementAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Study_announcementAggregateArgs>(args: Subset<T, Study_announcementAggregateArgs>): Prisma.PrismaPromise<GetStudy_announcementAggregateType<T>>
+
+    /**
+     * Group by Study_announcement.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {study_announcementGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends study_announcementGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: study_announcementGroupByArgs['orderBy'] }
+        : { orderBy?: study_announcementGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, study_announcementGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStudy_announcementGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the study_announcement model
+   */
+  readonly fields: study_announcementFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for study_announcement.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__study_announcementClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the study_announcement model
+   */ 
+  interface study_announcementFieldRefs {
+    readonly uid: FieldRef<"study_announcement", 'String'>
+    readonly createAt: FieldRef<"study_announcement", 'DateTime'>
+    readonly updateAt: FieldRef<"study_announcement", 'DateTime'>
+    readonly title: FieldRef<"study_announcement", 'String'>
+    readonly content: FieldRef<"study_announcement", 'String'>
+    readonly status: FieldRef<"study_announcement", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * study_announcement findUnique
+   */
+  export type study_announcementFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_announcement
+     */
+    select?: study_announcementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_announcement
+     */
+    omit?: study_announcementOmit<ExtArgs> | null
+    /**
+     * Filter, which study_announcement to fetch.
+     */
+    where: study_announcementWhereUniqueInput
+  }
+
+  /**
+   * study_announcement findUniqueOrThrow
+   */
+  export type study_announcementFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_announcement
+     */
+    select?: study_announcementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_announcement
+     */
+    omit?: study_announcementOmit<ExtArgs> | null
+    /**
+     * Filter, which study_announcement to fetch.
+     */
+    where: study_announcementWhereUniqueInput
+  }
+
+  /**
+   * study_announcement findFirst
+   */
+  export type study_announcementFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_announcement
+     */
+    select?: study_announcementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_announcement
+     */
+    omit?: study_announcementOmit<ExtArgs> | null
+    /**
+     * Filter, which study_announcement to fetch.
+     */
+    where?: study_announcementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_announcements to fetch.
+     */
+    orderBy?: study_announcementOrderByWithRelationInput | study_announcementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for study_announcements.
+     */
+    cursor?: study_announcementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_announcements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_announcements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of study_announcements.
+     */
+    distinct?: Study_announcementScalarFieldEnum | Study_announcementScalarFieldEnum[]
+  }
+
+  /**
+   * study_announcement findFirstOrThrow
+   */
+  export type study_announcementFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_announcement
+     */
+    select?: study_announcementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_announcement
+     */
+    omit?: study_announcementOmit<ExtArgs> | null
+    /**
+     * Filter, which study_announcement to fetch.
+     */
+    where?: study_announcementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_announcements to fetch.
+     */
+    orderBy?: study_announcementOrderByWithRelationInput | study_announcementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for study_announcements.
+     */
+    cursor?: study_announcementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_announcements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_announcements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of study_announcements.
+     */
+    distinct?: Study_announcementScalarFieldEnum | Study_announcementScalarFieldEnum[]
+  }
+
+  /**
+   * study_announcement findMany
+   */
+  export type study_announcementFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_announcement
+     */
+    select?: study_announcementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_announcement
+     */
+    omit?: study_announcementOmit<ExtArgs> | null
+    /**
+     * Filter, which study_announcements to fetch.
+     */
+    where?: study_announcementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of study_announcements to fetch.
+     */
+    orderBy?: study_announcementOrderByWithRelationInput | study_announcementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing study_announcements.
+     */
+    cursor?: study_announcementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` study_announcements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` study_announcements.
+     */
+    skip?: number
+    distinct?: Study_announcementScalarFieldEnum | Study_announcementScalarFieldEnum[]
+  }
+
+  /**
+   * study_announcement create
+   */
+  export type study_announcementCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_announcement
+     */
+    select?: study_announcementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_announcement
+     */
+    omit?: study_announcementOmit<ExtArgs> | null
+    /**
+     * The data needed to create a study_announcement.
+     */
+    data: XOR<study_announcementCreateInput, study_announcementUncheckedCreateInput>
+  }
+
+  /**
+   * study_announcement createMany
+   */
+  export type study_announcementCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many study_announcements.
+     */
+    data: study_announcementCreateManyInput | study_announcementCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * study_announcement update
+   */
+  export type study_announcementUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_announcement
+     */
+    select?: study_announcementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_announcement
+     */
+    omit?: study_announcementOmit<ExtArgs> | null
+    /**
+     * The data needed to update a study_announcement.
+     */
+    data: XOR<study_announcementUpdateInput, study_announcementUncheckedUpdateInput>
+    /**
+     * Choose, which study_announcement to update.
+     */
+    where: study_announcementWhereUniqueInput
+  }
+
+  /**
+   * study_announcement updateMany
+   */
+  export type study_announcementUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update study_announcements.
+     */
+    data: XOR<study_announcementUpdateManyMutationInput, study_announcementUncheckedUpdateManyInput>
+    /**
+     * Filter which study_announcements to update
+     */
+    where?: study_announcementWhereInput
+    /**
+     * Limit how many study_announcements to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * study_announcement upsert
+   */
+  export type study_announcementUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_announcement
+     */
+    select?: study_announcementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_announcement
+     */
+    omit?: study_announcementOmit<ExtArgs> | null
+    /**
+     * The filter to search for the study_announcement to update in case it exists.
+     */
+    where: study_announcementWhereUniqueInput
+    /**
+     * In case the study_announcement found by the `where` argument doesn't exist, create a new study_announcement with this data.
+     */
+    create: XOR<study_announcementCreateInput, study_announcementUncheckedCreateInput>
+    /**
+     * In case the study_announcement was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<study_announcementUpdateInput, study_announcementUncheckedUpdateInput>
+  }
+
+  /**
+   * study_announcement delete
+   */
+  export type study_announcementDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_announcement
+     */
+    select?: study_announcementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_announcement
+     */
+    omit?: study_announcementOmit<ExtArgs> | null
+    /**
+     * Filter which study_announcement to delete.
+     */
+    where: study_announcementWhereUniqueInput
+  }
+
+  /**
+   * study_announcement deleteMany
+   */
+  export type study_announcementDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which study_announcements to delete
+     */
+    where?: study_announcementWhereInput
+    /**
+     * Limit how many study_announcements to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * study_announcement without action
+   */
+  export type study_announcementDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the study_announcement
+     */
+    select?: study_announcementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the study_announcement
+     */
+    omit?: study_announcementOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -26859,6 +37416,15 @@ export namespace Prisma {
   export type Blog_postsScalarFieldEnum = (typeof Blog_postsScalarFieldEnum)[keyof typeof Blog_postsScalarFieldEnum]
 
 
+  export const Blog_noticeScalarFieldEnum: {
+    uid: 'uid',
+    createAt: 'createAt',
+    updateAt: 'updateAt'
+  };
+
+  export type Blog_noticeScalarFieldEnum = (typeof Blog_noticeScalarFieldEnum)[keyof typeof Blog_noticeScalarFieldEnum]
+
+
   export const Blog_posts_on_tagsScalarFieldEnum: {
     postsId: 'postsId',
     tagId: 'tagId'
@@ -26882,12 +37448,19 @@ export namespace Prisma {
     createAt: 'createAt',
     updateAt: 'updateAt',
     name: 'name',
-    api_key: 'api_key',
-    api_secret: 'api_secret',
     is_admin: 'is_admin'
   };
 
   export type File_userScalarFieldEnum = (typeof File_userScalarFieldEnum)[keyof typeof File_userScalarFieldEnum]
+
+
+  export const File_keysScalarFieldEnum: {
+    api_key: 'api_key',
+    api_secret: 'api_secret',
+    userId: 'userId'
+  };
+
+  export type File_keysScalarFieldEnum = (typeof File_keysScalarFieldEnum)[keyof typeof File_keysScalarFieldEnum]
 
 
   export const File_configScalarFieldEnum: {
@@ -27032,6 +37605,108 @@ export namespace Prisma {
   export type Book_ratingScalarFieldEnum = (typeof Book_ratingScalarFieldEnum)[keyof typeof Book_ratingScalarFieldEnum]
 
 
+  export const Study_userScalarFieldEnum: {
+    uid: 'uid',
+    createAt: 'createAt',
+    updateAt: 'updateAt',
+    name: 'name',
+    account: 'account',
+    password: 'password',
+    isAdmin: 'isAdmin'
+  };
+
+  export type Study_userScalarFieldEnum = (typeof Study_userScalarFieldEnum)[keyof typeof Study_userScalarFieldEnum]
+
+
+  export const Study_storeScalarFieldEnum: {
+    uid: 'uid',
+    createAt: 'createAt',
+    updateAt: 'updateAt',
+    name: 'name',
+    local: 'local',
+    address: 'address',
+    status: 'status',
+    remark: 'remark'
+  };
+
+  export type Study_storeScalarFieldEnum = (typeof Study_storeScalarFieldEnum)[keyof typeof Study_storeScalarFieldEnum]
+
+
+  export const Study_floorScalarFieldEnum: {
+    uid: 'uid',
+    createAt: 'createAt',
+    updateAt: 'updateAt',
+    floorNumber: 'floorNumber',
+    storeId: 'storeId'
+  };
+
+  export type Study_floorScalarFieldEnum = (typeof Study_floorScalarFieldEnum)[keyof typeof Study_floorScalarFieldEnum]
+
+
+  export const Study_roomScalarFieldEnum: {
+    uid: 'uid',
+    createAt: 'createAt',
+    updateAt: 'updateAt',
+    name: 'name',
+    floorId: 'floorId',
+    capacity: 'capacity',
+    status: 'status'
+  };
+
+  export type Study_roomScalarFieldEnum = (typeof Study_roomScalarFieldEnum)[keyof typeof Study_roomScalarFieldEnum]
+
+
+  export const Study_seatScalarFieldEnum: {
+    uid: 'uid',
+    createAt: 'createAt',
+    updateAt: 'updateAt',
+    seatNumber: 'seatNumber',
+    roomId: 'roomId',
+    status: 'status'
+  };
+
+  export type Study_seatScalarFieldEnum = (typeof Study_seatScalarFieldEnum)[keyof typeof Study_seatScalarFieldEnum]
+
+
+  export const Study_reservationScalarFieldEnum: {
+    uid: 'uid',
+    createAt: 'createAt',
+    updateAt: 'updateAt',
+    userId: 'userId',
+    seatId: 'seatId',
+    startTime: 'startTime',
+    endTime: 'endTime',
+    status: 'status'
+  };
+
+  export type Study_reservationScalarFieldEnum = (typeof Study_reservationScalarFieldEnum)[keyof typeof Study_reservationScalarFieldEnum]
+
+
+  export const Study_messageScalarFieldEnum: {
+    uid: 'uid',
+    createAt: 'createAt',
+    updateAt: 'updateAt',
+    userId: 'userId',
+    content: 'content',
+    reply: 'reply',
+    status: 'status'
+  };
+
+  export type Study_messageScalarFieldEnum = (typeof Study_messageScalarFieldEnum)[keyof typeof Study_messageScalarFieldEnum]
+
+
+  export const Study_announcementScalarFieldEnum: {
+    uid: 'uid',
+    createAt: 'createAt',
+    updateAt: 'updateAt',
+    title: 'title',
+    content: 'content',
+    status: 'status'
+  };
+
+  export type Study_announcementScalarFieldEnum = (typeof Study_announcementScalarFieldEnum)[keyof typeof Study_announcementScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -27130,6 +37805,13 @@ export namespace Prisma {
   export type blog_postsOrderByRelevanceFieldEnum = (typeof blog_postsOrderByRelevanceFieldEnum)[keyof typeof blog_postsOrderByRelevanceFieldEnum]
 
 
+  export const blog_noticeOrderByRelevanceFieldEnum: {
+    uid: 'uid'
+  };
+
+  export type blog_noticeOrderByRelevanceFieldEnum = (typeof blog_noticeOrderByRelevanceFieldEnum)[keyof typeof blog_noticeOrderByRelevanceFieldEnum]
+
+
   export const blog_posts_on_tagsOrderByRelevanceFieldEnum: {
     postsId: 'postsId',
     tagId: 'tagId'
@@ -27148,12 +37830,19 @@ export namespace Prisma {
 
   export const file_userOrderByRelevanceFieldEnum: {
     uid: 'uid',
-    name: 'name',
-    api_key: 'api_key',
-    api_secret: 'api_secret'
+    name: 'name'
   };
 
   export type file_userOrderByRelevanceFieldEnum = (typeof file_userOrderByRelevanceFieldEnum)[keyof typeof file_userOrderByRelevanceFieldEnum]
+
+
+  export const file_keysOrderByRelevanceFieldEnum: {
+    api_key: 'api_key',
+    api_secret: 'api_secret',
+    userId: 'userId'
+  };
+
+  export type file_keysOrderByRelevanceFieldEnum = (typeof file_keysOrderByRelevanceFieldEnum)[keyof typeof file_keysOrderByRelevanceFieldEnum]
 
 
   export const file_configOrderByRelevanceFieldEnum: {
@@ -27267,6 +37956,82 @@ export namespace Prisma {
   };
 
   export type book_ratingOrderByRelevanceFieldEnum = (typeof book_ratingOrderByRelevanceFieldEnum)[keyof typeof book_ratingOrderByRelevanceFieldEnum]
+
+
+  export const study_userOrderByRelevanceFieldEnum: {
+    uid: 'uid',
+    name: 'name',
+    account: 'account',
+    password: 'password'
+  };
+
+  export type study_userOrderByRelevanceFieldEnum = (typeof study_userOrderByRelevanceFieldEnum)[keyof typeof study_userOrderByRelevanceFieldEnum]
+
+
+  export const study_storeOrderByRelevanceFieldEnum: {
+    uid: 'uid',
+    name: 'name',
+    local: 'local',
+    address: 'address',
+    remark: 'remark'
+  };
+
+  export type study_storeOrderByRelevanceFieldEnum = (typeof study_storeOrderByRelevanceFieldEnum)[keyof typeof study_storeOrderByRelevanceFieldEnum]
+
+
+  export const study_floorOrderByRelevanceFieldEnum: {
+    uid: 'uid',
+    storeId: 'storeId'
+  };
+
+  export type study_floorOrderByRelevanceFieldEnum = (typeof study_floorOrderByRelevanceFieldEnum)[keyof typeof study_floorOrderByRelevanceFieldEnum]
+
+
+  export const study_roomOrderByRelevanceFieldEnum: {
+    uid: 'uid',
+    name: 'name',
+    floorId: 'floorId'
+  };
+
+  export type study_roomOrderByRelevanceFieldEnum = (typeof study_roomOrderByRelevanceFieldEnum)[keyof typeof study_roomOrderByRelevanceFieldEnum]
+
+
+  export const study_seatOrderByRelevanceFieldEnum: {
+    uid: 'uid',
+    seatNumber: 'seatNumber',
+    roomId: 'roomId'
+  };
+
+  export type study_seatOrderByRelevanceFieldEnum = (typeof study_seatOrderByRelevanceFieldEnum)[keyof typeof study_seatOrderByRelevanceFieldEnum]
+
+
+  export const study_reservationOrderByRelevanceFieldEnum: {
+    uid: 'uid',
+    userId: 'userId',
+    seatId: 'seatId',
+    status: 'status'
+  };
+
+  export type study_reservationOrderByRelevanceFieldEnum = (typeof study_reservationOrderByRelevanceFieldEnum)[keyof typeof study_reservationOrderByRelevanceFieldEnum]
+
+
+  export const study_messageOrderByRelevanceFieldEnum: {
+    uid: 'uid',
+    userId: 'userId',
+    content: 'content',
+    reply: 'reply'
+  };
+
+  export type study_messageOrderByRelevanceFieldEnum = (typeof study_messageOrderByRelevanceFieldEnum)[keyof typeof study_messageOrderByRelevanceFieldEnum]
+
+
+  export const study_announcementOrderByRelevanceFieldEnum: {
+    uid: 'uid',
+    title: 'title',
+    content: 'content'
+  };
+
+  export type study_announcementOrderByRelevanceFieldEnum = (typeof study_announcementOrderByRelevanceFieldEnum)[keyof typeof study_announcementOrderByRelevanceFieldEnum]
 
 
   /**
@@ -27886,6 +38651,49 @@ export namespace Prisma {
     categoriesId?: StringNullableWithAggregatesFilter<"blog_posts"> | string | null
   }
 
+  export type blog_noticeWhereInput = {
+    AND?: blog_noticeWhereInput | blog_noticeWhereInput[]
+    OR?: blog_noticeWhereInput[]
+    NOT?: blog_noticeWhereInput | blog_noticeWhereInput[]
+    uid?: StringFilter<"blog_notice"> | string
+    createAt?: DateTimeFilter<"blog_notice"> | Date | string
+    updateAt?: DateTimeFilter<"blog_notice"> | Date | string
+  }
+
+  export type blog_noticeOrderByWithRelationInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    _relevance?: blog_noticeOrderByRelevanceInput
+  }
+
+  export type blog_noticeWhereUniqueInput = Prisma.AtLeast<{
+    uid?: string
+    AND?: blog_noticeWhereInput | blog_noticeWhereInput[]
+    OR?: blog_noticeWhereInput[]
+    NOT?: blog_noticeWhereInput | blog_noticeWhereInput[]
+    createAt?: DateTimeFilter<"blog_notice"> | Date | string
+    updateAt?: DateTimeFilter<"blog_notice"> | Date | string
+  }, "uid">
+
+  export type blog_noticeOrderByWithAggregationInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    _count?: blog_noticeCountOrderByAggregateInput
+    _max?: blog_noticeMaxOrderByAggregateInput
+    _min?: blog_noticeMinOrderByAggregateInput
+  }
+
+  export type blog_noticeScalarWhereWithAggregatesInput = {
+    AND?: blog_noticeScalarWhereWithAggregatesInput | blog_noticeScalarWhereWithAggregatesInput[]
+    OR?: blog_noticeScalarWhereWithAggregatesInput[]
+    NOT?: blog_noticeScalarWhereWithAggregatesInput | blog_noticeScalarWhereWithAggregatesInput[]
+    uid?: StringWithAggregatesFilter<"blog_notice"> | string
+    createAt?: DateTimeWithAggregatesFilter<"blog_notice"> | Date | string
+    updateAt?: DateTimeWithAggregatesFilter<"blog_notice"> | Date | string
+  }
+
   export type blog_posts_on_tagsWhereInput = {
     AND?: blog_posts_on_tagsWhereInput | blog_posts_on_tagsWhereInput[]
     OR?: blog_posts_on_tagsWhereInput[]
@@ -27990,12 +38798,11 @@ export namespace Prisma {
     createAt?: DateTimeFilter<"file_user"> | Date | string
     updateAt?: DateTimeFilter<"file_user"> | Date | string
     name?: StringFilter<"file_user"> | string
-    api_key?: StringFilter<"file_user"> | string
-    api_secret?: StringFilter<"file_user"> | string
     is_admin?: BoolFilter<"file_user"> | boolean
     medias?: File_user_on_mediaListRelationFilter
     folders?: File_folderListRelationFilter
     file_config?: XOR<File_configNullableScalarRelationFilter, file_configWhereInput> | null
+    keys?: File_keysListRelationFilter
   }
 
   export type file_userOrderByWithRelationInput = {
@@ -28003,38 +38810,34 @@ export namespace Prisma {
     createAt?: SortOrder
     updateAt?: SortOrder
     name?: SortOrder
-    api_key?: SortOrder
-    api_secret?: SortOrder
     is_admin?: SortOrder
     medias?: file_user_on_mediaOrderByRelationAggregateInput
     folders?: file_folderOrderByRelationAggregateInput
     file_config?: file_configOrderByWithRelationInput
+    keys?: file_keysOrderByRelationAggregateInput
     _relevance?: file_userOrderByRelevanceInput
   }
 
   export type file_userWhereUniqueInput = Prisma.AtLeast<{
     uid?: string
-    api_key?: string
     AND?: file_userWhereInput | file_userWhereInput[]
     OR?: file_userWhereInput[]
     NOT?: file_userWhereInput | file_userWhereInput[]
     createAt?: DateTimeFilter<"file_user"> | Date | string
     updateAt?: DateTimeFilter<"file_user"> | Date | string
     name?: StringFilter<"file_user"> | string
-    api_secret?: StringFilter<"file_user"> | string
     is_admin?: BoolFilter<"file_user"> | boolean
     medias?: File_user_on_mediaListRelationFilter
     folders?: File_folderListRelationFilter
     file_config?: XOR<File_configNullableScalarRelationFilter, file_configWhereInput> | null
-  }, "uid" | "api_key">
+    keys?: File_keysListRelationFilter
+  }, "uid">
 
   export type file_userOrderByWithAggregationInput = {
     uid?: SortOrder
     createAt?: SortOrder
     updateAt?: SortOrder
     name?: SortOrder
-    api_key?: SortOrder
-    api_secret?: SortOrder
     is_admin?: SortOrder
     _count?: file_userCountOrderByAggregateInput
     _max?: file_userMaxOrderByAggregateInput
@@ -28049,9 +38852,53 @@ export namespace Prisma {
     createAt?: DateTimeWithAggregatesFilter<"file_user"> | Date | string
     updateAt?: DateTimeWithAggregatesFilter<"file_user"> | Date | string
     name?: StringWithAggregatesFilter<"file_user"> | string
-    api_key?: StringWithAggregatesFilter<"file_user"> | string
-    api_secret?: StringWithAggregatesFilter<"file_user"> | string
     is_admin?: BoolWithAggregatesFilter<"file_user"> | boolean
+  }
+
+  export type file_keysWhereInput = {
+    AND?: file_keysWhereInput | file_keysWhereInput[]
+    OR?: file_keysWhereInput[]
+    NOT?: file_keysWhereInput | file_keysWhereInput[]
+    api_key?: StringFilter<"file_keys"> | string
+    api_secret?: StringFilter<"file_keys"> | string
+    userId?: StringFilter<"file_keys"> | string
+    user?: XOR<File_userScalarRelationFilter, file_userWhereInput>
+  }
+
+  export type file_keysOrderByWithRelationInput = {
+    api_key?: SortOrder
+    api_secret?: SortOrder
+    userId?: SortOrder
+    user?: file_userOrderByWithRelationInput
+    _relevance?: file_keysOrderByRelevanceInput
+  }
+
+  export type file_keysWhereUniqueInput = Prisma.AtLeast<{
+    api_key?: string
+    AND?: file_keysWhereInput | file_keysWhereInput[]
+    OR?: file_keysWhereInput[]
+    NOT?: file_keysWhereInput | file_keysWhereInput[]
+    api_secret?: StringFilter<"file_keys"> | string
+    userId?: StringFilter<"file_keys"> | string
+    user?: XOR<File_userScalarRelationFilter, file_userWhereInput>
+  }, "api_key">
+
+  export type file_keysOrderByWithAggregationInput = {
+    api_key?: SortOrder
+    api_secret?: SortOrder
+    userId?: SortOrder
+    _count?: file_keysCountOrderByAggregateInput
+    _max?: file_keysMaxOrderByAggregateInput
+    _min?: file_keysMinOrderByAggregateInput
+  }
+
+  export type file_keysScalarWhereWithAggregatesInput = {
+    AND?: file_keysScalarWhereWithAggregatesInput | file_keysScalarWhereWithAggregatesInput[]
+    OR?: file_keysScalarWhereWithAggregatesInput[]
+    NOT?: file_keysScalarWhereWithAggregatesInput | file_keysScalarWhereWithAggregatesInput[]
+    api_key?: StringWithAggregatesFilter<"file_keys"> | string
+    api_secret?: StringWithAggregatesFilter<"file_keys"> | string
+    userId?: StringWithAggregatesFilter<"file_keys"> | string
   }
 
   export type file_configWhereInput = {
@@ -28829,6 +39676,540 @@ export namespace Prisma {
     bookId?: StringWithAggregatesFilter<"book_rating"> | string
   }
 
+  export type study_userWhereInput = {
+    AND?: study_userWhereInput | study_userWhereInput[]
+    OR?: study_userWhereInput[]
+    NOT?: study_userWhereInput | study_userWhereInput[]
+    uid?: StringFilter<"study_user"> | string
+    createAt?: DateTimeFilter<"study_user"> | Date | string
+    updateAt?: DateTimeFilter<"study_user"> | Date | string
+    name?: StringFilter<"study_user"> | string
+    account?: StringFilter<"study_user"> | string
+    password?: StringFilter<"study_user"> | string
+    isAdmin?: BoolFilter<"study_user"> | boolean
+    reservation?: Study_reservationListRelationFilter
+    message?: Study_messageListRelationFilter
+  }
+
+  export type study_userOrderByWithRelationInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    name?: SortOrder
+    account?: SortOrder
+    password?: SortOrder
+    isAdmin?: SortOrder
+    reservation?: study_reservationOrderByRelationAggregateInput
+    message?: study_messageOrderByRelationAggregateInput
+    _relevance?: study_userOrderByRelevanceInput
+  }
+
+  export type study_userWhereUniqueInput = Prisma.AtLeast<{
+    uid?: string
+    account?: string
+    AND?: study_userWhereInput | study_userWhereInput[]
+    OR?: study_userWhereInput[]
+    NOT?: study_userWhereInput | study_userWhereInput[]
+    createAt?: DateTimeFilter<"study_user"> | Date | string
+    updateAt?: DateTimeFilter<"study_user"> | Date | string
+    name?: StringFilter<"study_user"> | string
+    password?: StringFilter<"study_user"> | string
+    isAdmin?: BoolFilter<"study_user"> | boolean
+    reservation?: Study_reservationListRelationFilter
+    message?: Study_messageListRelationFilter
+  }, "uid" | "account">
+
+  export type study_userOrderByWithAggregationInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    name?: SortOrder
+    account?: SortOrder
+    password?: SortOrder
+    isAdmin?: SortOrder
+    _count?: study_userCountOrderByAggregateInput
+    _max?: study_userMaxOrderByAggregateInput
+    _min?: study_userMinOrderByAggregateInput
+  }
+
+  export type study_userScalarWhereWithAggregatesInput = {
+    AND?: study_userScalarWhereWithAggregatesInput | study_userScalarWhereWithAggregatesInput[]
+    OR?: study_userScalarWhereWithAggregatesInput[]
+    NOT?: study_userScalarWhereWithAggregatesInput | study_userScalarWhereWithAggregatesInput[]
+    uid?: StringWithAggregatesFilter<"study_user"> | string
+    createAt?: DateTimeWithAggregatesFilter<"study_user"> | Date | string
+    updateAt?: DateTimeWithAggregatesFilter<"study_user"> | Date | string
+    name?: StringWithAggregatesFilter<"study_user"> | string
+    account?: StringWithAggregatesFilter<"study_user"> | string
+    password?: StringWithAggregatesFilter<"study_user"> | string
+    isAdmin?: BoolWithAggregatesFilter<"study_user"> | boolean
+  }
+
+  export type study_storeWhereInput = {
+    AND?: study_storeWhereInput | study_storeWhereInput[]
+    OR?: study_storeWhereInput[]
+    NOT?: study_storeWhereInput | study_storeWhereInput[]
+    uid?: StringFilter<"study_store"> | string
+    createAt?: DateTimeFilter<"study_store"> | Date | string
+    updateAt?: DateTimeFilter<"study_store"> | Date | string
+    name?: StringFilter<"study_store"> | string
+    local?: StringFilter<"study_store"> | string
+    address?: StringFilter<"study_store"> | string
+    status?: BoolFilter<"study_store"> | boolean
+    remark?: StringNullableFilter<"study_store"> | string | null
+    floors?: Study_floorListRelationFilter
+  }
+
+  export type study_storeOrderByWithRelationInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    name?: SortOrder
+    local?: SortOrder
+    address?: SortOrder
+    status?: SortOrder
+    remark?: SortOrderInput | SortOrder
+    floors?: study_floorOrderByRelationAggregateInput
+    _relevance?: study_storeOrderByRelevanceInput
+  }
+
+  export type study_storeWhereUniqueInput = Prisma.AtLeast<{
+    uid?: string
+    AND?: study_storeWhereInput | study_storeWhereInput[]
+    OR?: study_storeWhereInput[]
+    NOT?: study_storeWhereInput | study_storeWhereInput[]
+    createAt?: DateTimeFilter<"study_store"> | Date | string
+    updateAt?: DateTimeFilter<"study_store"> | Date | string
+    name?: StringFilter<"study_store"> | string
+    local?: StringFilter<"study_store"> | string
+    address?: StringFilter<"study_store"> | string
+    status?: BoolFilter<"study_store"> | boolean
+    remark?: StringNullableFilter<"study_store"> | string | null
+    floors?: Study_floorListRelationFilter
+  }, "uid">
+
+  export type study_storeOrderByWithAggregationInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    name?: SortOrder
+    local?: SortOrder
+    address?: SortOrder
+    status?: SortOrder
+    remark?: SortOrderInput | SortOrder
+    _count?: study_storeCountOrderByAggregateInput
+    _max?: study_storeMaxOrderByAggregateInput
+    _min?: study_storeMinOrderByAggregateInput
+  }
+
+  export type study_storeScalarWhereWithAggregatesInput = {
+    AND?: study_storeScalarWhereWithAggregatesInput | study_storeScalarWhereWithAggregatesInput[]
+    OR?: study_storeScalarWhereWithAggregatesInput[]
+    NOT?: study_storeScalarWhereWithAggregatesInput | study_storeScalarWhereWithAggregatesInput[]
+    uid?: StringWithAggregatesFilter<"study_store"> | string
+    createAt?: DateTimeWithAggregatesFilter<"study_store"> | Date | string
+    updateAt?: DateTimeWithAggregatesFilter<"study_store"> | Date | string
+    name?: StringWithAggregatesFilter<"study_store"> | string
+    local?: StringWithAggregatesFilter<"study_store"> | string
+    address?: StringWithAggregatesFilter<"study_store"> | string
+    status?: BoolWithAggregatesFilter<"study_store"> | boolean
+    remark?: StringNullableWithAggregatesFilter<"study_store"> | string | null
+  }
+
+  export type study_floorWhereInput = {
+    AND?: study_floorWhereInput | study_floorWhereInput[]
+    OR?: study_floorWhereInput[]
+    NOT?: study_floorWhereInput | study_floorWhereInput[]
+    uid?: StringFilter<"study_floor"> | string
+    createAt?: DateTimeFilter<"study_floor"> | Date | string
+    updateAt?: DateTimeFilter<"study_floor"> | Date | string
+    floorNumber?: IntFilter<"study_floor"> | number
+    storeId?: StringFilter<"study_floor"> | string
+    store?: XOR<Study_storeScalarRelationFilter, study_storeWhereInput>
+    studyRooms?: Study_roomListRelationFilter
+  }
+
+  export type study_floorOrderByWithRelationInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    floorNumber?: SortOrder
+    storeId?: SortOrder
+    store?: study_storeOrderByWithRelationInput
+    studyRooms?: study_roomOrderByRelationAggregateInput
+    _relevance?: study_floorOrderByRelevanceInput
+  }
+
+  export type study_floorWhereUniqueInput = Prisma.AtLeast<{
+    uid?: string
+    AND?: study_floorWhereInput | study_floorWhereInput[]
+    OR?: study_floorWhereInput[]
+    NOT?: study_floorWhereInput | study_floorWhereInput[]
+    createAt?: DateTimeFilter<"study_floor"> | Date | string
+    updateAt?: DateTimeFilter<"study_floor"> | Date | string
+    floorNumber?: IntFilter<"study_floor"> | number
+    storeId?: StringFilter<"study_floor"> | string
+    store?: XOR<Study_storeScalarRelationFilter, study_storeWhereInput>
+    studyRooms?: Study_roomListRelationFilter
+  }, "uid">
+
+  export type study_floorOrderByWithAggregationInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    floorNumber?: SortOrder
+    storeId?: SortOrder
+    _count?: study_floorCountOrderByAggregateInput
+    _avg?: study_floorAvgOrderByAggregateInput
+    _max?: study_floorMaxOrderByAggregateInput
+    _min?: study_floorMinOrderByAggregateInput
+    _sum?: study_floorSumOrderByAggregateInput
+  }
+
+  export type study_floorScalarWhereWithAggregatesInput = {
+    AND?: study_floorScalarWhereWithAggregatesInput | study_floorScalarWhereWithAggregatesInput[]
+    OR?: study_floorScalarWhereWithAggregatesInput[]
+    NOT?: study_floorScalarWhereWithAggregatesInput | study_floorScalarWhereWithAggregatesInput[]
+    uid?: StringWithAggregatesFilter<"study_floor"> | string
+    createAt?: DateTimeWithAggregatesFilter<"study_floor"> | Date | string
+    updateAt?: DateTimeWithAggregatesFilter<"study_floor"> | Date | string
+    floorNumber?: IntWithAggregatesFilter<"study_floor"> | number
+    storeId?: StringWithAggregatesFilter<"study_floor"> | string
+  }
+
+  export type study_roomWhereInput = {
+    AND?: study_roomWhereInput | study_roomWhereInput[]
+    OR?: study_roomWhereInput[]
+    NOT?: study_roomWhereInput | study_roomWhereInput[]
+    uid?: StringFilter<"study_room"> | string
+    createAt?: DateTimeFilter<"study_room"> | Date | string
+    updateAt?: DateTimeFilter<"study_room"> | Date | string
+    name?: StringFilter<"study_room"> | string
+    floorId?: StringFilter<"study_room"> | string
+    capacity?: IntFilter<"study_room"> | number
+    status?: BoolFilter<"study_room"> | boolean
+    floor?: XOR<Study_floorScalarRelationFilter, study_floorWhereInput>
+    seats?: Study_seatListRelationFilter
+  }
+
+  export type study_roomOrderByWithRelationInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    name?: SortOrder
+    floorId?: SortOrder
+    capacity?: SortOrder
+    status?: SortOrder
+    floor?: study_floorOrderByWithRelationInput
+    seats?: study_seatOrderByRelationAggregateInput
+    _relevance?: study_roomOrderByRelevanceInput
+  }
+
+  export type study_roomWhereUniqueInput = Prisma.AtLeast<{
+    uid?: string
+    AND?: study_roomWhereInput | study_roomWhereInput[]
+    OR?: study_roomWhereInput[]
+    NOT?: study_roomWhereInput | study_roomWhereInput[]
+    createAt?: DateTimeFilter<"study_room"> | Date | string
+    updateAt?: DateTimeFilter<"study_room"> | Date | string
+    name?: StringFilter<"study_room"> | string
+    floorId?: StringFilter<"study_room"> | string
+    capacity?: IntFilter<"study_room"> | number
+    status?: BoolFilter<"study_room"> | boolean
+    floor?: XOR<Study_floorScalarRelationFilter, study_floorWhereInput>
+    seats?: Study_seatListRelationFilter
+  }, "uid">
+
+  export type study_roomOrderByWithAggregationInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    name?: SortOrder
+    floorId?: SortOrder
+    capacity?: SortOrder
+    status?: SortOrder
+    _count?: study_roomCountOrderByAggregateInput
+    _avg?: study_roomAvgOrderByAggregateInput
+    _max?: study_roomMaxOrderByAggregateInput
+    _min?: study_roomMinOrderByAggregateInput
+    _sum?: study_roomSumOrderByAggregateInput
+  }
+
+  export type study_roomScalarWhereWithAggregatesInput = {
+    AND?: study_roomScalarWhereWithAggregatesInput | study_roomScalarWhereWithAggregatesInput[]
+    OR?: study_roomScalarWhereWithAggregatesInput[]
+    NOT?: study_roomScalarWhereWithAggregatesInput | study_roomScalarWhereWithAggregatesInput[]
+    uid?: StringWithAggregatesFilter<"study_room"> | string
+    createAt?: DateTimeWithAggregatesFilter<"study_room"> | Date | string
+    updateAt?: DateTimeWithAggregatesFilter<"study_room"> | Date | string
+    name?: StringWithAggregatesFilter<"study_room"> | string
+    floorId?: StringWithAggregatesFilter<"study_room"> | string
+    capacity?: IntWithAggregatesFilter<"study_room"> | number
+    status?: BoolWithAggregatesFilter<"study_room"> | boolean
+  }
+
+  export type study_seatWhereInput = {
+    AND?: study_seatWhereInput | study_seatWhereInput[]
+    OR?: study_seatWhereInput[]
+    NOT?: study_seatWhereInput | study_seatWhereInput[]
+    uid?: StringFilter<"study_seat"> | string
+    createAt?: DateTimeFilter<"study_seat"> | Date | string
+    updateAt?: DateTimeFilter<"study_seat"> | Date | string
+    seatNumber?: StringFilter<"study_seat"> | string
+    roomId?: StringFilter<"study_seat"> | string
+    status?: BoolFilter<"study_seat"> | boolean
+    room?: XOR<Study_roomScalarRelationFilter, study_roomWhereInput>
+    reservations?: Study_reservationListRelationFilter
+  }
+
+  export type study_seatOrderByWithRelationInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    seatNumber?: SortOrder
+    roomId?: SortOrder
+    status?: SortOrder
+    room?: study_roomOrderByWithRelationInput
+    reservations?: study_reservationOrderByRelationAggregateInput
+    _relevance?: study_seatOrderByRelevanceInput
+  }
+
+  export type study_seatWhereUniqueInput = Prisma.AtLeast<{
+    uid?: string
+    AND?: study_seatWhereInput | study_seatWhereInput[]
+    OR?: study_seatWhereInput[]
+    NOT?: study_seatWhereInput | study_seatWhereInput[]
+    createAt?: DateTimeFilter<"study_seat"> | Date | string
+    updateAt?: DateTimeFilter<"study_seat"> | Date | string
+    seatNumber?: StringFilter<"study_seat"> | string
+    roomId?: StringFilter<"study_seat"> | string
+    status?: BoolFilter<"study_seat"> | boolean
+    room?: XOR<Study_roomScalarRelationFilter, study_roomWhereInput>
+    reservations?: Study_reservationListRelationFilter
+  }, "uid">
+
+  export type study_seatOrderByWithAggregationInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    seatNumber?: SortOrder
+    roomId?: SortOrder
+    status?: SortOrder
+    _count?: study_seatCountOrderByAggregateInput
+    _max?: study_seatMaxOrderByAggregateInput
+    _min?: study_seatMinOrderByAggregateInput
+  }
+
+  export type study_seatScalarWhereWithAggregatesInput = {
+    AND?: study_seatScalarWhereWithAggregatesInput | study_seatScalarWhereWithAggregatesInput[]
+    OR?: study_seatScalarWhereWithAggregatesInput[]
+    NOT?: study_seatScalarWhereWithAggregatesInput | study_seatScalarWhereWithAggregatesInput[]
+    uid?: StringWithAggregatesFilter<"study_seat"> | string
+    createAt?: DateTimeWithAggregatesFilter<"study_seat"> | Date | string
+    updateAt?: DateTimeWithAggregatesFilter<"study_seat"> | Date | string
+    seatNumber?: StringWithAggregatesFilter<"study_seat"> | string
+    roomId?: StringWithAggregatesFilter<"study_seat"> | string
+    status?: BoolWithAggregatesFilter<"study_seat"> | boolean
+  }
+
+  export type study_reservationWhereInput = {
+    AND?: study_reservationWhereInput | study_reservationWhereInput[]
+    OR?: study_reservationWhereInput[]
+    NOT?: study_reservationWhereInput | study_reservationWhereInput[]
+    uid?: StringFilter<"study_reservation"> | string
+    createAt?: DateTimeFilter<"study_reservation"> | Date | string
+    updateAt?: DateTimeFilter<"study_reservation"> | Date | string
+    userId?: StringFilter<"study_reservation"> | string
+    seatId?: StringFilter<"study_reservation"> | string
+    startTime?: DateTimeFilter<"study_reservation"> | Date | string
+    endTime?: DateTimeFilter<"study_reservation"> | Date | string
+    status?: StringFilter<"study_reservation"> | string
+    user?: XOR<Study_userScalarRelationFilter, study_userWhereInput>
+    seat?: XOR<Study_seatScalarRelationFilter, study_seatWhereInput>
+  }
+
+  export type study_reservationOrderByWithRelationInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    userId?: SortOrder
+    seatId?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    status?: SortOrder
+    user?: study_userOrderByWithRelationInput
+    seat?: study_seatOrderByWithRelationInput
+    _relevance?: study_reservationOrderByRelevanceInput
+  }
+
+  export type study_reservationWhereUniqueInput = Prisma.AtLeast<{
+    uid?: string
+    AND?: study_reservationWhereInput | study_reservationWhereInput[]
+    OR?: study_reservationWhereInput[]
+    NOT?: study_reservationWhereInput | study_reservationWhereInput[]
+    createAt?: DateTimeFilter<"study_reservation"> | Date | string
+    updateAt?: DateTimeFilter<"study_reservation"> | Date | string
+    userId?: StringFilter<"study_reservation"> | string
+    seatId?: StringFilter<"study_reservation"> | string
+    startTime?: DateTimeFilter<"study_reservation"> | Date | string
+    endTime?: DateTimeFilter<"study_reservation"> | Date | string
+    status?: StringFilter<"study_reservation"> | string
+    user?: XOR<Study_userScalarRelationFilter, study_userWhereInput>
+    seat?: XOR<Study_seatScalarRelationFilter, study_seatWhereInput>
+  }, "uid">
+
+  export type study_reservationOrderByWithAggregationInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    userId?: SortOrder
+    seatId?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    status?: SortOrder
+    _count?: study_reservationCountOrderByAggregateInput
+    _max?: study_reservationMaxOrderByAggregateInput
+    _min?: study_reservationMinOrderByAggregateInput
+  }
+
+  export type study_reservationScalarWhereWithAggregatesInput = {
+    AND?: study_reservationScalarWhereWithAggregatesInput | study_reservationScalarWhereWithAggregatesInput[]
+    OR?: study_reservationScalarWhereWithAggregatesInput[]
+    NOT?: study_reservationScalarWhereWithAggregatesInput | study_reservationScalarWhereWithAggregatesInput[]
+    uid?: StringWithAggregatesFilter<"study_reservation"> | string
+    createAt?: DateTimeWithAggregatesFilter<"study_reservation"> | Date | string
+    updateAt?: DateTimeWithAggregatesFilter<"study_reservation"> | Date | string
+    userId?: StringWithAggregatesFilter<"study_reservation"> | string
+    seatId?: StringWithAggregatesFilter<"study_reservation"> | string
+    startTime?: DateTimeWithAggregatesFilter<"study_reservation"> | Date | string
+    endTime?: DateTimeWithAggregatesFilter<"study_reservation"> | Date | string
+    status?: StringWithAggregatesFilter<"study_reservation"> | string
+  }
+
+  export type study_messageWhereInput = {
+    AND?: study_messageWhereInput | study_messageWhereInput[]
+    OR?: study_messageWhereInput[]
+    NOT?: study_messageWhereInput | study_messageWhereInput[]
+    uid?: StringFilter<"study_message"> | string
+    createAt?: DateTimeFilter<"study_message"> | Date | string
+    updateAt?: DateTimeFilter<"study_message"> | Date | string
+    userId?: StringFilter<"study_message"> | string
+    content?: StringFilter<"study_message"> | string
+    reply?: StringNullableFilter<"study_message"> | string | null
+    status?: BoolFilter<"study_message"> | boolean
+    user?: XOR<Study_userScalarRelationFilter, study_userWhereInput>
+  }
+
+  export type study_messageOrderByWithRelationInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    reply?: SortOrderInput | SortOrder
+    status?: SortOrder
+    user?: study_userOrderByWithRelationInput
+    _relevance?: study_messageOrderByRelevanceInput
+  }
+
+  export type study_messageWhereUniqueInput = Prisma.AtLeast<{
+    uid?: string
+    AND?: study_messageWhereInput | study_messageWhereInput[]
+    OR?: study_messageWhereInput[]
+    NOT?: study_messageWhereInput | study_messageWhereInput[]
+    createAt?: DateTimeFilter<"study_message"> | Date | string
+    updateAt?: DateTimeFilter<"study_message"> | Date | string
+    userId?: StringFilter<"study_message"> | string
+    content?: StringFilter<"study_message"> | string
+    reply?: StringNullableFilter<"study_message"> | string | null
+    status?: BoolFilter<"study_message"> | boolean
+    user?: XOR<Study_userScalarRelationFilter, study_userWhereInput>
+  }, "uid">
+
+  export type study_messageOrderByWithAggregationInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    reply?: SortOrderInput | SortOrder
+    status?: SortOrder
+    _count?: study_messageCountOrderByAggregateInput
+    _max?: study_messageMaxOrderByAggregateInput
+    _min?: study_messageMinOrderByAggregateInput
+  }
+
+  export type study_messageScalarWhereWithAggregatesInput = {
+    AND?: study_messageScalarWhereWithAggregatesInput | study_messageScalarWhereWithAggregatesInput[]
+    OR?: study_messageScalarWhereWithAggregatesInput[]
+    NOT?: study_messageScalarWhereWithAggregatesInput | study_messageScalarWhereWithAggregatesInput[]
+    uid?: StringWithAggregatesFilter<"study_message"> | string
+    createAt?: DateTimeWithAggregatesFilter<"study_message"> | Date | string
+    updateAt?: DateTimeWithAggregatesFilter<"study_message"> | Date | string
+    userId?: StringWithAggregatesFilter<"study_message"> | string
+    content?: StringWithAggregatesFilter<"study_message"> | string
+    reply?: StringNullableWithAggregatesFilter<"study_message"> | string | null
+    status?: BoolWithAggregatesFilter<"study_message"> | boolean
+  }
+
+  export type study_announcementWhereInput = {
+    AND?: study_announcementWhereInput | study_announcementWhereInput[]
+    OR?: study_announcementWhereInput[]
+    NOT?: study_announcementWhereInput | study_announcementWhereInput[]
+    uid?: StringFilter<"study_announcement"> | string
+    createAt?: DateTimeFilter<"study_announcement"> | Date | string
+    updateAt?: DateTimeFilter<"study_announcement"> | Date | string
+    title?: StringFilter<"study_announcement"> | string
+    content?: StringFilter<"study_announcement"> | string
+    status?: BoolFilter<"study_announcement"> | boolean
+  }
+
+  export type study_announcementOrderByWithRelationInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    status?: SortOrder
+    _relevance?: study_announcementOrderByRelevanceInput
+  }
+
+  export type study_announcementWhereUniqueInput = Prisma.AtLeast<{
+    uid?: string
+    AND?: study_announcementWhereInput | study_announcementWhereInput[]
+    OR?: study_announcementWhereInput[]
+    NOT?: study_announcementWhereInput | study_announcementWhereInput[]
+    createAt?: DateTimeFilter<"study_announcement"> | Date | string
+    updateAt?: DateTimeFilter<"study_announcement"> | Date | string
+    title?: StringFilter<"study_announcement"> | string
+    content?: StringFilter<"study_announcement"> | string
+    status?: BoolFilter<"study_announcement"> | boolean
+  }, "uid">
+
+  export type study_announcementOrderByWithAggregationInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    status?: SortOrder
+    _count?: study_announcementCountOrderByAggregateInput
+    _max?: study_announcementMaxOrderByAggregateInput
+    _min?: study_announcementMinOrderByAggregateInput
+  }
+
+  export type study_announcementScalarWhereWithAggregatesInput = {
+    AND?: study_announcementScalarWhereWithAggregatesInput | study_announcementScalarWhereWithAggregatesInput[]
+    OR?: study_announcementScalarWhereWithAggregatesInput[]
+    NOT?: study_announcementScalarWhereWithAggregatesInput | study_announcementScalarWhereWithAggregatesInput[]
+    uid?: StringWithAggregatesFilter<"study_announcement"> | string
+    createAt?: DateTimeWithAggregatesFilter<"study_announcement"> | Date | string
+    updateAt?: DateTimeWithAggregatesFilter<"study_announcement"> | Date | string
+    title?: StringWithAggregatesFilter<"study_announcement"> | string
+    content?: StringWithAggregatesFilter<"study_announcement"> | string
+    status?: BoolWithAggregatesFilter<"study_announcement"> | boolean
+  }
+
   export type sys_userCreateInput = {
     uid?: string
     createAt?: Date | string
@@ -29372,6 +40753,48 @@ export namespace Prisma {
     categoriesId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type blog_noticeCreateInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+  }
+
+  export type blog_noticeUncheckedCreateInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+  }
+
+  export type blog_noticeUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type blog_noticeUncheckedUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type blog_noticeCreateManyInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+  }
+
+  export type blog_noticeUpdateManyMutationInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type blog_noticeUncheckedUpdateManyInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type blog_posts_on_tagsCreateInput = {
     posts: blog_postsCreateNestedOneWithoutTagsInput
     tag: blog_tagCreateNestedOneWithoutBlog_posts_on_tagsInput
@@ -29464,12 +40887,11 @@ export namespace Prisma {
     createAt?: Date | string
     updateAt?: Date | string
     name: string
-    api_key: string
-    api_secret: string
     is_admin?: boolean
     medias?: file_user_on_mediaCreateNestedManyWithoutUserInput
     folders?: file_folderCreateNestedManyWithoutUserInput
     file_config?: file_configCreateNestedOneWithoutUserInput
+    keys?: file_keysCreateNestedManyWithoutUserInput
   }
 
   export type file_userUncheckedCreateInput = {
@@ -29477,12 +40899,11 @@ export namespace Prisma {
     createAt?: Date | string
     updateAt?: Date | string
     name: string
-    api_key: string
-    api_secret: string
     is_admin?: boolean
     medias?: file_user_on_mediaUncheckedCreateNestedManyWithoutUserInput
     folders?: file_folderUncheckedCreateNestedManyWithoutUserInput
     file_config?: file_configUncheckedCreateNestedOneWithoutUserInput
+    keys?: file_keysUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type file_userUpdateInput = {
@@ -29490,12 +40911,11 @@ export namespace Prisma {
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
-    api_key?: StringFieldUpdateOperationsInput | string
-    api_secret?: StringFieldUpdateOperationsInput | string
     is_admin?: BoolFieldUpdateOperationsInput | boolean
     medias?: file_user_on_mediaUpdateManyWithoutUserNestedInput
     folders?: file_folderUpdateManyWithoutUserNestedInput
     file_config?: file_configUpdateOneWithoutUserNestedInput
+    keys?: file_keysUpdateManyWithoutUserNestedInput
   }
 
   export type file_userUncheckedUpdateInput = {
@@ -29503,12 +40923,11 @@ export namespace Prisma {
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
-    api_key?: StringFieldUpdateOperationsInput | string
-    api_secret?: StringFieldUpdateOperationsInput | string
     is_admin?: BoolFieldUpdateOperationsInput | boolean
     medias?: file_user_on_mediaUncheckedUpdateManyWithoutUserNestedInput
     folders?: file_folderUncheckedUpdateManyWithoutUserNestedInput
     file_config?: file_configUncheckedUpdateOneWithoutUserNestedInput
+    keys?: file_keysUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type file_userCreateManyInput = {
@@ -29516,8 +40935,6 @@ export namespace Prisma {
     createAt?: Date | string
     updateAt?: Date | string
     name: string
-    api_key: string
-    api_secret: string
     is_admin?: boolean
   }
 
@@ -29526,8 +40943,6 @@ export namespace Prisma {
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
-    api_key?: StringFieldUpdateOperationsInput | string
-    api_secret?: StringFieldUpdateOperationsInput | string
     is_admin?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -29536,9 +40951,48 @@ export namespace Prisma {
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
+    is_admin?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type file_keysCreateInput = {
+    api_key: string
+    api_secret: string
+    user: file_userCreateNestedOneWithoutKeysInput
+  }
+
+  export type file_keysUncheckedCreateInput = {
+    api_key: string
+    api_secret: string
+    userId: string
+  }
+
+  export type file_keysUpdateInput = {
     api_key?: StringFieldUpdateOperationsInput | string
     api_secret?: StringFieldUpdateOperationsInput | string
-    is_admin?: BoolFieldUpdateOperationsInput | boolean
+    user?: file_userUpdateOneRequiredWithoutKeysNestedInput
+  }
+
+  export type file_keysUncheckedUpdateInput = {
+    api_key?: StringFieldUpdateOperationsInput | string
+    api_secret?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type file_keysCreateManyInput = {
+    api_key: string
+    api_secret: string
+    userId: string
+  }
+
+  export type file_keysUpdateManyMutationInput = {
+    api_key?: StringFieldUpdateOperationsInput | string
+    api_secret?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type file_keysUncheckedUpdateManyInput = {
+    api_key?: StringFieldUpdateOperationsInput | string
+    api_secret?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type file_configCreateInput = {
@@ -30317,6 +41771,570 @@ export namespace Prisma {
     bookId?: StringFieldUpdateOperationsInput | string
   }
 
+  export type study_userCreateInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    name: string
+    account: string
+    password: string
+    isAdmin?: boolean
+    reservation?: study_reservationCreateNestedManyWithoutUserInput
+    message?: study_messageCreateNestedManyWithoutUserInput
+  }
+
+  export type study_userUncheckedCreateInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    name: string
+    account: string
+    password: string
+    isAdmin?: boolean
+    reservation?: study_reservationUncheckedCreateNestedManyWithoutUserInput
+    message?: study_messageUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type study_userUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    account?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    reservation?: study_reservationUpdateManyWithoutUserNestedInput
+    message?: study_messageUpdateManyWithoutUserNestedInput
+  }
+
+  export type study_userUncheckedUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    account?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    reservation?: study_reservationUncheckedUpdateManyWithoutUserNestedInput
+    message?: study_messageUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type study_userCreateManyInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    name: string
+    account: string
+    password: string
+    isAdmin?: boolean
+  }
+
+  export type study_userUpdateManyMutationInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    account?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type study_userUncheckedUpdateManyInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    account?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type study_storeCreateInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    name: string
+    local: string
+    address: string
+    status?: boolean
+    remark?: string | null
+    floors?: study_floorCreateNestedManyWithoutStoreInput
+  }
+
+  export type study_storeUncheckedCreateInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    name: string
+    local: string
+    address: string
+    status?: boolean
+    remark?: string | null
+    floors?: study_floorUncheckedCreateNestedManyWithoutStoreInput
+  }
+
+  export type study_storeUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    local?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    remark?: NullableStringFieldUpdateOperationsInput | string | null
+    floors?: study_floorUpdateManyWithoutStoreNestedInput
+  }
+
+  export type study_storeUncheckedUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    local?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    remark?: NullableStringFieldUpdateOperationsInput | string | null
+    floors?: study_floorUncheckedUpdateManyWithoutStoreNestedInput
+  }
+
+  export type study_storeCreateManyInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    name: string
+    local: string
+    address: string
+    status?: boolean
+    remark?: string | null
+  }
+
+  export type study_storeUpdateManyMutationInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    local?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    remark?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type study_storeUncheckedUpdateManyInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    local?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    remark?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type study_floorCreateInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    floorNumber: number
+    store: study_storeCreateNestedOneWithoutFloorsInput
+    studyRooms?: study_roomCreateNestedManyWithoutFloorInput
+  }
+
+  export type study_floorUncheckedCreateInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    floorNumber: number
+    storeId: string
+    studyRooms?: study_roomUncheckedCreateNestedManyWithoutFloorInput
+  }
+
+  export type study_floorUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    floorNumber?: IntFieldUpdateOperationsInput | number
+    store?: study_storeUpdateOneRequiredWithoutFloorsNestedInput
+    studyRooms?: study_roomUpdateManyWithoutFloorNestedInput
+  }
+
+  export type study_floorUncheckedUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    floorNumber?: IntFieldUpdateOperationsInput | number
+    storeId?: StringFieldUpdateOperationsInput | string
+    studyRooms?: study_roomUncheckedUpdateManyWithoutFloorNestedInput
+  }
+
+  export type study_floorCreateManyInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    floorNumber: number
+    storeId: string
+  }
+
+  export type study_floorUpdateManyMutationInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    floorNumber?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type study_floorUncheckedUpdateManyInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    floorNumber?: IntFieldUpdateOperationsInput | number
+    storeId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type study_roomCreateInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    name: string
+    capacity: number
+    status?: boolean
+    floor: study_floorCreateNestedOneWithoutStudyRoomsInput
+    seats?: study_seatCreateNestedManyWithoutRoomInput
+  }
+
+  export type study_roomUncheckedCreateInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    name: string
+    floorId: string
+    capacity: number
+    status?: boolean
+    seats?: study_seatUncheckedCreateNestedManyWithoutRoomInput
+  }
+
+  export type study_roomUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    capacity?: IntFieldUpdateOperationsInput | number
+    status?: BoolFieldUpdateOperationsInput | boolean
+    floor?: study_floorUpdateOneRequiredWithoutStudyRoomsNestedInput
+    seats?: study_seatUpdateManyWithoutRoomNestedInput
+  }
+
+  export type study_roomUncheckedUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    floorId?: StringFieldUpdateOperationsInput | string
+    capacity?: IntFieldUpdateOperationsInput | number
+    status?: BoolFieldUpdateOperationsInput | boolean
+    seats?: study_seatUncheckedUpdateManyWithoutRoomNestedInput
+  }
+
+  export type study_roomCreateManyInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    name: string
+    floorId: string
+    capacity: number
+    status?: boolean
+  }
+
+  export type study_roomUpdateManyMutationInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    capacity?: IntFieldUpdateOperationsInput | number
+    status?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type study_roomUncheckedUpdateManyInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    floorId?: StringFieldUpdateOperationsInput | string
+    capacity?: IntFieldUpdateOperationsInput | number
+    status?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type study_seatCreateInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    seatNumber: string
+    status?: boolean
+    room: study_roomCreateNestedOneWithoutSeatsInput
+    reservations?: study_reservationCreateNestedManyWithoutSeatInput
+  }
+
+  export type study_seatUncheckedCreateInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    seatNumber: string
+    roomId: string
+    status?: boolean
+    reservations?: study_reservationUncheckedCreateNestedManyWithoutSeatInput
+  }
+
+  export type study_seatUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    seatNumber?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    room?: study_roomUpdateOneRequiredWithoutSeatsNestedInput
+    reservations?: study_reservationUpdateManyWithoutSeatNestedInput
+  }
+
+  export type study_seatUncheckedUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    seatNumber?: StringFieldUpdateOperationsInput | string
+    roomId?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    reservations?: study_reservationUncheckedUpdateManyWithoutSeatNestedInput
+  }
+
+  export type study_seatCreateManyInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    seatNumber: string
+    roomId: string
+    status?: boolean
+  }
+
+  export type study_seatUpdateManyMutationInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    seatNumber?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type study_seatUncheckedUpdateManyInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    seatNumber?: StringFieldUpdateOperationsInput | string
+    roomId?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type study_reservationCreateInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    startTime: Date | string
+    endTime: Date | string
+    status?: string
+    user: study_userCreateNestedOneWithoutReservationInput
+    seat: study_seatCreateNestedOneWithoutReservationsInput
+  }
+
+  export type study_reservationUncheckedCreateInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    userId: string
+    seatId: string
+    startTime: Date | string
+    endTime: Date | string
+    status?: string
+  }
+
+  export type study_reservationUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    user?: study_userUpdateOneRequiredWithoutReservationNestedInput
+    seat?: study_seatUpdateOneRequiredWithoutReservationsNestedInput
+  }
+
+  export type study_reservationUncheckedUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    seatId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type study_reservationCreateManyInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    userId: string
+    seatId: string
+    startTime: Date | string
+    endTime: Date | string
+    status?: string
+  }
+
+  export type study_reservationUpdateManyMutationInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type study_reservationUncheckedUpdateManyInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    seatId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type study_messageCreateInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    content: string
+    reply?: string | null
+    status?: boolean
+    user: study_userCreateNestedOneWithoutMessageInput
+  }
+
+  export type study_messageUncheckedCreateInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    userId: string
+    content: string
+    reply?: string | null
+    status?: boolean
+  }
+
+  export type study_messageUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    content?: StringFieldUpdateOperationsInput | string
+    reply?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: BoolFieldUpdateOperationsInput | boolean
+    user?: study_userUpdateOneRequiredWithoutMessageNestedInput
+  }
+
+  export type study_messageUncheckedUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    reply?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type study_messageCreateManyInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    userId: string
+    content: string
+    reply?: string | null
+    status?: boolean
+  }
+
+  export type study_messageUpdateManyMutationInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    content?: StringFieldUpdateOperationsInput | string
+    reply?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type study_messageUncheckedUpdateManyInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    reply?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type study_announcementCreateInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    title: string
+    content: string
+    status?: boolean
+  }
+
+  export type study_announcementUncheckedCreateInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    title: string
+    content: string
+    status?: boolean
+  }
+
+  export type study_announcementUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type study_announcementUncheckedUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type study_announcementCreateManyInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    title: string
+    content: string
+    status?: boolean
+  }
+
+  export type study_announcementUpdateManyMutationInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type study_announcementUncheckedUpdateManyInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -30911,6 +42929,30 @@ export namespace Prisma {
     categoriesId?: SortOrder
   }
 
+  export type blog_noticeOrderByRelevanceInput = {
+    fields: blog_noticeOrderByRelevanceFieldEnum | blog_noticeOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type blog_noticeCountOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type blog_noticeMaxOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
+  export type blog_noticeMinOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+  }
+
   export type Blog_postsScalarRelationFilter = {
     is?: blog_postsWhereInput
     isNot?: blog_postsWhereInput
@@ -30991,11 +43033,21 @@ export namespace Prisma {
     isNot?: file_configWhereInput | null
   }
 
+  export type File_keysListRelationFilter = {
+    every?: file_keysWhereInput
+    some?: file_keysWhereInput
+    none?: file_keysWhereInput
+  }
+
   export type file_user_on_mediaOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type file_folderOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type file_keysOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -31010,8 +43062,6 @@ export namespace Prisma {
     createAt?: SortOrder
     updateAt?: SortOrder
     name?: SortOrder
-    api_key?: SortOrder
-    api_secret?: SortOrder
     is_admin?: SortOrder
   }
 
@@ -31020,8 +43070,6 @@ export namespace Prisma {
     createAt?: SortOrder
     updateAt?: SortOrder
     name?: SortOrder
-    api_key?: SortOrder
-    api_secret?: SortOrder
     is_admin?: SortOrder
   }
 
@@ -31030,14 +43078,36 @@ export namespace Prisma {
     createAt?: SortOrder
     updateAt?: SortOrder
     name?: SortOrder
-    api_key?: SortOrder
-    api_secret?: SortOrder
     is_admin?: SortOrder
   }
 
   export type File_userScalarRelationFilter = {
     is?: file_userWhereInput
     isNot?: file_userWhereInput
+  }
+
+  export type file_keysOrderByRelevanceInput = {
+    fields: file_keysOrderByRelevanceFieldEnum | file_keysOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type file_keysCountOrderByAggregateInput = {
+    api_key?: SortOrder
+    api_secret?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type file_keysMaxOrderByAggregateInput = {
+    api_key?: SortOrder
+    api_secret?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type file_keysMinOrderByAggregateInput = {
+    api_key?: SortOrder
+    api_secret?: SortOrder
+    userId?: SortOrder
   }
 
   export type file_configOrderByRelevanceInput = {
@@ -31638,6 +43708,379 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type Study_reservationListRelationFilter = {
+    every?: study_reservationWhereInput
+    some?: study_reservationWhereInput
+    none?: study_reservationWhereInput
+  }
+
+  export type Study_messageListRelationFilter = {
+    every?: study_messageWhereInput
+    some?: study_messageWhereInput
+    none?: study_messageWhereInput
+  }
+
+  export type study_reservationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type study_messageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type study_userOrderByRelevanceInput = {
+    fields: study_userOrderByRelevanceFieldEnum | study_userOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type study_userCountOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    name?: SortOrder
+    account?: SortOrder
+    password?: SortOrder
+    isAdmin?: SortOrder
+  }
+
+  export type study_userMaxOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    name?: SortOrder
+    account?: SortOrder
+    password?: SortOrder
+    isAdmin?: SortOrder
+  }
+
+  export type study_userMinOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    name?: SortOrder
+    account?: SortOrder
+    password?: SortOrder
+    isAdmin?: SortOrder
+  }
+
+  export type Study_floorListRelationFilter = {
+    every?: study_floorWhereInput
+    some?: study_floorWhereInput
+    none?: study_floorWhereInput
+  }
+
+  export type study_floorOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type study_storeOrderByRelevanceInput = {
+    fields: study_storeOrderByRelevanceFieldEnum | study_storeOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type study_storeCountOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    name?: SortOrder
+    local?: SortOrder
+    address?: SortOrder
+    status?: SortOrder
+    remark?: SortOrder
+  }
+
+  export type study_storeMaxOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    name?: SortOrder
+    local?: SortOrder
+    address?: SortOrder
+    status?: SortOrder
+    remark?: SortOrder
+  }
+
+  export type study_storeMinOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    name?: SortOrder
+    local?: SortOrder
+    address?: SortOrder
+    status?: SortOrder
+    remark?: SortOrder
+  }
+
+  export type Study_storeScalarRelationFilter = {
+    is?: study_storeWhereInput
+    isNot?: study_storeWhereInput
+  }
+
+  export type Study_roomListRelationFilter = {
+    every?: study_roomWhereInput
+    some?: study_roomWhereInput
+    none?: study_roomWhereInput
+  }
+
+  export type study_roomOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type study_floorOrderByRelevanceInput = {
+    fields: study_floorOrderByRelevanceFieldEnum | study_floorOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type study_floorCountOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    floorNumber?: SortOrder
+    storeId?: SortOrder
+  }
+
+  export type study_floorAvgOrderByAggregateInput = {
+    floorNumber?: SortOrder
+  }
+
+  export type study_floorMaxOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    floorNumber?: SortOrder
+    storeId?: SortOrder
+  }
+
+  export type study_floorMinOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    floorNumber?: SortOrder
+    storeId?: SortOrder
+  }
+
+  export type study_floorSumOrderByAggregateInput = {
+    floorNumber?: SortOrder
+  }
+
+  export type Study_floorScalarRelationFilter = {
+    is?: study_floorWhereInput
+    isNot?: study_floorWhereInput
+  }
+
+  export type Study_seatListRelationFilter = {
+    every?: study_seatWhereInput
+    some?: study_seatWhereInput
+    none?: study_seatWhereInput
+  }
+
+  export type study_seatOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type study_roomOrderByRelevanceInput = {
+    fields: study_roomOrderByRelevanceFieldEnum | study_roomOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type study_roomCountOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    name?: SortOrder
+    floorId?: SortOrder
+    capacity?: SortOrder
+    status?: SortOrder
+  }
+
+  export type study_roomAvgOrderByAggregateInput = {
+    capacity?: SortOrder
+  }
+
+  export type study_roomMaxOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    name?: SortOrder
+    floorId?: SortOrder
+    capacity?: SortOrder
+    status?: SortOrder
+  }
+
+  export type study_roomMinOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    name?: SortOrder
+    floorId?: SortOrder
+    capacity?: SortOrder
+    status?: SortOrder
+  }
+
+  export type study_roomSumOrderByAggregateInput = {
+    capacity?: SortOrder
+  }
+
+  export type Study_roomScalarRelationFilter = {
+    is?: study_roomWhereInput
+    isNot?: study_roomWhereInput
+  }
+
+  export type study_seatOrderByRelevanceInput = {
+    fields: study_seatOrderByRelevanceFieldEnum | study_seatOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type study_seatCountOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    seatNumber?: SortOrder
+    roomId?: SortOrder
+    status?: SortOrder
+  }
+
+  export type study_seatMaxOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    seatNumber?: SortOrder
+    roomId?: SortOrder
+    status?: SortOrder
+  }
+
+  export type study_seatMinOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    seatNumber?: SortOrder
+    roomId?: SortOrder
+    status?: SortOrder
+  }
+
+  export type Study_userScalarRelationFilter = {
+    is?: study_userWhereInput
+    isNot?: study_userWhereInput
+  }
+
+  export type Study_seatScalarRelationFilter = {
+    is?: study_seatWhereInput
+    isNot?: study_seatWhereInput
+  }
+
+  export type study_reservationOrderByRelevanceInput = {
+    fields: study_reservationOrderByRelevanceFieldEnum | study_reservationOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type study_reservationCountOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    userId?: SortOrder
+    seatId?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    status?: SortOrder
+  }
+
+  export type study_reservationMaxOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    userId?: SortOrder
+    seatId?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    status?: SortOrder
+  }
+
+  export type study_reservationMinOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    userId?: SortOrder
+    seatId?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    status?: SortOrder
+  }
+
+  export type study_messageOrderByRelevanceInput = {
+    fields: study_messageOrderByRelevanceFieldEnum | study_messageOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type study_messageCountOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    reply?: SortOrder
+    status?: SortOrder
+  }
+
+  export type study_messageMaxOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    reply?: SortOrder
+    status?: SortOrder
+  }
+
+  export type study_messageMinOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    reply?: SortOrder
+    status?: SortOrder
+  }
+
+  export type study_announcementOrderByRelevanceInput = {
+    fields: study_announcementOrderByRelevanceFieldEnum | study_announcementOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type study_announcementCountOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    status?: SortOrder
+  }
+
+  export type study_announcementMaxOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    status?: SortOrder
+  }
+
+  export type study_announcementMinOrderByAggregateInput = {
+    uid?: SortOrder
+    createAt?: SortOrder
+    updateAt?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    status?: SortOrder
   }
 
   export type sys_accountCreateNestedManyWithoutUserInput = {
@@ -32320,6 +44763,13 @@ export namespace Prisma {
     connect?: file_configWhereUniqueInput
   }
 
+  export type file_keysCreateNestedManyWithoutUserInput = {
+    create?: XOR<file_keysCreateWithoutUserInput, file_keysUncheckedCreateWithoutUserInput> | file_keysCreateWithoutUserInput[] | file_keysUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: file_keysCreateOrConnectWithoutUserInput | file_keysCreateOrConnectWithoutUserInput[]
+    createMany?: file_keysCreateManyUserInputEnvelope
+    connect?: file_keysWhereUniqueInput | file_keysWhereUniqueInput[]
+  }
+
   export type file_user_on_mediaUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<file_user_on_mediaCreateWithoutUserInput, file_user_on_mediaUncheckedCreateWithoutUserInput> | file_user_on_mediaCreateWithoutUserInput[] | file_user_on_mediaUncheckedCreateWithoutUserInput[]
     connectOrCreate?: file_user_on_mediaCreateOrConnectWithoutUserInput | file_user_on_mediaCreateOrConnectWithoutUserInput[]
@@ -32338,6 +44788,13 @@ export namespace Prisma {
     create?: XOR<file_configCreateWithoutUserInput, file_configUncheckedCreateWithoutUserInput>
     connectOrCreate?: file_configCreateOrConnectWithoutUserInput
     connect?: file_configWhereUniqueInput
+  }
+
+  export type file_keysUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<file_keysCreateWithoutUserInput, file_keysUncheckedCreateWithoutUserInput> | file_keysCreateWithoutUserInput[] | file_keysUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: file_keysCreateOrConnectWithoutUserInput | file_keysCreateOrConnectWithoutUserInput[]
+    createMany?: file_keysCreateManyUserInputEnvelope
+    connect?: file_keysWhereUniqueInput | file_keysWhereUniqueInput[]
   }
 
   export type file_user_on_mediaUpdateManyWithoutUserNestedInput = {
@@ -32378,6 +44835,20 @@ export namespace Prisma {
     update?: XOR<XOR<file_configUpdateToOneWithWhereWithoutUserInput, file_configUpdateWithoutUserInput>, file_configUncheckedUpdateWithoutUserInput>
   }
 
+  export type file_keysUpdateManyWithoutUserNestedInput = {
+    create?: XOR<file_keysCreateWithoutUserInput, file_keysUncheckedCreateWithoutUserInput> | file_keysCreateWithoutUserInput[] | file_keysUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: file_keysCreateOrConnectWithoutUserInput | file_keysCreateOrConnectWithoutUserInput[]
+    upsert?: file_keysUpsertWithWhereUniqueWithoutUserInput | file_keysUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: file_keysCreateManyUserInputEnvelope
+    set?: file_keysWhereUniqueInput | file_keysWhereUniqueInput[]
+    disconnect?: file_keysWhereUniqueInput | file_keysWhereUniqueInput[]
+    delete?: file_keysWhereUniqueInput | file_keysWhereUniqueInput[]
+    connect?: file_keysWhereUniqueInput | file_keysWhereUniqueInput[]
+    update?: file_keysUpdateWithWhereUniqueWithoutUserInput | file_keysUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: file_keysUpdateManyWithWhereWithoutUserInput | file_keysUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: file_keysScalarWhereInput | file_keysScalarWhereInput[]
+  }
+
   export type file_user_on_mediaUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<file_user_on_mediaCreateWithoutUserInput, file_user_on_mediaUncheckedCreateWithoutUserInput> | file_user_on_mediaCreateWithoutUserInput[] | file_user_on_mediaUncheckedCreateWithoutUserInput[]
     connectOrCreate?: file_user_on_mediaCreateOrConnectWithoutUserInput | file_user_on_mediaCreateOrConnectWithoutUserInput[]
@@ -32414,6 +44885,34 @@ export namespace Prisma {
     delete?: file_configWhereInput | boolean
     connect?: file_configWhereUniqueInput
     update?: XOR<XOR<file_configUpdateToOneWithWhereWithoutUserInput, file_configUpdateWithoutUserInput>, file_configUncheckedUpdateWithoutUserInput>
+  }
+
+  export type file_keysUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<file_keysCreateWithoutUserInput, file_keysUncheckedCreateWithoutUserInput> | file_keysCreateWithoutUserInput[] | file_keysUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: file_keysCreateOrConnectWithoutUserInput | file_keysCreateOrConnectWithoutUserInput[]
+    upsert?: file_keysUpsertWithWhereUniqueWithoutUserInput | file_keysUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: file_keysCreateManyUserInputEnvelope
+    set?: file_keysWhereUniqueInput | file_keysWhereUniqueInput[]
+    disconnect?: file_keysWhereUniqueInput | file_keysWhereUniqueInput[]
+    delete?: file_keysWhereUniqueInput | file_keysWhereUniqueInput[]
+    connect?: file_keysWhereUniqueInput | file_keysWhereUniqueInput[]
+    update?: file_keysUpdateWithWhereUniqueWithoutUserInput | file_keysUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: file_keysUpdateManyWithWhereWithoutUserInput | file_keysUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: file_keysScalarWhereInput | file_keysScalarWhereInput[]
+  }
+
+  export type file_userCreateNestedOneWithoutKeysInput = {
+    create?: XOR<file_userCreateWithoutKeysInput, file_userUncheckedCreateWithoutKeysInput>
+    connectOrCreate?: file_userCreateOrConnectWithoutKeysInput
+    connect?: file_userWhereUniqueInput
+  }
+
+  export type file_userUpdateOneRequiredWithoutKeysNestedInput = {
+    create?: XOR<file_userCreateWithoutKeysInput, file_userUncheckedCreateWithoutKeysInput>
+    connectOrCreate?: file_userCreateOrConnectWithoutKeysInput
+    upsert?: file_userUpsertWithoutKeysInput
+    connect?: file_userWhereUniqueInput
+    update?: XOR<XOR<file_userUpdateToOneWithWhereWithoutKeysInput, file_userUpdateWithoutKeysInput>, file_userUncheckedUpdateWithoutKeysInput>
   }
 
   export type file_userCreateNestedOneWithoutFile_configInput = {
@@ -33150,6 +45649,342 @@ export namespace Prisma {
     upsert?: book_bookUpsertWithoutBook_ratingInput
     connect?: book_bookWhereUniqueInput
     update?: XOR<XOR<book_bookUpdateToOneWithWhereWithoutBook_ratingInput, book_bookUpdateWithoutBook_ratingInput>, book_bookUncheckedUpdateWithoutBook_ratingInput>
+  }
+
+  export type study_reservationCreateNestedManyWithoutUserInput = {
+    create?: XOR<study_reservationCreateWithoutUserInput, study_reservationUncheckedCreateWithoutUserInput> | study_reservationCreateWithoutUserInput[] | study_reservationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: study_reservationCreateOrConnectWithoutUserInput | study_reservationCreateOrConnectWithoutUserInput[]
+    createMany?: study_reservationCreateManyUserInputEnvelope
+    connect?: study_reservationWhereUniqueInput | study_reservationWhereUniqueInput[]
+  }
+
+  export type study_messageCreateNestedManyWithoutUserInput = {
+    create?: XOR<study_messageCreateWithoutUserInput, study_messageUncheckedCreateWithoutUserInput> | study_messageCreateWithoutUserInput[] | study_messageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: study_messageCreateOrConnectWithoutUserInput | study_messageCreateOrConnectWithoutUserInput[]
+    createMany?: study_messageCreateManyUserInputEnvelope
+    connect?: study_messageWhereUniqueInput | study_messageWhereUniqueInput[]
+  }
+
+  export type study_reservationUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<study_reservationCreateWithoutUserInput, study_reservationUncheckedCreateWithoutUserInput> | study_reservationCreateWithoutUserInput[] | study_reservationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: study_reservationCreateOrConnectWithoutUserInput | study_reservationCreateOrConnectWithoutUserInput[]
+    createMany?: study_reservationCreateManyUserInputEnvelope
+    connect?: study_reservationWhereUniqueInput | study_reservationWhereUniqueInput[]
+  }
+
+  export type study_messageUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<study_messageCreateWithoutUserInput, study_messageUncheckedCreateWithoutUserInput> | study_messageCreateWithoutUserInput[] | study_messageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: study_messageCreateOrConnectWithoutUserInput | study_messageCreateOrConnectWithoutUserInput[]
+    createMany?: study_messageCreateManyUserInputEnvelope
+    connect?: study_messageWhereUniqueInput | study_messageWhereUniqueInput[]
+  }
+
+  export type study_reservationUpdateManyWithoutUserNestedInput = {
+    create?: XOR<study_reservationCreateWithoutUserInput, study_reservationUncheckedCreateWithoutUserInput> | study_reservationCreateWithoutUserInput[] | study_reservationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: study_reservationCreateOrConnectWithoutUserInput | study_reservationCreateOrConnectWithoutUserInput[]
+    upsert?: study_reservationUpsertWithWhereUniqueWithoutUserInput | study_reservationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: study_reservationCreateManyUserInputEnvelope
+    set?: study_reservationWhereUniqueInput | study_reservationWhereUniqueInput[]
+    disconnect?: study_reservationWhereUniqueInput | study_reservationWhereUniqueInput[]
+    delete?: study_reservationWhereUniqueInput | study_reservationWhereUniqueInput[]
+    connect?: study_reservationWhereUniqueInput | study_reservationWhereUniqueInput[]
+    update?: study_reservationUpdateWithWhereUniqueWithoutUserInput | study_reservationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: study_reservationUpdateManyWithWhereWithoutUserInput | study_reservationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: study_reservationScalarWhereInput | study_reservationScalarWhereInput[]
+  }
+
+  export type study_messageUpdateManyWithoutUserNestedInput = {
+    create?: XOR<study_messageCreateWithoutUserInput, study_messageUncheckedCreateWithoutUserInput> | study_messageCreateWithoutUserInput[] | study_messageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: study_messageCreateOrConnectWithoutUserInput | study_messageCreateOrConnectWithoutUserInput[]
+    upsert?: study_messageUpsertWithWhereUniqueWithoutUserInput | study_messageUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: study_messageCreateManyUserInputEnvelope
+    set?: study_messageWhereUniqueInput | study_messageWhereUniqueInput[]
+    disconnect?: study_messageWhereUniqueInput | study_messageWhereUniqueInput[]
+    delete?: study_messageWhereUniqueInput | study_messageWhereUniqueInput[]
+    connect?: study_messageWhereUniqueInput | study_messageWhereUniqueInput[]
+    update?: study_messageUpdateWithWhereUniqueWithoutUserInput | study_messageUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: study_messageUpdateManyWithWhereWithoutUserInput | study_messageUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: study_messageScalarWhereInput | study_messageScalarWhereInput[]
+  }
+
+  export type study_reservationUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<study_reservationCreateWithoutUserInput, study_reservationUncheckedCreateWithoutUserInput> | study_reservationCreateWithoutUserInput[] | study_reservationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: study_reservationCreateOrConnectWithoutUserInput | study_reservationCreateOrConnectWithoutUserInput[]
+    upsert?: study_reservationUpsertWithWhereUniqueWithoutUserInput | study_reservationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: study_reservationCreateManyUserInputEnvelope
+    set?: study_reservationWhereUniqueInput | study_reservationWhereUniqueInput[]
+    disconnect?: study_reservationWhereUniqueInput | study_reservationWhereUniqueInput[]
+    delete?: study_reservationWhereUniqueInput | study_reservationWhereUniqueInput[]
+    connect?: study_reservationWhereUniqueInput | study_reservationWhereUniqueInput[]
+    update?: study_reservationUpdateWithWhereUniqueWithoutUserInput | study_reservationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: study_reservationUpdateManyWithWhereWithoutUserInput | study_reservationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: study_reservationScalarWhereInput | study_reservationScalarWhereInput[]
+  }
+
+  export type study_messageUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<study_messageCreateWithoutUserInput, study_messageUncheckedCreateWithoutUserInput> | study_messageCreateWithoutUserInput[] | study_messageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: study_messageCreateOrConnectWithoutUserInput | study_messageCreateOrConnectWithoutUserInput[]
+    upsert?: study_messageUpsertWithWhereUniqueWithoutUserInput | study_messageUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: study_messageCreateManyUserInputEnvelope
+    set?: study_messageWhereUniqueInput | study_messageWhereUniqueInput[]
+    disconnect?: study_messageWhereUniqueInput | study_messageWhereUniqueInput[]
+    delete?: study_messageWhereUniqueInput | study_messageWhereUniqueInput[]
+    connect?: study_messageWhereUniqueInput | study_messageWhereUniqueInput[]
+    update?: study_messageUpdateWithWhereUniqueWithoutUserInput | study_messageUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: study_messageUpdateManyWithWhereWithoutUserInput | study_messageUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: study_messageScalarWhereInput | study_messageScalarWhereInput[]
+  }
+
+  export type study_floorCreateNestedManyWithoutStoreInput = {
+    create?: XOR<study_floorCreateWithoutStoreInput, study_floorUncheckedCreateWithoutStoreInput> | study_floorCreateWithoutStoreInput[] | study_floorUncheckedCreateWithoutStoreInput[]
+    connectOrCreate?: study_floorCreateOrConnectWithoutStoreInput | study_floorCreateOrConnectWithoutStoreInput[]
+    createMany?: study_floorCreateManyStoreInputEnvelope
+    connect?: study_floorWhereUniqueInput | study_floorWhereUniqueInput[]
+  }
+
+  export type study_floorUncheckedCreateNestedManyWithoutStoreInput = {
+    create?: XOR<study_floorCreateWithoutStoreInput, study_floorUncheckedCreateWithoutStoreInput> | study_floorCreateWithoutStoreInput[] | study_floorUncheckedCreateWithoutStoreInput[]
+    connectOrCreate?: study_floorCreateOrConnectWithoutStoreInput | study_floorCreateOrConnectWithoutStoreInput[]
+    createMany?: study_floorCreateManyStoreInputEnvelope
+    connect?: study_floorWhereUniqueInput | study_floorWhereUniqueInput[]
+  }
+
+  export type study_floorUpdateManyWithoutStoreNestedInput = {
+    create?: XOR<study_floorCreateWithoutStoreInput, study_floorUncheckedCreateWithoutStoreInput> | study_floorCreateWithoutStoreInput[] | study_floorUncheckedCreateWithoutStoreInput[]
+    connectOrCreate?: study_floorCreateOrConnectWithoutStoreInput | study_floorCreateOrConnectWithoutStoreInput[]
+    upsert?: study_floorUpsertWithWhereUniqueWithoutStoreInput | study_floorUpsertWithWhereUniqueWithoutStoreInput[]
+    createMany?: study_floorCreateManyStoreInputEnvelope
+    set?: study_floorWhereUniqueInput | study_floorWhereUniqueInput[]
+    disconnect?: study_floorWhereUniqueInput | study_floorWhereUniqueInput[]
+    delete?: study_floorWhereUniqueInput | study_floorWhereUniqueInput[]
+    connect?: study_floorWhereUniqueInput | study_floorWhereUniqueInput[]
+    update?: study_floorUpdateWithWhereUniqueWithoutStoreInput | study_floorUpdateWithWhereUniqueWithoutStoreInput[]
+    updateMany?: study_floorUpdateManyWithWhereWithoutStoreInput | study_floorUpdateManyWithWhereWithoutStoreInput[]
+    deleteMany?: study_floorScalarWhereInput | study_floorScalarWhereInput[]
+  }
+
+  export type study_floorUncheckedUpdateManyWithoutStoreNestedInput = {
+    create?: XOR<study_floorCreateWithoutStoreInput, study_floorUncheckedCreateWithoutStoreInput> | study_floorCreateWithoutStoreInput[] | study_floorUncheckedCreateWithoutStoreInput[]
+    connectOrCreate?: study_floorCreateOrConnectWithoutStoreInput | study_floorCreateOrConnectWithoutStoreInput[]
+    upsert?: study_floorUpsertWithWhereUniqueWithoutStoreInput | study_floorUpsertWithWhereUniqueWithoutStoreInput[]
+    createMany?: study_floorCreateManyStoreInputEnvelope
+    set?: study_floorWhereUniqueInput | study_floorWhereUniqueInput[]
+    disconnect?: study_floorWhereUniqueInput | study_floorWhereUniqueInput[]
+    delete?: study_floorWhereUniqueInput | study_floorWhereUniqueInput[]
+    connect?: study_floorWhereUniqueInput | study_floorWhereUniqueInput[]
+    update?: study_floorUpdateWithWhereUniqueWithoutStoreInput | study_floorUpdateWithWhereUniqueWithoutStoreInput[]
+    updateMany?: study_floorUpdateManyWithWhereWithoutStoreInput | study_floorUpdateManyWithWhereWithoutStoreInput[]
+    deleteMany?: study_floorScalarWhereInput | study_floorScalarWhereInput[]
+  }
+
+  export type study_storeCreateNestedOneWithoutFloorsInput = {
+    create?: XOR<study_storeCreateWithoutFloorsInput, study_storeUncheckedCreateWithoutFloorsInput>
+    connectOrCreate?: study_storeCreateOrConnectWithoutFloorsInput
+    connect?: study_storeWhereUniqueInput
+  }
+
+  export type study_roomCreateNestedManyWithoutFloorInput = {
+    create?: XOR<study_roomCreateWithoutFloorInput, study_roomUncheckedCreateWithoutFloorInput> | study_roomCreateWithoutFloorInput[] | study_roomUncheckedCreateWithoutFloorInput[]
+    connectOrCreate?: study_roomCreateOrConnectWithoutFloorInput | study_roomCreateOrConnectWithoutFloorInput[]
+    createMany?: study_roomCreateManyFloorInputEnvelope
+    connect?: study_roomWhereUniqueInput | study_roomWhereUniqueInput[]
+  }
+
+  export type study_roomUncheckedCreateNestedManyWithoutFloorInput = {
+    create?: XOR<study_roomCreateWithoutFloorInput, study_roomUncheckedCreateWithoutFloorInput> | study_roomCreateWithoutFloorInput[] | study_roomUncheckedCreateWithoutFloorInput[]
+    connectOrCreate?: study_roomCreateOrConnectWithoutFloorInput | study_roomCreateOrConnectWithoutFloorInput[]
+    createMany?: study_roomCreateManyFloorInputEnvelope
+    connect?: study_roomWhereUniqueInput | study_roomWhereUniqueInput[]
+  }
+
+  export type study_storeUpdateOneRequiredWithoutFloorsNestedInput = {
+    create?: XOR<study_storeCreateWithoutFloorsInput, study_storeUncheckedCreateWithoutFloorsInput>
+    connectOrCreate?: study_storeCreateOrConnectWithoutFloorsInput
+    upsert?: study_storeUpsertWithoutFloorsInput
+    connect?: study_storeWhereUniqueInput
+    update?: XOR<XOR<study_storeUpdateToOneWithWhereWithoutFloorsInput, study_storeUpdateWithoutFloorsInput>, study_storeUncheckedUpdateWithoutFloorsInput>
+  }
+
+  export type study_roomUpdateManyWithoutFloorNestedInput = {
+    create?: XOR<study_roomCreateWithoutFloorInput, study_roomUncheckedCreateWithoutFloorInput> | study_roomCreateWithoutFloorInput[] | study_roomUncheckedCreateWithoutFloorInput[]
+    connectOrCreate?: study_roomCreateOrConnectWithoutFloorInput | study_roomCreateOrConnectWithoutFloorInput[]
+    upsert?: study_roomUpsertWithWhereUniqueWithoutFloorInput | study_roomUpsertWithWhereUniqueWithoutFloorInput[]
+    createMany?: study_roomCreateManyFloorInputEnvelope
+    set?: study_roomWhereUniqueInput | study_roomWhereUniqueInput[]
+    disconnect?: study_roomWhereUniqueInput | study_roomWhereUniqueInput[]
+    delete?: study_roomWhereUniqueInput | study_roomWhereUniqueInput[]
+    connect?: study_roomWhereUniqueInput | study_roomWhereUniqueInput[]
+    update?: study_roomUpdateWithWhereUniqueWithoutFloorInput | study_roomUpdateWithWhereUniqueWithoutFloorInput[]
+    updateMany?: study_roomUpdateManyWithWhereWithoutFloorInput | study_roomUpdateManyWithWhereWithoutFloorInput[]
+    deleteMany?: study_roomScalarWhereInput | study_roomScalarWhereInput[]
+  }
+
+  export type study_roomUncheckedUpdateManyWithoutFloorNestedInput = {
+    create?: XOR<study_roomCreateWithoutFloorInput, study_roomUncheckedCreateWithoutFloorInput> | study_roomCreateWithoutFloorInput[] | study_roomUncheckedCreateWithoutFloorInput[]
+    connectOrCreate?: study_roomCreateOrConnectWithoutFloorInput | study_roomCreateOrConnectWithoutFloorInput[]
+    upsert?: study_roomUpsertWithWhereUniqueWithoutFloorInput | study_roomUpsertWithWhereUniqueWithoutFloorInput[]
+    createMany?: study_roomCreateManyFloorInputEnvelope
+    set?: study_roomWhereUniqueInput | study_roomWhereUniqueInput[]
+    disconnect?: study_roomWhereUniqueInput | study_roomWhereUniqueInput[]
+    delete?: study_roomWhereUniqueInput | study_roomWhereUniqueInput[]
+    connect?: study_roomWhereUniqueInput | study_roomWhereUniqueInput[]
+    update?: study_roomUpdateWithWhereUniqueWithoutFloorInput | study_roomUpdateWithWhereUniqueWithoutFloorInput[]
+    updateMany?: study_roomUpdateManyWithWhereWithoutFloorInput | study_roomUpdateManyWithWhereWithoutFloorInput[]
+    deleteMany?: study_roomScalarWhereInput | study_roomScalarWhereInput[]
+  }
+
+  export type study_floorCreateNestedOneWithoutStudyRoomsInput = {
+    create?: XOR<study_floorCreateWithoutStudyRoomsInput, study_floorUncheckedCreateWithoutStudyRoomsInput>
+    connectOrCreate?: study_floorCreateOrConnectWithoutStudyRoomsInput
+    connect?: study_floorWhereUniqueInput
+  }
+
+  export type study_seatCreateNestedManyWithoutRoomInput = {
+    create?: XOR<study_seatCreateWithoutRoomInput, study_seatUncheckedCreateWithoutRoomInput> | study_seatCreateWithoutRoomInput[] | study_seatUncheckedCreateWithoutRoomInput[]
+    connectOrCreate?: study_seatCreateOrConnectWithoutRoomInput | study_seatCreateOrConnectWithoutRoomInput[]
+    createMany?: study_seatCreateManyRoomInputEnvelope
+    connect?: study_seatWhereUniqueInput | study_seatWhereUniqueInput[]
+  }
+
+  export type study_seatUncheckedCreateNestedManyWithoutRoomInput = {
+    create?: XOR<study_seatCreateWithoutRoomInput, study_seatUncheckedCreateWithoutRoomInput> | study_seatCreateWithoutRoomInput[] | study_seatUncheckedCreateWithoutRoomInput[]
+    connectOrCreate?: study_seatCreateOrConnectWithoutRoomInput | study_seatCreateOrConnectWithoutRoomInput[]
+    createMany?: study_seatCreateManyRoomInputEnvelope
+    connect?: study_seatWhereUniqueInput | study_seatWhereUniqueInput[]
+  }
+
+  export type study_floorUpdateOneRequiredWithoutStudyRoomsNestedInput = {
+    create?: XOR<study_floorCreateWithoutStudyRoomsInput, study_floorUncheckedCreateWithoutStudyRoomsInput>
+    connectOrCreate?: study_floorCreateOrConnectWithoutStudyRoomsInput
+    upsert?: study_floorUpsertWithoutStudyRoomsInput
+    connect?: study_floorWhereUniqueInput
+    update?: XOR<XOR<study_floorUpdateToOneWithWhereWithoutStudyRoomsInput, study_floorUpdateWithoutStudyRoomsInput>, study_floorUncheckedUpdateWithoutStudyRoomsInput>
+  }
+
+  export type study_seatUpdateManyWithoutRoomNestedInput = {
+    create?: XOR<study_seatCreateWithoutRoomInput, study_seatUncheckedCreateWithoutRoomInput> | study_seatCreateWithoutRoomInput[] | study_seatUncheckedCreateWithoutRoomInput[]
+    connectOrCreate?: study_seatCreateOrConnectWithoutRoomInput | study_seatCreateOrConnectWithoutRoomInput[]
+    upsert?: study_seatUpsertWithWhereUniqueWithoutRoomInput | study_seatUpsertWithWhereUniqueWithoutRoomInput[]
+    createMany?: study_seatCreateManyRoomInputEnvelope
+    set?: study_seatWhereUniqueInput | study_seatWhereUniqueInput[]
+    disconnect?: study_seatWhereUniqueInput | study_seatWhereUniqueInput[]
+    delete?: study_seatWhereUniqueInput | study_seatWhereUniqueInput[]
+    connect?: study_seatWhereUniqueInput | study_seatWhereUniqueInput[]
+    update?: study_seatUpdateWithWhereUniqueWithoutRoomInput | study_seatUpdateWithWhereUniqueWithoutRoomInput[]
+    updateMany?: study_seatUpdateManyWithWhereWithoutRoomInput | study_seatUpdateManyWithWhereWithoutRoomInput[]
+    deleteMany?: study_seatScalarWhereInput | study_seatScalarWhereInput[]
+  }
+
+  export type study_seatUncheckedUpdateManyWithoutRoomNestedInput = {
+    create?: XOR<study_seatCreateWithoutRoomInput, study_seatUncheckedCreateWithoutRoomInput> | study_seatCreateWithoutRoomInput[] | study_seatUncheckedCreateWithoutRoomInput[]
+    connectOrCreate?: study_seatCreateOrConnectWithoutRoomInput | study_seatCreateOrConnectWithoutRoomInput[]
+    upsert?: study_seatUpsertWithWhereUniqueWithoutRoomInput | study_seatUpsertWithWhereUniqueWithoutRoomInput[]
+    createMany?: study_seatCreateManyRoomInputEnvelope
+    set?: study_seatWhereUniqueInput | study_seatWhereUniqueInput[]
+    disconnect?: study_seatWhereUniqueInput | study_seatWhereUniqueInput[]
+    delete?: study_seatWhereUniqueInput | study_seatWhereUniqueInput[]
+    connect?: study_seatWhereUniqueInput | study_seatWhereUniqueInput[]
+    update?: study_seatUpdateWithWhereUniqueWithoutRoomInput | study_seatUpdateWithWhereUniqueWithoutRoomInput[]
+    updateMany?: study_seatUpdateManyWithWhereWithoutRoomInput | study_seatUpdateManyWithWhereWithoutRoomInput[]
+    deleteMany?: study_seatScalarWhereInput | study_seatScalarWhereInput[]
+  }
+
+  export type study_roomCreateNestedOneWithoutSeatsInput = {
+    create?: XOR<study_roomCreateWithoutSeatsInput, study_roomUncheckedCreateWithoutSeatsInput>
+    connectOrCreate?: study_roomCreateOrConnectWithoutSeatsInput
+    connect?: study_roomWhereUniqueInput
+  }
+
+  export type study_reservationCreateNestedManyWithoutSeatInput = {
+    create?: XOR<study_reservationCreateWithoutSeatInput, study_reservationUncheckedCreateWithoutSeatInput> | study_reservationCreateWithoutSeatInput[] | study_reservationUncheckedCreateWithoutSeatInput[]
+    connectOrCreate?: study_reservationCreateOrConnectWithoutSeatInput | study_reservationCreateOrConnectWithoutSeatInput[]
+    createMany?: study_reservationCreateManySeatInputEnvelope
+    connect?: study_reservationWhereUniqueInput | study_reservationWhereUniqueInput[]
+  }
+
+  export type study_reservationUncheckedCreateNestedManyWithoutSeatInput = {
+    create?: XOR<study_reservationCreateWithoutSeatInput, study_reservationUncheckedCreateWithoutSeatInput> | study_reservationCreateWithoutSeatInput[] | study_reservationUncheckedCreateWithoutSeatInput[]
+    connectOrCreate?: study_reservationCreateOrConnectWithoutSeatInput | study_reservationCreateOrConnectWithoutSeatInput[]
+    createMany?: study_reservationCreateManySeatInputEnvelope
+    connect?: study_reservationWhereUniqueInput | study_reservationWhereUniqueInput[]
+  }
+
+  export type study_roomUpdateOneRequiredWithoutSeatsNestedInput = {
+    create?: XOR<study_roomCreateWithoutSeatsInput, study_roomUncheckedCreateWithoutSeatsInput>
+    connectOrCreate?: study_roomCreateOrConnectWithoutSeatsInput
+    upsert?: study_roomUpsertWithoutSeatsInput
+    connect?: study_roomWhereUniqueInput
+    update?: XOR<XOR<study_roomUpdateToOneWithWhereWithoutSeatsInput, study_roomUpdateWithoutSeatsInput>, study_roomUncheckedUpdateWithoutSeatsInput>
+  }
+
+  export type study_reservationUpdateManyWithoutSeatNestedInput = {
+    create?: XOR<study_reservationCreateWithoutSeatInput, study_reservationUncheckedCreateWithoutSeatInput> | study_reservationCreateWithoutSeatInput[] | study_reservationUncheckedCreateWithoutSeatInput[]
+    connectOrCreate?: study_reservationCreateOrConnectWithoutSeatInput | study_reservationCreateOrConnectWithoutSeatInput[]
+    upsert?: study_reservationUpsertWithWhereUniqueWithoutSeatInput | study_reservationUpsertWithWhereUniqueWithoutSeatInput[]
+    createMany?: study_reservationCreateManySeatInputEnvelope
+    set?: study_reservationWhereUniqueInput | study_reservationWhereUniqueInput[]
+    disconnect?: study_reservationWhereUniqueInput | study_reservationWhereUniqueInput[]
+    delete?: study_reservationWhereUniqueInput | study_reservationWhereUniqueInput[]
+    connect?: study_reservationWhereUniqueInput | study_reservationWhereUniqueInput[]
+    update?: study_reservationUpdateWithWhereUniqueWithoutSeatInput | study_reservationUpdateWithWhereUniqueWithoutSeatInput[]
+    updateMany?: study_reservationUpdateManyWithWhereWithoutSeatInput | study_reservationUpdateManyWithWhereWithoutSeatInput[]
+    deleteMany?: study_reservationScalarWhereInput | study_reservationScalarWhereInput[]
+  }
+
+  export type study_reservationUncheckedUpdateManyWithoutSeatNestedInput = {
+    create?: XOR<study_reservationCreateWithoutSeatInput, study_reservationUncheckedCreateWithoutSeatInput> | study_reservationCreateWithoutSeatInput[] | study_reservationUncheckedCreateWithoutSeatInput[]
+    connectOrCreate?: study_reservationCreateOrConnectWithoutSeatInput | study_reservationCreateOrConnectWithoutSeatInput[]
+    upsert?: study_reservationUpsertWithWhereUniqueWithoutSeatInput | study_reservationUpsertWithWhereUniqueWithoutSeatInput[]
+    createMany?: study_reservationCreateManySeatInputEnvelope
+    set?: study_reservationWhereUniqueInput | study_reservationWhereUniqueInput[]
+    disconnect?: study_reservationWhereUniqueInput | study_reservationWhereUniqueInput[]
+    delete?: study_reservationWhereUniqueInput | study_reservationWhereUniqueInput[]
+    connect?: study_reservationWhereUniqueInput | study_reservationWhereUniqueInput[]
+    update?: study_reservationUpdateWithWhereUniqueWithoutSeatInput | study_reservationUpdateWithWhereUniqueWithoutSeatInput[]
+    updateMany?: study_reservationUpdateManyWithWhereWithoutSeatInput | study_reservationUpdateManyWithWhereWithoutSeatInput[]
+    deleteMany?: study_reservationScalarWhereInput | study_reservationScalarWhereInput[]
+  }
+
+  export type study_userCreateNestedOneWithoutReservationInput = {
+    create?: XOR<study_userCreateWithoutReservationInput, study_userUncheckedCreateWithoutReservationInput>
+    connectOrCreate?: study_userCreateOrConnectWithoutReservationInput
+    connect?: study_userWhereUniqueInput
+  }
+
+  export type study_seatCreateNestedOneWithoutReservationsInput = {
+    create?: XOR<study_seatCreateWithoutReservationsInput, study_seatUncheckedCreateWithoutReservationsInput>
+    connectOrCreate?: study_seatCreateOrConnectWithoutReservationsInput
+    connect?: study_seatWhereUniqueInput
+  }
+
+  export type study_userUpdateOneRequiredWithoutReservationNestedInput = {
+    create?: XOR<study_userCreateWithoutReservationInput, study_userUncheckedCreateWithoutReservationInput>
+    connectOrCreate?: study_userCreateOrConnectWithoutReservationInput
+    upsert?: study_userUpsertWithoutReservationInput
+    connect?: study_userWhereUniqueInput
+    update?: XOR<XOR<study_userUpdateToOneWithWhereWithoutReservationInput, study_userUpdateWithoutReservationInput>, study_userUncheckedUpdateWithoutReservationInput>
+  }
+
+  export type study_seatUpdateOneRequiredWithoutReservationsNestedInput = {
+    create?: XOR<study_seatCreateWithoutReservationsInput, study_seatUncheckedCreateWithoutReservationsInput>
+    connectOrCreate?: study_seatCreateOrConnectWithoutReservationsInput
+    upsert?: study_seatUpsertWithoutReservationsInput
+    connect?: study_seatWhereUniqueInput
+    update?: XOR<XOR<study_seatUpdateToOneWithWhereWithoutReservationsInput, study_seatUpdateWithoutReservationsInput>, study_seatUncheckedUpdateWithoutReservationsInput>
+  }
+
+  export type study_userCreateNestedOneWithoutMessageInput = {
+    create?: XOR<study_userCreateWithoutMessageInput, study_userUncheckedCreateWithoutMessageInput>
+    connectOrCreate?: study_userCreateOrConnectWithoutMessageInput
+    connect?: study_userWhereUniqueInput
+  }
+
+  export type study_userUpdateOneRequiredWithoutMessageNestedInput = {
+    create?: XOR<study_userCreateWithoutMessageInput, study_userUncheckedCreateWithoutMessageInput>
+    connectOrCreate?: study_userCreateOrConnectWithoutMessageInput
+    upsert?: study_userUpsertWithoutMessageInput
+    connect?: study_userWhereUniqueInput
+    update?: XOR<XOR<study_userUpdateToOneWithWhereWithoutMessageInput, study_userUpdateWithoutMessageInput>, study_userUncheckedUpdateWithoutMessageInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -34627,6 +47462,26 @@ export namespace Prisma {
     create: XOR<file_configCreateWithoutUserInput, file_configUncheckedCreateWithoutUserInput>
   }
 
+  export type file_keysCreateWithoutUserInput = {
+    api_key: string
+    api_secret: string
+  }
+
+  export type file_keysUncheckedCreateWithoutUserInput = {
+    api_key: string
+    api_secret: string
+  }
+
+  export type file_keysCreateOrConnectWithoutUserInput = {
+    where: file_keysWhereUniqueInput
+    create: XOR<file_keysCreateWithoutUserInput, file_keysUncheckedCreateWithoutUserInput>
+  }
+
+  export type file_keysCreateManyUserInputEnvelope = {
+    data: file_keysCreateManyUserInput | file_keysCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type file_user_on_mediaUpsertWithWhereUniqueWithoutUserInput = {
     where: file_user_on_mediaWhereUniqueInput
     update: XOR<file_user_on_mediaUpdateWithoutUserInput, file_user_on_mediaUncheckedUpdateWithoutUserInput>
@@ -34699,16 +47554,100 @@ export namespace Prisma {
     uid?: StringFieldUpdateOperationsInput | string
   }
 
+  export type file_keysUpsertWithWhereUniqueWithoutUserInput = {
+    where: file_keysWhereUniqueInput
+    update: XOR<file_keysUpdateWithoutUserInput, file_keysUncheckedUpdateWithoutUserInput>
+    create: XOR<file_keysCreateWithoutUserInput, file_keysUncheckedCreateWithoutUserInput>
+  }
+
+  export type file_keysUpdateWithWhereUniqueWithoutUserInput = {
+    where: file_keysWhereUniqueInput
+    data: XOR<file_keysUpdateWithoutUserInput, file_keysUncheckedUpdateWithoutUserInput>
+  }
+
+  export type file_keysUpdateManyWithWhereWithoutUserInput = {
+    where: file_keysScalarWhereInput
+    data: XOR<file_keysUpdateManyMutationInput, file_keysUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type file_keysScalarWhereInput = {
+    AND?: file_keysScalarWhereInput | file_keysScalarWhereInput[]
+    OR?: file_keysScalarWhereInput[]
+    NOT?: file_keysScalarWhereInput | file_keysScalarWhereInput[]
+    api_key?: StringFilter<"file_keys"> | string
+    api_secret?: StringFilter<"file_keys"> | string
+    userId?: StringFilter<"file_keys"> | string
+  }
+
+  export type file_userCreateWithoutKeysInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    name: string
+    is_admin?: boolean
+    medias?: file_user_on_mediaCreateNestedManyWithoutUserInput
+    folders?: file_folderCreateNestedManyWithoutUserInput
+    file_config?: file_configCreateNestedOneWithoutUserInput
+  }
+
+  export type file_userUncheckedCreateWithoutKeysInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    name: string
+    is_admin?: boolean
+    medias?: file_user_on_mediaUncheckedCreateNestedManyWithoutUserInput
+    folders?: file_folderUncheckedCreateNestedManyWithoutUserInput
+    file_config?: file_configUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type file_userCreateOrConnectWithoutKeysInput = {
+    where: file_userWhereUniqueInput
+    create: XOR<file_userCreateWithoutKeysInput, file_userUncheckedCreateWithoutKeysInput>
+  }
+
+  export type file_userUpsertWithoutKeysInput = {
+    update: XOR<file_userUpdateWithoutKeysInput, file_userUncheckedUpdateWithoutKeysInput>
+    create: XOR<file_userCreateWithoutKeysInput, file_userUncheckedCreateWithoutKeysInput>
+    where?: file_userWhereInput
+  }
+
+  export type file_userUpdateToOneWithWhereWithoutKeysInput = {
+    where?: file_userWhereInput
+    data: XOR<file_userUpdateWithoutKeysInput, file_userUncheckedUpdateWithoutKeysInput>
+  }
+
+  export type file_userUpdateWithoutKeysInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    is_admin?: BoolFieldUpdateOperationsInput | boolean
+    medias?: file_user_on_mediaUpdateManyWithoutUserNestedInput
+    folders?: file_folderUpdateManyWithoutUserNestedInput
+    file_config?: file_configUpdateOneWithoutUserNestedInput
+  }
+
+  export type file_userUncheckedUpdateWithoutKeysInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    is_admin?: BoolFieldUpdateOperationsInput | boolean
+    medias?: file_user_on_mediaUncheckedUpdateManyWithoutUserNestedInput
+    folders?: file_folderUncheckedUpdateManyWithoutUserNestedInput
+    file_config?: file_configUncheckedUpdateOneWithoutUserNestedInput
+  }
+
   export type file_userCreateWithoutFile_configInput = {
     uid?: string
     createAt?: Date | string
     updateAt?: Date | string
     name: string
-    api_key: string
-    api_secret: string
     is_admin?: boolean
     medias?: file_user_on_mediaCreateNestedManyWithoutUserInput
     folders?: file_folderCreateNestedManyWithoutUserInput
+    keys?: file_keysCreateNestedManyWithoutUserInput
   }
 
   export type file_userUncheckedCreateWithoutFile_configInput = {
@@ -34716,11 +47655,10 @@ export namespace Prisma {
     createAt?: Date | string
     updateAt?: Date | string
     name: string
-    api_key: string
-    api_secret: string
     is_admin?: boolean
     medias?: file_user_on_mediaUncheckedCreateNestedManyWithoutUserInput
     folders?: file_folderUncheckedCreateNestedManyWithoutUserInput
+    keys?: file_keysUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type file_userCreateOrConnectWithoutFile_configInput = {
@@ -34744,11 +47682,10 @@ export namespace Prisma {
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
-    api_key?: StringFieldUpdateOperationsInput | string
-    api_secret?: StringFieldUpdateOperationsInput | string
     is_admin?: BoolFieldUpdateOperationsInput | boolean
     medias?: file_user_on_mediaUpdateManyWithoutUserNestedInput
     folders?: file_folderUpdateManyWithoutUserNestedInput
+    keys?: file_keysUpdateManyWithoutUserNestedInput
   }
 
   export type file_userUncheckedUpdateWithoutFile_configInput = {
@@ -34756,11 +47693,10 @@ export namespace Prisma {
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
-    api_key?: StringFieldUpdateOperationsInput | string
-    api_secret?: StringFieldUpdateOperationsInput | string
     is_admin?: BoolFieldUpdateOperationsInput | boolean
     medias?: file_user_on_mediaUncheckedUpdateManyWithoutUserNestedInput
     folders?: file_folderUncheckedUpdateManyWithoutUserNestedInput
+    keys?: file_keysUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type file_userCreateWithoutMediasInput = {
@@ -34768,11 +47704,10 @@ export namespace Prisma {
     createAt?: Date | string
     updateAt?: Date | string
     name: string
-    api_key: string
-    api_secret: string
     is_admin?: boolean
     folders?: file_folderCreateNestedManyWithoutUserInput
     file_config?: file_configCreateNestedOneWithoutUserInput
+    keys?: file_keysCreateNestedManyWithoutUserInput
   }
 
   export type file_userUncheckedCreateWithoutMediasInput = {
@@ -34780,11 +47715,10 @@ export namespace Prisma {
     createAt?: Date | string
     updateAt?: Date | string
     name: string
-    api_key: string
-    api_secret: string
     is_admin?: boolean
     folders?: file_folderUncheckedCreateNestedManyWithoutUserInput
     file_config?: file_configUncheckedCreateNestedOneWithoutUserInput
+    keys?: file_keysUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type file_userCreateOrConnectWithoutMediasInput = {
@@ -34841,11 +47775,10 @@ export namespace Prisma {
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
-    api_key?: StringFieldUpdateOperationsInput | string
-    api_secret?: StringFieldUpdateOperationsInput | string
     is_admin?: BoolFieldUpdateOperationsInput | boolean
     folders?: file_folderUpdateManyWithoutUserNestedInput
     file_config?: file_configUpdateOneWithoutUserNestedInput
+    keys?: file_keysUpdateManyWithoutUserNestedInput
   }
 
   export type file_userUncheckedUpdateWithoutMediasInput = {
@@ -34853,11 +47786,10 @@ export namespace Prisma {
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
-    api_key?: StringFieldUpdateOperationsInput | string
-    api_secret?: StringFieldUpdateOperationsInput | string
     is_admin?: BoolFieldUpdateOperationsInput | boolean
     folders?: file_folderUncheckedUpdateManyWithoutUserNestedInput
     file_config?: file_configUncheckedUpdateOneWithoutUserNestedInput
+    keys?: file_keysUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type file_mediaUpsertWithoutUsersInput = {
@@ -35236,11 +48168,10 @@ export namespace Prisma {
     createAt?: Date | string
     updateAt?: Date | string
     name: string
-    api_key: string
-    api_secret: string
     is_admin?: boolean
     medias?: file_user_on_mediaCreateNestedManyWithoutUserInput
     file_config?: file_configCreateNestedOneWithoutUserInput
+    keys?: file_keysCreateNestedManyWithoutUserInput
   }
 
   export type file_userUncheckedCreateWithoutFoldersInput = {
@@ -35248,11 +48179,10 @@ export namespace Prisma {
     createAt?: Date | string
     updateAt?: Date | string
     name: string
-    api_key: string
-    api_secret: string
     is_admin?: boolean
     medias?: file_user_on_mediaUncheckedCreateNestedManyWithoutUserInput
     file_config?: file_configUncheckedCreateNestedOneWithoutUserInput
+    keys?: file_keysUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type file_userCreateOrConnectWithoutFoldersInput = {
@@ -35349,11 +48279,10 @@ export namespace Prisma {
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
-    api_key?: StringFieldUpdateOperationsInput | string
-    api_secret?: StringFieldUpdateOperationsInput | string
     is_admin?: BoolFieldUpdateOperationsInput | boolean
     medias?: file_user_on_mediaUpdateManyWithoutUserNestedInput
     file_config?: file_configUpdateOneWithoutUserNestedInput
+    keys?: file_keysUpdateManyWithoutUserNestedInput
   }
 
   export type file_userUncheckedUpdateWithoutFoldersInput = {
@@ -35361,11 +48290,10 @@ export namespace Prisma {
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
-    api_key?: StringFieldUpdateOperationsInput | string
-    api_secret?: StringFieldUpdateOperationsInput | string
     is_admin?: BoolFieldUpdateOperationsInput | boolean
     medias?: file_user_on_mediaUncheckedUpdateManyWithoutUserNestedInput
     file_config?: file_configUncheckedUpdateOneWithoutUserNestedInput
+    keys?: file_keysUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type file_folderUpsertWithoutChildrenInput = {
@@ -36277,6 +49205,673 @@ export namespace Prisma {
     book_borrow_history?: book_borrow_historyUncheckedUpdateManyWithoutBookNestedInput
   }
 
+  export type study_reservationCreateWithoutUserInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    startTime: Date | string
+    endTime: Date | string
+    status?: string
+    seat: study_seatCreateNestedOneWithoutReservationsInput
+  }
+
+  export type study_reservationUncheckedCreateWithoutUserInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    seatId: string
+    startTime: Date | string
+    endTime: Date | string
+    status?: string
+  }
+
+  export type study_reservationCreateOrConnectWithoutUserInput = {
+    where: study_reservationWhereUniqueInput
+    create: XOR<study_reservationCreateWithoutUserInput, study_reservationUncheckedCreateWithoutUserInput>
+  }
+
+  export type study_reservationCreateManyUserInputEnvelope = {
+    data: study_reservationCreateManyUserInput | study_reservationCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type study_messageCreateWithoutUserInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    content: string
+    reply?: string | null
+    status?: boolean
+  }
+
+  export type study_messageUncheckedCreateWithoutUserInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    content: string
+    reply?: string | null
+    status?: boolean
+  }
+
+  export type study_messageCreateOrConnectWithoutUserInput = {
+    where: study_messageWhereUniqueInput
+    create: XOR<study_messageCreateWithoutUserInput, study_messageUncheckedCreateWithoutUserInput>
+  }
+
+  export type study_messageCreateManyUserInputEnvelope = {
+    data: study_messageCreateManyUserInput | study_messageCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type study_reservationUpsertWithWhereUniqueWithoutUserInput = {
+    where: study_reservationWhereUniqueInput
+    update: XOR<study_reservationUpdateWithoutUserInput, study_reservationUncheckedUpdateWithoutUserInput>
+    create: XOR<study_reservationCreateWithoutUserInput, study_reservationUncheckedCreateWithoutUserInput>
+  }
+
+  export type study_reservationUpdateWithWhereUniqueWithoutUserInput = {
+    where: study_reservationWhereUniqueInput
+    data: XOR<study_reservationUpdateWithoutUserInput, study_reservationUncheckedUpdateWithoutUserInput>
+  }
+
+  export type study_reservationUpdateManyWithWhereWithoutUserInput = {
+    where: study_reservationScalarWhereInput
+    data: XOR<study_reservationUpdateManyMutationInput, study_reservationUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type study_reservationScalarWhereInput = {
+    AND?: study_reservationScalarWhereInput | study_reservationScalarWhereInput[]
+    OR?: study_reservationScalarWhereInput[]
+    NOT?: study_reservationScalarWhereInput | study_reservationScalarWhereInput[]
+    uid?: StringFilter<"study_reservation"> | string
+    createAt?: DateTimeFilter<"study_reservation"> | Date | string
+    updateAt?: DateTimeFilter<"study_reservation"> | Date | string
+    userId?: StringFilter<"study_reservation"> | string
+    seatId?: StringFilter<"study_reservation"> | string
+    startTime?: DateTimeFilter<"study_reservation"> | Date | string
+    endTime?: DateTimeFilter<"study_reservation"> | Date | string
+    status?: StringFilter<"study_reservation"> | string
+  }
+
+  export type study_messageUpsertWithWhereUniqueWithoutUserInput = {
+    where: study_messageWhereUniqueInput
+    update: XOR<study_messageUpdateWithoutUserInput, study_messageUncheckedUpdateWithoutUserInput>
+    create: XOR<study_messageCreateWithoutUserInput, study_messageUncheckedCreateWithoutUserInput>
+  }
+
+  export type study_messageUpdateWithWhereUniqueWithoutUserInput = {
+    where: study_messageWhereUniqueInput
+    data: XOR<study_messageUpdateWithoutUserInput, study_messageUncheckedUpdateWithoutUserInput>
+  }
+
+  export type study_messageUpdateManyWithWhereWithoutUserInput = {
+    where: study_messageScalarWhereInput
+    data: XOR<study_messageUpdateManyMutationInput, study_messageUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type study_messageScalarWhereInput = {
+    AND?: study_messageScalarWhereInput | study_messageScalarWhereInput[]
+    OR?: study_messageScalarWhereInput[]
+    NOT?: study_messageScalarWhereInput | study_messageScalarWhereInput[]
+    uid?: StringFilter<"study_message"> | string
+    createAt?: DateTimeFilter<"study_message"> | Date | string
+    updateAt?: DateTimeFilter<"study_message"> | Date | string
+    userId?: StringFilter<"study_message"> | string
+    content?: StringFilter<"study_message"> | string
+    reply?: StringNullableFilter<"study_message"> | string | null
+    status?: BoolFilter<"study_message"> | boolean
+  }
+
+  export type study_floorCreateWithoutStoreInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    floorNumber: number
+    studyRooms?: study_roomCreateNestedManyWithoutFloorInput
+  }
+
+  export type study_floorUncheckedCreateWithoutStoreInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    floorNumber: number
+    studyRooms?: study_roomUncheckedCreateNestedManyWithoutFloorInput
+  }
+
+  export type study_floorCreateOrConnectWithoutStoreInput = {
+    where: study_floorWhereUniqueInput
+    create: XOR<study_floorCreateWithoutStoreInput, study_floorUncheckedCreateWithoutStoreInput>
+  }
+
+  export type study_floorCreateManyStoreInputEnvelope = {
+    data: study_floorCreateManyStoreInput | study_floorCreateManyStoreInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type study_floorUpsertWithWhereUniqueWithoutStoreInput = {
+    where: study_floorWhereUniqueInput
+    update: XOR<study_floorUpdateWithoutStoreInput, study_floorUncheckedUpdateWithoutStoreInput>
+    create: XOR<study_floorCreateWithoutStoreInput, study_floorUncheckedCreateWithoutStoreInput>
+  }
+
+  export type study_floorUpdateWithWhereUniqueWithoutStoreInput = {
+    where: study_floorWhereUniqueInput
+    data: XOR<study_floorUpdateWithoutStoreInput, study_floorUncheckedUpdateWithoutStoreInput>
+  }
+
+  export type study_floorUpdateManyWithWhereWithoutStoreInput = {
+    where: study_floorScalarWhereInput
+    data: XOR<study_floorUpdateManyMutationInput, study_floorUncheckedUpdateManyWithoutStoreInput>
+  }
+
+  export type study_floorScalarWhereInput = {
+    AND?: study_floorScalarWhereInput | study_floorScalarWhereInput[]
+    OR?: study_floorScalarWhereInput[]
+    NOT?: study_floorScalarWhereInput | study_floorScalarWhereInput[]
+    uid?: StringFilter<"study_floor"> | string
+    createAt?: DateTimeFilter<"study_floor"> | Date | string
+    updateAt?: DateTimeFilter<"study_floor"> | Date | string
+    floorNumber?: IntFilter<"study_floor"> | number
+    storeId?: StringFilter<"study_floor"> | string
+  }
+
+  export type study_storeCreateWithoutFloorsInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    name: string
+    local: string
+    address: string
+    status?: boolean
+    remark?: string | null
+  }
+
+  export type study_storeUncheckedCreateWithoutFloorsInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    name: string
+    local: string
+    address: string
+    status?: boolean
+    remark?: string | null
+  }
+
+  export type study_storeCreateOrConnectWithoutFloorsInput = {
+    where: study_storeWhereUniqueInput
+    create: XOR<study_storeCreateWithoutFloorsInput, study_storeUncheckedCreateWithoutFloorsInput>
+  }
+
+  export type study_roomCreateWithoutFloorInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    name: string
+    capacity: number
+    status?: boolean
+    seats?: study_seatCreateNestedManyWithoutRoomInput
+  }
+
+  export type study_roomUncheckedCreateWithoutFloorInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    name: string
+    capacity: number
+    status?: boolean
+    seats?: study_seatUncheckedCreateNestedManyWithoutRoomInput
+  }
+
+  export type study_roomCreateOrConnectWithoutFloorInput = {
+    where: study_roomWhereUniqueInput
+    create: XOR<study_roomCreateWithoutFloorInput, study_roomUncheckedCreateWithoutFloorInput>
+  }
+
+  export type study_roomCreateManyFloorInputEnvelope = {
+    data: study_roomCreateManyFloorInput | study_roomCreateManyFloorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type study_storeUpsertWithoutFloorsInput = {
+    update: XOR<study_storeUpdateWithoutFloorsInput, study_storeUncheckedUpdateWithoutFloorsInput>
+    create: XOR<study_storeCreateWithoutFloorsInput, study_storeUncheckedCreateWithoutFloorsInput>
+    where?: study_storeWhereInput
+  }
+
+  export type study_storeUpdateToOneWithWhereWithoutFloorsInput = {
+    where?: study_storeWhereInput
+    data: XOR<study_storeUpdateWithoutFloorsInput, study_storeUncheckedUpdateWithoutFloorsInput>
+  }
+
+  export type study_storeUpdateWithoutFloorsInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    local?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    remark?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type study_storeUncheckedUpdateWithoutFloorsInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    local?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    remark?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type study_roomUpsertWithWhereUniqueWithoutFloorInput = {
+    where: study_roomWhereUniqueInput
+    update: XOR<study_roomUpdateWithoutFloorInput, study_roomUncheckedUpdateWithoutFloorInput>
+    create: XOR<study_roomCreateWithoutFloorInput, study_roomUncheckedCreateWithoutFloorInput>
+  }
+
+  export type study_roomUpdateWithWhereUniqueWithoutFloorInput = {
+    where: study_roomWhereUniqueInput
+    data: XOR<study_roomUpdateWithoutFloorInput, study_roomUncheckedUpdateWithoutFloorInput>
+  }
+
+  export type study_roomUpdateManyWithWhereWithoutFloorInput = {
+    where: study_roomScalarWhereInput
+    data: XOR<study_roomUpdateManyMutationInput, study_roomUncheckedUpdateManyWithoutFloorInput>
+  }
+
+  export type study_roomScalarWhereInput = {
+    AND?: study_roomScalarWhereInput | study_roomScalarWhereInput[]
+    OR?: study_roomScalarWhereInput[]
+    NOT?: study_roomScalarWhereInput | study_roomScalarWhereInput[]
+    uid?: StringFilter<"study_room"> | string
+    createAt?: DateTimeFilter<"study_room"> | Date | string
+    updateAt?: DateTimeFilter<"study_room"> | Date | string
+    name?: StringFilter<"study_room"> | string
+    floorId?: StringFilter<"study_room"> | string
+    capacity?: IntFilter<"study_room"> | number
+    status?: BoolFilter<"study_room"> | boolean
+  }
+
+  export type study_floorCreateWithoutStudyRoomsInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    floorNumber: number
+    store: study_storeCreateNestedOneWithoutFloorsInput
+  }
+
+  export type study_floorUncheckedCreateWithoutStudyRoomsInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    floorNumber: number
+    storeId: string
+  }
+
+  export type study_floorCreateOrConnectWithoutStudyRoomsInput = {
+    where: study_floorWhereUniqueInput
+    create: XOR<study_floorCreateWithoutStudyRoomsInput, study_floorUncheckedCreateWithoutStudyRoomsInput>
+  }
+
+  export type study_seatCreateWithoutRoomInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    seatNumber: string
+    status?: boolean
+    reservations?: study_reservationCreateNestedManyWithoutSeatInput
+  }
+
+  export type study_seatUncheckedCreateWithoutRoomInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    seatNumber: string
+    status?: boolean
+    reservations?: study_reservationUncheckedCreateNestedManyWithoutSeatInput
+  }
+
+  export type study_seatCreateOrConnectWithoutRoomInput = {
+    where: study_seatWhereUniqueInput
+    create: XOR<study_seatCreateWithoutRoomInput, study_seatUncheckedCreateWithoutRoomInput>
+  }
+
+  export type study_seatCreateManyRoomInputEnvelope = {
+    data: study_seatCreateManyRoomInput | study_seatCreateManyRoomInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type study_floorUpsertWithoutStudyRoomsInput = {
+    update: XOR<study_floorUpdateWithoutStudyRoomsInput, study_floorUncheckedUpdateWithoutStudyRoomsInput>
+    create: XOR<study_floorCreateWithoutStudyRoomsInput, study_floorUncheckedCreateWithoutStudyRoomsInput>
+    where?: study_floorWhereInput
+  }
+
+  export type study_floorUpdateToOneWithWhereWithoutStudyRoomsInput = {
+    where?: study_floorWhereInput
+    data: XOR<study_floorUpdateWithoutStudyRoomsInput, study_floorUncheckedUpdateWithoutStudyRoomsInput>
+  }
+
+  export type study_floorUpdateWithoutStudyRoomsInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    floorNumber?: IntFieldUpdateOperationsInput | number
+    store?: study_storeUpdateOneRequiredWithoutFloorsNestedInput
+  }
+
+  export type study_floorUncheckedUpdateWithoutStudyRoomsInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    floorNumber?: IntFieldUpdateOperationsInput | number
+    storeId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type study_seatUpsertWithWhereUniqueWithoutRoomInput = {
+    where: study_seatWhereUniqueInput
+    update: XOR<study_seatUpdateWithoutRoomInput, study_seatUncheckedUpdateWithoutRoomInput>
+    create: XOR<study_seatCreateWithoutRoomInput, study_seatUncheckedCreateWithoutRoomInput>
+  }
+
+  export type study_seatUpdateWithWhereUniqueWithoutRoomInput = {
+    where: study_seatWhereUniqueInput
+    data: XOR<study_seatUpdateWithoutRoomInput, study_seatUncheckedUpdateWithoutRoomInput>
+  }
+
+  export type study_seatUpdateManyWithWhereWithoutRoomInput = {
+    where: study_seatScalarWhereInput
+    data: XOR<study_seatUpdateManyMutationInput, study_seatUncheckedUpdateManyWithoutRoomInput>
+  }
+
+  export type study_seatScalarWhereInput = {
+    AND?: study_seatScalarWhereInput | study_seatScalarWhereInput[]
+    OR?: study_seatScalarWhereInput[]
+    NOT?: study_seatScalarWhereInput | study_seatScalarWhereInput[]
+    uid?: StringFilter<"study_seat"> | string
+    createAt?: DateTimeFilter<"study_seat"> | Date | string
+    updateAt?: DateTimeFilter<"study_seat"> | Date | string
+    seatNumber?: StringFilter<"study_seat"> | string
+    roomId?: StringFilter<"study_seat"> | string
+    status?: BoolFilter<"study_seat"> | boolean
+  }
+
+  export type study_roomCreateWithoutSeatsInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    name: string
+    capacity: number
+    status?: boolean
+    floor: study_floorCreateNestedOneWithoutStudyRoomsInput
+  }
+
+  export type study_roomUncheckedCreateWithoutSeatsInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    name: string
+    floorId: string
+    capacity: number
+    status?: boolean
+  }
+
+  export type study_roomCreateOrConnectWithoutSeatsInput = {
+    where: study_roomWhereUniqueInput
+    create: XOR<study_roomCreateWithoutSeatsInput, study_roomUncheckedCreateWithoutSeatsInput>
+  }
+
+  export type study_reservationCreateWithoutSeatInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    startTime: Date | string
+    endTime: Date | string
+    status?: string
+    user: study_userCreateNestedOneWithoutReservationInput
+  }
+
+  export type study_reservationUncheckedCreateWithoutSeatInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    userId: string
+    startTime: Date | string
+    endTime: Date | string
+    status?: string
+  }
+
+  export type study_reservationCreateOrConnectWithoutSeatInput = {
+    where: study_reservationWhereUniqueInput
+    create: XOR<study_reservationCreateWithoutSeatInput, study_reservationUncheckedCreateWithoutSeatInput>
+  }
+
+  export type study_reservationCreateManySeatInputEnvelope = {
+    data: study_reservationCreateManySeatInput | study_reservationCreateManySeatInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type study_roomUpsertWithoutSeatsInput = {
+    update: XOR<study_roomUpdateWithoutSeatsInput, study_roomUncheckedUpdateWithoutSeatsInput>
+    create: XOR<study_roomCreateWithoutSeatsInput, study_roomUncheckedCreateWithoutSeatsInput>
+    where?: study_roomWhereInput
+  }
+
+  export type study_roomUpdateToOneWithWhereWithoutSeatsInput = {
+    where?: study_roomWhereInput
+    data: XOR<study_roomUpdateWithoutSeatsInput, study_roomUncheckedUpdateWithoutSeatsInput>
+  }
+
+  export type study_roomUpdateWithoutSeatsInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    capacity?: IntFieldUpdateOperationsInput | number
+    status?: BoolFieldUpdateOperationsInput | boolean
+    floor?: study_floorUpdateOneRequiredWithoutStudyRoomsNestedInput
+  }
+
+  export type study_roomUncheckedUpdateWithoutSeatsInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    floorId?: StringFieldUpdateOperationsInput | string
+    capacity?: IntFieldUpdateOperationsInput | number
+    status?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type study_reservationUpsertWithWhereUniqueWithoutSeatInput = {
+    where: study_reservationWhereUniqueInput
+    update: XOR<study_reservationUpdateWithoutSeatInput, study_reservationUncheckedUpdateWithoutSeatInput>
+    create: XOR<study_reservationCreateWithoutSeatInput, study_reservationUncheckedCreateWithoutSeatInput>
+  }
+
+  export type study_reservationUpdateWithWhereUniqueWithoutSeatInput = {
+    where: study_reservationWhereUniqueInput
+    data: XOR<study_reservationUpdateWithoutSeatInput, study_reservationUncheckedUpdateWithoutSeatInput>
+  }
+
+  export type study_reservationUpdateManyWithWhereWithoutSeatInput = {
+    where: study_reservationScalarWhereInput
+    data: XOR<study_reservationUpdateManyMutationInput, study_reservationUncheckedUpdateManyWithoutSeatInput>
+  }
+
+  export type study_userCreateWithoutReservationInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    name: string
+    account: string
+    password: string
+    isAdmin?: boolean
+    message?: study_messageCreateNestedManyWithoutUserInput
+  }
+
+  export type study_userUncheckedCreateWithoutReservationInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    name: string
+    account: string
+    password: string
+    isAdmin?: boolean
+    message?: study_messageUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type study_userCreateOrConnectWithoutReservationInput = {
+    where: study_userWhereUniqueInput
+    create: XOR<study_userCreateWithoutReservationInput, study_userUncheckedCreateWithoutReservationInput>
+  }
+
+  export type study_seatCreateWithoutReservationsInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    seatNumber: string
+    status?: boolean
+    room: study_roomCreateNestedOneWithoutSeatsInput
+  }
+
+  export type study_seatUncheckedCreateWithoutReservationsInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    seatNumber: string
+    roomId: string
+    status?: boolean
+  }
+
+  export type study_seatCreateOrConnectWithoutReservationsInput = {
+    where: study_seatWhereUniqueInput
+    create: XOR<study_seatCreateWithoutReservationsInput, study_seatUncheckedCreateWithoutReservationsInput>
+  }
+
+  export type study_userUpsertWithoutReservationInput = {
+    update: XOR<study_userUpdateWithoutReservationInput, study_userUncheckedUpdateWithoutReservationInput>
+    create: XOR<study_userCreateWithoutReservationInput, study_userUncheckedCreateWithoutReservationInput>
+    where?: study_userWhereInput
+  }
+
+  export type study_userUpdateToOneWithWhereWithoutReservationInput = {
+    where?: study_userWhereInput
+    data: XOR<study_userUpdateWithoutReservationInput, study_userUncheckedUpdateWithoutReservationInput>
+  }
+
+  export type study_userUpdateWithoutReservationInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    account?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    message?: study_messageUpdateManyWithoutUserNestedInput
+  }
+
+  export type study_userUncheckedUpdateWithoutReservationInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    account?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    message?: study_messageUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type study_seatUpsertWithoutReservationsInput = {
+    update: XOR<study_seatUpdateWithoutReservationsInput, study_seatUncheckedUpdateWithoutReservationsInput>
+    create: XOR<study_seatCreateWithoutReservationsInput, study_seatUncheckedCreateWithoutReservationsInput>
+    where?: study_seatWhereInput
+  }
+
+  export type study_seatUpdateToOneWithWhereWithoutReservationsInput = {
+    where?: study_seatWhereInput
+    data: XOR<study_seatUpdateWithoutReservationsInput, study_seatUncheckedUpdateWithoutReservationsInput>
+  }
+
+  export type study_seatUpdateWithoutReservationsInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    seatNumber?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    room?: study_roomUpdateOneRequiredWithoutSeatsNestedInput
+  }
+
+  export type study_seatUncheckedUpdateWithoutReservationsInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    seatNumber?: StringFieldUpdateOperationsInput | string
+    roomId?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type study_userCreateWithoutMessageInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    name: string
+    account: string
+    password: string
+    isAdmin?: boolean
+    reservation?: study_reservationCreateNestedManyWithoutUserInput
+  }
+
+  export type study_userUncheckedCreateWithoutMessageInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    name: string
+    account: string
+    password: string
+    isAdmin?: boolean
+    reservation?: study_reservationUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type study_userCreateOrConnectWithoutMessageInput = {
+    where: study_userWhereUniqueInput
+    create: XOR<study_userCreateWithoutMessageInput, study_userUncheckedCreateWithoutMessageInput>
+  }
+
+  export type study_userUpsertWithoutMessageInput = {
+    update: XOR<study_userUpdateWithoutMessageInput, study_userUncheckedUpdateWithoutMessageInput>
+    create: XOR<study_userCreateWithoutMessageInput, study_userUncheckedCreateWithoutMessageInput>
+    where?: study_userWhereInput
+  }
+
+  export type study_userUpdateToOneWithWhereWithoutMessageInput = {
+    where?: study_userWhereInput
+    data: XOR<study_userUpdateWithoutMessageInput, study_userUncheckedUpdateWithoutMessageInput>
+  }
+
+  export type study_userUpdateWithoutMessageInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    account?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    reservation?: study_reservationUpdateManyWithoutUserNestedInput
+  }
+
+  export type study_userUncheckedUpdateWithoutMessageInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    account?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    reservation?: study_reservationUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type sys_accountCreateManyUserInput = {
     createAt?: Date | string
     updateAt?: Date | string
@@ -36584,6 +50179,11 @@ export namespace Prisma {
     parentId?: string | null
   }
 
+  export type file_keysCreateManyUserInput = {
+    api_key: string
+    api_secret: string
+  }
+
   export type file_user_on_mediaUpdateWithoutUserInput = {
     comment?: NullableStringFieldUpdateOperationsInput | string | null
     media?: file_mediaUpdateOneRequiredWithoutUsersNestedInput
@@ -36625,6 +50225,21 @@ export namespace Prisma {
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type file_keysUpdateWithoutUserInput = {
+    api_key?: StringFieldUpdateOperationsInput | string
+    api_secret?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type file_keysUncheckedUpdateWithoutUserInput = {
+    api_key?: StringFieldUpdateOperationsInput | string
+    api_secret?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type file_keysUncheckedUpdateManyWithoutUserInput = {
+    api_key?: StringFieldUpdateOperationsInput | string
+    api_secret?: StringFieldUpdateOperationsInput | string
   }
 
   export type file_blockCreateManyMediaInput = {
@@ -37007,6 +50622,224 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     publication?: DateTimeFieldUpdateOperationsInput | Date | string
     available?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type study_reservationCreateManyUserInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    seatId: string
+    startTime: Date | string
+    endTime: Date | string
+    status?: string
+  }
+
+  export type study_messageCreateManyUserInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    content: string
+    reply?: string | null
+    status?: boolean
+  }
+
+  export type study_reservationUpdateWithoutUserInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    seat?: study_seatUpdateOneRequiredWithoutReservationsNestedInput
+  }
+
+  export type study_reservationUncheckedUpdateWithoutUserInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    seatId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type study_reservationUncheckedUpdateManyWithoutUserInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    seatId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type study_messageUpdateWithoutUserInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    content?: StringFieldUpdateOperationsInput | string
+    reply?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type study_messageUncheckedUpdateWithoutUserInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    content?: StringFieldUpdateOperationsInput | string
+    reply?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type study_messageUncheckedUpdateManyWithoutUserInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    content?: StringFieldUpdateOperationsInput | string
+    reply?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type study_floorCreateManyStoreInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    floorNumber: number
+  }
+
+  export type study_floorUpdateWithoutStoreInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    floorNumber?: IntFieldUpdateOperationsInput | number
+    studyRooms?: study_roomUpdateManyWithoutFloorNestedInput
+  }
+
+  export type study_floorUncheckedUpdateWithoutStoreInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    floorNumber?: IntFieldUpdateOperationsInput | number
+    studyRooms?: study_roomUncheckedUpdateManyWithoutFloorNestedInput
+  }
+
+  export type study_floorUncheckedUpdateManyWithoutStoreInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    floorNumber?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type study_roomCreateManyFloorInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    name: string
+    capacity: number
+    status?: boolean
+  }
+
+  export type study_roomUpdateWithoutFloorInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    capacity?: IntFieldUpdateOperationsInput | number
+    status?: BoolFieldUpdateOperationsInput | boolean
+    seats?: study_seatUpdateManyWithoutRoomNestedInput
+  }
+
+  export type study_roomUncheckedUpdateWithoutFloorInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    capacity?: IntFieldUpdateOperationsInput | number
+    status?: BoolFieldUpdateOperationsInput | boolean
+    seats?: study_seatUncheckedUpdateManyWithoutRoomNestedInput
+  }
+
+  export type study_roomUncheckedUpdateManyWithoutFloorInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    capacity?: IntFieldUpdateOperationsInput | number
+    status?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type study_seatCreateManyRoomInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    seatNumber: string
+    status?: boolean
+  }
+
+  export type study_seatUpdateWithoutRoomInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    seatNumber?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    reservations?: study_reservationUpdateManyWithoutSeatNestedInput
+  }
+
+  export type study_seatUncheckedUpdateWithoutRoomInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    seatNumber?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    reservations?: study_reservationUncheckedUpdateManyWithoutSeatNestedInput
+  }
+
+  export type study_seatUncheckedUpdateManyWithoutRoomInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    seatNumber?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type study_reservationCreateManySeatInput = {
+    uid?: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    userId: string
+    startTime: Date | string
+    endTime: Date | string
+    status?: string
+  }
+
+  export type study_reservationUpdateWithoutSeatInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    user?: study_userUpdateOneRequiredWithoutReservationNestedInput
+  }
+
+  export type study_reservationUncheckedUpdateWithoutSeatInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type study_reservationUncheckedUpdateManyWithoutSeatInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
   }
 
 

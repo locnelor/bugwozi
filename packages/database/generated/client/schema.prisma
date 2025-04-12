@@ -126,6 +126,13 @@ model blog_posts {
   tags         blog_posts_on_tags[]
 }
 
+// 博客公告
+model blog_notice {
+  uid      String   @id @default(uuid())
+  createAt DateTime @default(now())
+  updateAt DateTime @default(now())
+}
+
 // 博客标签
 model blog_posts_on_tags {
   postsId String
@@ -152,12 +159,19 @@ model file_user {
   createAt    DateTime             @default(now())
   updateAt    DateTime             @default(now())
   name        String //用户名
-  api_key     String               @unique //key
-  api_secret  String
   medias      file_user_on_media[] //用户的媒体
   folders     file_folder[] //用户的文件夹
   file_config file_config?
   is_admin    Boolean              @default(false)
+  keys        file_keys[]
+}
+
+//文件key
+model file_keys {
+  api_key    String    @id //key
+  api_secret String
+  user       file_user @relation(fields: [userId], references: [uid])
+  userId     String
 }
 
 model file_config {
@@ -259,7 +273,7 @@ model book_user {
   password            String // 用户密码
   role                book_role             @default(book_user) // 用户角色，默认为普通用户
   borrowed            book_borrowed[] // 用户借阅的图书记录
-  book_roleId         String // 角色ID（关联到book_role表）
+  book_roleId         String // 角色ID（关联��book_role表）
   book_borrow_history book_borrow_history[] // 用户的借阅历史记录
   book_rating         book_rating[] // 用户对图书的评分和评论
 }
@@ -327,4 +341,104 @@ model book_rating {
   user     book_user @relation(fields: [userId], references: [id]) // 关联用户表
   bookId   String // 外键，关联图书
   book     book_book @relation(fields: [bookId], references: [id]) // 关联图书表
+}
+
+//----------------------自习室预约系统
+
+model study_user {
+  uid      String   @id @default(uuid())
+  createAt DateTime @default(now())
+  updateAt DateTime @default(now())
+  name     String
+  account  String   @unique
+  password String
+  isAdmin  Boolean  @default(false)
+
+  reservation study_reservation[]
+  message     study_message[]
+}
+
+// 门店管理
+model study_store {
+  uid      String        @id @default(uuid())
+  createAt DateTime      @default(now())
+  updateAt DateTime      @default(now()) @updatedAt
+  name     String // 门店名称
+  local    String // 地址，如河北省邯郸市、北京朝阳区等
+  address  String // 详细地址
+  status   Boolean       @default(true) // 门店状态
+  remark   String? // 备注
+  floors   study_floor[] // 门店所属楼层
+}
+
+// 楼层
+model study_floor {
+  uid         String       @id @default(uuid())
+  createAt    DateTime     @default(now())
+  updateAt    DateTime     @default(now()) @updatedAt
+  floorNumber Int // 楼层编号
+  store       study_store  @relation(fields: [storeId], references: [uid])
+  storeId     String // 所属门店 ID
+  studyRooms  study_room[] // 该楼层的自习室
+}
+
+// 自习室
+model study_room {
+  uid      String       @id @default(uuid())
+  createAt DateTime     @default(now())
+  updateAt DateTime     @default(now()) @updatedAt
+  name     String // 自习室名称
+  floor    study_floor  @relation(fields: [floorId], references: [uid])
+  floorId  String // 所属楼层 ID
+  capacity Int // 自习室容量
+  status   Boolean      @default(true) // 自习室状态
+  seats    study_seat[] // 自习室的座位
+}
+
+// 座位
+model study_seat {
+  uid          String              @id @default(uuid())
+  createAt     DateTime            @default(now())
+  updateAt     DateTime            @default(now()) @updatedAt
+  seatNumber   String // 座位编号
+  room         study_room          @relation(fields: [roomId], references: [uid])
+  roomId       String // 所属自习室 ID
+  status       Boolean             @default(true) // 座位状态
+  reservations study_reservation[] // 座位的预约记录
+}
+
+// 预约
+model study_reservation {
+  uid       String     @id @default(uuid())
+  createAt  DateTime   @default(now())
+  updateAt  DateTime   @default(now()) @updatedAt
+  user      study_user @relation(fields: [userId], references: [uid])
+  userId    String // 预约用户 ID
+  seat      study_seat @relation(fields: [seatId], references: [uid])
+  seatId    String // 预约座位 ID
+  startTime DateTime // 预约开始时间
+  endTime   DateTime // 预约结束时间
+  status    String     @default("pending") // 预约状态，如 pending, confirmed, cancelled
+}
+
+// 留言
+model study_message {
+  uid      String     @id @default(uuid())
+  createAt DateTime   @default(now())
+  updateAt DateTime   @default(now()) @updatedAt
+  user     study_user @relation(fields: [userId], references: [uid])
+  userId   String // 留言用户 ID
+  content  String // 留言内容
+  reply    String? // 管理员回复
+  status   Boolean    @default(true) // 留言状态
+}
+
+// 公告
+model study_announcement {
+  uid      String   @id @default(uuid())
+  createAt DateTime @default(now())
+  updateAt DateTime @default(now()) @updatedAt
+  title    String // 公告标题
+  content  String // 公告内容
+  status   Boolean  @default(true) // 公告状态
 }
