@@ -1,13 +1,15 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql";
-import { BaseEntity } from "../base.entity";
 import type { blog_posts } from "@pkg/database";
 import { BlogUserEntity } from "./blog.user.entity";
 import { BlogCategoriesEntity } from "./blog.categories.entity";
+import { BaseUEntity } from '../base.u.entity';
 
 
 
 @ObjectType()
-export class BlogPostsEntity extends BaseEntity implements blog_posts {
+export class BlogPostsEntity extends BaseUEntity implements blog_posts {
+  userId: string;
+  categoriesId: string | null;
   @Field()
   title: string;
 
@@ -21,8 +23,8 @@ export class BlogPostsEntity extends BaseEntity implements blog_posts {
   blog_categoriesId: number | null;
 
   @Field(() => BlogUserEntity, { nullable: true })
-  user?: BlogUserEntity
+  user?: BlogUserEntity;
 
   @Field(() => BlogCategoriesEntity, { nullable: true })
-  category?: BlogCategoriesEntity
+  category?: BlogCategoriesEntity;
 }

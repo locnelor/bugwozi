@@ -2,13 +2,17 @@
   "name": "@pkg/types",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@internal/tsconfig": "workspace:*",
     "@nestjs/graphql": "^13.0.3",
-    "@pkg/database": "workspace:*"
+    "@pkg/database": "workspace:*",
+    "tsc-alias": "^1.8.11"
+  },
+  "scripts": {
+    "build": "rimraf -rf dist && tsc && tsc-alias"
   }
 }

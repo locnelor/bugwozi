@@ -3,12 +3,15 @@ import { BaseEntity } from "../base.entity";
 import type { blog_categories } from "@pkg/database";
 import { BlogPostsEntity } from "./blog.posts.entity";
 
-
 @ObjectType()
-export class BlogCategoriesEntity extends BaseEntity implements blog_categories {
+export class BlogCategoriesEntity
+  extends BaseEntity
+  implements blog_categories
+{
+  uid: string;
   @Field()
-  name: string
+  name: string;
 
   @Field(() => [BlogPostsEntity], { nullable: true })
-  posts?: BlogPostsEntity
+  posts?: BlogPostsEntity;
 }

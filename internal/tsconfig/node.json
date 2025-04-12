@@ -6,7 +6,7 @@
     "composite": false,
     "lib": ["ESNext"],
     "baseUrl": "./",
-    "types": ["node"],
+    "outDir": "./dist",
     "noImplicitAny": true
   }
 }

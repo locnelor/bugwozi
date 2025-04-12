@@ -18,15 +18,10 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./apps/api/test/jest-e2e.json",
-    "dev": "nest start --watch",
-    "dev:auth": "nest start --watch bugwozi-auth",
-    "dev:gateway": "nest start --watch bugwozi-gateway",
-    "dev:blog": "nest start --watch bugwozi-blog"
+    "dev": "nest start --watch"
   },
   "dependencies": {
     "@internal/tsconfig": "workspace:*",
-    "@pkg/types": "workspace:*",
-    "@pkg/database": "workspace:*",
     "@nestjs/apollo": "^13.1.0",
     "@nestjs/axios": "^4.0.0",
     "@nestjs/common": "^11.0.1",
@@ -38,6 +33,10 @@
     "@nestjs/passport": "^11.0.5",
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/swagger": "^11.1.2",
+    "@pkg/database": "workspace:*",
+    "@pkg/types": "workspace:*",
+    "body-parser": "^2.2.0",
+    "body-parser-xml": "^2.0.5",
     "express": "^4.21.2",
     "joi": "^17.13.3",
     "passport-jwt": "^4.0.1",

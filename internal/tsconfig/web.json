@@ -5,6 +5,7 @@
   "compilerOptions": {
     "jsx": "preserve",
     "jsxImportSource": "vue",
+    "outDir": "./dist",
     "lib": [
       "ESNext",
       "DOM",

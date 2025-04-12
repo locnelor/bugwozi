@@ -1,11 +1,11 @@
 import { Field, ObjectType } from "@nestjs/graphql";
-import { BaseEntity } from "../base.entity";
 import type { blog_tag } from "@pkg/database";
 import { BlogPostsEntity } from "./blog.posts.entity";
+import { BaseUEntity } from '../base.u.entity';
 
 
 @ObjectType()
-export class BlogTagEntity extends BaseEntity implements blog_tag {
+export class BlogTagEntity extends BaseUEntity implements blog_tag {
   @Field()
   name: string
 

@@ -18,7 +18,7 @@ export class StudyStoreEntity extends BaseUEntity implements study_store {
   status: boolean;
 
   @Field(() => String, { nullable: true })
-  remark?: string;
+  remark: string;
 
   @Field(() => [StudyFloorEntity], { nullable: true })
   floors?: StudyFloorEntity[];

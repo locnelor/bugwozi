@@ -1,10 +1,10 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql";
-import { BaseEntity } from "../base.entity";
 import type { sys_menu } from "@pkg/database";
+import { BaseUEntity } from '../base.u.entity';
 
 
 @ObjectType()
-export class SysMenuEntity extends BaseEntity implements sys_menu {
+export class SysMenuEntity extends BaseUEntity implements sys_menu {
   @Field()
   name: string;
 
@@ -18,5 +18,5 @@ export class SysMenuEntity extends BaseEntity implements sys_menu {
   comment: string | null;
 
   @Field({ nullable: true })
-  parentId: number | null;
+  parentId: string | null;
 }

@@ -24,6 +24,7 @@
     "studio": "prisma studio"
   },
   "dependencies": {
+    "@nestjs/graphql": "^13.0.3",
     "@prisma/client": "latest"
   },
   "devDependencies": {

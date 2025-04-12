@@ -15,7 +15,7 @@
     "db:seed": "turbo run db:seed",
     "dev:api": "turbo run dev --filter @web/api",
     "dev:blog": "turbo run dev --filter @web/blog",
-    "dev:study": "turbo run dev --filter @web/study-room",
+    "dev:study": "turbo run dev --filter @web/study-room & pnpm --filter @web/api run dev study-room",
     "db:generate": "turbo run generate"
   },
   "dependencies": {
