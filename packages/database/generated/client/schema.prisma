@@ -273,7 +273,7 @@ model book_user {
   password            String // 用户密码
   role                book_role             @default(book_user) // 用户角色，默认为普通用户
   borrowed            book_borrowed[] // 用户借阅的图书记录
-  book_roleId         String // 角色ID（关联��book_role表）
+  book_roleId         String // 角色ID（关联到book_role表）
   book_borrow_history book_borrow_history[] // 用户的借阅历史记录
   book_rating         book_rating[] // 用户对图书的评分和评论
 }

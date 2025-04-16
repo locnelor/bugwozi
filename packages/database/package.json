@@ -1,9 +1,6 @@
 {
   "name": "@pkg/database",
   "version": "1.0.0",
-  "files": [
-    "./src/client.ts"
-  ],
   "exports": {
     ".": "./index.ts"
   },

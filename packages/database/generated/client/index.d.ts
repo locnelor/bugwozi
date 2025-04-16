@@ -754,8 +754,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.5.0
-   * Query Engine version: 173f8d54f8d52e692c7e27e72a88314ec7aeff60
+   * Prisma Client JS version: 6.6.0
+   * Query Engine version: f676762280b54cd07c770017ed3711ddde35f37a
    */
   export type PrismaVersion = {
     client: string
@@ -4922,7 +4922,7 @@ export namespace Prisma {
 
   /**
    * Fields of the sys_user model
-   */ 
+   */
   interface sys_userFieldRefs {
     readonly uid: FieldRef<"sys_user", 'String'>
     readonly createAt: FieldRef<"sys_user", 'DateTime'>
@@ -5920,7 +5920,7 @@ export namespace Prisma {
 
   /**
    * Fields of the sys_account model
-   */ 
+   */
   interface sys_accountFieldRefs {
     readonly createAt: FieldRef<"sys_account", 'DateTime'>
     readonly updateAt: FieldRef<"sys_account", 'DateTime'>
@@ -6946,7 +6946,7 @@ export namespace Prisma {
 
   /**
    * Fields of the sys_menu model
-   */ 
+   */
   interface sys_menuFieldRefs {
     readonly uid: FieldRef<"sys_menu", 'String'>
     readonly createAt: FieldRef<"sys_menu", 'DateTime'>
@@ -7943,7 +7943,7 @@ export namespace Prisma {
 
   /**
    * Fields of the sys_user_ban_menu model
-   */ 
+   */
   interface sys_user_ban_menuFieldRefs {
     readonly userId: FieldRef<"sys_user_ban_menu", 'String'>
     readonly menuId: FieldRef<"sys_user_ban_menu", 'String'>
@@ -8887,7 +8887,7 @@ export namespace Prisma {
 
   /**
    * Fields of the sys_menu_on_role model
-   */ 
+   */
   interface sys_menu_on_roleFieldRefs {
     readonly roleId: FieldRef<"sys_menu_on_role", 'String'>
     readonly menuId: FieldRef<"sys_menu_on_role", 'String'>
@@ -9830,7 +9830,7 @@ export namespace Prisma {
 
   /**
    * Fields of the sys_role model
-   */ 
+   */
   interface sys_roleFieldRefs {
     readonly uid: FieldRef<"sys_role", 'String'>
     readonly createAt: FieldRef<"sys_role", 'DateTime'>
@@ -10800,7 +10800,7 @@ export namespace Prisma {
 
   /**
    * Fields of the blog_user model
-   */ 
+   */
   interface blog_userFieldRefs {
     readonly uid: FieldRef<"blog_user", 'String'>
     readonly createAt: FieldRef<"blog_user", 'DateTime'>
@@ -11744,7 +11744,7 @@ export namespace Prisma {
 
   /**
    * Fields of the blog_categories model
-   */ 
+   */
   interface blog_categoriesFieldRefs {
     readonly uid: FieldRef<"blog_categories", 'String'>
     readonly createAt: FieldRef<"blog_categories", 'DateTime'>
@@ -12726,7 +12726,7 @@ export namespace Prisma {
 
   /**
    * Fields of the blog_posts model
-   */ 
+   */
   interface blog_postsFieldRefs {
     readonly uid: FieldRef<"blog_posts", 'String'>
     readonly createAt: FieldRef<"blog_posts", 'DateTime'>
@@ -13673,7 +13673,7 @@ export namespace Prisma {
 
   /**
    * Fields of the blog_notice model
-   */ 
+   */
   interface blog_noticeFieldRefs {
     readonly uid: FieldRef<"blog_notice", 'String'>
     readonly createAt: FieldRef<"blog_notice", 'DateTime'>
@@ -14534,7 +14534,7 @@ export namespace Prisma {
 
   /**
    * Fields of the blog_posts_on_tags model
-   */ 
+   */
   interface blog_posts_on_tagsFieldRefs {
     readonly postsId: FieldRef<"blog_posts_on_tags", 'String'>
     readonly tagId: FieldRef<"blog_posts_on_tags", 'String'>
@@ -15452,7 +15452,7 @@ export namespace Prisma {
 
   /**
    * Fields of the blog_tag model
-   */ 
+   */
   interface blog_tagFieldRefs {
     readonly uid: FieldRef<"blog_tag", 'String'>
     readonly createAt: FieldRef<"blog_tag", 'DateTime'>
@@ -16418,7 +16418,7 @@ export namespace Prisma {
 
   /**
    * Fields of the file_user model
-   */ 
+   */
   interface file_userFieldRefs {
     readonly uid: FieldRef<"file_user", 'String'>
     readonly createAt: FieldRef<"file_user", 'DateTime'>
@@ -17418,7 +17418,7 @@ export namespace Prisma {
 
   /**
    * Fields of the file_keys model
-   */ 
+   */
   interface file_keysFieldRefs {
     readonly api_key: FieldRef<"file_keys", 'String'>
     readonly api_secret: FieldRef<"file_keys", 'String'>
@@ -18315,7 +18315,7 @@ export namespace Prisma {
 
   /**
    * Fields of the file_config model
-   */ 
+   */
   interface file_configFieldRefs {
     readonly uid: FieldRef<"file_config", 'String'>
     readonly userId: FieldRef<"file_config", 'String'>
@@ -19225,7 +19225,7 @@ export namespace Prisma {
 
   /**
    * Fields of the file_user_on_media model
-   */ 
+   */
   interface file_user_on_mediaFieldRefs {
     readonly userId: FieldRef<"file_user_on_media", 'String'>
     readonly mediaId: FieldRef<"file_user_on_media", 'String'>
@@ -20196,7 +20196,7 @@ export namespace Prisma {
 
   /**
    * Fields of the file_block model
-   */ 
+   */
   interface file_blockFieldRefs {
     readonly uid: FieldRef<"file_block", 'String'>
     readonly createAt: FieldRef<"file_block", 'DateTime'>
@@ -21210,7 +21210,7 @@ export namespace Prisma {
 
   /**
    * Fields of the file_media model
-   */ 
+   */
   interface file_mediaFieldRefs {
     readonly uid: FieldRef<"file_media", 'String'>
     readonly createAt: FieldRef<"file_media", 'DateTime'>
@@ -22189,7 +22189,7 @@ export namespace Prisma {
 
   /**
    * Fields of the file_media_on_folder model
-   */ 
+   */
   interface file_media_on_folderFieldRefs {
     readonly mediaId: FieldRef<"file_media_on_folder", 'String'>
     readonly folderId: FieldRef<"file_media_on_folder", 'String'>
@@ -23139,7 +23139,7 @@ export namespace Prisma {
 
   /**
    * Fields of the file_folder model
-   */ 
+   */
   interface file_folderFieldRefs {
     readonly uid: FieldRef<"file_folder", 'String'>
     readonly createAt: FieldRef<"file_folder", 'DateTime'>
@@ -24176,7 +24176,7 @@ export namespace Prisma {
 
   /**
    * Fields of the book_user model
-   */ 
+   */
   interface book_userFieldRefs {
     readonly id: FieldRef<"book_user", 'String'>
     readonly createAt: FieldRef<"book_user", 'DateTime'>
@@ -25244,7 +25244,7 @@ export namespace Prisma {
 
   /**
    * Fields of the book_book model
-   */ 
+   */
   interface book_bookFieldRefs {
     readonly id: FieldRef<"book_book", 'String'>
     readonly createAt: FieldRef<"book_book", 'DateTime'>
@@ -26242,7 +26242,7 @@ export namespace Prisma {
 
   /**
    * Fields of the book_category model
-   */ 
+   */
   interface book_categoryFieldRefs {
     readonly id: FieldRef<"book_category", 'String'>
     readonly createAt: FieldRef<"book_category", 'DateTime'>
@@ -27218,7 +27218,7 @@ export namespace Prisma {
 
   /**
    * Fields of the book_borrowed model
-   */ 
+   */
   interface book_borrowedFieldRefs {
     readonly id: FieldRef<"book_borrowed", 'String'>
     readonly borrowDate: FieldRef<"book_borrowed", 'DateTime'>
@@ -28163,7 +28163,7 @@ export namespace Prisma {
 
   /**
    * Fields of the book_borrow_history model
-   */ 
+   */
   interface book_borrow_historyFieldRefs {
     readonly id: FieldRef<"book_borrow_history", 'String'>
     readonly borrowDate: FieldRef<"book_borrow_history", 'DateTime'>
@@ -29151,7 +29151,7 @@ export namespace Prisma {
 
   /**
    * Fields of the book_rating model
-   */ 
+   */
   interface book_ratingFieldRefs {
     readonly id: FieldRef<"book_rating", 'String'>
     readonly createAt: FieldRef<"book_rating", 'DateTime'>
@@ -30108,7 +30108,7 @@ export namespace Prisma {
 
   /**
    * Fields of the study_user model
-   */ 
+   */
   interface study_userFieldRefs {
     readonly uid: FieldRef<"study_user", 'String'>
     readonly createAt: FieldRef<"study_user", 'DateTime'>
@@ -31119,7 +31119,7 @@ export namespace Prisma {
 
   /**
    * Fields of the study_store model
-   */ 
+   */
   interface study_storeFieldRefs {
     readonly uid: FieldRef<"study_store", 'String'>
     readonly createAt: FieldRef<"study_store", 'DateTime'>
@@ -32115,7 +32115,7 @@ export namespace Prisma {
 
   /**
    * Fields of the study_floor model
-   */ 
+   */
   interface study_floorFieldRefs {
     readonly uid: FieldRef<"study_floor", 'String'>
     readonly createAt: FieldRef<"study_floor", 'DateTime'>
@@ -33128,7 +33128,7 @@ export namespace Prisma {
 
   /**
    * Fields of the study_room model
-   */ 
+   */
   interface study_roomFieldRefs {
     readonly uid: FieldRef<"study_room", 'String'>
     readonly createAt: FieldRef<"study_room", 'DateTime'>
@@ -34099,7 +34099,7 @@ export namespace Prisma {
 
   /**
    * Fields of the study_seat model
-   */ 
+   */
   interface study_seatFieldRefs {
     readonly uid: FieldRef<"study_seat", 'String'>
     readonly createAt: FieldRef<"study_seat", 'DateTime'>
@@ -35087,7 +35087,7 @@ export namespace Prisma {
 
   /**
    * Fields of the study_reservation model
-   */ 
+   */
   interface study_reservationFieldRefs {
     readonly uid: FieldRef<"study_reservation", 'String'>
     readonly createAt: FieldRef<"study_reservation", 'DateTime'>
@@ -36039,7 +36039,7 @@ export namespace Prisma {
 
   /**
    * Fields of the study_message model
-   */ 
+   */
   interface study_messageFieldRefs {
     readonly uid: FieldRef<"study_message", 'String'>
     readonly createAt: FieldRef<"study_message", 'DateTime'>
@@ -36973,7 +36973,7 @@ export namespace Prisma {
 
   /**
    * Fields of the study_announcement model
-   */ 
+   */
   interface study_announcementFieldRefs {
     readonly uid: FieldRef<"study_announcement", 'String'>
     readonly createAt: FieldRef<"study_announcement", 'DateTime'>
@@ -38035,7 +38035,7 @@ export namespace Prisma {
 
 
   /**
-   * Field references 
+   * Field references
    */
 
 

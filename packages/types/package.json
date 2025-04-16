@@ -11,8 +11,5 @@
     "@nestjs/graphql": "^13.0.3",
     "@pkg/database": "workspace:*",
     "tsc-alias": "^1.8.11"
-  },
-  "scripts": {
-    "build": "rimraf -rf dist && tsc && tsc-alias"
   }
 }

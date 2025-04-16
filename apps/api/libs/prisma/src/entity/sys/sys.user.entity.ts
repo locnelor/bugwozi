@@ -6,7 +6,7 @@ import { SysRoleEntity } from "./sys.role.entity";
 @ObjectType()
 export class SysUserEntity extends BaseUEntity implements sys_user {
   @Field({ nullable: true })
-  roleId: string | null;
+  roleId: string;
 
   @Field()
   name: string;
@@ -16,7 +16,7 @@ export class SysUserEntity extends BaseUEntity implements sys_user {
   salt: string;
 
   @Field(() => Int, { nullable: true })
-  sys_roleId: number | null;
+  sys_roleId: number;
 
   @Field(() => SysRoleEntity, { nullable: true })
   role?: SysRoleEntity;

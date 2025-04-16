@@ -16,6 +16,7 @@
     "dev:api": "turbo run dev --filter @web/api",
     "dev:blog": "turbo run dev --filter @web/blog",
     "dev:study": "turbo run dev --filter @web/study-room & pnpm --filter @web/api run dev study-room",
+    "dev:book": "turbo run dev --filter @web/admin-book & pnpm --filter @web/api run dev admin-book",
     "db:generate": "turbo run generate"
   },
   "dependencies": {
