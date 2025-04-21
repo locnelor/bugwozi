@@ -34,20 +34,40 @@ export class AuthService {
 
     public cryptoPassword(user: SysUserEntity, password: string) {
         const { salt, hash } = this.hash.cryptoPassword(`${user.uid}_${password}`)
-
+        return this.hash.md5(`${user.uid}_${salt}_${hash}`)
     }
-
 
     private hashAccount(account: SysAccountEntity) {
         const { salt, hash } = this.hash.cryptoPassword(account.value)
-        return this.hash.md5(`${salt}_${hash}`)
+        return this.hash.md5(`${account.userId}_${salt}_${hash}`)
     }
 
+    /**
+     * 账号密码登录 
+     */
     public async userLogin(
         account: string,
         password: string
     ) {
-
+        const user = await this.prisma.sys_user.findUnique({
+            where: {
+                account
+            },
+            include: {
+                accounts: {
+                    where: {
+                        provider: 'account'
+                    }
+                }
+            }
+        })
+        if (!user) throw NotFoundAccountException
+        if (user.accounts.length === 0) throw NotFoundAccountException;
+        if (user.accounts[0].value !== this.cryptoPassword(user, password)) throw WrongPasswordException;
+        return {
+            ...user,
+            ...this.getToken(user.accounts[0])
+        }
     }
 
     public async findAccount(provider: sys_account_provider, data: string) {
@@ -61,21 +81,12 @@ export class AuthService {
             }
         })
     }
-    // public validateUser(account: string, password: string) {
 
-    // return this.prisma.sys_user.findUnique({
-    //     where: {
-    //         account,
-    //         password
-    //     }
-    // })
-    // }
     getToken(account: SysAccountEntity) {
         const payload = {
             sub: account.uid,
-            userId: account.userId,
             provider: account.provider,
-            crypto: this.hashAccount(account)
+            crypto: this.cryptoValue(account.provider, account.value)
         }
         return {
             access_token: this.jwt.sign(payload),

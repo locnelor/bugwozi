@@ -26,7 +26,13 @@ export class AuthResolver {
         @Args("account") account: string,
         @Args("password") password: string,
     ){
+        const user = await this.prismaService.sys_user.findUnique({
+            where:{
+                account
+            }
+        })
         
+
     }
 
     @Mutation(() => SysUserEntity)
@@ -35,6 +41,7 @@ export class AuthResolver {
         @Args("password") password: string,
         @Context() { req: { ip } }
     ) {
+
         
         // const { salt, hash } = this.hashService.cryptoPassword(password)
         // const find: SysUserEntity = await this.prismaService.sys_user.findUnique({

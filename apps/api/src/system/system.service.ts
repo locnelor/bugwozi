@@ -46,7 +46,7 @@ export class SystemService {
     const { access_token } = this.authService.getToken(await this.authService.create({
       userId: user.uid,
       provider,
-      value: this.authService.cryptoValue(provider, password)
+      value: this.authService.cryptoValue(provider, this.authService.cryptoPassword(user, password))
     }))
     return {
       ...user,
