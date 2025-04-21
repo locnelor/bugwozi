@@ -32,9 +32,9 @@ export class AuthService {
         return this.hash.md5(`${salt}_${hash}`);
     }
 
-    public cryptoPassword(user:SysUserEntity, password: string) {
-        const {salt,hash} = this.hash.cryptoPassword(`${user.uid}_${password}`)
-    
+    public cryptoPassword(user: SysUserEntity, password: string) {
+        const { salt, hash } = this.hash.cryptoPassword(`${user.uid}_${password}`)
+
     }
 
 
@@ -73,6 +73,7 @@ export class AuthService {
     getToken(account: SysAccountEntity) {
         const payload = {
             sub: account.uid,
+            userId: account.userId,
             provider: account.provider,
             crypto: this.hashAccount(account)
         }
