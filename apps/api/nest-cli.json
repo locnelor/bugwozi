@@ -1,33 +1,12 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "apps/sys-gateway/src",
+  "sourceRoot": "src",
   "compilerOptions": {
     "deleteOutDir": true,
-    "webpack": true,
-    "tsConfigPath": "apps/sys-gateway/tsconfig.app.json"
+    "webpack": true
   },
-  "monorepo": true,
-  "root": "apps/sys-gateway",
   "projects": {
-    "admin-book": {
-      "type": "application",
-      "root": "apps/admin-book",
-      "entryFile": "main",
-      "sourceRoot": "apps/admin-book/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/admin-book/tsconfig.app.json"
-      }
-    },
-    "bugwozi": {
-      "type": "application",
-      "root": "apps/bugwozi",
-      "entryFile": "main",
-      "sourceRoot": "apps/bugwozi/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/bugwozi/tsconfig.app.json"
-      }
-    },
     "error": {
       "type": "library",
       "root": "libs/error",
@@ -80,42 +59,6 @@
       "sourceRoot": "libs/request/src",
       "compilerOptions": {
         "tsConfigPath": "libs/request/tsconfig.lib.json"
-      }
-    },
-    "study-room": {
-      "type": "application",
-      "root": "apps/study-room",
-      "entryFile": "main",
-      "sourceRoot": "apps/study-room/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/study-room/tsconfig.app.json"
-      }
-    },
-    "sys-auth": {
-      "type": "application",
-      "root": "apps/sys-auth",
-      "entryFile": "main",
-      "sourceRoot": "apps/sys-auth/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/sys-auth/tsconfig.app.json"
-      }
-    },
-    "sys-file": {
-      "type": "application",
-      "root": "apps/sys-file",
-      "entryFile": "main",
-      "sourceRoot": "apps/sys-file/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/sys-file/tsconfig.app.json"
-      }
-    },
-    "sys-gateway": {
-      "type": "application",
-      "root": "apps/sys-gateway",
-      "entryFile": "main",
-      "sourceRoot": "apps/sys-gateway/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/sys-gateway/tsconfig.app.json"
       }
     },
     "utils": {

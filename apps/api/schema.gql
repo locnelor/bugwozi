@@ -2,11 +2,14 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type BlogUserEntity {
+type SysAccountEntity {
+  createdAt: DateTime!
+  updatedAt: DateTime!
   uid: String!
-  createAt: DateTime!
-  updateAt: DateTime!
-  name: String!
+  provider: String!
+  value: String!
+  userId: String!
+  user: SysUserEntity
 }
 
 """
@@ -14,100 +17,137 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
-type BlogPostsEntity {
+type SysUserEntity {
+  createdAt: DateTime!
+  updatedAt: DateTime!
   uid: String!
-  createAt: DateTime!
-  updateAt: DateTime!
-  title: String!
-  content: String!
-  blog_userUid: String!
-  blog_categoriesId: Int
-  user: BlogUserEntity
-  category: BlogCategoriesEntity
-}
-
-type BlogCategoriesEntity {
-  id: Int!
-  createAt: DateTime!
-  updateAt: DateTime!
-  name: String!
-  posts: [BlogPostsEntity!]
-}
-
-type BlogTagEntity {
-  uid: String!
-  createAt: DateTime!
-  updateAt: DateTime!
-  name: String!
-  posts: [BlogPostsEntity!]
-}
-
-type StudyReservationEntity {
-  uid: String!
-  createAt: DateTime!
-  updateAt: DateTime!
-  user: StudyUserEntity!
-  userId: String!
-  seatId: String!
-  startTime: DateTime!
-  endTime: DateTime!
-  status: String!
-}
-
-type StudyUserEntity {
-  uid: String!
-  createAt: DateTime!
-  updateAt: DateTime!
-  name: String!
   account: String!
-  password: String!
-  isAdmin: Boolean!
-  reservation: [StudyReservationEntity!]
-  message: [StudyMessageEntity!]
-}
-
-type StudyMessageEntity {
-  uid: String!
-  createAt: DateTime!
-  updateAt: DateTime!
-  user: StudyUserEntity!
-  userId: String!
-  content: String!
-  reply: String
-  status: Boolean!
-}
-
-type StudySeatEntity {
-  uid: String!
-  createAt: DateTime!
-  updateAt: DateTime!
-  seatNumber: String!
-  roomId: String!
-  status: Boolean!
-  reservations: [StudyReservationEntity!]
-}
-
-type StudyRoomEntity {
-  uid: String!
-  createAt: DateTime!
-  updateAt: DateTime!
-  floorId: String!
+  roleId: String
   name: String!
-  capacity: Float!
-  status: Boolean!
-  seats: [StudySeatEntity!]
-  floor: StudyFloorEntity
+  role: SysRoleEntity
+  accounts: [SysAccountEntity!]
+  access_token: String
 }
 
-type StudyFloorEntity {
+type SysRoleEntity {
+  createdAt: DateTime!
+  updatedAt: DateTime!
   uid: String!
-  createAt: DateTime!
-  updateAt: DateTime!
-  floorNumber: Float!
-  storeId: String!
-  studyRooms: [StudyRoomEntity!]
+  name: String!
+  sort: Int!
+  status: Boolean!
+  comment: String
+  menus: [SysMenuOnRoleEntity!]
+  users: [SysUserEntity!]
+}
+
+type SysMenuOnRoleEntity {
+  roleId: String!
+  menuId: String!
+  power: Int!
+  menu: SysMenuEntity
+  role: SysRoleEntity
+}
+
+type SysUserBanMenuEntity {
+  userId: String!
+  menuId: String!
+  user: SysUserEntity
+  menu: SysMenuEntity
+}
+
+type SysMenuEntity {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  uid: String!
+  name: String!
+  path: String!
+  powers: Int!
+  sort: Int!
+  comment: String
+  parentId: String
+  children: [SysMenuEntity!]
+  roles: [SysMenuOnRoleEntity!]
+  user_bans: [SysUserBanMenuEntity!]
+}
+
+type UserPaginationEntity {
+  total: Int!
+  page: Int!
+  size: Int!
+  data: [SysUserEntity!]!
+}
+
+type Menu {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type RolePaginationEntity {
+  total: Int!
+  page: Int!
+  size: Int!
+  data: [SysRoleEntity!]!
 }
 
 type Query {
-  viewer: StudyUserEntity!
+  hasWebsiteInit: Boolean!
+  users: [SysUserEntity!]!
+  userList(pagination: UserPaginationInput!): UserPaginationEntity!
+  findOne(uid: String!): SysRoleEntity!
+  menu(id: Int!): Menu!
+  roles: [SysRoleEntity!]!
+  roleList(pagination: RolePaginationInput!): RolePaginationEntity!
+  viewer: SysUserEntity!
+}
+
+input UserPaginationInput {
+  page: Int!
+  size: Int!
+  name: String
+}
+
+input RolePaginationInput {
+  page: Int!
+  size: Int!
+  name: String
+  status: Boolean
+  comment: String
+}
+
+type Mutation {
+  websiteInit(roleName: String!, username: String!, account: String!, password: String!): SysUserEntity!
+  createUser(createInput: CreateUserInput!): SysUserEntity!
+  updateUser(updateInput: UpdateUserInput!): SysUserEntity!
+  removeUser(uid: String!): SysUserEntity!
+  createMenu(createMenuInput: CreateMenuInput!): Menu!
+  updateMenu(updateMenuInput: UpdateMenuInput!): Menu!
+  removeMenu(id: Int!): Menu!
+  removeRole(uid: String!): SysRoleEntity!
+  authAccountLogin(account: String!, password: String!): SysUserEntity!
+  auth(account: String!, password: String!): SysUserEntity!
+}
+
+input CreateUserInput {
+  name: String!
+  account: String
+  roleId: String
+}
+
+input UpdateUserInput {
+  name: String
+  account: String
+  roleId: String
+  uid: String!
+}
+
+input CreateMenuInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateMenuInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }

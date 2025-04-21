@@ -1,0 +1,17 @@
+{
+  "name": "@pkg/hooks",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "dependencies": {
+    "@internal/tsconfig": "workspace:*",
+    "@apollo/client": "^3.13.8",
+    "react": "^19.0.0"
+  }
+}

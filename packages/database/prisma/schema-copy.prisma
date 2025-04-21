@@ -1,0 +1,444 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/client"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+//********************* system
+//账号类型
+enum sys_account_provider {
+  we_chat
+  github
+  qq
+  email
+  phone
+}
+
+//系统角色
+model sys_user {
+  uid       String              @id @default(uuid())
+  createAt  DateTime            @default(now())
+  updateAt  DateTime            @default(now()) @updatedAt
+  name      String
+  password  String
+  salt      String
+  roleId    String?
+  accounts  sys_account[]
+  role      sys_role?           @relation(fields: [roleId], references: [uid])
+  ban_menus sys_user_ban_menu[]
+}
+
+//系统账号
+model sys_account {
+  createAt    DateTime             @default(now())
+  updateAt    DateTime             @default(now()) @updatedAt
+  provider    sys_account_provider
+  provider_id String
+  userId      String?
+  user        sys_user?            @relation(fields: [userId], references: [uid])
+
+  @@id([provider, provider_id])
+}
+
+//菜单
+model sys_menu {
+  uid       String              @id @default(uuid())
+  createAt  DateTime            @default(now())
+  updateAt  DateTime            @default(now()) @updatedAt
+  name      String
+  path      String              @unique
+  powers    Int
+  comment   String?             @db.Text
+  parentId  String?
+  parent    sys_menu?           @relation("SysMenuParent", fields: [parentId], references: [uid])
+  children  sys_menu[]          @relation("SysMenuParent")
+  roles     sys_menu_on_role[]
+  user_bans sys_user_ban_menu[]
+}
+
+//用户黑名单
+model sys_user_ban_menu {
+  user   sys_user @relation(fields: [userId], references: [uid])
+  menu   sys_menu @relation(fields: [menuId], references: [uid])
+  userId String
+  menuId String
+
+  @@id([userId, menuId])
+}
+
+//角色菜单
+model sys_menu_on_role {
+  roleId String
+  menuId String
+  power  BigInt   @default(0)
+  menu   sys_menu @relation(fields: [menuId], references: [uid])
+  role   sys_role @relation(fields: [roleId], references: [uid])
+
+  @@id([roleId, menuId])
+}
+
+//角色
+model sys_role {
+  uid      String             @id @default(uuid())
+  createAt DateTime           @default(now())
+  updateAt DateTime           @default(now()) @updatedAt
+  name     String             @unique
+  status   Boolean            @default(true)
+  comment  String?            @db.LongText
+  menus    sys_menu_on_role[]
+  users    sys_user[]
+}
+
+//*********************** 博客系统
+// 博客用户
+model blog_user {
+  uid      String       @id @default(uuid())
+  createAt DateTime     @default(now())
+  updateAt DateTime     @default(now()) @updatedAt
+  name     String
+  posts    blog_posts[]
+}
+
+// 博客分类
+model blog_categories {
+  uid      String       @id @default(uuid())
+  createAt DateTime     @default(now())
+  updateAt DateTime     @default(now())
+  name     String
+  posts    blog_posts[]
+}
+
+// 博客文章
+model blog_posts {
+  uid          String               @id @default(uuid())
+  createAt     DateTime             @default(now())
+  updateAt     DateTime             @default(now())
+  title        String
+  content      String               @db.Text
+  userId       String
+  categoriesId String?
+  categories   blog_categories?     @relation(fields: [categoriesId], references: [uid])
+  user         blog_user            @relation(fields: [userId], references: [uid])
+  tags         blog_posts_on_tags[]
+}
+
+// 博客公告
+model blog_notice {
+  uid      String   @id @default(uuid())
+  createAt DateTime @default(now())
+  updateAt DateTime @default(now())
+}
+
+// 博客标签
+model blog_posts_on_tags {
+  postsId String
+  tagId   String
+  posts   blog_posts @relation(fields: [postsId], references: [uid])
+  tag     blog_tag   @relation(fields: [tagId], references: [uid])
+
+  @@id([postsId, tagId])
+}
+
+// 博客标签
+model blog_tag {
+  uid                String               @id @default(uuid())
+  createAt           DateTime             @default(now())
+  updateAt           DateTime             @default(now())
+  name               String
+  blog_posts_on_tags blog_posts_on_tags[]
+}
+
+// ******************* 文件系统
+//文件系统 用户
+model file_user {
+  uid         String               @id @default(uuid())
+  createAt    DateTime             @default(now())
+  updateAt    DateTime             @default(now())
+  name        String //用户名
+  medias      file_user_on_media[] //用户的媒体
+  folders     file_folder[] //用户的文件夹
+  file_config file_config?
+  is_admin    Boolean              @default(false)
+  keys        file_keys[]
+}
+
+//文件key
+model file_keys {
+  api_key    String    @id //key
+  api_secret String
+  user       file_user @relation(fields: [userId], references: [uid])
+  userId     String
+}
+
+model file_config {
+  uid    String    @id @default(uuid())
+  user   file_user @relation(fields: [userId], references: [uid])
+  userId String    @unique
+  //其他配置文件
+}
+
+//媒体与用户的多对多关联表
+model file_user_on_media {
+  user    file_user  @relation(fields: [userId], references: [uid])
+  media   file_media @relation(fields: [mediaId], references: [uid])
+  userId  String
+  mediaId String
+  comment String?    @db.LongText
+
+  @@id([userId, mediaId])
+}
+
+//文件类型
+enum file_type {
+  image //图片
+  video //视频
+  audio //音频
+  document //文档
+  archive //压缩包
+  other //其他
+}
+
+//文件块
+model file_block {
+  uid      String     @id @default(uuid())
+  createAt DateTime   @default(now())
+  updateAt DateTime   @default(now())
+  media    file_media @relation(fields: [mediaId], references: [uid])
+  mediaId  String
+  hash_key String //文件块MD5
+  size     Int //块大小
+}
+
+//  文件媒体
+model file_media {
+  uid      String       @id @default(uuid())
+  createAt DateTime     @default(now())
+  updateAt DateTime     @default(now())
+  type     file_type //文件类型
+  name     String //文件名
+  hash_key String       @unique //文件的MD5
+  blocks   file_block[] //文件块
+  size     Int //文件大小
+  disable  Boolean      @default(false) //是否禁用
+
+  comment String? @db.LongText
+
+  users   file_user_on_media[] //该文件的用户
+  folders file_media_on_folder[] //该文件所属文件夹
+}
+
+//文件与文件夹关联多对多表
+model file_media_on_folder {
+  media    file_media  @relation(fields: [mediaId], references: [uid])
+  folder   file_folder @relation(fields: [folderId], references: [uid])
+  mediaId  String
+  folderId String
+
+  @@id([mediaId, folderId])
+}
+
+//文件夹
+model file_folder {
+  uid      String        @id @default(uuid())
+  createAt DateTime      @default(now())
+  updateAt DateTime      @default(now())
+  name     String //文件夹名称
+  user     file_user     @relation(fields: [userId], references: [uid])
+  userId   String
+  parent   file_folder?  @relation("FileFolderParent", fields: [parentId], references: [uid])
+  parentId String?
+  children file_folder[] @relation("FileFolderParent")
+
+  medias file_media_on_folder[] //文件夹所拥有的文件
+}
+
+//*********************** 图书系统
+// 角色类型
+enum book_role {
+  book_user // 普通用户
+  book_admin // 管理员
+}
+
+// 用户表
+model book_user {
+  id                  String                @id @default(uuid()) // 用户唯一标识
+  createAt            DateTime              @default(now()) // 用户创建时间
+  updateAt            DateTime              @default(now()) @updatedAt // 用户最后更新时间
+  name                String // 用户姓名
+  email               String                @unique // 用户电子邮件，唯一
+  password            String // 用户密码
+  role                book_role             @default(book_user) // 用户角色，默认为普通用户
+  borrowed            book_borrowed[] // 用户借阅的图书记录
+  book_roleId         String // 角色ID（关联到book_role表）
+  book_borrow_history book_borrow_history[] // 用户的借阅历史记录
+  book_rating         book_rating[] // 用户对图书的评分和评论
+}
+
+// 图书表
+model book_book {
+  id                  String                @id @default(uuid()) // 图书唯一标识
+  createAt            DateTime              @default(now()) // 图书创建时间
+  updateAt            DateTime              @default(now()) @updatedAt // 图书最后更新时间
+  title               String // 图书标题
+  author              String // 图书作者
+  isbn                String                @unique // 图书ISBN，唯一标识
+  description         String? // 图书描述，可为空
+  publication         DateTime // 图书出版时间
+  categoryId          String // 图书分类ID（关联到book_category表）
+  category            book_category         @relation(fields: [categoryId], references: [id]) // 图书类别
+  available           Boolean               @default(true) // 标示图书是否可借
+  borrowed            book_borrowed[] // 图书借阅记录
+  book_borrow_history book_borrow_history[] // 图书借阅历史记录
+  book_rating         book_rating[] // 图书的评分和评论
+}
+
+// 图书分类表
+model book_category {
+  id           String      @id @default(uuid()) // 分类唯一标识
+  createAt     DateTime    @default(now()) // 分类创建时间
+  updateAt     DateTime    @default(now()) @updatedAt // 分类更新时间
+  categoryName String      @unique // 分类名称，唯一
+  books        book_book[] // 该类别下的所有图书
+}
+
+// 图书借阅表
+model book_borrowed {
+  id         String    @id @default(uuid()) // 借阅记录唯一标识
+  borrowDate DateTime  @default(now()) // 借阅时间
+  returnDate DateTime? // 归还时间，若未归还为NULL
+  dueDate    DateTime // 预计归还时间
+  userId     String // 外键，关联借阅用户
+  user       book_user @relation(fields: [userId], references: [id]) // 关联用户表
+  bookId     String // 外键，关联借阅图书
+  book       book_book @relation(fields: [bookId], references: [id]) // 关联图书表
+  returned   Boolean   @default(false) // 是否归还
+}
+
+// 图书借阅历史表
+model book_borrow_history {
+  id         String    @id @default(uuid()) // 借阅历史记录唯一标识
+  borrowDate DateTime  @default(now()) // 借阅时间
+  returnDate DateTime? // 归还时间，若未归还为NULL
+  userId     String // 外键，关联借阅用户
+  user       book_user @relation(fields: [userId], references: [id]) // 关联用户表
+  bookId     String // 外键，关联借阅图书
+  book       book_book @relation(fields: [bookId], references: [id]) // 关联图书表
+  returned   Boolean   @default(false) // 是否归还
+}
+
+// 图书评分表
+model book_rating {
+  id       String    @id @default(uuid()) // 评分记录唯一标识
+  createAt DateTime  @default(now()) // 评分创建时间
+  updateAt DateTime  @default(now()) @updatedAt // 评分更新时间
+  rating   Float // 评分，通常为1-5星
+  review   String? // 评分评论（可选）
+  userId   String // 外键，关联评分用户
+  user     book_user @relation(fields: [userId], references: [id]) // 关联用户表
+  bookId   String // 外键，关联图书
+  book     book_book @relation(fields: [bookId], references: [id]) // 关联图书表
+}
+
+//----------------------自习室预约系统
+
+model study_user {
+  uid      String   @id @default(uuid())
+  createAt DateTime @default(now())
+  updateAt DateTime @default(now())
+  name     String
+  account  String   @unique
+  password String
+  isAdmin  Boolean  @default(false)
+
+  reservation study_reservation[]
+  message     study_message[]
+}
+
+// 门店管理
+model study_store {
+  uid      String        @id @default(uuid())
+  createAt DateTime      @default(now())
+  updateAt DateTime      @default(now()) @updatedAt
+  name     String // 门店名称
+  local    String // 地址，如河北省邯郸市、北京朝阳区等
+  address  String // 详细地址
+  status   Boolean       @default(true) // 门店状态
+  remark   String? // 备注
+  floors   study_floor[] // 门店所属楼层
+}
+
+// 楼层
+model study_floor {
+  uid         String       @id @default(uuid())
+  createAt    DateTime     @default(now())
+  updateAt    DateTime     @default(now()) @updatedAt
+  floorNumber Int // 楼层编号
+  store       study_store  @relation(fields: [storeId], references: [uid])
+  storeId     String // 所属门店 ID
+  studyRooms  study_room[] // 该楼层的自习室
+}
+
+// 自习室
+model study_room {
+  uid      String       @id @default(uuid())
+  createAt DateTime     @default(now())
+  updateAt DateTime     @default(now()) @updatedAt
+  name     String // 自习室名称
+  floor    study_floor  @relation(fields: [floorId], references: [uid])
+  floorId  String // 所属楼层 ID
+  capacity Int // 自习室容量
+  status   Boolean      @default(true) // 自习室状态
+  seats    study_seat[] // 自习室的座位
+}
+
+// 座位
+model study_seat {
+  uid          String              @id @default(uuid())
+  createAt     DateTime            @default(now())
+  updateAt     DateTime            @default(now()) @updatedAt
+  seatNumber   String // 座位编号
+  room         study_room          @relation(fields: [roomId], references: [uid])
+  roomId       String // 所属自习室 ID
+  status       Boolean             @default(true) // 座位状态
+  reservations study_reservation[] // 座位的预约记录
+}
+
+// 预约
+model study_reservation {
+  uid       String     @id @default(uuid())
+  createAt  DateTime   @default(now())
+  updateAt  DateTime   @default(now()) @updatedAt
+  user      study_user @relation(fields: [userId], references: [uid])
+  userId    String // 预约用户 ID
+  seat      study_seat @relation(fields: [seatId], references: [uid])
+  seatId    String // 预约座位 ID
+  startTime DateTime // 预约开始时间
+  endTime   DateTime // 预约结束时间
+  status    String     @default("pending") // 预约状态，如 pending, confirmed, cancelled
+}
+
+// 留言
+model study_message {
+  uid      String     @id @default(uuid())
+  createAt DateTime   @default(now())
+  updateAt DateTime   @default(now()) @updatedAt
+  user     study_user @relation(fields: [userId], references: [uid])
+  userId   String // 留言用户 ID
+  content  String // 留言内容
+  reply    String? // 管理员回复
+  status   Boolean    @default(true) // 留言状态
+}
+
+// 公告
+model study_announcement {
+  uid      String   @id @default(uuid())
+  createAt DateTime @default(now())
+  updateAt DateTime @default(now()) @updatedAt
+  title    String // 公告标题
+  content  String // 公告内容
+  status   Boolean  @default(true) // 公告状态
+}

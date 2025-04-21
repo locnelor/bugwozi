@@ -1,15 +1,19 @@
 import { Inject, Injectable } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
 import { BinaryLike, createHash, randomBytes, pbkdf2Sync } from "crypto";
-import {
-  MODULE_OPTIONS_TOKEN,
-  HashModuleOptions,
-} from "./hash.module-defintion";
+// import {
+//   MODULE_OPTIONS_TOKEN,
+//   HashModuleOptions,
+// } from "./hash.module-defintion";
 
 @Injectable()
 export class HashService {
   constructor(
-    @Inject("MODULE_OPTIONS_TOKEN") private options: HashModuleOptions,
-  ) {}
+    // @Inject("MODULE_OPTIONS_TOKEN") private options: HashModuleOptions,
+    private readonly config: ConfigService,
+  ) {
+  }
+  private readonly secret = this.config.get("SECRET_KEY")
 
   public md5(data: BinaryLike) {
     return createHash("md5").update(data.toString()).digest("hex");
@@ -24,7 +28,7 @@ export class HashService {
     const iterations = 16;
     const keyLength = 64;
     const hash = pbkdf2Sync(
-      `password=${password}&SECRET_KEY=${this.options.SECRET_KEY}`,
+      `password=${password}&SECRET_KEY=${this.secret}`,
       salt,
       iterations,
       keyLength,
@@ -41,7 +45,7 @@ export class HashService {
     const iterations = 16;
     const keyLength = 64;
     const hash = pbkdf2Sync(
-      `password=${password}&SECRET_KEY=${this.options.SECRET_KEY}`,
+      `password=${password}&SECRET_KEY=${this.secret}`,
       salt,
       iterations,
       keyLength,

@@ -17,7 +17,6 @@
     "@internal/tailwind-config": "workspace:*",
     "@internal/tsconfig": "workspace:*",
     "@pkg/database": "workspace:*",
-    "@pkg/next": "workspace:*",
     "@pkg/types": "workspace:*",
     "antd": "^5.24.3",
     "classnames": "^2.5.1",

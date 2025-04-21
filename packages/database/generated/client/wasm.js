@@ -119,28 +119,29 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.Sys_userScalarFieldEnum = {
   uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   name: 'name',
-  password: 'password',
-  salt: 'salt',
-  roleId: 'roleId'
+  roleId: 'roleId',
+  account: 'account'
 };
 
 exports.Prisma.Sys_accountScalarFieldEnum = {
-  createAt: 'createAt',
-  updateAt: 'updateAt',
+  uid: 'uid',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   provider: 'provider',
-  provider_id: 'provider_id',
+  value: 'value',
   userId: 'userId'
 };
 
 exports.Prisma.Sys_menuScalarFieldEnum = {
   uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   name: 'name',
   path: 'path',
+  sort: 'sort',
   powers: 'powers',
   comment: 'comment',
   parentId: 'parentId'
@@ -159,251 +160,12 @@ exports.Prisma.Sys_menu_on_roleScalarFieldEnum = {
 
 exports.Prisma.Sys_roleScalarFieldEnum = {
   uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   name: 'name',
   status: 'status',
-  comment: 'comment'
-};
-
-exports.Prisma.Blog_userScalarFieldEnum = {
-  uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
-  name: 'name'
-};
-
-exports.Prisma.Blog_categoriesScalarFieldEnum = {
-  uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
-  name: 'name'
-};
-
-exports.Prisma.Blog_postsScalarFieldEnum = {
-  uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
-  title: 'title',
-  content: 'content',
-  userId: 'userId',
-  categoriesId: 'categoriesId'
-};
-
-exports.Prisma.Blog_noticeScalarFieldEnum = {
-  uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt'
-};
-
-exports.Prisma.Blog_posts_on_tagsScalarFieldEnum = {
-  postsId: 'postsId',
-  tagId: 'tagId'
-};
-
-exports.Prisma.Blog_tagScalarFieldEnum = {
-  uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
-  name: 'name'
-};
-
-exports.Prisma.File_userScalarFieldEnum = {
-  uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
-  name: 'name',
-  is_admin: 'is_admin'
-};
-
-exports.Prisma.File_keysScalarFieldEnum = {
-  api_key: 'api_key',
-  api_secret: 'api_secret',
-  userId: 'userId'
-};
-
-exports.Prisma.File_configScalarFieldEnum = {
-  uid: 'uid',
-  userId: 'userId'
-};
-
-exports.Prisma.File_user_on_mediaScalarFieldEnum = {
-  userId: 'userId',
-  mediaId: 'mediaId',
-  comment: 'comment'
-};
-
-exports.Prisma.File_blockScalarFieldEnum = {
-  uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
-  mediaId: 'mediaId',
-  hash_key: 'hash_key',
-  size: 'size'
-};
-
-exports.Prisma.File_mediaScalarFieldEnum = {
-  uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
-  type: 'type',
-  name: 'name',
-  hash_key: 'hash_key',
-  size: 'size',
-  disable: 'disable',
-  comment: 'comment'
-};
-
-exports.Prisma.File_media_on_folderScalarFieldEnum = {
-  mediaId: 'mediaId',
-  folderId: 'folderId'
-};
-
-exports.Prisma.File_folderScalarFieldEnum = {
-  uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
-  name: 'name',
-  userId: 'userId',
-  parentId: 'parentId'
-};
-
-exports.Prisma.Book_userScalarFieldEnum = {
-  id: 'id',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
-  name: 'name',
-  email: 'email',
-  password: 'password',
-  role: 'role',
-  book_roleId: 'book_roleId'
-};
-
-exports.Prisma.Book_bookScalarFieldEnum = {
-  id: 'id',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
-  title: 'title',
-  author: 'author',
-  isbn: 'isbn',
-  description: 'description',
-  publication: 'publication',
-  categoryId: 'categoryId',
-  available: 'available'
-};
-
-exports.Prisma.Book_categoryScalarFieldEnum = {
-  id: 'id',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
-  categoryName: 'categoryName'
-};
-
-exports.Prisma.Book_borrowedScalarFieldEnum = {
-  id: 'id',
-  borrowDate: 'borrowDate',
-  returnDate: 'returnDate',
-  dueDate: 'dueDate',
-  userId: 'userId',
-  bookId: 'bookId',
-  returned: 'returned'
-};
-
-exports.Prisma.Book_borrow_historyScalarFieldEnum = {
-  id: 'id',
-  borrowDate: 'borrowDate',
-  returnDate: 'returnDate',
-  userId: 'userId',
-  bookId: 'bookId',
-  returned: 'returned'
-};
-
-exports.Prisma.Book_ratingScalarFieldEnum = {
-  id: 'id',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
-  rating: 'rating',
-  review: 'review',
-  userId: 'userId',
-  bookId: 'bookId'
-};
-
-exports.Prisma.Study_userScalarFieldEnum = {
-  uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
-  name: 'name',
-  account: 'account',
-  password: 'password',
-  isAdmin: 'isAdmin'
-};
-
-exports.Prisma.Study_storeScalarFieldEnum = {
-  uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
-  name: 'name',
-  local: 'local',
-  address: 'address',
-  status: 'status',
-  remark: 'remark'
-};
-
-exports.Prisma.Study_floorScalarFieldEnum = {
-  uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
-  floorNumber: 'floorNumber',
-  storeId: 'storeId'
-};
-
-exports.Prisma.Study_roomScalarFieldEnum = {
-  uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
-  name: 'name',
-  floorId: 'floorId',
-  capacity: 'capacity',
-  status: 'status'
-};
-
-exports.Prisma.Study_seatScalarFieldEnum = {
-  uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
-  seatNumber: 'seatNumber',
-  roomId: 'roomId',
-  status: 'status'
-};
-
-exports.Prisma.Study_reservationScalarFieldEnum = {
-  uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
-  userId: 'userId',
-  seatId: 'seatId',
-  startTime: 'startTime',
-  endTime: 'endTime',
-  status: 'status'
-};
-
-exports.Prisma.Study_messageScalarFieldEnum = {
-  uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
-  userId: 'userId',
-  content: 'content',
-  reply: 'reply',
-  status: 'status'
-};
-
-exports.Prisma.Study_announcementScalarFieldEnum = {
-  uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
-  title: 'title',
-  content: 'content',
-  status: 'status'
+  comment: 'comment',
+  sort: 'sort'
 };
 
 exports.Prisma.SortOrder = {
@@ -419,13 +181,13 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.sys_userOrderByRelevanceFieldEnum = {
   uid: 'uid',
   name: 'name',
-  password: 'password',
-  salt: 'salt',
-  roleId: 'roleId'
+  roleId: 'roleId',
+  account: 'account'
 };
 
 exports.Prisma.sys_accountOrderByRelevanceFieldEnum = {
-  provider_id: 'provider_id',
+  uid: 'uid',
+  value: 'value',
   userId: 'userId'
 };
 
@@ -452,198 +214,13 @@ exports.Prisma.sys_roleOrderByRelevanceFieldEnum = {
   name: 'name',
   comment: 'comment'
 };
-
-exports.Prisma.blog_userOrderByRelevanceFieldEnum = {
-  uid: 'uid',
-  name: 'name'
-};
-
-exports.Prisma.blog_categoriesOrderByRelevanceFieldEnum = {
-  uid: 'uid',
-  name: 'name'
-};
-
-exports.Prisma.blog_postsOrderByRelevanceFieldEnum = {
-  uid: 'uid',
-  title: 'title',
-  content: 'content',
-  userId: 'userId',
-  categoriesId: 'categoriesId'
-};
-
-exports.Prisma.blog_noticeOrderByRelevanceFieldEnum = {
-  uid: 'uid'
-};
-
-exports.Prisma.blog_posts_on_tagsOrderByRelevanceFieldEnum = {
-  postsId: 'postsId',
-  tagId: 'tagId'
-};
-
-exports.Prisma.blog_tagOrderByRelevanceFieldEnum = {
-  uid: 'uid',
-  name: 'name'
-};
-
-exports.Prisma.file_userOrderByRelevanceFieldEnum = {
-  uid: 'uid',
-  name: 'name'
-};
-
-exports.Prisma.file_keysOrderByRelevanceFieldEnum = {
-  api_key: 'api_key',
-  api_secret: 'api_secret',
-  userId: 'userId'
-};
-
-exports.Prisma.file_configOrderByRelevanceFieldEnum = {
-  uid: 'uid',
-  userId: 'userId'
-};
-
-exports.Prisma.file_user_on_mediaOrderByRelevanceFieldEnum = {
-  userId: 'userId',
-  mediaId: 'mediaId',
-  comment: 'comment'
-};
-
-exports.Prisma.file_blockOrderByRelevanceFieldEnum = {
-  uid: 'uid',
-  mediaId: 'mediaId',
-  hash_key: 'hash_key'
-};
-
-exports.Prisma.file_mediaOrderByRelevanceFieldEnum = {
-  uid: 'uid',
-  name: 'name',
-  hash_key: 'hash_key',
-  comment: 'comment'
-};
-
-exports.Prisma.file_media_on_folderOrderByRelevanceFieldEnum = {
-  mediaId: 'mediaId',
-  folderId: 'folderId'
-};
-
-exports.Prisma.file_folderOrderByRelevanceFieldEnum = {
-  uid: 'uid',
-  name: 'name',
-  userId: 'userId',
-  parentId: 'parentId'
-};
-
-exports.Prisma.book_userOrderByRelevanceFieldEnum = {
-  id: 'id',
-  name: 'name',
-  email: 'email',
-  password: 'password',
-  book_roleId: 'book_roleId'
-};
-
-exports.Prisma.book_bookOrderByRelevanceFieldEnum = {
-  id: 'id',
-  title: 'title',
-  author: 'author',
-  isbn: 'isbn',
-  description: 'description',
-  categoryId: 'categoryId'
-};
-
-exports.Prisma.book_categoryOrderByRelevanceFieldEnum = {
-  id: 'id',
-  categoryName: 'categoryName'
-};
-
-exports.Prisma.book_borrowedOrderByRelevanceFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  bookId: 'bookId'
-};
-
-exports.Prisma.book_borrow_historyOrderByRelevanceFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  bookId: 'bookId'
-};
-
-exports.Prisma.book_ratingOrderByRelevanceFieldEnum = {
-  id: 'id',
-  review: 'review',
-  userId: 'userId',
-  bookId: 'bookId'
-};
-
-exports.Prisma.study_userOrderByRelevanceFieldEnum = {
-  uid: 'uid',
-  name: 'name',
-  account: 'account',
-  password: 'password'
-};
-
-exports.Prisma.study_storeOrderByRelevanceFieldEnum = {
-  uid: 'uid',
-  name: 'name',
-  local: 'local',
-  address: 'address',
-  remark: 'remark'
-};
-
-exports.Prisma.study_floorOrderByRelevanceFieldEnum = {
-  uid: 'uid',
-  storeId: 'storeId'
-};
-
-exports.Prisma.study_roomOrderByRelevanceFieldEnum = {
-  uid: 'uid',
-  name: 'name',
-  floorId: 'floorId'
-};
-
-exports.Prisma.study_seatOrderByRelevanceFieldEnum = {
-  uid: 'uid',
-  seatNumber: 'seatNumber',
-  roomId: 'roomId'
-};
-
-exports.Prisma.study_reservationOrderByRelevanceFieldEnum = {
-  uid: 'uid',
-  userId: 'userId',
-  seatId: 'seatId',
-  status: 'status'
-};
-
-exports.Prisma.study_messageOrderByRelevanceFieldEnum = {
-  uid: 'uid',
-  userId: 'userId',
-  content: 'content',
-  reply: 'reply'
-};
-
-exports.Prisma.study_announcementOrderByRelevanceFieldEnum = {
-  uid: 'uid',
-  title: 'title',
-  content: 'content'
-};
 exports.sys_account_provider = exports.$Enums.sys_account_provider = {
   we_chat: 'we_chat',
   github: 'github',
   qq: 'qq',
   email: 'email',
-  phone: 'phone'
-};
-
-exports.file_type = exports.$Enums.file_type = {
-  image: 'image',
-  video: 'video',
-  audio: 'audio',
-  document: 'document',
-  archive: 'archive',
-  other: 'other'
-};
-
-exports.book_role = exports.$Enums.book_role = {
-  book_user: 'book_user',
-  book_admin: 'book_admin'
+  phone: 'phone',
+  account: 'account'
 };
 
 exports.Prisma.ModelName = {
@@ -652,35 +229,7 @@ exports.Prisma.ModelName = {
   sys_menu: 'sys_menu',
   sys_user_ban_menu: 'sys_user_ban_menu',
   sys_menu_on_role: 'sys_menu_on_role',
-  sys_role: 'sys_role',
-  blog_user: 'blog_user',
-  blog_categories: 'blog_categories',
-  blog_posts: 'blog_posts',
-  blog_notice: 'blog_notice',
-  blog_posts_on_tags: 'blog_posts_on_tags',
-  blog_tag: 'blog_tag',
-  file_user: 'file_user',
-  file_keys: 'file_keys',
-  file_config: 'file_config',
-  file_user_on_media: 'file_user_on_media',
-  file_block: 'file_block',
-  file_media: 'file_media',
-  file_media_on_folder: 'file_media_on_folder',
-  file_folder: 'file_folder',
-  book_user: 'book_user',
-  book_book: 'book_book',
-  book_category: 'book_category',
-  book_borrowed: 'book_borrowed',
-  book_borrow_history: 'book_borrow_history',
-  book_rating: 'book_rating',
-  study_user: 'study_user',
-  study_store: 'study_store',
-  study_floor: 'study_floor',
-  study_room: 'study_room',
-  study_seat: 'study_seat',
-  study_reservation: 'study_reservation',
-  study_message: 'study_message',
-  study_announcement: 'study_announcement'
+  sys_role: 'sys_role'
 };
 
 /**

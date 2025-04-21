@@ -7,14 +7,12 @@ export default function HomePage() {
       date: "2023-01-01",
       id: "1",
       avatar: {},//user
-      tags: [],//标签
       categories: {},// 类别
     }, {
       title: "React 18 新特性",
       date: "2023-01-01",
       id: "2",
       avatar: {},//user
-      tags: [],//标签
       categories: {},// 类别
     }],
     id: "1",

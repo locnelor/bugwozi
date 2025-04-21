@@ -8,17 +8,12 @@
   "scripts": {
     "db:migrate:deploy": "prisma migrate deploy",
     "db:migrate:dev": "prisma migrate dev",
-    "db:push": "prisma db push",
     "db:seed": "tsx src/seed.ts",
     "db:pull": "prisma db pull",
     "dev": "tsup src/* --watch",
     "format": "prisma format",
     "generate": "prisma generate",
-    "db:generate": "prisma generate",
-    "lint": "eslint . --max-warnings 0",
-    "prebuild": "npm run generate",
-    "predev": "npm run generate",
-    "studio": "prisma studio"
+    "push": "prisma db push"
   },
   "dependencies": {
     "@nestjs/graphql": "^13.0.3",

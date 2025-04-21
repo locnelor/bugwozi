@@ -56,3 +56,11 @@ export const WrongEmailFormatException = new HttpError(
   1004,
   "邮箱格式错误"
 )
+
+/**
+ * 网站初始化失败
+ */
+export const WebsiteInitFailedException = new HttpError(
+  1005,
+  "网站初始化失败"
+)

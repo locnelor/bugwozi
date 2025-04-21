@@ -15,7 +15,6 @@
     "@ant-design/nextjs-registry": "^1.0.2",
     "@internal/tailwind-config": "workspace:*",
     "@internal/tsconfig": "workspace:*",
-    "@pkg/next": "workspace:*",
     "@pkg/database": "workspace:*",
     "antd": "^5.24.3",
     "classnames": "^2.5.1",

@@ -13,6 +13,21 @@
   ],
   "tasks": {
     "dev": {
+      "env": [
+        "DATABASE_URL"
+      ],
+      "dependsOn": [
+        "^generate",
+        "^build"
+      ],
+      "outputs": [],
+      "cache": false,
+      "persistent": true
+    },
+    "start": {
+      "env": [
+        "DATABASE_URL"
+      ],
       "dependsOn": [
         "^generate",
         "^build"
@@ -29,34 +44,14 @@
         ".next/**"
       ]
     },
-    "db:migrate:dev": {
-      "cache": false,
-      "persistent": true
-    },
-    "db:migrate:deploy": {
-      "cache": false
-    },
-    "db:push": {
-      "cache": false
-    },
-    "db:seed": {
-      "cache": false
-    },
-    "generate": {
-      "dependsOn": [
-        "^generate"
+    "push": {
+      "env": [
+        "DATABASE_URL"
       ],
       "cache": false
     },
-    "lint": {
-      "dependsOn": [
-        "^lint"
-      ]
-    },
-    "check-types": {
-      "dependsOn": [
-        "^check-types"
-      ]
+    "generate": {
+      "cache": false
     }
   }
 }
