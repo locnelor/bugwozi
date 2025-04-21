@@ -6,6 +6,8 @@ import { useRouter } from '#/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { gql, useMutation, useQuery } from '@apollo/client';
 import gqlError from '#/libs/gqlError';
+import { setCookie } from '#/libs/cookie';
+import useViewer from "#/hooks/viewer/useViewer";
 
 const HasWebsiteInitQuery = gql`
   query HasWebsiteInit{
@@ -15,7 +17,7 @@ const HasWebsiteInitQuery = gql`
 
 
 const AuthAccountLogin = gql`
-  query AuthAccountLogin(
+  mutation AuthAccountLogin(
     $account:String!,
     $password:String!
   ){
@@ -33,9 +35,11 @@ const AuthLoginPage = () => {
   const { data } = useQuery(HasWebsiteInitQuery, {
     fetchPolicy: "no-cache"
   })
+  useViewer()
   const [auth] = useMutation(AuthAccountLogin, {
-    onCompleted: ({authAccountLogin}) => {
-      
+    onCompleted: ({ authAccountLogin }) => {
+      setCookie("token", authAccountLogin.access_token)
+      router.push("/admin")
     },
     onError: (error) => {
       gqlError(error)
@@ -53,10 +57,10 @@ const AuthLoginPage = () => {
   const { messageApi } = useMsg()
   const t = useTranslations('auth')
 
-  const handleSubmit = (values: any) => {
-    console.log('Received values of form: ', values);
-    messageApi.success('登录成功');
-    router.push("/admin")
+  const handleSubmit = (variables: any) => {
+    auth({
+      variables
+    })
   };
 
   return (
