@@ -36,7 +36,8 @@ model sys_user {
 /*
   通过provider与value快速查询。
   但password需要单独设置。
-  例如：${user_id}_account_${password}  
+  例如：${user_id}_account_${password} 
+  we_chat_${openid} 
 */
 model sys_account {
   uid       String               @id @default(uuid())

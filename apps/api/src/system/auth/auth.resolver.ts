@@ -21,46 +21,11 @@ export class AuthResolver {
         return user;
     }
 
-    @Mutation(()=>SysUserEntity)
-    async authAccountLogin(
-        @Args("account") account: string,
-        @Args("password") password: string,
-    ){
-        const user = await this.prismaService.sys_user.findUnique({
-            where:{
-                account
-            }
-        })
-        
-
-    }
-
     @Mutation(() => SysUserEntity)
-    async auth(
+    authAccountLogin(
         @Args("account") account: string,
         @Args("password") password: string,
-        @Context() { req: { ip } }
     ) {
-
-        
-        // const { salt, hash } = this.hashService.cryptoPassword(password)
-        // const find: SysUserEntity = await this.prismaService.sys_user.findUnique({
-        //     where: {
-        //         account,29999
-        //         password: hash,
-        //         salt
-        //     }
-        // })
-        // if (!find) throw new ForbiddenError("找不到用户")
-        // const user: SysUserEntity = await this.prismaService.sys_user.update({
-        //     where: {
-        //         id: find.id
-        //     },
-        //     data: {
-        //         loginIp: ip
-        //     }
-        // })
-        // user.token = this.authService.getToken(user).access_token
-        // return user;
+        return this.authService.userLogin(account, password)
     }
 }
