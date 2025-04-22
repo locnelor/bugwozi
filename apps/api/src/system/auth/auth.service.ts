@@ -99,7 +99,19 @@ export class AuthService {
                 uid: sub
             },
             include: {
-                user: true
+                user: {
+                    include:{
+                        role:{
+                            include:{
+                                menus: {
+                                    include:{
+                                        menu:true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         })
         if (!account) throw NotFoundAccountException

@@ -8,7 +8,7 @@ import { SystemMenuGuards, VIEW_POWER } from '@app/auth-power';
 export class MenuResolver {
   constructor(private readonly menuService: MenuService) { }
 
-  @Query(() => [SysMenuEntity], { name: 'menu' })
+  @Query(() => [SysMenuEntity], { name: 'menus' })
   @UseGuards(SystemMenuGuards.GqlAuthGuard([VIEW_POWER]))
   findAll() {
     return this.menuService.findAll();

@@ -4,9 +4,11 @@ import { RolePaginationInput } from './dto/role.pagination';
 import { Prisma } from '@pkg/database';
 import { CreateRoleInput } from './dto/create-role.input';
 import { UpdateRoleInput } from './dto/update-role.input';
+import { AssignRoleInput } from './dto/assign-role.input';
 
 @Injectable()
 export class RoleService {
+
   constructor(
     private readonly prisma: PrismaService
   ) { }
@@ -39,6 +41,14 @@ export class RoleService {
     }
   }
 
+  findMenuOnRoles(roleId: string) {
+    return this.prisma.sys_menu_on_role.findMany({
+      where: {
+        roleId
+      }
+    })
+  }
+
   findOne(uid: string) {
     return this.prisma.sys_role.findUnique({
       where: {
@@ -68,5 +78,17 @@ export class RoleService {
         uid
       }
     })
+  }
+
+  public async assign({ roleId, menuIds }: AssignRoleInput) {
+    await this.prisma.sys_menu_on_role.deleteMany({
+      where: {
+        roleId
+      }
+    })
+    const { count } = await this.prisma.sys_menu_on_role.createMany({
+      data: menuIds.map((menuId) => ({ menuId, roleId }))
+    })
+    return count
   }
 }

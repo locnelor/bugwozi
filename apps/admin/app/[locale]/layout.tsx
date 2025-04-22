@@ -1,17 +1,17 @@
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
-import { notFound, redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { routing } from '#/i18n/routing';
 import './globals.css';
 import MessageProvider from '#/hooks/MessageProvider';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { ApolloWrapper } from '#/libs/apollo-wrapper';
-import { headers } from 'next/headers';
 import { getViewer } from '#/hooks/viewer/getViewer';
 import AdminLayoutContent from './AdminLayoutContent';
 import AdminLayoutHeader from './AdminLayoutHeader';
 import AdminLayoutSide from './AdminLayoutSide';
 import { getPrismaClient } from '#/libs/db';
 import { PropsWithChildren } from "react"
+import RedirectPage from "#/app/[locale]/redirectPage";
 const HomeLayout = ({ children, locale }: PropsWithChildren<{ locale: string }>) => {
   return (
     <html lang={locale} >
@@ -65,25 +65,13 @@ export default async function LocaleLayout({
   //     "x-next-intl-locale": "zh",
   //     "link": "<http://localhost:25001/auth/init>; rel=\"alternate\"; hreflang=\"zh\", <http://localhost:25001/en/auth/init>; rel=\"alternate\"; hreflang=\"en\", <http://localhost:25001/auth/init>; rel=\"alternate\"; hreflang=\"x-default\""
   // }
-  // 在服务端组件中获取当前路径
-  // const 
-  // const pathname = (await headers()).get('referer').slice
-  const hds = await headers();
-  let pathname = hds.get('referer')?.split("://")[1].slice(hds.get('host').length) || '';
-  if (pathname.startsWith('/')) {
-    pathname = pathname.slice(1)
-  }
-  const paths = pathname.split('/');
-  if (paths[0] === 'auth' || !pathname) {
-    return (
-      <HomeLayout locale={locale}>
-        {children}
-      </HomeLayout>
-    );
-  }
   const { viewer } = await getViewer()
   if (!viewer) {
-    redirect(`/auth/login`)
+    return (
+      <HomeLayout locale={locale}>
+        <RedirectPage>{children}</RedirectPage>
+      </HomeLayout>
+    )
   }
   const client = getPrismaClient();
   await client.$connect()

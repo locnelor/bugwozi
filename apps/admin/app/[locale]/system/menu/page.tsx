@@ -4,28 +4,19 @@ import { gql, useQuery } from "@apollo/client"
 import { useEffect, useState } from "react";
 import { Table, Button, Space, message } from "antd";
 import type { ColumnsType } from 'antd/es/table';
+import { BaseUFields } from "#/libs/fields";
+import dayjs from "dayjs";
 
-const FindAllMenuQuery = gql`
+export const FindAllMenuQuery = gql`
   query FindAllMenu {
-    findAllMenu {
-      uid
+    menus {
+      ${BaseUFields}
       name
       path
       sort
       powers
       comment
       parentId
-      createdAt
-      updatedAt
-      children {
-        uid
-        name
-        path
-        sort
-        powers
-        comment
-        parentId
-      }
     }
   }
 `
@@ -49,7 +40,7 @@ const SystemMenuPage = () => {
 
   useEffect(() => {
     setDataSource(() => {
-      return data?.findAllMenu || []
+      return data?.menus || []
     })
   }, [data])
 
@@ -86,38 +77,24 @@ const SystemMenuPage = () => {
       title: '创建时间',
       dataIndex: 'createdAt',
       key: 'createdAt',
-      render: (text) => new Date(text).toLocaleString(),
-    },
-    {
-      title: '操作',
-      key: 'action',
-      width: 200,
-      render: (_, record) => (
-        <Space size="middle">
-          <Button type="link" size="small">编辑</Button>
-          <Button type="link" size="small" danger>删除</Button>
-          <Button type="link" size="small">添加子菜单</Button>
-        </Space>
-      ),
-    },
+      render: (text) => dayjs(text).format('YYYY-MM-DD'),
+    }
   ];
 
   return (
-    <div className="p-6">
-      <div className="mb-4">
-        <Button type="primary">新增菜单</Button>
-      </div>
-      <Table
-        columns={columns}
-        dataSource={dataSource}
-        rowKey="uid"
-        loading={loading}
-        pagination={false}
-        expandable={{
-          childrenColumnName: 'children'
-        }}
-      />
-    </div>
+    <Table
+      columns={columns}
+      dataSource={dataSource}
+      rowKey="uid"
+      loading={loading}
+      pagination={false}
+      scroll={{
+        y:'75vh'
+      }}
+      expandable={{
+        childrenColumnName: 'children'
+      }}
+    />
   )
 }
 

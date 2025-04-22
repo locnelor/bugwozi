@@ -6,5 +6,5 @@ export const getViewer = async () => {
   const [{ data }, error] = await getQuery<{ viewer: any }>({
     query: ViewerQuery
   })
-  return { viewer: data.viewer, error }
+  return { viewer: data?.viewer, error }
 }

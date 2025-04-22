@@ -90,9 +90,11 @@ type Query {
   users: [SysUserEntity!]!
   userList(pagination: UserPaginationInput!): UserPaginationEntity!
   findOne(uid: String!): SysRoleEntity!
+  menus: [SysMenuEntity!]!
   menu(uid: String!): SysMenuEntity!
   roles: [SysRoleEntity!]!
   roleList(pagination: RolePaginationInput!): RolePaginationEntity!
+  findMenuOnRoles(id: String!): [SysMenuOnRoleEntity!]!
   viewer: SysUserEntity!
 }
 
@@ -115,6 +117,9 @@ type Mutation {
   createUser(createInput: CreateUserInput!): SysUserEntity!
   updateUser(updateInput: UpdateUserInput!): SysUserEntity!
   removeUser(uid: String!): SysUserEntity!
+  createRole(data: CreateRoleInput!): SysRoleEntity!
+  updateRole(data: UpdateRoleInput!): SysRoleEntity!
+  assignRole(data: AssignRoleInput!): Int!
   removeRole(uid: String!): SysRoleEntity!
   authAccountLogin(account: String!, password: String!): SysUserEntity!
 }
@@ -130,4 +135,24 @@ input UpdateUserInput {
   account: String
   roleId: String
   uid: String!
+}
+
+input CreateRoleInput {
+  name: String!
+  status: Boolean
+  comment: String
+  sort: Int
+}
+
+input UpdateRoleInput {
+  uid: String!
+  name: String
+  status: Boolean
+  comment: String
+  sort: Int
+}
+
+input AssignRoleInput {
+  roleId: String!
+  menuIds: [String!]!
 }

@@ -33,7 +33,7 @@ const AuthInitPage = () => {
   const [init, { loading }] = useMutation(WebsiteInitMutation, {
     onCompleted({ websiteInit: { access_token } }) {
       setCookie("token", access_token);
-      router.push("/admin")
+      window.location.href = "/dashboard"
     },
     onError(error) {
       gqlError(error)
