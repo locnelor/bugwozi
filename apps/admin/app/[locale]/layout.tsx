@@ -1,13 +1,34 @@
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { routing } from '#/i18n/routing';
 import './globals.css';
 import MessageProvider from '#/hooks/MessageProvider';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { ApolloWrapper } from '#/libs/apollo-wrapper';
-import { getQuery, PreloadQuery, query } from '#/libs/client';
-import { ViewerQuery } from '#/hooks/viewer/viewer.gql';
-import { Suspense } from 'react';
+import { headers } from 'next/headers';
+import { getViewer } from '#/hooks/viewer/getViewer';
+import AdminLayoutContent from './AdminLayoutContent';
+import AdminLayoutHeader from './AdminLayoutHeader';
+import AdminLayoutSide from './AdminLayoutSide';
+import { getPrismaClient } from '#/libs/db';
+import { PropsWithChildren } from "react"
+const HomeLayout = ({ children, locale }: PropsWithChildren<{ locale: string }>) => {
+  return (
+    <html lang={locale} >
+      <body>
+        <ApolloWrapper>
+          <NextIntlClientProvider>
+            <AntdRegistry>
+              <MessageProvider>
+                {children}
+              </MessageProvider>
+            </AntdRegistry>
+          </NextIntlClientProvider>
+        </ApolloWrapper>
+      </body>
+    </html>
+  )
+}
 export default async function LocaleLayout({
   children,
   params
@@ -44,20 +65,46 @@ export default async function LocaleLayout({
   //     "x-next-intl-locale": "zh",
   //     "link": "<http://localhost:25001/auth/init>; rel=\"alternate\"; hreflang=\"zh\", <http://localhost:25001/en/auth/init>; rel=\"alternate\"; hreflang=\"en\", <http://localhost:25001/auth/init>; rel=\"alternate\"; hreflang=\"x-default\""
   // }
-
+  // 在服务端组件中获取当前路径
+  // const 
+  // const pathname = (await headers()).get('referer').slice
+  const hds = await headers();
+  let pathname = hds.get('referer')?.split("://")[1].slice(hds.get('host').length) || '';
+  if (pathname.startsWith('/')) {
+    pathname = pathname.slice(1)
+  }
+  const paths = pathname.split('/');
+  if (paths[0] === 'auth') {
+    return (
+      <HomeLayout locale={locale}>
+        {children}
+      </HomeLayout>
+    );
+  }
+  const { viewer } = await getViewer()
+  if (!viewer) {
+    redirect(`/auth/login`)
+  }
+  const client = getPrismaClient();
+  await client.$connect()
+  const menus = await client.sys_menu.findMany();
   return (
-    <html lang={locale} >
-      <body>
-        <ApolloWrapper>
-          <NextIntlClientProvider>
-            <AntdRegistry>
-              <MessageProvider>
-                {children}
-              </MessageProvider>
-            </AntdRegistry>
-          </NextIntlClientProvider>
-        </ApolloWrapper>
-      </body>
-    </html>
+    <HomeLayout locale={locale}>
+      <div className="fixed inset-0 flex flex-col w-full">
+        <div className="flex-none">
+          <AdminLayoutHeader />
+        </div>
+        <div className="flex flex-1 overflow-hidden">
+          <div className="flex-none w-64">
+            <AdminLayoutSide menus={menus} />
+          </div>
+          <div className="flex-1 overflow-auto">
+            <AdminLayoutContent>
+              {children}
+            </AdminLayoutContent>
+          </div>
+        </div>
+      </div>
+    </HomeLayout>
   );
 }

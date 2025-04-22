@@ -1,9 +1,9 @@
 
 import { getPrismaClient } from '#/libs/db';
 import React, { PropsWithChildren } from 'react';
-import AdminLayoutHeader from './AdminLayoutHeader';
-import AdminLayoutContent from './AdminLayoutContent';
-import AdminLayoutSide from "./AdminLayoutSide"
+import AdminLayoutHeader from '../AdminLayoutHeader';
+import AdminLayoutContent from '../AdminLayoutContent';
+import AdminLayoutSide from "../AdminLayoutSide"
 const AdminLayout = async ({ children }: PropsWithChildren) => {
   const client = getPrismaClient();
   await client.$connect()

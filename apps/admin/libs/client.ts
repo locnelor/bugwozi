@@ -10,7 +10,6 @@ import { cookies } from "next/headers";
 export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
   const AuthLink = setContext(async (_, ctx) => {
     const token = (await cookies()).get("token");
-    console.log(token?.value)
     return {
       headers: {
         ...ctx.headers,

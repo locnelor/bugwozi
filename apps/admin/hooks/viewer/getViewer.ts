@@ -3,8 +3,8 @@ import { ViewerQuery } from "./viewer.gql"
 
 
 export const getViewer = async () => {
-  const [{ data }, error] = await getQuery({
+  const [{ data }, error] = await getQuery<{ viewer: any }>({
     query: ViewerQuery
   })
-  return { data, error }
+  return { viewer: data.viewer, error }
 }

@@ -37,7 +37,7 @@ const AdminLayoutHeader = () => {
 
         {/* 用户信息和头像 */}
         <div className="flex items-center space-x-2">
-          <span className="text-gray-600">Admin User</span>
+          <span>Admin User</span>
           <Avatar 
             icon={<UserOutlined />} 
             className="cursor-pointer"
