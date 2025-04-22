@@ -2,24 +2,23 @@ import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { UserService } from './user.service';
 import { UserPaginationEntity, UserPaginationInput } from './dto/user.pagination';
 import { UseGuards } from '@nestjs/common';
-import { CREATE_POWER, DELETE_POWER, UPDATE_POWER, VIEW_POWER } from '../auth/auth.guard';
-import { UserGuards } from './user.guard';
 import { SysUserEntity } from '@app/prisma';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
+import { VIEW_POWER, CREATE_POWER, UPDATE_POWER, DELETE_POWER, SystemUserGuards } from '@app/auth-power';
 
 @Resolver(() => SysUserEntity)
 export class UserResolver {
   constructor(private readonly userService: UserService) { }
 
   @Query(() => [SysUserEntity], { name: "users" })
-  @UseGuards(UserGuards.GqlAuthGuard([VIEW_POWER]))
+  @UseGuards(SystemUserGuards.GqlAuthGuard([VIEW_POWER]))
   findAll() {
     return this.userService.findAll();
   }
 
   @Query(() => UserPaginationEntity, { name: "userList" })
-  @UseGuards(UserGuards.GqlAuthGuard([VIEW_POWER]))
+  @UseGuards(SystemUserGuards.GqlAuthGuard([VIEW_POWER]))
   findList(
     @Args("pagination") pagination: UserPaginationInput
   ) {
@@ -27,13 +26,13 @@ export class UserResolver {
   }
 
   @Query(() => SysUserEntity)
-  @UseGuards(UserGuards.GqlAuthGuard([VIEW_POWER]))
+  @UseGuards(SystemUserGuards.GqlAuthGuard([VIEW_POWER]))
   findOne(@Args('uid') uid: string) {
     return this.userService.findOne(uid);
   }
 
   @Mutation(() => SysUserEntity)
-  @UseGuards(UserGuards.GqlAuthGuard([CREATE_POWER]))
+  @UseGuards(SystemUserGuards.GqlAuthGuard([CREATE_POWER]))
   createUser(
     @Args("createInput") input: CreateUserInput
   ) {
@@ -41,7 +40,7 @@ export class UserResolver {
   }
 
   @Mutation(() => SysUserEntity)
-  @UseGuards(UserGuards.GqlAuthGuard([UPDATE_POWER]))
+  @UseGuards(SystemUserGuards.GqlAuthGuard([UPDATE_POWER]))
   updateUser(
     @Args("updateInput") input: UpdateUserInput
   ) {
@@ -49,7 +48,7 @@ export class UserResolver {
   }
 
   @Mutation(() => SysUserEntity)
-  @UseGuards(UserGuards.GqlAuthGuard([DELETE_POWER]))
+  @UseGuards(SystemUserGuards.GqlAuthGuard([DELETE_POWER]))
   removeUser(@Args('uid') uid: string) {
     return this.userService.remove(uid);
   }

@@ -19,6 +19,12 @@
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
+      "@app/auth-power": [
+        "libs/auth-power/src"
+      ],
+      "@app/auth-power/*": [
+        "libs/auth-power/src/*"
+      ],
       "@app/error": [
         "libs/error/src"
       ],
@@ -36,6 +42,12 @@
       ],
       "@app/hash/*": [
         "libs/hash/src/*"
+      ],
+      "@app/menu": [
+        "libs/menu/src"
+      ],
+      "@app/menu/*": [
+        "libs/menu/src/*"
       ],
       "@app/prisma": [
         "libs/prisma/src"
