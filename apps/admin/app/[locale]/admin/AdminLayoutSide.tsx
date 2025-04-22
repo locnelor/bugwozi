@@ -1,4 +1,5 @@
 "use client"
+import { useRouter } from '#/i18n/navigation'
 import { array2tree } from '#/libs/utils'
 import { sys_menu } from '@pkg/database'
 import { Menu } from 'antd'
@@ -9,6 +10,7 @@ interface AdminLayoutSideProps {
 }
 
 const AdminLayoutSide = ({ menus }: AdminLayoutSideProps) => {
+  const router = useRouter()
   const items = useMemo(() => {
     return array2tree(menus, {
       parentNodeName: "parentId",
@@ -18,7 +20,7 @@ const AdminLayoutSide = ({ menus }: AdminLayoutSideProps) => {
         const children = item.children?.length ? item.children : undefined
         return {
           label: item.name,
-          key: item.uid,
+          key: item.path,
           children
         }
       }
@@ -30,6 +32,9 @@ const AdminLayoutSide = ({ menus }: AdminLayoutSideProps) => {
         mode="inline"
         className="h-full border-r bg-none"
         items={items}
+        onSelect={(e) => {
+          router.push(`${e.key}`)
+        }}
       />
     </div>
   )
