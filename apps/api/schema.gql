@@ -125,7 +125,6 @@ type Mutation {
   removeMenu(id: Int!): Menu!
   removeRole(uid: String!): SysRoleEntity!
   authAccountLogin(account: String!, password: String!): SysUserEntity!
-  auth(account: String!, password: String!): SysUserEntity!
 }
 
 input CreateUserInput {

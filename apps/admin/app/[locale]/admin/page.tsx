@@ -147,6 +147,7 @@ const AdminPage: React.FC = () => {
           <p>请及时处理待确认的预约。</p>
         </Card>
       </div>
+      <div className="h-96"></div>
     </div>
   );
 };

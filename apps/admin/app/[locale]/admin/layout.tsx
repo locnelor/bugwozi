@@ -1,35 +1,29 @@
-"use client"
+import { getPrismaClient } from '#/libs/db';
 import React, { PropsWithChildren } from 'react';
-import { Layout } from 'antd';
-import {
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-} from '@ant-design/icons';
-import { Link } from '#/i18n/navigation';
-import LayoutSider from './LayoutSider';
+import AdminLayoutHeader from './AdminLayoutHeader';
+import AdminLayoutContent from './AdminLayoutContent';
+import AdminLayoutSide from "./AdminLayoutSide"
+const AdminLayout = async ({ children }: PropsWithChildren) => {
+  const client = getPrismaClient();
+  await client.$connect()
+  const menus = await client.sys_menu.findMany();
 
-const { Header, Content } = Layout;
-
-
-const AdminLayout = ({ children }: PropsWithChildren) => {
   return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <LayoutSider />
-      <Layout>
-        <Header className="bg-white shadow">
-          <div className="text-right pr-8 text-gray-700 font-semibold">
-            欢迎来到后台管理系统
-          </div>
-        </Header>
-        <Content className="p-8 bg-gray-100">
-          {/* 这里放置具体页面内容 */}
-          <div className="bg-white p-6 rounded shadow">
+    <div className="fixed inset-0 flex flex-col w-full bg-gradient-to-bl">
+      <div className="flex-none">
+        <AdminLayoutHeader />
+      </div>
+      <div className="flex flex-1 overflow-hidden">
+        <div className="flex-none w-64">
+          <AdminLayoutSide menus={menus} />
+        </div>
+        <div className="flex-1 overflow-auto">
+          <AdminLayoutContent>
             {children}
-          </div>
-        </Content>
-      </Layout>
-    </Layout>
+          </AdminLayoutContent>
+        </div>
+      </div>
+    </div>
   );
 };
 

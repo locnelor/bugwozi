@@ -33,6 +33,12 @@ model sys_user {
 }
 
 //系统账号
+/**
+ * 通过provider与value快速查询。
+ * 但password需要单独设置。
+ * 例如：${user_id}_account_${password}
+ * we_chat_${openid}
+ */
 model sys_account {
   uid       String               @id @default(uuid())
   createdAt DateTime             @default(now())
@@ -43,6 +49,7 @@ model sys_account {
   user      sys_user             @relation(fields: [userId], references: [uid])
 
   @@unique([provider, value])
+  @@index([userId])
 }
 
 //菜单

@@ -20,7 +20,10 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 export type sys_user = $Result.DefaultSelection<Prisma.$sys_userPayload>
 /**
  * Model sys_account
- * 
+ * 通过provider与value快速查询。
+ *   但password需要单独设置。
+ *   例如：${user_id}_account_${password} 
+ *   we_chat_${openid}
  */
 export type sys_account = $Result.DefaultSelection<Prisma.$sys_accountPayload>
 /**

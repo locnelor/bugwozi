@@ -125,7 +125,8 @@ let time;
 type MenuItem = {
   name: string;
   path: string;
-  parent: string
+  parent: string;
+  sort: number
 };
 
 const menuList: MenuItem[] = [];
@@ -180,7 +181,8 @@ const initMenu = async () => {
       },
       data: {
         parentId: currentMap.get(item.parent)?.uid,
-        powers: menuPowers.get(item.path) || 0
+        powers: menuPowers.get(item.path) || 0,
+        sort: item.sort
       }
     })
 
@@ -192,8 +194,11 @@ const run = (item: MenuItem) => {
   clearTimeout(time);
   time = setTimeout(initMenu, 1000)
 }
-export const makePowerGuard = (path: string, name: string, parent?: string) => {
-  run({ path, name, parent })
+export const makePowerGuard = (path: string, name: string, {
+  parent = '',
+  sort = 0
+} = {}) => {
+  run({ path, name, parent, sort })
   const GqlAuthGuard = (power?: number[]) => {
     menuPowers.set(path, power?.reduce((p, e) => p | e, 0) || 0)
     return new GqlAuthPowerGuard(path, power)

@@ -7,6 +7,10 @@ import { join } from 'path';
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
 import { SystemModule } from './system/system.module';
+import { BlogModule } from './blog/blog.module';
+import { OrderModule } from './order/order.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { WechatModule } from './wechat/wechat.module';
 
 @Module({
   imports: [
@@ -65,6 +69,10 @@ import { SystemModule } from './system/system.module';
       },
     }),
     SystemModule,
+    BlogModule,
+    OrderModule,
+    DashboardModule,
+    WechatModule,
   ],
   controllers: [AppController],
   providers: [AppService],
