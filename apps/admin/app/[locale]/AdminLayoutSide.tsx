@@ -12,7 +12,7 @@ interface AdminLayoutSideProps {
 const AdminLayoutSide = ({ menus }: AdminLayoutSideProps) => {
   const router = useRouter()
   const items = useMemo(() => {
-    return array2tree(menus, {
+    return array2tree(menus.sort((a,b)=>a.sort - b.sort), {
       parentNodeName: "parentId",
       nodeName: "uid",
       defaultParentId: null,

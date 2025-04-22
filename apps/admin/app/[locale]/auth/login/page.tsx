@@ -39,7 +39,7 @@ const AuthLoginPage = () => {
   const [auth] = useMutation(AuthAccountLogin, {
     onCompleted: ({ authAccountLogin }) => {
       setCookie("token", authAccountLogin.access_token)
-      router.push("/")
+      router.push("/dashboard")
     },
     onError: (error) => {
       gqlError(error)

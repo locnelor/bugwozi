@@ -74,7 +74,7 @@ export default async function LocaleLayout({
     pathname = pathname.slice(1)
   }
   const paths = pathname.split('/');
-  if (paths[0] === 'auth') {
+  if (paths[0] === 'auth' || !pathname) {
     return (
       <HomeLayout locale={locale}>
         {children}
@@ -98,7 +98,7 @@ export default async function LocaleLayout({
           <div className="flex-none w-64">
             <AdminLayoutSide menus={menus} />
           </div>
-          <div className="flex-1 overflow-auto">
+          <div className="flex-1 overflow-auto bg-gray-100">
             <AdminLayoutContent>
               {children}
             </AdminLayoutContent>
