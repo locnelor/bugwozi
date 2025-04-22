@@ -1,11 +1,13 @@
 "use client"
 
+import { ViewerQuery } from '#/hooks/viewer/viewer.gql'
 import { useRouter } from '#/i18n/navigation'
 import { setCookie } from '#/libs/cookie'
 import gqlError from '#/libs/gqlError'
-import { gql, useMutation } from '@apollo/client'
+import { gql, useMutation, useQuery } from '@apollo/client'
 import { Input, Button, Form } from 'antd'
 import { useTranslations } from 'next-intl'
+import { useEffect } from 'react'
 
 
 const WebsiteInitMutation = gql`
@@ -31,7 +33,7 @@ const AuthInitPage = () => {
   const [init, { loading }] = useMutation(WebsiteInitMutation, {
     onCompleted({ websiteInit: { access_token } }) {
       setCookie("token", access_token);
-      router.push("/")
+      router.push("/admin")
     },
     onError(error) {
       gqlError(error)

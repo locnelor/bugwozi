@@ -28,18 +28,17 @@ export class AuthService {
     }
 
     public cryptoValue(provider: sys_account_provider, value: string) {
-        const { salt, hash } = this.hash.cryptoPassword(`${provider}_${value}`);
-        return this.hash.md5(`${salt}_${hash}`);
+        return this.hash.sha1(`${provider}_${value}`);
     }
 
     public cryptoPassword(user: SysUserEntity, password: string) {
-        const { salt, hash } = this.hash.cryptoPassword(`${user.uid}_${password}`)
-        return this.hash.md5(`${user.uid}_${salt}_${hash}`)
+        const hash = this.hash.sha1(`${user.uid}_${password}`)
+        return this.hash.md5(`${user.uid}_${hash}`)
     }
 
     private hashAccount(account: SysAccountEntity) {
-        const { salt, hash } = this.hash.cryptoPassword(account.value)
-        return this.hash.md5(`${account.userId}_${salt}_${hash}`)
+        const hash = this.hash.sha1(account.value)
+        return this.hash.md5(`${account.userId}_${hash}`)
     }
 
     /**
@@ -63,23 +62,23 @@ export class AuthService {
         })
         if (!user) throw NotFoundAccountException
         if (user.accounts.length === 0) throw NotFoundAccountException;
-        if (user.accounts[0].value !== this.cryptoPassword(user, password)) throw WrongPasswordException;
+        if (user.accounts[0].value !== this.cryptoValue('account', this.cryptoPassword(user, password))) throw WrongPasswordException;
         return {
             ...user,
             ...this.getToken(user.accounts[0])
         }
     }
 
-    public async findAccount(provider: sys_account_provider, data: string) {
+    public findAccount(provider: sys_account_provider, data: string) {
         const value = this.cryptoValue(provider, data)
-        return await this.prisma.sys_account.findUnique({
+        return this.prisma.sys_account.findUnique({
             where: {
                 provider_value: {
                     provider,
                     value
                 }
             }
-        })
+        });
     }
 
     getToken(account: SysAccountEntity) {
@@ -94,6 +93,7 @@ export class AuthService {
     }
 
     async validate({ crypto, provider, sub }) {
+        console.log(crypto,provider,sub)
         const account = await this.prisma.sys_account.findUnique({
             where: {
                 uid: sub
@@ -104,7 +104,7 @@ export class AuthService {
         })
         if (!account) throw NotFoundAccountException
         if (provider !== account.provider) throw WrongPasswordException;
-        if (crypto !== this.hashAccount(account)) throw WrongPasswordException;
+        if(crypto !== this.cryptoValue(provider,account.value)) throw WrongPasswordException;
         return account.user;
     }
 }

@@ -1,11 +1,10 @@
-import { getClient } from "#/libs/client"
+import { getQuery } from "#/libs/client"
 import { ViewerQuery } from "./viewer.gql"
 
 
 export const getViewer = async () => {
-  const client = getClient()
-  const { errors, error, data } = await client.query({
+  const [{ data }, error] = await getQuery({
     query: ViewerQuery
   })
-  return { data, error, errors }
+  return { data, error }
 }
