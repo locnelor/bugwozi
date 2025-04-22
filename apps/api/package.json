@@ -82,9 +82,11 @@
       "<rootDir>/libs/"
     ],
     "moduleNameMapper": {
+      "^@app/auth-power(|/.*)$": "<rootDir>/libs/auth-power/src/$1",
       "^@app/error(|/.*)$": "<rootDir>/libs/error/src/$1",
       "^@app/file(|/.*)$": "<rootDir>/libs/file/src/$1",
       "^@app/hash(|/.*)$": "<rootDir>/libs/hash/src/$1",
+      "^@app/menu(|/.*)$": "<rootDir>/libs/menu/src/$1",
       "^@app/prisma(|/.*)$": "<rootDir>/libs/prisma/src/$1",
       "^@app/redis-cache(|/.*)$": "<rootDir>/libs/redis-cache/src/$1",
       "^@app/request(|/.*)$": "<rootDir>/libs/request/src/$1",

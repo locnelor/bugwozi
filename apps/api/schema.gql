@@ -78,11 +78,6 @@ type UserPaginationEntity {
   data: [SysUserEntity!]!
 }
 
-type Menu {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
 type RolePaginationEntity {
   total: Int!
   page: Int!
@@ -95,7 +90,7 @@ type Query {
   users: [SysUserEntity!]!
   userList(pagination: UserPaginationInput!): UserPaginationEntity!
   findOne(uid: String!): SysRoleEntity!
-  menu(id: Int!): Menu!
+  menu(uid: String!): SysMenuEntity!
   roles: [SysRoleEntity!]!
   roleList(pagination: RolePaginationInput!): RolePaginationEntity!
   viewer: SysUserEntity!
@@ -120,9 +115,6 @@ type Mutation {
   createUser(createInput: CreateUserInput!): SysUserEntity!
   updateUser(updateInput: UpdateUserInput!): SysUserEntity!
   removeUser(uid: String!): SysUserEntity!
-  createMenu(createMenuInput: CreateMenuInput!): Menu!
-  updateMenu(updateMenuInput: UpdateMenuInput!): Menu!
-  removeMenu(id: Int!): Menu!
   removeRole(uid: String!): SysRoleEntity!
   authAccountLogin(account: String!, password: String!): SysUserEntity!
 }
@@ -138,15 +130,4 @@ input UpdateUserInput {
   account: String
   roleId: String
   uid: String!
-}
-
-input CreateMenuInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdateMenuInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
 }
