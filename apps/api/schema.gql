@@ -99,14 +99,14 @@ type Query {
 }
 
 input UserPaginationInput {
-  page: Int!
-  size: Int!
+  page: Int! = 1
+  size: Int! = 10
   name: String
 }
 
 input RolePaginationInput {
-  page: Int!
-  size: Int!
+  page: Int! = 1
+  size: Int! = 10
   name: String
   status: Boolean
   comment: String

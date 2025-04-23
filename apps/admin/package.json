@@ -22,6 +22,7 @@
     "@pkg/database": "workspace:*",
     "@pkg/types": "workspace:*",
     "@pkg/init": "workspace:*",
+    "@pkg/hooks": "workspace:*",
     "antd": "^5.24.3",
     "classnames": "^2.5.1",
     "dayjs": "^1.11.13",
