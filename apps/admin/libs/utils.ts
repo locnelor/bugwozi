@@ -28,9 +28,10 @@ const defaultOptions: Array2treeOptions<any> = {
 };
 
 export const array2tree = <T>(
-  arr: T[],
+  target: T[],
   options: Array2treeOptions<T> = defaultOptions,
 ) => {
+  const arr = deepCopy(target);
   const nodeMap = arr.reduce((acc, cur: any) => {
     const key = cur[options.parentNodeName];
     if (!acc[key]) {

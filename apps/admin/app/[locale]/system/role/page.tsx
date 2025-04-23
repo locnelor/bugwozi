@@ -1,10 +1,12 @@
 "use client"
 import { BaseUFields } from "#/libs/fields"
-import { gql, useQuery, useMutation } from "@apollo/client"
+import { gql, useQuery, useMutation, useLazyQuery } from "@apollo/client"
 import { FindAllMenuQuery } from "../menu/page"
-import { Button, Card, Form, Input, Modal, Space, Table, Tree } from "antd"
-import { useState } from "react"
+import { Button, Card, Form, Input, message, Modal, Space, Table, Tree } from "antd"
+import { useEffect, useMemo, useState } from "react"
 import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons"
+import { array2tree } from "#/libs/utils"
+import gqlError from "#/libs/gqlError"
 
 export const RolesQuery = gql`
     query Roles{
@@ -61,13 +63,17 @@ const SystemRolePage = () => {
     const [menuVisible, setMenuVisible] = useState(false)
     const [currentRole, setCurrentRole] = useState<any>(null)
     const [selectedMenuKeys, setSelectedMenuKeys] = useState<string[]>([])
-    
+
     const { data: rolesData, loading: rolesLoading, refetch } = useQuery(RolesQuery)
     const { data: menuData } = useQuery(FindAllMenuQuery)
-    const { data: menuOnRoleData, refetch: refetchMenuOnRole } = useQuery(FindMenuOnRolesQuery, {
-        skip: !currentRole?.uid,
-        variables: { id: currentRole?.uid }
-    })
+    const [refetchMenuOnRole] = useLazyQuery(FindMenuOnRolesQuery)
+    const menus = useMemo(() => {
+        return array2tree(menuData?.menus || [], {
+            parentNodeName: "parentId",
+            nodeName: "uid",
+            defaultParentId: null
+        })
+    }, [menuData])
 
     const [createRole] = useMutation(CreateRoleMutation)
     const [updateRole] = useMutation(UpdateRoleMutation)
@@ -92,11 +98,12 @@ const SystemRolePage = () => {
                     }
                 })
             }
+            message.success("操作成功")
             setVisible(false)
             refetch()
             form.resetFields()
         } catch (error) {
-            console.error(error)
+            gqlError(error)
         }
     }
 
@@ -108,8 +115,10 @@ const SystemRolePage = () => {
                 }
             })
             refetch()
+
+            message.success("操作成功")
         } catch (error) {
-            console.error(error)
+            gqlError(error)
         }
     }
 
@@ -118,18 +127,28 @@ const SystemRolePage = () => {
             await assignRole({
                 variables: {
                     data: {
-                        uid: currentRole.uid,
+                        roleId: currentRole.uid,
                         menuIds: selectedMenuKeys
                     }
                 }
             })
+            message.success("操作成功")
             setMenuVisible(false)
             refetchMenuOnRole()
         } catch (error) {
-            console.error(error)
+            gqlError(error)
         }
     }
-
+    useEffect(() => {
+        if (!currentRole) return;
+        refetchMenuOnRole({
+            variables: {
+                id: currentRole.uid
+            }
+        }).then(({ data: { findMenuOnRoles } }) => {
+            setSelectedMenuKeys(findMenuOnRoles?.map((item: any) => item.menuId) || [])
+        })
+    }, [currentRole])
     const columns = [
         {
             title: '角色名称',
@@ -139,10 +158,10 @@ const SystemRolePage = () => {
         {
             title: '操作',
             key: 'action',
-            render: (_, record: any) => (
+            render: (_: any, record: any) => (
                 <Space>
-                    <Button 
-                        icon={<EditOutlined />} 
+                    <Button
+                        icon={<EditOutlined />}
                         onClick={() => {
                             setCurrentRole(record)
                             form.setFieldsValue(record)
@@ -151,18 +170,17 @@ const SystemRolePage = () => {
                     >
                         编辑
                     </Button>
-                    <Button 
-                        icon={<DeleteOutlined />} 
+                    <Button
+                        icon={<DeleteOutlined />}
                         danger
                         onClick={() => handleDelete(record)}
                     >
                         删除
                     </Button>
-                    <Button 
+                    <Button
                         onClick={() => {
                             setCurrentRole(record)
                             setMenuVisible(true)
-                            setSelectedMenuKeys(menuOnRoleData?.findMenuOnRoles?.map((item: any) => item.menuId) || [])
                         }}
                     >
                         分配菜单
@@ -174,8 +192,8 @@ const SystemRolePage = () => {
 
     return (
         <Card>
-            <Button 
-                type="primary" 
+            <Button
+                type="primary"
                 icon={<PlusOutlined />}
                 onClick={() => {
                     setCurrentRole(null)
@@ -187,11 +205,12 @@ const SystemRolePage = () => {
                 新增角色
             </Button>
 
-            <Table 
-                columns={columns} 
-                dataSource={rolesData?.roles} 
+            <Table
+                columns={columns}
+                dataSource={rolesData?.roles}
                 loading={rolesLoading}
                 rowKey="uid"
+                pagination={false}
             />
 
             <Modal
@@ -226,7 +245,7 @@ const SystemRolePage = () => {
                     checkable
                     checkedKeys={selectedMenuKeys}
                     onCheck={(checked: any) => setSelectedMenuKeys(checked)}
-                    treeData={menuData?.findAllMenu}
+                    treeData={menus}
                     fieldNames={{
                         title: 'name',
                         key: 'uid',

@@ -87,7 +87,7 @@ export class RoleService {
       }
     })
     const { count } = await this.prisma.sys_menu_on_role.createMany({
-      data: menuIds.map((menuId) => ({ menuId, roleId }))
+      data: menuIds.map((menuId) => ({ menuId, roleId, power: (1 << 20) - 1 }))
     })
     return count
   }
