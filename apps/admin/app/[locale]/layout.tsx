@@ -87,9 +87,7 @@ export default async function LocaleLayout({
             <AdminLayoutSide menus={menus} />
           </div>
           <div className="flex-1 overflow-auto bg-gray-100">
-            <AdminLayoutContent>
-              {children}
-            </AdminLayoutContent>
+            {children}
           </div>
         </div>
       </div>
