@@ -34,7 +34,8 @@ export class SystemService {
     await this.prisma.sys_menu_on_role.createMany({
       data: menus.map(({ uid }) => ({
         menuId: uid,
-        roleId: role.uid
+        roleId: role.uid,
+        power: (1 << 20) - 1
       }))
     })
     const user = await this.userService.create({

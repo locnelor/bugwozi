@@ -62,6 +62,7 @@ export class AuthService {
         })
         if (!user) throw NotFoundAccountException
         if (user.accounts.length === 0) throw NotFoundAccountException;
+        console.log(user.accounts[0].value, this.cryptoValue('account', this.cryptoPassword(user, password)), password)
         if (user.accounts[0].value !== this.cryptoValue('account', this.cryptoPassword(user, password))) throw WrongPasswordException;
         return {
             ...user,
@@ -93,19 +94,18 @@ export class AuthService {
     }
 
     async validate({ crypto, provider, sub }) {
-        console.log(crypto,provider,sub)
         const account = await this.prisma.sys_account.findUnique({
             where: {
                 uid: sub
             },
             include: {
                 user: {
-                    include:{
-                        role:{
-                            include:{
+                    include: {
+                        role: {
+                            include: {
                                 menus: {
-                                    include:{
-                                        menu:true
+                                    include: {
+                                        menu: true
                                     }
                                 }
                             }
@@ -116,7 +116,7 @@ export class AuthService {
         })
         if (!account) throw NotFoundAccountException
         if (provider !== account.provider) throw WrongPasswordException;
-        if(crypto !== this.cryptoValue(provider,account.value)) throw WrongPasswordException;
+        if (crypto !== this.cryptoValue(provider, account.value)) throw WrongPasswordException;
         return account.user;
     }
 }

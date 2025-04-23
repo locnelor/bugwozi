@@ -62,7 +62,7 @@ const handleRequest = (user: SysUserEntity, path: string, power?: number[]) => {
   const find = user?.role?.menus?.find((e) => {
     return e?.menu?.path === path
   })
-  const powers = find?.menu?.powers || 0
+  const powers = find?.power || 0
   if (!powers) throw new Error('权限不足')
   const p = power.reduce((acc, item) => acc | item, 0);
   if ((p & powers) !== p) {
