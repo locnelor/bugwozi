@@ -11,6 +11,7 @@ import { BlogModule } from './blog/blog.module';
 import { OrderModule } from './order/order.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { WechatModule } from './wechat/wechat.module';
+import { RedisCache, WeChatModule } from '@app/wechat';
 
 @Module({
   imports: [
@@ -67,6 +68,18 @@ import { WechatModule } from './wechat/wechat.module';
           },
         };
       },
+    }),
+    WeChatModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService, cache: Cache) => ({
+        appId: configService.get('WX_APPID'),
+        secret: configService.get('WX_SECRET'),
+        token: configService.get('WX_TOKEN'),
+        encodingAESKey: configService.get('WX_AESKEY'),
+        cacheAdapter: new RedisCache(cache),
+        debug: true,
+      }),
     }),
     SystemModule,
     BlogModule,

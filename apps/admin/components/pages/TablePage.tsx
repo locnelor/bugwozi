@@ -22,7 +22,7 @@ const TablePage = ({
         loading={loading}
         columns={columns}
         scroll={{
-          y: 'calc(100% - 64px)'
+          y: '100%'
         }}
         pagination={false}
       />

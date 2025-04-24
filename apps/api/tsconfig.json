@@ -72,6 +72,12 @@
       ],
       "@app/utils/*": [
         "libs/utils/src/*"
+      ],
+      "@app/wechat": [
+        "libs/wechat/src"
+      ],
+      "@app/wechat/*": [
+        "libs/wechat/src/*"
       ]
     }
   }

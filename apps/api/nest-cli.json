@@ -78,6 +78,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/utils/tsconfig.lib.json"
       }
+    },
+    "wechat": {
+      "type": "library",
+      "root": "libs/wechat",
+      "entryFile": "index",
+      "sourceRoot": "libs/wechat/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/wechat/tsconfig.lib.json"
+      }
     }
   }
 }

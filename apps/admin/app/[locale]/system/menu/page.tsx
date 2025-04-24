@@ -25,7 +25,7 @@ export const FindAllMenuQuery = gql`
 const SystemMenuPage = () => {
   const { data, loading } = useQuery(FindAllMenuQuery);
   const dataSource = useDataSource(data?.menus)
-  
+
   const columns = useColumns([
     {
       title: '菜单名称',
@@ -62,30 +62,22 @@ const SystemMenuPage = () => {
       render: (text) => dayjs(text).format('YYYY-MM-DD'),
     }
   ]);
-
   return (
     <Page>
-      <TablePage
-        dataSource={dataSource}
-        loading={loading}
+      <Table
         columns={columns}
+        dataSource={dataSource}
+        rowKey="uid"
+        loading={loading}
+        pagination={false}
+        scroll={{
+          y: 'calc(100vh - 160px)'
+        }}
+        expandable={{
+          childrenColumnName: 'children'
+        }}
       />
     </Page>
-  )
-  return (
-    <Table
-      columns={columns}
-      dataSource={dataSource}
-      rowKey="uid"
-      loading={loading}
-      pagination={false}
-      scroll={{
-        y: '75vh'
-      }}
-      expandable={{
-        childrenColumnName: 'children'
-      }}
-    />
   )
 }
 

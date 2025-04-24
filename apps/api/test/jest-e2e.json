@@ -28,6 +28,8 @@
     "@app/request": "<rootDir>/../libs/request/src",
     "@app/request/(.*)": "<rootDir>/../libs/request/src/$1",
     "@app/utils": "<rootDir>/../libs/utils/src",
-    "@app/utils/(.*)": "<rootDir>/../libs/utils/src/$1"
+    "@app/utils/(.*)": "<rootDir>/../libs/utils/src/$1",
+    "@app/wechat": "<rootDir>/../libs/wechat/src",
+    "@app/wechat/(.*)": "<rootDir>/../libs/wechat/src/$1"
   }
 }

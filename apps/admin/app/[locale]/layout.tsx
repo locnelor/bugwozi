@@ -6,12 +6,16 @@ import MessageProvider from '#/hooks/MessageProvider';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { ApolloWrapper } from '#/libs/apollo-wrapper';
 import { getViewer } from '#/hooks/viewer/getViewer';
-import AdminLayoutContent from './AdminLayoutContent';
 import AdminLayoutHeader from './AdminLayoutHeader';
 import AdminLayoutSide from './AdminLayoutSide';
 import { getPrismaClient } from '#/libs/db';
 import { PropsWithChildren } from "react"
 import RedirectPage from "#/app/[locale]/redirectPage";
+import zhCN from 'antd/locale/zh_CN';
+// for date-picker i18n
+import 'dayjs/locale/zh-cn';
+import { ConfigProvider } from 'antd';
+
 const HomeLayout = ({ children, locale }: PropsWithChildren<{ locale: string }>) => {
   return (
     <html lang={locale} >
@@ -19,9 +23,11 @@ const HomeLayout = ({ children, locale }: PropsWithChildren<{ locale: string }>)
         <ApolloWrapper>
           <NextIntlClientProvider>
             <AntdRegistry>
-              <MessageProvider>
-                {children}
-              </MessageProvider>
+              <ConfigProvider locale={zhCN}>
+                <MessageProvider>
+                  {children}
+                </MessageProvider>
+              </ConfigProvider>
             </AntdRegistry>
           </NextIntlClientProvider>
         </ApolloWrapper>
