@@ -3,20 +3,23 @@ import { ReactNode, useRef } from "react"
 
 
 interface Props {
-  dataSource: any[],
+  dataSource: any[]
   columns: any[]
   pagination?: ReactNode
+  loading?: boolean
 }
 const TablePage = ({
   dataSource,
   columns,
-  pagination
+  pagination,
+  loading
 }: Props) => {
   const ref = useRef<HTMLDivElement>(null)
   return (
     <div className="h-full w-full">
       <Table
         dataSource={dataSource}
+        loading={loading}
         columns={columns}
         scroll={{
           y: 'calc(100% - 64px)'

@@ -1,11 +1,12 @@
 "use client"
 
 import { gql, useQuery } from "@apollo/client"
-import { useEffect, useState } from "react";
-import { Table, Button, Space, message } from "antd";
-import type { ColumnsType } from 'antd/es/table';
+import { Table } from "antd";
 import { BaseUFields } from "#/libs/fields";
 import dayjs from "dayjs";
+import Page from "#/components/pages/Page";
+import TablePage from "#/components/pages/TablePage";
+import { useColumns, useDataSource } from "#/hooks/useTable";
 
 export const FindAllMenuQuery = gql`
   query FindAllMenu {
@@ -21,30 +22,11 @@ export const FindAllMenuQuery = gql`
   }
 `
 
-interface MenuData {
-  uid: string;
-  name: string;
-  path: string;
-  sort: number;
-  powers: number;
-  comment?: string;
-  parentId?: string;
-  createdAt: string;
-  updatedAt: string;
-  children?: MenuData[];
-}
-
 const SystemMenuPage = () => {
-  const { data, loading, refetch } = useQuery(FindAllMenuQuery);
-  const [dataSource, setDataSource] = useState<MenuData[]>([]);
-
-  useEffect(() => {
-    setDataSource(() => {
-      return data?.menus || []
-    })
-  }, [data])
-
-  const columns: ColumnsType<MenuData> = [
+  const { data, loading } = useQuery(FindAllMenuQuery);
+  const dataSource = useDataSource(data?.menus)
+  
+  const columns = useColumns([
     {
       title: '菜单名称',
       dataIndex: 'name',
@@ -79,8 +61,17 @@ const SystemMenuPage = () => {
       key: 'createdAt',
       render: (text) => dayjs(text).format('YYYY-MM-DD'),
     }
-  ];
+  ]);
 
+  return (
+    <Page>
+      <TablePage
+        dataSource={dataSource}
+        loading={loading}
+        columns={columns}
+      />
+    </Page>
+  )
   return (
     <Table
       columns={columns}
@@ -89,7 +80,7 @@ const SystemMenuPage = () => {
       loading={loading}
       pagination={false}
       scroll={{
-        y:'75vh'
+        y: '75vh'
       }}
       expandable={{
         childrenColumnName: 'children'
