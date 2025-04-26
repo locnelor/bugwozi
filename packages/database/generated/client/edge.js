@@ -214,7 +214,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/wangwenhui/files/code/bugwozi/packages/database/generated/client",
+      "value": "/Users/locnelor/files/code/bugwozi/packages/database/generated/client",
       "fromEnvVar": null
     },
     "config": {
@@ -228,7 +228,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/wangwenhui/files/code/bugwozi/packages/database/prisma/schema.prisma",
+    "sourceFilePath": "/Users/locnelor/files/code/bugwozi/packages/database/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
