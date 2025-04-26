@@ -10425,6 +10425,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     name: string | null
+    description: string | null
   }
 
   export type Blog_categoriesMaxAggregateOutputType = {
@@ -10432,6 +10433,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     name: string | null
+    description: string | null
   }
 
   export type Blog_categoriesCountAggregateOutputType = {
@@ -10439,6 +10441,7 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     name: number
+    description: number
     _all: number
   }
 
@@ -10448,6 +10451,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     name?: true
+    description?: true
   }
 
   export type Blog_categoriesMaxAggregateInputType = {
@@ -10455,6 +10459,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     name?: true
+    description?: true
   }
 
   export type Blog_categoriesCountAggregateInputType = {
@@ -10462,6 +10467,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     name?: true
+    description?: true
     _all?: true
   }
 
@@ -10542,6 +10548,7 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     name: string
+    description: string | null
     _count: Blog_categoriesCountAggregateOutputType | null
     _min: Blog_categoriesMinAggregateOutputType | null
     _max: Blog_categoriesMaxAggregateOutputType | null
@@ -10566,6 +10573,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     name?: boolean
+    description?: boolean
     posts?: boolean | blog_categories$postsArgs<ExtArgs>
     _count?: boolean | Blog_categoriesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["blog_categories"]>
@@ -10577,9 +10585,10 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     name?: boolean
+    description?: boolean
   }
 
-  export type blog_categoriesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createdAt" | "updatedAt" | "name", ExtArgs["result"]["blog_categories"]>
+  export type blog_categoriesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createdAt" | "updatedAt" | "name" | "description", ExtArgs["result"]["blog_categories"]>
   export type blog_categoriesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     posts?: boolean | blog_categories$postsArgs<ExtArgs>
     _count?: boolean | Blog_categoriesCountOutputTypeDefaultArgs<ExtArgs>
@@ -10595,6 +10604,7 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       name: string
+      description: string | null
     }, ExtArgs["result"]["blog_categories"]>
     composites: {}
   }
@@ -10969,6 +10979,7 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"blog_categories", 'DateTime'>
     readonly updatedAt: FieldRef<"blog_categories", 'DateTime'>
     readonly name: FieldRef<"blog_categories", 'String'>
+    readonly description: FieldRef<"blog_categories", 'String'>
   }
     
 
@@ -17201,7 +17212,8 @@ export namespace Prisma {
     uid: 'uid',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    name: 'name'
+    name: 'name',
+    description: 'description'
   };
 
   export type Blog_categoriesScalarFieldEnum = (typeof Blog_categoriesScalarFieldEnum)[keyof typeof Blog_categoriesScalarFieldEnum]
@@ -17375,7 +17387,8 @@ export namespace Prisma {
 
   export const blog_categoriesOrderByRelevanceFieldEnum: {
     uid: 'uid',
-    name: 'name'
+    name: 'name',
+    description: 'description'
   };
 
   export type blog_categoriesOrderByRelevanceFieldEnum = (typeof blog_categoriesOrderByRelevanceFieldEnum)[keyof typeof blog_categoriesOrderByRelevanceFieldEnum]
@@ -18051,6 +18064,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"blog_categories"> | Date | string
     updatedAt?: DateTimeFilter<"blog_categories"> | Date | string
     name?: StringFilter<"blog_categories"> | string
+    description?: StringNullableFilter<"blog_categories"> | string | null
     posts?: Blog_postsListRelationFilter
   }
 
@@ -18059,6 +18073,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     name?: SortOrder
+    description?: SortOrderInput | SortOrder
     posts?: blog_postsOrderByRelationAggregateInput
     _relevance?: blog_categoriesOrderByRelevanceInput
   }
@@ -18071,6 +18086,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"blog_categories"> | Date | string
     updatedAt?: DateTimeFilter<"blog_categories"> | Date | string
     name?: StringFilter<"blog_categories"> | string
+    description?: StringNullableFilter<"blog_categories"> | string | null
     posts?: Blog_postsListRelationFilter
   }, "uid">
 
@@ -18079,6 +18095,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     name?: SortOrder
+    description?: SortOrderInput | SortOrder
     _count?: blog_categoriesCountOrderByAggregateInput
     _max?: blog_categoriesMaxOrderByAggregateInput
     _min?: blog_categoriesMinOrderByAggregateInput
@@ -18092,6 +18109,7 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"blog_categories"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"blog_categories"> | Date | string
     name?: StringWithAggregatesFilter<"blog_categories"> | string
+    description?: StringNullableWithAggregatesFilter<"blog_categories"> | string | null
   }
 
   export type blog_postsWhereInput = {
@@ -19048,6 +19066,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     name: string
+    description?: string | null
     posts?: blog_postsCreateNestedManyWithoutCategoriesInput
   }
 
@@ -19056,6 +19075,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     name: string
+    description?: string | null
     posts?: blog_postsUncheckedCreateNestedManyWithoutCategoriesInput
   }
 
@@ -19064,6 +19084,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: blog_postsUpdateManyWithoutCategoriesNestedInput
   }
 
@@ -19072,6 +19093,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: blog_postsUncheckedUpdateManyWithoutCategoriesNestedInput
   }
 
@@ -19080,6 +19102,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     name: string
+    description?: string | null
   }
 
   export type blog_categoriesUpdateManyMutationInput = {
@@ -19087,6 +19110,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type blog_categoriesUncheckedUpdateManyInput = {
@@ -19094,6 +19118,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type blog_postsCreateInput = {
@@ -20118,6 +20143,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     name?: SortOrder
+    description?: SortOrder
   }
 
   export type blog_categoriesMaxOrderByAggregateInput = {
@@ -20125,6 +20151,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     name?: SortOrder
+    description?: SortOrder
   }
 
   export type blog_categoriesMinOrderByAggregateInput = {
@@ -20132,6 +20159,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     name?: SortOrder
+    description?: SortOrder
   }
 
   export type Blog_categoriesNullableScalarRelationFilter = {
@@ -22689,6 +22717,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     name: string
+    description?: string | null
   }
 
   export type blog_categoriesUncheckedCreateWithoutPostsInput = {
@@ -22696,6 +22725,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     name: string
+    description?: string | null
   }
 
   export type blog_categoriesCreateOrConnectWithoutPostsInput = {
@@ -22796,6 +22826,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type blog_categoriesUncheckedUpdateWithoutPostsInput = {
@@ -22803,6 +22834,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type sys_userUpsertWithoutBlog_postsInput = {

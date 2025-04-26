@@ -197,7 +197,8 @@ exports.Prisma.Blog_categoriesScalarFieldEnum = {
   uid: 'uid',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  name: 'name'
+  name: 'name',
+  description: 'description'
 };
 
 exports.Prisma.Blog_postsScalarFieldEnum = {
@@ -320,7 +321,8 @@ exports.Prisma.sys_user_mediaOrderByRelevanceFieldEnum = {
 
 exports.Prisma.blog_categoriesOrderByRelevanceFieldEnum = {
   uid: 'uid',
-  name: 'name'
+  name: 'name',
+  description: 'description'
 };
 
 exports.Prisma.blog_postsOrderByRelevanceFieldEnum = {

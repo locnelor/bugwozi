@@ -139,11 +139,12 @@ model sys_user_media {
 //*********************** 博客系统
 // 博客分类
 model blog_categories {
-  uid       String       @id @default(uuid())
-  createdAt DateTime     @default(now())
-  updatedAt DateTime     @default(now()) @updatedAt
-  name      String
-  posts     blog_posts[]
+  uid         String       @id @default(uuid())
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @default(now()) @updatedAt
+  name        String
+  description String?
+  posts       blog_posts[]
 }
 
 // 博客文章
