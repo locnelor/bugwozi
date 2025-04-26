@@ -72,8 +72,13 @@ export class RoleService {
     })
   }
 
-  remove(uid: string) {
-    return this.prisma.sys_role.delete({
+  async remove(uid: string) {
+    await this.prisma.sys_menu_on_role.deleteMany({
+      where: {
+        roleId: uid
+      }
+    })
+    return await this.prisma.sys_role.delete({
       where: {
         uid
       }

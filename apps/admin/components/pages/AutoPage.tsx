@@ -2,9 +2,9 @@ import { DocumentType } from "@apollo/client";
 import Page from "./Page";
 import PageCard from "./PageCard";
 import TablePage from "./TablePage";
-import { ReactNode, useState } from "react";
+import { PropsWithChildren, ReactNode, useState } from "react";
 import { useColumns } from "#/hooks/useTable";
-import { Button, Space, message, Form, Input, InputNumber, Select, DatePicker, Switch, TreeSelect } from "antd";
+import { Button, Space, message, Form, Input, InputNumber, Select, DatePicker, Switch, TreeSelect, ButtonProps, Popconfirm } from "antd";
 import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import AutoFormModal from "./AutoFormModal";
 
@@ -16,7 +16,7 @@ export interface FormField {
     rest?: any
 }
 
-interface AutoPageProps {
+interface AutoPageProps extends PropsWithChildren {
     dataSource: any[];
     columns: any[];
     loading: boolean;
@@ -43,9 +43,19 @@ interface AutoPageProps {
     };
     pagination?: ReactNode,
     operation?: (record: any) => ReactNode,
-    sider?: ReactNode
+    side?: ReactNode
 }
+export const TableBaseButton = ({ children, ...rest }: PropsWithChildren<ButtonProps>) => {
 
+    return (
+        <Button
+            type="link"
+            {...rest}
+        >
+            {children}
+        </Button>
+    )
+}
 const AutoPage = ({
     dataSource,
     columns,
@@ -56,7 +66,8 @@ const AutoPage = ({
     search,
     pagination,
     operation,
-    sider
+    side,
+    children
 }: AutoPageProps) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [editingRecord, setEditingRecord] = useState<any>(null);
@@ -75,7 +86,7 @@ const AutoPage = ({
     const handleDelete = async (record: any) => {
         try {
             if (remove) {
-                await remove.onSubmit({ ...remove.variables, id: record.id });
+                await remove.onSubmit({ ...remove.variables, id: record.id, uid: record.uid });
                 message.success('删除成功');
             }
         } catch (error) {
@@ -117,23 +128,25 @@ const AutoPage = ({
                     <Space>
                         {!!operation && operation(record)}
                         {update && (
-                            <Button
-                                type="link"
+                            <TableBaseButton
                                 icon={<EditOutlined />}
                                 onClick={() => handleEdit(record)}
                             >
                                 编辑
-                            </Button>
+                            </TableBaseButton>
                         )}
                         {remove && (
-                            <Button
-                                type="link"
-                                danger
-                                icon={<DeleteOutlined />}
-                                onClick={() => handleDelete(record)}
+                            <Popconfirm
+                                onConfirm={() => handleDelete(record)}
+                                title="删除后无法恢复，确认要删除吗？"
                             >
-                                删除
-                            </Button>
+                                <TableBaseButton
+                                    danger
+                                    icon={<DeleteOutlined />}
+                                >
+                                    删除
+                                </TableBaseButton>
+                            </Popconfirm>
                         )}
                     </Space>
                 )
@@ -180,7 +193,7 @@ const AutoPage = ({
         >
             <div className="flex flex-col gap-2 h-full">
                 <div className="flex gap-2 flex-1">
-                    {sider}
+                    {side}
                     <PageCard className="flex-1">
                         <div className="flex justify-end">
                             {create && (
@@ -213,6 +226,7 @@ const AutoPage = ({
                     initialValues={editingRecord}
                 />
             )}
+            {children}
         </Page>
     );
 };

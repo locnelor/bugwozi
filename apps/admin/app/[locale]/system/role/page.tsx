@@ -10,7 +10,7 @@ import gqlError from "#/libs/gqlError"
 import Page from "#/components/pages/Page"
 import TablePage from "#/components/pages/TablePage"
 import { useColumns, useDataSource } from "#/hooks/useTable"
-import AutoPage from "#/components/pages/AutoPage"
+import AutoPage, { TableBaseButton } from "#/components/pages/AutoPage"
 
 export const RolesQuery = gql`
     query Roles{
@@ -114,7 +114,7 @@ const SystemRolePage = () => {
         try {
             await removeRole({
                 variables: {
-                    uid: variables.id
+                    uid: variables.uid
                 }
             });
             refetch();
@@ -125,6 +125,46 @@ const SystemRolePage = () => {
         }
     };
 
+    const menus = useMemo(() => {
+        return array2tree(menuData?.menus || [], {
+            parentNodeName: "parentId",
+            nodeName: "uid",
+            defaultParentId: null
+        })
+    }, [menuData])
+    const [currentRole, setCurrentRole] = useState<any>(null)
+    const [menuVisible, setMenuVisible] = useState(false)
+    const [selectedMenuKeys, setSelectedMenuKeys] = useState<string[]>([])
+    const [refetchMenuOnRole] = useLazyQuery(FindMenuOnRolesQuery, {
+        fetchPolicy: "no-cache"
+    })
+    const [assignRole] = useMutation(AssignRoleMutation)
+    const handleAssignMenu = async () => {
+        try {
+            await assignRole({
+                variables: {
+                    data: {
+                        roleId: currentRole.uid,
+                        menuIds: selectedMenuKeys
+                    }
+                }
+            })
+            message.success("操作成功")
+            setMenuVisible(false)
+        } catch (error) {
+            gqlError(error)
+        }
+    }
+    useEffect(() => {
+        if (!currentRole) return;
+        refetchMenuOnRole({
+            variables: {
+                id: currentRole.uid
+            }
+        }).then(({ data: { findMenuOnRoles } }) => {
+            setSelectedMenuKeys(findMenuOnRoles?.map((item: any) => item.menuId) || [])
+        })
+    }, [currentRole])
     return (
         <AutoPage
             dataSource={dataSource}
@@ -144,6 +184,18 @@ const SystemRolePage = () => {
                     }
                 ]
             }}
+            operation={(record: any) => {
+                return (
+                    <TableBaseButton
+                        onClick={() => {
+                            setCurrentRole(record)
+                            setMenuVisible(true)
+                        }}
+                    >
+                        分配菜单
+                    </TableBaseButton>
+                )
+            }}
             update={{
                 onSubmit: handleUpdate,
                 name: "编辑角色",
@@ -162,7 +214,26 @@ const SystemRolePage = () => {
                 onSubmit: handleDelete,
                 name: "删除角色"
             }}
-        />
+        >
+            <Modal
+                title="分配菜单"
+                open={menuVisible}
+                onOk={handleAssignMenu}
+                onCancel={() => setMenuVisible(false)}
+                width={600}
+            >
+                <Tree
+                    checkable
+                    checkedKeys={selectedMenuKeys}
+                    onCheck={(checked: any) => setSelectedMenuKeys(checked)}
+                    treeData={menus}
+                    fieldNames={{
+                        title: 'name',
+                        key: 'uid',
+                    }}
+                />
+            </Modal>
+        </AutoPage>
     );
 }
 
