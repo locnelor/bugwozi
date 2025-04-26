@@ -21,16 +21,18 @@ enum sys_account_provider {
 
 //系统角色
 model sys_user {
-  uid            String              @id @default(uuid())
-  createdAt      DateTime            @default(now())
-  updatedAt      DateTime            @default(now()) @updatedAt
-  name           String
-  roleId         String?
-  account        String              @unique
-  accounts       sys_account[]
-  role           sys_role?           @relation(fields: [roleId], references: [uid])
-  ban_menus      sys_user_ban_menu[]
-  sys_user_media sys_user_media[]
+  uid           String              @id @default(uuid())
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @default(now()) @updatedAt
+  name          String
+  roleId        String?
+  account       String              @unique
+  accounts      sys_account[]
+  role          sys_role?           @relation(fields: [roleId], references: [uid])
+  ban_menus     sys_user_ban_menu[]
+  user_media    sys_user_media[]
+  blog_posts    blog_posts[]
+  blog_comments blog_comments[]
 }
 
 //系统账号
@@ -132,4 +134,85 @@ model sys_user_media {
   mediaId String
 
   @@id([userId, mediaId])
+}
+
+//*********************** 博客系统
+// 博客分类
+model blog_categories {
+  uid      String       @id @default(uuid())
+  createAt DateTime     @default(now())
+  updateAt DateTime     @default(now()) @updatedAt
+  name     String
+  posts    blog_posts[]
+}
+
+// 博客文章
+model blog_posts {
+  uid          String               @id @default(uuid())
+  createAt     DateTime             @default(now())
+  updateAt     DateTime             @default(now()) @updatedAt
+  title        String
+  content      String               @db.Text
+  status       Boolean              @default(true)
+  userId       String
+  categoriesId String?
+  categories   blog_categories?     @relation(fields: [categoriesId], references: [uid])
+  user         sys_user             @relation(fields: [userId], references: [uid])
+  tags         blog_posts_on_tags[]
+  comments     blog_comments[]
+}
+
+// 博客标签
+model blog_posts_on_tags {
+  postsId String
+  tagId   String
+  posts   blog_posts @relation(fields: [postsId], references: [uid])
+  tag     blog_tag   @relation(fields: [tagId], references: [uid])
+
+  @@id([postsId, tagId])
+}
+
+// 博客标签
+model blog_tag {
+  uid      String               @id @default(uuid())
+  createAt DateTime             @default(now())
+  updateAt DateTime             @default(now()) @updatedAt
+  name     String
+  blogs    blog_posts_on_tags[]
+}
+
+// 博客评论
+model blog_comments {
+  uid      String     @id @default(uuid())
+  createAt DateTime   @default(now())
+  updateAt DateTime   @default(now()) @updatedAt
+  content  String     @db.Text
+  status   Boolean    @default(true)
+  userId   String
+  postId   String
+  user     sys_user   @relation(fields: [userId], references: [uid])
+  post     blog_posts @relation(fields: [postId], references: [uid])
+}
+
+// 友情链接
+model blog_links {
+  uid      String   @id @default(uuid())
+  createAt DateTime @default(now())
+  updateAt DateTime @default(now()) @updatedAt
+  name     String // 链接名称
+  url      String // 链接地址
+  logo     String? // logo地址
+  sort     Int      @default(0) // 排序
+  status   Boolean  @default(true)
+}
+
+// 公告
+model blog_announcements {
+  uid      String   @id @default(uuid())
+  createAt DateTime @default(now())
+  updateAt DateTime @default(now()) @updatedAt
+  title    String // 公告标题
+  content  String   @db.Text // 公告内容
+  sort     Int      @default(0) // 排序
+  status   Boolean  @default(true)
 }

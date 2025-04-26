@@ -193,6 +193,67 @@ exports.Prisma.Sys_user_mediaScalarFieldEnum = {
   mediaId: 'mediaId'
 };
 
+exports.Prisma.Blog_categoriesScalarFieldEnum = {
+  uid: 'uid',
+  createAt: 'createAt',
+  updateAt: 'updateAt',
+  name: 'name'
+};
+
+exports.Prisma.Blog_postsScalarFieldEnum = {
+  uid: 'uid',
+  createAt: 'createAt',
+  updateAt: 'updateAt',
+  title: 'title',
+  content: 'content',
+  status: 'status',
+  userId: 'userId',
+  categoriesId: 'categoriesId'
+};
+
+exports.Prisma.Blog_posts_on_tagsScalarFieldEnum = {
+  postsId: 'postsId',
+  tagId: 'tagId'
+};
+
+exports.Prisma.Blog_tagScalarFieldEnum = {
+  uid: 'uid',
+  createAt: 'createAt',
+  updateAt: 'updateAt',
+  name: 'name'
+};
+
+exports.Prisma.Blog_commentsScalarFieldEnum = {
+  uid: 'uid',
+  createAt: 'createAt',
+  updateAt: 'updateAt',
+  content: 'content',
+  status: 'status',
+  userId: 'userId',
+  postId: 'postId'
+};
+
+exports.Prisma.Blog_linksScalarFieldEnum = {
+  uid: 'uid',
+  createAt: 'createAt',
+  updateAt: 'updateAt',
+  name: 'name',
+  url: 'url',
+  logo: 'logo',
+  sort: 'sort',
+  status: 'status'
+};
+
+exports.Prisma.Blog_announcementsScalarFieldEnum = {
+  uid: 'uid',
+  createAt: 'createAt',
+  updateAt: 'updateAt',
+  title: 'title',
+  content: 'content',
+  sort: 'sort',
+  status: 'status'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -256,6 +317,49 @@ exports.Prisma.sys_user_mediaOrderByRelevanceFieldEnum = {
   userId: 'userId',
   mediaId: 'mediaId'
 };
+
+exports.Prisma.blog_categoriesOrderByRelevanceFieldEnum = {
+  uid: 'uid',
+  name: 'name'
+};
+
+exports.Prisma.blog_postsOrderByRelevanceFieldEnum = {
+  uid: 'uid',
+  title: 'title',
+  content: 'content',
+  userId: 'userId',
+  categoriesId: 'categoriesId'
+};
+
+exports.Prisma.blog_posts_on_tagsOrderByRelevanceFieldEnum = {
+  postsId: 'postsId',
+  tagId: 'tagId'
+};
+
+exports.Prisma.blog_tagOrderByRelevanceFieldEnum = {
+  uid: 'uid',
+  name: 'name'
+};
+
+exports.Prisma.blog_commentsOrderByRelevanceFieldEnum = {
+  uid: 'uid',
+  content: 'content',
+  userId: 'userId',
+  postId: 'postId'
+};
+
+exports.Prisma.blog_linksOrderByRelevanceFieldEnum = {
+  uid: 'uid',
+  name: 'name',
+  url: 'url',
+  logo: 'logo'
+};
+
+exports.Prisma.blog_announcementsOrderByRelevanceFieldEnum = {
+  uid: 'uid',
+  title: 'title',
+  content: 'content'
+};
 exports.sys_account_provider = exports.$Enums.sys_account_provider = {
   we_chat: 'we_chat',
   github: 'github',
@@ -273,7 +377,14 @@ exports.Prisma.ModelName = {
   sys_menu_on_role: 'sys_menu_on_role',
   sys_role: 'sys_role',
   sys_media: 'sys_media',
-  sys_user_media: 'sys_user_media'
+  sys_user_media: 'sys_user_media',
+  blog_categories: 'blog_categories',
+  blog_posts: 'blog_posts',
+  blog_posts_on_tags: 'blog_posts_on_tags',
+  blog_tag: 'blog_tag',
+  blog_comments: 'blog_comments',
+  blog_links: 'blog_links',
+  blog_announcements: 'blog_announcements'
 };
 
 /**

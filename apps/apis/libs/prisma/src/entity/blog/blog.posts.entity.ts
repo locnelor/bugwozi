@@ -1,30 +1,36 @@
-import { Field, Int, ObjectType } from "@nestjs/graphql";
-import type { blog_posts } from "@pkg/database";
-import { BlogUserEntity } from "./blog.user.entity";
+import { Field, ObjectType } from "@nestjs/graphql";
+import { SysUserEntity } from "../system/sys.user.entity";
+import { blog_posts } from "@pkg/database";
+import { BaseUEntity } from "../base.u.entity";
 import { BlogCategoriesEntity } from "./blog.categories.entity";
-import { BaseUEntity } from '../base.u.entity';
-
-
+import { BlogPostsOnTagsEntity } from "./blog.posts.on.tags.entity";
 
 @ObjectType()
 export class BlogPostsEntity extends BaseUEntity implements blog_posts {
-  userId: string;
-  categoriesId: string | null;
   @Field()
-  title: string;
+  categoriesId: string;
 
-  @Field()
-  content: string;
+  @Field(() => String)
+  title: string
 
-  @Field()
-  blog_userUid: string;
+  @Field(() => String)
+  content: string
 
-  @Field(() => Int, { nullable: true })
-  blog_categoriesId: number | null;
+  @Field(() => String, { nullable: true })
+  description?: string
 
-  @Field(() => BlogUserEntity, { nullable: true })
-  user?: BlogUserEntity;
+  @Field(() => Boolean)
+  status: boolean
 
-  @Field(() => BlogCategoriesEntity, { nullable: true })
-  category?: BlogCategoriesEntity;
+  @Field(() => String)
+  userId: string
+
+  @Field(() => SysUserEntity, { nullable: true })
+  user?: SysUserEntity
+
+  @Field(() => [BlogPostsOnTagsEntity], { nullable: true })
+  tags?: BlogPostsOnTagsEntity[]
+
+  @Field(() => [BlogCategoriesEntity], { nullable: true })
+  categories?: BlogCategoriesEntity[]
 }
