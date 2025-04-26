@@ -20,10 +20,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 export type sys_user = $Result.DefaultSelection<Prisma.$sys_userPayload>
 /**
  * Model sys_account
- * 通过provider与value快速查询。
- *   但password需要单独设置。
- *   例如：${user_id}_account_${password} 
- *   we_chat_${openid}
+ * *
+ *  * 通过provider与value快速查询。
+ *  * 但password需要单独设置。
+ *  * 例如：${user_id}_account_${password}
+ *  * we_chat_${openid}
  */
 export type sys_account = $Result.DefaultSelection<Prisma.$sys_accountPayload>
 /**
@@ -46,6 +47,16 @@ export type sys_menu_on_role = $Result.DefaultSelection<Prisma.$sys_menu_on_role
  * 
  */
 export type sys_role = $Result.DefaultSelection<Prisma.$sys_rolePayload>
+/**
+ * Model sys_media
+ * 
+ */
+export type sys_media = $Result.DefaultSelection<Prisma.$sys_mediaPayload>
+/**
+ * Model sys_user_media
+ * 
+ */
+export type sys_user_media = $Result.DefaultSelection<Prisma.$sys_user_mediaPayload>
 
 /**
  * Enums
@@ -252,6 +263,26 @@ export class PrismaClient<
     * ```
     */
   get sys_role(): Prisma.sys_roleDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.sys_media`: Exposes CRUD operations for the **sys_media** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Sys_medias
+    * const sys_medias = await prisma.sys_media.findMany()
+    * ```
+    */
+  get sys_media(): Prisma.sys_mediaDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.sys_user_media`: Exposes CRUD operations for the **sys_user_media** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Sys_user_medias
+    * const sys_user_medias = await prisma.sys_user_media.findMany()
+    * ```
+    */
+  get sys_user_media(): Prisma.sys_user_mediaDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -697,7 +728,9 @@ export namespace Prisma {
     sys_menu: 'sys_menu',
     sys_user_ban_menu: 'sys_user_ban_menu',
     sys_menu_on_role: 'sys_menu_on_role',
-    sys_role: 'sys_role'
+    sys_role: 'sys_role',
+    sys_media: 'sys_media',
+    sys_user_media: 'sys_user_media'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -716,7 +749,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "sys_user" | "sys_account" | "sys_menu" | "sys_user_ban_menu" | "sys_menu_on_role" | "sys_role"
+      modelProps: "sys_user" | "sys_account" | "sys_menu" | "sys_user_ban_menu" | "sys_menu_on_role" | "sys_role" | "sys_media" | "sys_user_media"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1116,6 +1149,138 @@ export namespace Prisma {
           }
         }
       }
+      sys_media: {
+        payload: Prisma.$sys_mediaPayload<ExtArgs>
+        fields: Prisma.sys_mediaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.sys_mediaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_mediaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.sys_mediaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_mediaPayload>
+          }
+          findFirst: {
+            args: Prisma.sys_mediaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_mediaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.sys_mediaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_mediaPayload>
+          }
+          findMany: {
+            args: Prisma.sys_mediaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_mediaPayload>[]
+          }
+          create: {
+            args: Prisma.sys_mediaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_mediaPayload>
+          }
+          createMany: {
+            args: Prisma.sys_mediaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.sys_mediaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_mediaPayload>
+          }
+          update: {
+            args: Prisma.sys_mediaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_mediaPayload>
+          }
+          deleteMany: {
+            args: Prisma.sys_mediaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.sys_mediaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.sys_mediaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_mediaPayload>
+          }
+          aggregate: {
+            args: Prisma.Sys_mediaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSys_media>
+          }
+          groupBy: {
+            args: Prisma.sys_mediaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Sys_mediaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.sys_mediaCountArgs<ExtArgs>
+            result: $Utils.Optional<Sys_mediaCountAggregateOutputType> | number
+          }
+        }
+      }
+      sys_user_media: {
+        payload: Prisma.$sys_user_mediaPayload<ExtArgs>
+        fields: Prisma.sys_user_mediaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.sys_user_mediaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_user_mediaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.sys_user_mediaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_user_mediaPayload>
+          }
+          findFirst: {
+            args: Prisma.sys_user_mediaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_user_mediaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.sys_user_mediaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_user_mediaPayload>
+          }
+          findMany: {
+            args: Prisma.sys_user_mediaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_user_mediaPayload>[]
+          }
+          create: {
+            args: Prisma.sys_user_mediaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_user_mediaPayload>
+          }
+          createMany: {
+            args: Prisma.sys_user_mediaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.sys_user_mediaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_user_mediaPayload>
+          }
+          update: {
+            args: Prisma.sys_user_mediaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_user_mediaPayload>
+          }
+          deleteMany: {
+            args: Prisma.sys_user_mediaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.sys_user_mediaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.sys_user_mediaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_user_mediaPayload>
+          }
+          aggregate: {
+            args: Prisma.Sys_user_mediaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSys_user_media>
+          }
+          groupBy: {
+            args: Prisma.sys_user_mediaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Sys_user_mediaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.sys_user_mediaCountArgs<ExtArgs>
+            result: $Utils.Optional<Sys_user_mediaCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1206,6 +1371,8 @@ export namespace Prisma {
     sys_user_ban_menu?: sys_user_ban_menuOmit
     sys_menu_on_role?: sys_menu_on_roleOmit
     sys_role?: sys_roleOmit
+    sys_media?: sys_mediaOmit
+    sys_user_media?: sys_user_mediaOmit
   }
 
   /* Types for Logging */
@@ -1302,11 +1469,13 @@ export namespace Prisma {
   export type Sys_userCountOutputType = {
     accounts: number
     ban_menus: number
+    sys_user_media: number
   }
 
   export type Sys_userCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accounts?: boolean | Sys_userCountOutputTypeCountAccountsArgs
     ban_menus?: boolean | Sys_userCountOutputTypeCountBan_menusArgs
+    sys_user_media?: boolean | Sys_userCountOutputTypeCountSys_user_mediaArgs
   }
 
   // Custom InputTypes
@@ -1332,6 +1501,13 @@ export namespace Prisma {
    */
   export type Sys_userCountOutputTypeCountBan_menusArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: sys_user_ban_menuWhereInput
+  }
+
+  /**
+   * Sys_userCountOutputType without action
+   */
+  export type Sys_userCountOutputTypeCountSys_user_mediaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: sys_user_mediaWhereInput
   }
 
 
@@ -1421,6 +1597,37 @@ export namespace Prisma {
    */
   export type Sys_roleCountOutputTypeCountUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: sys_userWhereInput
+  }
+
+
+  /**
+   * Count Type Sys_mediaCountOutputType
+   */
+
+  export type Sys_mediaCountOutputType = {
+    users: number
+  }
+
+  export type Sys_mediaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    users?: boolean | Sys_mediaCountOutputTypeCountUsersArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Sys_mediaCountOutputType without action
+   */
+  export type Sys_mediaCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sys_mediaCountOutputType
+     */
+    select?: Sys_mediaCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Sys_mediaCountOutputType without action
+   */
+  export type Sys_mediaCountOutputTypeCountUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: sys_user_mediaWhereInput
   }
 
 
@@ -1603,6 +1810,7 @@ export namespace Prisma {
     accounts?: boolean | sys_user$accountsArgs<ExtArgs>
     role?: boolean | sys_user$roleArgs<ExtArgs>
     ban_menus?: boolean | sys_user$ban_menusArgs<ExtArgs>
+    sys_user_media?: boolean | sys_user$sys_user_mediaArgs<ExtArgs>
     _count?: boolean | Sys_userCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["sys_user"]>
 
@@ -1622,6 +1830,7 @@ export namespace Prisma {
     accounts?: boolean | sys_user$accountsArgs<ExtArgs>
     role?: boolean | sys_user$roleArgs<ExtArgs>
     ban_menus?: boolean | sys_user$ban_menusArgs<ExtArgs>
+    sys_user_media?: boolean | sys_user$sys_user_mediaArgs<ExtArgs>
     _count?: boolean | Sys_userCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -1631,6 +1840,7 @@ export namespace Prisma {
       accounts: Prisma.$sys_accountPayload<ExtArgs>[]
       role: Prisma.$sys_rolePayload<ExtArgs> | null
       ban_menus: Prisma.$sys_user_ban_menuPayload<ExtArgs>[]
+      sys_user_media: Prisma.$sys_user_mediaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       uid: string
@@ -1982,6 +2192,7 @@ export namespace Prisma {
     accounts<T extends sys_user$accountsArgs<ExtArgs> = {}>(args?: Subset<T, sys_user$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sys_accountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     role<T extends sys_user$roleArgs<ExtArgs> = {}>(args?: Subset<T, sys_user$roleArgs<ExtArgs>>): Prisma__sys_roleClient<$Result.GetResult<Prisma.$sys_rolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     ban_menus<T extends sys_user$ban_menusArgs<ExtArgs> = {}>(args?: Subset<T, sys_user$ban_menusArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sys_user_ban_menuPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sys_user_media<T extends sys_user$sys_user_mediaArgs<ExtArgs> = {}>(args?: Subset<T, sys_user$sys_user_mediaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sys_user_mediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2424,6 +2635,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Sys_user_ban_menuScalarFieldEnum | Sys_user_ban_menuScalarFieldEnum[]
+  }
+
+  /**
+   * sys_user.sys_user_media
+   */
+  export type sys_user$sys_user_mediaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_user_media
+     */
+    select?: sys_user_mediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_user_media
+     */
+    omit?: sys_user_mediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_user_mediaInclude<ExtArgs> | null
+    where?: sys_user_mediaWhereInput
+    orderBy?: sys_user_mediaOrderByWithRelationInput | sys_user_mediaOrderByWithRelationInput[]
+    cursor?: sys_user_mediaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Sys_user_mediaScalarFieldEnum | Sys_user_mediaScalarFieldEnum[]
   }
 
   /**
@@ -7386,6 +7621,2039 @@ export namespace Prisma {
 
 
   /**
+   * Model sys_media
+   */
+
+  export type AggregateSys_media = {
+    _count: Sys_mediaCountAggregateOutputType | null
+    _avg: Sys_mediaAvgAggregateOutputType | null
+    _sum: Sys_mediaSumAggregateOutputType | null
+    _min: Sys_mediaMinAggregateOutputType | null
+    _max: Sys_mediaMaxAggregateOutputType | null
+  }
+
+  export type Sys_mediaAvgAggregateOutputType = {
+    size: number | null
+    width: number | null
+    height: number | null
+    duration: number | null
+  }
+
+  export type Sys_mediaSumAggregateOutputType = {
+    size: number | null
+    width: number | null
+    height: number | null
+    duration: number | null
+  }
+
+  export type Sys_mediaMinAggregateOutputType = {
+    uid: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    name: string | null
+    size: number | null
+    hash: string | null
+    mimeType: string | null
+    extension: string | null
+    path: string | null
+    url: string | null
+    isWechat: boolean | null
+    wechat_id: string | null
+    enabled: boolean | null
+    type: string | null
+    width: number | null
+    height: number | null
+    duration: number | null
+  }
+
+  export type Sys_mediaMaxAggregateOutputType = {
+    uid: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    name: string | null
+    size: number | null
+    hash: string | null
+    mimeType: string | null
+    extension: string | null
+    path: string | null
+    url: string | null
+    isWechat: boolean | null
+    wechat_id: string | null
+    enabled: boolean | null
+    type: string | null
+    width: number | null
+    height: number | null
+    duration: number | null
+  }
+
+  export type Sys_mediaCountAggregateOutputType = {
+    uid: number
+    createdAt: number
+    updatedAt: number
+    name: number
+    size: number
+    hash: number
+    mimeType: number
+    extension: number
+    path: number
+    url: number
+    isWechat: number
+    wechat_id: number
+    enabled: number
+    type: number
+    width: number
+    height: number
+    duration: number
+    _all: number
+  }
+
+
+  export type Sys_mediaAvgAggregateInputType = {
+    size?: true
+    width?: true
+    height?: true
+    duration?: true
+  }
+
+  export type Sys_mediaSumAggregateInputType = {
+    size?: true
+    width?: true
+    height?: true
+    duration?: true
+  }
+
+  export type Sys_mediaMinAggregateInputType = {
+    uid?: true
+    createdAt?: true
+    updatedAt?: true
+    name?: true
+    size?: true
+    hash?: true
+    mimeType?: true
+    extension?: true
+    path?: true
+    url?: true
+    isWechat?: true
+    wechat_id?: true
+    enabled?: true
+    type?: true
+    width?: true
+    height?: true
+    duration?: true
+  }
+
+  export type Sys_mediaMaxAggregateInputType = {
+    uid?: true
+    createdAt?: true
+    updatedAt?: true
+    name?: true
+    size?: true
+    hash?: true
+    mimeType?: true
+    extension?: true
+    path?: true
+    url?: true
+    isWechat?: true
+    wechat_id?: true
+    enabled?: true
+    type?: true
+    width?: true
+    height?: true
+    duration?: true
+  }
+
+  export type Sys_mediaCountAggregateInputType = {
+    uid?: true
+    createdAt?: true
+    updatedAt?: true
+    name?: true
+    size?: true
+    hash?: true
+    mimeType?: true
+    extension?: true
+    path?: true
+    url?: true
+    isWechat?: true
+    wechat_id?: true
+    enabled?: true
+    type?: true
+    width?: true
+    height?: true
+    duration?: true
+    _all?: true
+  }
+
+  export type Sys_mediaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which sys_media to aggregate.
+     */
+    where?: sys_mediaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of sys_medias to fetch.
+     */
+    orderBy?: sys_mediaOrderByWithRelationInput | sys_mediaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: sys_mediaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` sys_medias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` sys_medias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned sys_medias
+    **/
+    _count?: true | Sys_mediaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Sys_mediaAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Sys_mediaSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Sys_mediaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Sys_mediaMaxAggregateInputType
+  }
+
+  export type GetSys_mediaAggregateType<T extends Sys_mediaAggregateArgs> = {
+        [P in keyof T & keyof AggregateSys_media]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSys_media[P]>
+      : GetScalarType<T[P], AggregateSys_media[P]>
+  }
+
+
+
+
+  export type sys_mediaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: sys_mediaWhereInput
+    orderBy?: sys_mediaOrderByWithAggregationInput | sys_mediaOrderByWithAggregationInput[]
+    by: Sys_mediaScalarFieldEnum[] | Sys_mediaScalarFieldEnum
+    having?: sys_mediaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Sys_mediaCountAggregateInputType | true
+    _avg?: Sys_mediaAvgAggregateInputType
+    _sum?: Sys_mediaSumAggregateInputType
+    _min?: Sys_mediaMinAggregateInputType
+    _max?: Sys_mediaMaxAggregateInputType
+  }
+
+  export type Sys_mediaGroupByOutputType = {
+    uid: string
+    createdAt: Date
+    updatedAt: Date
+    name: string
+    size: number
+    hash: string
+    mimeType: string
+    extension: string
+    path: string
+    url: string | null
+    isWechat: boolean
+    wechat_id: string | null
+    enabled: boolean
+    type: string
+    width: number | null
+    height: number | null
+    duration: number | null
+    _count: Sys_mediaCountAggregateOutputType | null
+    _avg: Sys_mediaAvgAggregateOutputType | null
+    _sum: Sys_mediaSumAggregateOutputType | null
+    _min: Sys_mediaMinAggregateOutputType | null
+    _max: Sys_mediaMaxAggregateOutputType | null
+  }
+
+  type GetSys_mediaGroupByPayload<T extends sys_mediaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Sys_mediaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Sys_mediaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Sys_mediaGroupByOutputType[P]>
+            : GetScalarType<T[P], Sys_mediaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type sys_mediaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    uid?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    name?: boolean
+    size?: boolean
+    hash?: boolean
+    mimeType?: boolean
+    extension?: boolean
+    path?: boolean
+    url?: boolean
+    isWechat?: boolean
+    wechat_id?: boolean
+    enabled?: boolean
+    type?: boolean
+    width?: boolean
+    height?: boolean
+    duration?: boolean
+    users?: boolean | sys_media$usersArgs<ExtArgs>
+    _count?: boolean | Sys_mediaCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sys_media"]>
+
+
+
+  export type sys_mediaSelectScalar = {
+    uid?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    name?: boolean
+    size?: boolean
+    hash?: boolean
+    mimeType?: boolean
+    extension?: boolean
+    path?: boolean
+    url?: boolean
+    isWechat?: boolean
+    wechat_id?: boolean
+    enabled?: boolean
+    type?: boolean
+    width?: boolean
+    height?: boolean
+    duration?: boolean
+  }
+
+  export type sys_mediaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createdAt" | "updatedAt" | "name" | "size" | "hash" | "mimeType" | "extension" | "path" | "url" | "isWechat" | "wechat_id" | "enabled" | "type" | "width" | "height" | "duration", ExtArgs["result"]["sys_media"]>
+  export type sys_mediaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    users?: boolean | sys_media$usersArgs<ExtArgs>
+    _count?: boolean | Sys_mediaCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $sys_mediaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "sys_media"
+    objects: {
+      users: Prisma.$sys_user_mediaPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      uid: string
+      createdAt: Date
+      updatedAt: Date
+      name: string
+      size: number
+      hash: string
+      mimeType: string
+      extension: string
+      path: string
+      url: string | null
+      isWechat: boolean
+      wechat_id: string | null
+      enabled: boolean
+      type: string
+      width: number | null
+      height: number | null
+      duration: number | null
+    }, ExtArgs["result"]["sys_media"]>
+    composites: {}
+  }
+
+  type sys_mediaGetPayload<S extends boolean | null | undefined | sys_mediaDefaultArgs> = $Result.GetResult<Prisma.$sys_mediaPayload, S>
+
+  type sys_mediaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<sys_mediaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Sys_mediaCountAggregateInputType | true
+    }
+
+  export interface sys_mediaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['sys_media'], meta: { name: 'sys_media' } }
+    /**
+     * Find zero or one Sys_media that matches the filter.
+     * @param {sys_mediaFindUniqueArgs} args - Arguments to find a Sys_media
+     * @example
+     * // Get one Sys_media
+     * const sys_media = await prisma.sys_media.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends sys_mediaFindUniqueArgs>(args: SelectSubset<T, sys_mediaFindUniqueArgs<ExtArgs>>): Prisma__sys_mediaClient<$Result.GetResult<Prisma.$sys_mediaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Sys_media that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {sys_mediaFindUniqueOrThrowArgs} args - Arguments to find a Sys_media
+     * @example
+     * // Get one Sys_media
+     * const sys_media = await prisma.sys_media.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends sys_mediaFindUniqueOrThrowArgs>(args: SelectSubset<T, sys_mediaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__sys_mediaClient<$Result.GetResult<Prisma.$sys_mediaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Sys_media that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sys_mediaFindFirstArgs} args - Arguments to find a Sys_media
+     * @example
+     * // Get one Sys_media
+     * const sys_media = await prisma.sys_media.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends sys_mediaFindFirstArgs>(args?: SelectSubset<T, sys_mediaFindFirstArgs<ExtArgs>>): Prisma__sys_mediaClient<$Result.GetResult<Prisma.$sys_mediaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Sys_media that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sys_mediaFindFirstOrThrowArgs} args - Arguments to find a Sys_media
+     * @example
+     * // Get one Sys_media
+     * const sys_media = await prisma.sys_media.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends sys_mediaFindFirstOrThrowArgs>(args?: SelectSubset<T, sys_mediaFindFirstOrThrowArgs<ExtArgs>>): Prisma__sys_mediaClient<$Result.GetResult<Prisma.$sys_mediaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Sys_medias that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sys_mediaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Sys_medias
+     * const sys_medias = await prisma.sys_media.findMany()
+     * 
+     * // Get first 10 Sys_medias
+     * const sys_medias = await prisma.sys_media.findMany({ take: 10 })
+     * 
+     * // Only select the `uid`
+     * const sys_mediaWithUidOnly = await prisma.sys_media.findMany({ select: { uid: true } })
+     * 
+     */
+    findMany<T extends sys_mediaFindManyArgs>(args?: SelectSubset<T, sys_mediaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sys_mediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Sys_media.
+     * @param {sys_mediaCreateArgs} args - Arguments to create a Sys_media.
+     * @example
+     * // Create one Sys_media
+     * const Sys_media = await prisma.sys_media.create({
+     *   data: {
+     *     // ... data to create a Sys_media
+     *   }
+     * })
+     * 
+     */
+    create<T extends sys_mediaCreateArgs>(args: SelectSubset<T, sys_mediaCreateArgs<ExtArgs>>): Prisma__sys_mediaClient<$Result.GetResult<Prisma.$sys_mediaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Sys_medias.
+     * @param {sys_mediaCreateManyArgs} args - Arguments to create many Sys_medias.
+     * @example
+     * // Create many Sys_medias
+     * const sys_media = await prisma.sys_media.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends sys_mediaCreateManyArgs>(args?: SelectSubset<T, sys_mediaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Sys_media.
+     * @param {sys_mediaDeleteArgs} args - Arguments to delete one Sys_media.
+     * @example
+     * // Delete one Sys_media
+     * const Sys_media = await prisma.sys_media.delete({
+     *   where: {
+     *     // ... filter to delete one Sys_media
+     *   }
+     * })
+     * 
+     */
+    delete<T extends sys_mediaDeleteArgs>(args: SelectSubset<T, sys_mediaDeleteArgs<ExtArgs>>): Prisma__sys_mediaClient<$Result.GetResult<Prisma.$sys_mediaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Sys_media.
+     * @param {sys_mediaUpdateArgs} args - Arguments to update one Sys_media.
+     * @example
+     * // Update one Sys_media
+     * const sys_media = await prisma.sys_media.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends sys_mediaUpdateArgs>(args: SelectSubset<T, sys_mediaUpdateArgs<ExtArgs>>): Prisma__sys_mediaClient<$Result.GetResult<Prisma.$sys_mediaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Sys_medias.
+     * @param {sys_mediaDeleteManyArgs} args - Arguments to filter Sys_medias to delete.
+     * @example
+     * // Delete a few Sys_medias
+     * const { count } = await prisma.sys_media.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends sys_mediaDeleteManyArgs>(args?: SelectSubset<T, sys_mediaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Sys_medias.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sys_mediaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Sys_medias
+     * const sys_media = await prisma.sys_media.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends sys_mediaUpdateManyArgs>(args: SelectSubset<T, sys_mediaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Sys_media.
+     * @param {sys_mediaUpsertArgs} args - Arguments to update or create a Sys_media.
+     * @example
+     * // Update or create a Sys_media
+     * const sys_media = await prisma.sys_media.upsert({
+     *   create: {
+     *     // ... data to create a Sys_media
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Sys_media we want to update
+     *   }
+     * })
+     */
+    upsert<T extends sys_mediaUpsertArgs>(args: SelectSubset<T, sys_mediaUpsertArgs<ExtArgs>>): Prisma__sys_mediaClient<$Result.GetResult<Prisma.$sys_mediaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Sys_medias.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sys_mediaCountArgs} args - Arguments to filter Sys_medias to count.
+     * @example
+     * // Count the number of Sys_medias
+     * const count = await prisma.sys_media.count({
+     *   where: {
+     *     // ... the filter for the Sys_medias we want to count
+     *   }
+     * })
+    **/
+    count<T extends sys_mediaCountArgs>(
+      args?: Subset<T, sys_mediaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Sys_mediaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Sys_media.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Sys_mediaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Sys_mediaAggregateArgs>(args: Subset<T, Sys_mediaAggregateArgs>): Prisma.PrismaPromise<GetSys_mediaAggregateType<T>>
+
+    /**
+     * Group by Sys_media.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sys_mediaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends sys_mediaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: sys_mediaGroupByArgs['orderBy'] }
+        : { orderBy?: sys_mediaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, sys_mediaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSys_mediaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the sys_media model
+   */
+  readonly fields: sys_mediaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for sys_media.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__sys_mediaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    users<T extends sys_media$usersArgs<ExtArgs> = {}>(args?: Subset<T, sys_media$usersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sys_user_mediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the sys_media model
+   */
+  interface sys_mediaFieldRefs {
+    readonly uid: FieldRef<"sys_media", 'String'>
+    readonly createdAt: FieldRef<"sys_media", 'DateTime'>
+    readonly updatedAt: FieldRef<"sys_media", 'DateTime'>
+    readonly name: FieldRef<"sys_media", 'String'>
+    readonly size: FieldRef<"sys_media", 'Int'>
+    readonly hash: FieldRef<"sys_media", 'String'>
+    readonly mimeType: FieldRef<"sys_media", 'String'>
+    readonly extension: FieldRef<"sys_media", 'String'>
+    readonly path: FieldRef<"sys_media", 'String'>
+    readonly url: FieldRef<"sys_media", 'String'>
+    readonly isWechat: FieldRef<"sys_media", 'Boolean'>
+    readonly wechat_id: FieldRef<"sys_media", 'String'>
+    readonly enabled: FieldRef<"sys_media", 'Boolean'>
+    readonly type: FieldRef<"sys_media", 'String'>
+    readonly width: FieldRef<"sys_media", 'Int'>
+    readonly height: FieldRef<"sys_media", 'Int'>
+    readonly duration: FieldRef<"sys_media", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * sys_media findUnique
+   */
+  export type sys_mediaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_media
+     */
+    select?: sys_mediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_media
+     */
+    omit?: sys_mediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_mediaInclude<ExtArgs> | null
+    /**
+     * Filter, which sys_media to fetch.
+     */
+    where: sys_mediaWhereUniqueInput
+  }
+
+  /**
+   * sys_media findUniqueOrThrow
+   */
+  export type sys_mediaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_media
+     */
+    select?: sys_mediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_media
+     */
+    omit?: sys_mediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_mediaInclude<ExtArgs> | null
+    /**
+     * Filter, which sys_media to fetch.
+     */
+    where: sys_mediaWhereUniqueInput
+  }
+
+  /**
+   * sys_media findFirst
+   */
+  export type sys_mediaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_media
+     */
+    select?: sys_mediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_media
+     */
+    omit?: sys_mediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_mediaInclude<ExtArgs> | null
+    /**
+     * Filter, which sys_media to fetch.
+     */
+    where?: sys_mediaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of sys_medias to fetch.
+     */
+    orderBy?: sys_mediaOrderByWithRelationInput | sys_mediaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for sys_medias.
+     */
+    cursor?: sys_mediaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` sys_medias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` sys_medias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of sys_medias.
+     */
+    distinct?: Sys_mediaScalarFieldEnum | Sys_mediaScalarFieldEnum[]
+  }
+
+  /**
+   * sys_media findFirstOrThrow
+   */
+  export type sys_mediaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_media
+     */
+    select?: sys_mediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_media
+     */
+    omit?: sys_mediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_mediaInclude<ExtArgs> | null
+    /**
+     * Filter, which sys_media to fetch.
+     */
+    where?: sys_mediaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of sys_medias to fetch.
+     */
+    orderBy?: sys_mediaOrderByWithRelationInput | sys_mediaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for sys_medias.
+     */
+    cursor?: sys_mediaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` sys_medias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` sys_medias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of sys_medias.
+     */
+    distinct?: Sys_mediaScalarFieldEnum | Sys_mediaScalarFieldEnum[]
+  }
+
+  /**
+   * sys_media findMany
+   */
+  export type sys_mediaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_media
+     */
+    select?: sys_mediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_media
+     */
+    omit?: sys_mediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_mediaInclude<ExtArgs> | null
+    /**
+     * Filter, which sys_medias to fetch.
+     */
+    where?: sys_mediaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of sys_medias to fetch.
+     */
+    orderBy?: sys_mediaOrderByWithRelationInput | sys_mediaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing sys_medias.
+     */
+    cursor?: sys_mediaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` sys_medias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` sys_medias.
+     */
+    skip?: number
+    distinct?: Sys_mediaScalarFieldEnum | Sys_mediaScalarFieldEnum[]
+  }
+
+  /**
+   * sys_media create
+   */
+  export type sys_mediaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_media
+     */
+    select?: sys_mediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_media
+     */
+    omit?: sys_mediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_mediaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a sys_media.
+     */
+    data: XOR<sys_mediaCreateInput, sys_mediaUncheckedCreateInput>
+  }
+
+  /**
+   * sys_media createMany
+   */
+  export type sys_mediaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many sys_medias.
+     */
+    data: sys_mediaCreateManyInput | sys_mediaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * sys_media update
+   */
+  export type sys_mediaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_media
+     */
+    select?: sys_mediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_media
+     */
+    omit?: sys_mediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_mediaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a sys_media.
+     */
+    data: XOR<sys_mediaUpdateInput, sys_mediaUncheckedUpdateInput>
+    /**
+     * Choose, which sys_media to update.
+     */
+    where: sys_mediaWhereUniqueInput
+  }
+
+  /**
+   * sys_media updateMany
+   */
+  export type sys_mediaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update sys_medias.
+     */
+    data: XOR<sys_mediaUpdateManyMutationInput, sys_mediaUncheckedUpdateManyInput>
+    /**
+     * Filter which sys_medias to update
+     */
+    where?: sys_mediaWhereInput
+    /**
+     * Limit how many sys_medias to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * sys_media upsert
+   */
+  export type sys_mediaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_media
+     */
+    select?: sys_mediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_media
+     */
+    omit?: sys_mediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_mediaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the sys_media to update in case it exists.
+     */
+    where: sys_mediaWhereUniqueInput
+    /**
+     * In case the sys_media found by the `where` argument doesn't exist, create a new sys_media with this data.
+     */
+    create: XOR<sys_mediaCreateInput, sys_mediaUncheckedCreateInput>
+    /**
+     * In case the sys_media was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<sys_mediaUpdateInput, sys_mediaUncheckedUpdateInput>
+  }
+
+  /**
+   * sys_media delete
+   */
+  export type sys_mediaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_media
+     */
+    select?: sys_mediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_media
+     */
+    omit?: sys_mediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_mediaInclude<ExtArgs> | null
+    /**
+     * Filter which sys_media to delete.
+     */
+    where: sys_mediaWhereUniqueInput
+  }
+
+  /**
+   * sys_media deleteMany
+   */
+  export type sys_mediaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which sys_medias to delete
+     */
+    where?: sys_mediaWhereInput
+    /**
+     * Limit how many sys_medias to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * sys_media.users
+   */
+  export type sys_media$usersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_user_media
+     */
+    select?: sys_user_mediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_user_media
+     */
+    omit?: sys_user_mediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_user_mediaInclude<ExtArgs> | null
+    where?: sys_user_mediaWhereInput
+    orderBy?: sys_user_mediaOrderByWithRelationInput | sys_user_mediaOrderByWithRelationInput[]
+    cursor?: sys_user_mediaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Sys_user_mediaScalarFieldEnum | Sys_user_mediaScalarFieldEnum[]
+  }
+
+  /**
+   * sys_media without action
+   */
+  export type sys_mediaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_media
+     */
+    select?: sys_mediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_media
+     */
+    omit?: sys_mediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_mediaInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model sys_user_media
+   */
+
+  export type AggregateSys_user_media = {
+    _count: Sys_user_mediaCountAggregateOutputType | null
+    _min: Sys_user_mediaMinAggregateOutputType | null
+    _max: Sys_user_mediaMaxAggregateOutputType | null
+  }
+
+  export type Sys_user_mediaMinAggregateOutputType = {
+    userId: string | null
+    mediaId: string | null
+  }
+
+  export type Sys_user_mediaMaxAggregateOutputType = {
+    userId: string | null
+    mediaId: string | null
+  }
+
+  export type Sys_user_mediaCountAggregateOutputType = {
+    userId: number
+    mediaId: number
+    _all: number
+  }
+
+
+  export type Sys_user_mediaMinAggregateInputType = {
+    userId?: true
+    mediaId?: true
+  }
+
+  export type Sys_user_mediaMaxAggregateInputType = {
+    userId?: true
+    mediaId?: true
+  }
+
+  export type Sys_user_mediaCountAggregateInputType = {
+    userId?: true
+    mediaId?: true
+    _all?: true
+  }
+
+  export type Sys_user_mediaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which sys_user_media to aggregate.
+     */
+    where?: sys_user_mediaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of sys_user_medias to fetch.
+     */
+    orderBy?: sys_user_mediaOrderByWithRelationInput | sys_user_mediaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: sys_user_mediaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` sys_user_medias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` sys_user_medias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned sys_user_medias
+    **/
+    _count?: true | Sys_user_mediaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Sys_user_mediaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Sys_user_mediaMaxAggregateInputType
+  }
+
+  export type GetSys_user_mediaAggregateType<T extends Sys_user_mediaAggregateArgs> = {
+        [P in keyof T & keyof AggregateSys_user_media]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSys_user_media[P]>
+      : GetScalarType<T[P], AggregateSys_user_media[P]>
+  }
+
+
+
+
+  export type sys_user_mediaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: sys_user_mediaWhereInput
+    orderBy?: sys_user_mediaOrderByWithAggregationInput | sys_user_mediaOrderByWithAggregationInput[]
+    by: Sys_user_mediaScalarFieldEnum[] | Sys_user_mediaScalarFieldEnum
+    having?: sys_user_mediaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Sys_user_mediaCountAggregateInputType | true
+    _min?: Sys_user_mediaMinAggregateInputType
+    _max?: Sys_user_mediaMaxAggregateInputType
+  }
+
+  export type Sys_user_mediaGroupByOutputType = {
+    userId: string
+    mediaId: string
+    _count: Sys_user_mediaCountAggregateOutputType | null
+    _min: Sys_user_mediaMinAggregateOutputType | null
+    _max: Sys_user_mediaMaxAggregateOutputType | null
+  }
+
+  type GetSys_user_mediaGroupByPayload<T extends sys_user_mediaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Sys_user_mediaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Sys_user_mediaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Sys_user_mediaGroupByOutputType[P]>
+            : GetScalarType<T[P], Sys_user_mediaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type sys_user_mediaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    userId?: boolean
+    mediaId?: boolean
+    user?: boolean | sys_userDefaultArgs<ExtArgs>
+    media?: boolean | sys_mediaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sys_user_media"]>
+
+
+
+  export type sys_user_mediaSelectScalar = {
+    userId?: boolean
+    mediaId?: boolean
+  }
+
+  export type sys_user_mediaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"userId" | "mediaId", ExtArgs["result"]["sys_user_media"]>
+  export type sys_user_mediaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | sys_userDefaultArgs<ExtArgs>
+    media?: boolean | sys_mediaDefaultArgs<ExtArgs>
+  }
+
+  export type $sys_user_mediaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "sys_user_media"
+    objects: {
+      user: Prisma.$sys_userPayload<ExtArgs>
+      media: Prisma.$sys_mediaPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      userId: string
+      mediaId: string
+    }, ExtArgs["result"]["sys_user_media"]>
+    composites: {}
+  }
+
+  type sys_user_mediaGetPayload<S extends boolean | null | undefined | sys_user_mediaDefaultArgs> = $Result.GetResult<Prisma.$sys_user_mediaPayload, S>
+
+  type sys_user_mediaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<sys_user_mediaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Sys_user_mediaCountAggregateInputType | true
+    }
+
+  export interface sys_user_mediaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['sys_user_media'], meta: { name: 'sys_user_media' } }
+    /**
+     * Find zero or one Sys_user_media that matches the filter.
+     * @param {sys_user_mediaFindUniqueArgs} args - Arguments to find a Sys_user_media
+     * @example
+     * // Get one Sys_user_media
+     * const sys_user_media = await prisma.sys_user_media.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends sys_user_mediaFindUniqueArgs>(args: SelectSubset<T, sys_user_mediaFindUniqueArgs<ExtArgs>>): Prisma__sys_user_mediaClient<$Result.GetResult<Prisma.$sys_user_mediaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Sys_user_media that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {sys_user_mediaFindUniqueOrThrowArgs} args - Arguments to find a Sys_user_media
+     * @example
+     * // Get one Sys_user_media
+     * const sys_user_media = await prisma.sys_user_media.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends sys_user_mediaFindUniqueOrThrowArgs>(args: SelectSubset<T, sys_user_mediaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__sys_user_mediaClient<$Result.GetResult<Prisma.$sys_user_mediaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Sys_user_media that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sys_user_mediaFindFirstArgs} args - Arguments to find a Sys_user_media
+     * @example
+     * // Get one Sys_user_media
+     * const sys_user_media = await prisma.sys_user_media.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends sys_user_mediaFindFirstArgs>(args?: SelectSubset<T, sys_user_mediaFindFirstArgs<ExtArgs>>): Prisma__sys_user_mediaClient<$Result.GetResult<Prisma.$sys_user_mediaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Sys_user_media that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sys_user_mediaFindFirstOrThrowArgs} args - Arguments to find a Sys_user_media
+     * @example
+     * // Get one Sys_user_media
+     * const sys_user_media = await prisma.sys_user_media.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends sys_user_mediaFindFirstOrThrowArgs>(args?: SelectSubset<T, sys_user_mediaFindFirstOrThrowArgs<ExtArgs>>): Prisma__sys_user_mediaClient<$Result.GetResult<Prisma.$sys_user_mediaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Sys_user_medias that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sys_user_mediaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Sys_user_medias
+     * const sys_user_medias = await prisma.sys_user_media.findMany()
+     * 
+     * // Get first 10 Sys_user_medias
+     * const sys_user_medias = await prisma.sys_user_media.findMany({ take: 10 })
+     * 
+     * // Only select the `userId`
+     * const sys_user_mediaWithUserIdOnly = await prisma.sys_user_media.findMany({ select: { userId: true } })
+     * 
+     */
+    findMany<T extends sys_user_mediaFindManyArgs>(args?: SelectSubset<T, sys_user_mediaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sys_user_mediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Sys_user_media.
+     * @param {sys_user_mediaCreateArgs} args - Arguments to create a Sys_user_media.
+     * @example
+     * // Create one Sys_user_media
+     * const Sys_user_media = await prisma.sys_user_media.create({
+     *   data: {
+     *     // ... data to create a Sys_user_media
+     *   }
+     * })
+     * 
+     */
+    create<T extends sys_user_mediaCreateArgs>(args: SelectSubset<T, sys_user_mediaCreateArgs<ExtArgs>>): Prisma__sys_user_mediaClient<$Result.GetResult<Prisma.$sys_user_mediaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Sys_user_medias.
+     * @param {sys_user_mediaCreateManyArgs} args - Arguments to create many Sys_user_medias.
+     * @example
+     * // Create many Sys_user_medias
+     * const sys_user_media = await prisma.sys_user_media.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends sys_user_mediaCreateManyArgs>(args?: SelectSubset<T, sys_user_mediaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Sys_user_media.
+     * @param {sys_user_mediaDeleteArgs} args - Arguments to delete one Sys_user_media.
+     * @example
+     * // Delete one Sys_user_media
+     * const Sys_user_media = await prisma.sys_user_media.delete({
+     *   where: {
+     *     // ... filter to delete one Sys_user_media
+     *   }
+     * })
+     * 
+     */
+    delete<T extends sys_user_mediaDeleteArgs>(args: SelectSubset<T, sys_user_mediaDeleteArgs<ExtArgs>>): Prisma__sys_user_mediaClient<$Result.GetResult<Prisma.$sys_user_mediaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Sys_user_media.
+     * @param {sys_user_mediaUpdateArgs} args - Arguments to update one Sys_user_media.
+     * @example
+     * // Update one Sys_user_media
+     * const sys_user_media = await prisma.sys_user_media.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends sys_user_mediaUpdateArgs>(args: SelectSubset<T, sys_user_mediaUpdateArgs<ExtArgs>>): Prisma__sys_user_mediaClient<$Result.GetResult<Prisma.$sys_user_mediaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Sys_user_medias.
+     * @param {sys_user_mediaDeleteManyArgs} args - Arguments to filter Sys_user_medias to delete.
+     * @example
+     * // Delete a few Sys_user_medias
+     * const { count } = await prisma.sys_user_media.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends sys_user_mediaDeleteManyArgs>(args?: SelectSubset<T, sys_user_mediaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Sys_user_medias.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sys_user_mediaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Sys_user_medias
+     * const sys_user_media = await prisma.sys_user_media.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends sys_user_mediaUpdateManyArgs>(args: SelectSubset<T, sys_user_mediaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Sys_user_media.
+     * @param {sys_user_mediaUpsertArgs} args - Arguments to update or create a Sys_user_media.
+     * @example
+     * // Update or create a Sys_user_media
+     * const sys_user_media = await prisma.sys_user_media.upsert({
+     *   create: {
+     *     // ... data to create a Sys_user_media
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Sys_user_media we want to update
+     *   }
+     * })
+     */
+    upsert<T extends sys_user_mediaUpsertArgs>(args: SelectSubset<T, sys_user_mediaUpsertArgs<ExtArgs>>): Prisma__sys_user_mediaClient<$Result.GetResult<Prisma.$sys_user_mediaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Sys_user_medias.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sys_user_mediaCountArgs} args - Arguments to filter Sys_user_medias to count.
+     * @example
+     * // Count the number of Sys_user_medias
+     * const count = await prisma.sys_user_media.count({
+     *   where: {
+     *     // ... the filter for the Sys_user_medias we want to count
+     *   }
+     * })
+    **/
+    count<T extends sys_user_mediaCountArgs>(
+      args?: Subset<T, sys_user_mediaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Sys_user_mediaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Sys_user_media.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Sys_user_mediaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Sys_user_mediaAggregateArgs>(args: Subset<T, Sys_user_mediaAggregateArgs>): Prisma.PrismaPromise<GetSys_user_mediaAggregateType<T>>
+
+    /**
+     * Group by Sys_user_media.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sys_user_mediaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends sys_user_mediaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: sys_user_mediaGroupByArgs['orderBy'] }
+        : { orderBy?: sys_user_mediaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, sys_user_mediaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSys_user_mediaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the sys_user_media model
+   */
+  readonly fields: sys_user_mediaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for sys_user_media.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__sys_user_mediaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends sys_userDefaultArgs<ExtArgs> = {}>(args?: Subset<T, sys_userDefaultArgs<ExtArgs>>): Prisma__sys_userClient<$Result.GetResult<Prisma.$sys_userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    media<T extends sys_mediaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, sys_mediaDefaultArgs<ExtArgs>>): Prisma__sys_mediaClient<$Result.GetResult<Prisma.$sys_mediaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the sys_user_media model
+   */
+  interface sys_user_mediaFieldRefs {
+    readonly userId: FieldRef<"sys_user_media", 'String'>
+    readonly mediaId: FieldRef<"sys_user_media", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * sys_user_media findUnique
+   */
+  export type sys_user_mediaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_user_media
+     */
+    select?: sys_user_mediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_user_media
+     */
+    omit?: sys_user_mediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_user_mediaInclude<ExtArgs> | null
+    /**
+     * Filter, which sys_user_media to fetch.
+     */
+    where: sys_user_mediaWhereUniqueInput
+  }
+
+  /**
+   * sys_user_media findUniqueOrThrow
+   */
+  export type sys_user_mediaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_user_media
+     */
+    select?: sys_user_mediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_user_media
+     */
+    omit?: sys_user_mediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_user_mediaInclude<ExtArgs> | null
+    /**
+     * Filter, which sys_user_media to fetch.
+     */
+    where: sys_user_mediaWhereUniqueInput
+  }
+
+  /**
+   * sys_user_media findFirst
+   */
+  export type sys_user_mediaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_user_media
+     */
+    select?: sys_user_mediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_user_media
+     */
+    omit?: sys_user_mediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_user_mediaInclude<ExtArgs> | null
+    /**
+     * Filter, which sys_user_media to fetch.
+     */
+    where?: sys_user_mediaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of sys_user_medias to fetch.
+     */
+    orderBy?: sys_user_mediaOrderByWithRelationInput | sys_user_mediaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for sys_user_medias.
+     */
+    cursor?: sys_user_mediaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` sys_user_medias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` sys_user_medias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of sys_user_medias.
+     */
+    distinct?: Sys_user_mediaScalarFieldEnum | Sys_user_mediaScalarFieldEnum[]
+  }
+
+  /**
+   * sys_user_media findFirstOrThrow
+   */
+  export type sys_user_mediaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_user_media
+     */
+    select?: sys_user_mediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_user_media
+     */
+    omit?: sys_user_mediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_user_mediaInclude<ExtArgs> | null
+    /**
+     * Filter, which sys_user_media to fetch.
+     */
+    where?: sys_user_mediaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of sys_user_medias to fetch.
+     */
+    orderBy?: sys_user_mediaOrderByWithRelationInput | sys_user_mediaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for sys_user_medias.
+     */
+    cursor?: sys_user_mediaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` sys_user_medias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` sys_user_medias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of sys_user_medias.
+     */
+    distinct?: Sys_user_mediaScalarFieldEnum | Sys_user_mediaScalarFieldEnum[]
+  }
+
+  /**
+   * sys_user_media findMany
+   */
+  export type sys_user_mediaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_user_media
+     */
+    select?: sys_user_mediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_user_media
+     */
+    omit?: sys_user_mediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_user_mediaInclude<ExtArgs> | null
+    /**
+     * Filter, which sys_user_medias to fetch.
+     */
+    where?: sys_user_mediaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of sys_user_medias to fetch.
+     */
+    orderBy?: sys_user_mediaOrderByWithRelationInput | sys_user_mediaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing sys_user_medias.
+     */
+    cursor?: sys_user_mediaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` sys_user_medias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` sys_user_medias.
+     */
+    skip?: number
+    distinct?: Sys_user_mediaScalarFieldEnum | Sys_user_mediaScalarFieldEnum[]
+  }
+
+  /**
+   * sys_user_media create
+   */
+  export type sys_user_mediaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_user_media
+     */
+    select?: sys_user_mediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_user_media
+     */
+    omit?: sys_user_mediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_user_mediaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a sys_user_media.
+     */
+    data: XOR<sys_user_mediaCreateInput, sys_user_mediaUncheckedCreateInput>
+  }
+
+  /**
+   * sys_user_media createMany
+   */
+  export type sys_user_mediaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many sys_user_medias.
+     */
+    data: sys_user_mediaCreateManyInput | sys_user_mediaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * sys_user_media update
+   */
+  export type sys_user_mediaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_user_media
+     */
+    select?: sys_user_mediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_user_media
+     */
+    omit?: sys_user_mediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_user_mediaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a sys_user_media.
+     */
+    data: XOR<sys_user_mediaUpdateInput, sys_user_mediaUncheckedUpdateInput>
+    /**
+     * Choose, which sys_user_media to update.
+     */
+    where: sys_user_mediaWhereUniqueInput
+  }
+
+  /**
+   * sys_user_media updateMany
+   */
+  export type sys_user_mediaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update sys_user_medias.
+     */
+    data: XOR<sys_user_mediaUpdateManyMutationInput, sys_user_mediaUncheckedUpdateManyInput>
+    /**
+     * Filter which sys_user_medias to update
+     */
+    where?: sys_user_mediaWhereInput
+    /**
+     * Limit how many sys_user_medias to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * sys_user_media upsert
+   */
+  export type sys_user_mediaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_user_media
+     */
+    select?: sys_user_mediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_user_media
+     */
+    omit?: sys_user_mediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_user_mediaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the sys_user_media to update in case it exists.
+     */
+    where: sys_user_mediaWhereUniqueInput
+    /**
+     * In case the sys_user_media found by the `where` argument doesn't exist, create a new sys_user_media with this data.
+     */
+    create: XOR<sys_user_mediaCreateInput, sys_user_mediaUncheckedCreateInput>
+    /**
+     * In case the sys_user_media was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<sys_user_mediaUpdateInput, sys_user_mediaUncheckedUpdateInput>
+  }
+
+  /**
+   * sys_user_media delete
+   */
+  export type sys_user_mediaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_user_media
+     */
+    select?: sys_user_mediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_user_media
+     */
+    omit?: sys_user_mediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_user_mediaInclude<ExtArgs> | null
+    /**
+     * Filter which sys_user_media to delete.
+     */
+    where: sys_user_mediaWhereUniqueInput
+  }
+
+  /**
+   * sys_user_media deleteMany
+   */
+  export type sys_user_mediaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which sys_user_medias to delete
+     */
+    where?: sys_user_mediaWhereInput
+    /**
+     * Limit how many sys_user_medias to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * sys_user_media without action
+   */
+  export type sys_user_mediaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_user_media
+     */
+    select?: sys_user_mediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_user_media
+     */
+    omit?: sys_user_mediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_user_mediaInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -7468,6 +9736,37 @@ export namespace Prisma {
   export type Sys_roleScalarFieldEnum = (typeof Sys_roleScalarFieldEnum)[keyof typeof Sys_roleScalarFieldEnum]
 
 
+  export const Sys_mediaScalarFieldEnum: {
+    uid: 'uid',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    name: 'name',
+    size: 'size',
+    hash: 'hash',
+    mimeType: 'mimeType',
+    extension: 'extension',
+    path: 'path',
+    url: 'url',
+    isWechat: 'isWechat',
+    wechat_id: 'wechat_id',
+    enabled: 'enabled',
+    type: 'type',
+    width: 'width',
+    height: 'height',
+    duration: 'duration'
+  };
+
+  export type Sys_mediaScalarFieldEnum = (typeof Sys_mediaScalarFieldEnum)[keyof typeof Sys_mediaScalarFieldEnum]
+
+
+  export const Sys_user_mediaScalarFieldEnum: {
+    userId: 'userId',
+    mediaId: 'mediaId'
+  };
+
+  export type Sys_user_mediaScalarFieldEnum = (typeof Sys_user_mediaScalarFieldEnum)[keyof typeof Sys_user_mediaScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -7539,6 +9838,29 @@ export namespace Prisma {
   export type sys_roleOrderByRelevanceFieldEnum = (typeof sys_roleOrderByRelevanceFieldEnum)[keyof typeof sys_roleOrderByRelevanceFieldEnum]
 
 
+  export const sys_mediaOrderByRelevanceFieldEnum: {
+    uid: 'uid',
+    name: 'name',
+    hash: 'hash',
+    mimeType: 'mimeType',
+    extension: 'extension',
+    path: 'path',
+    url: 'url',
+    wechat_id: 'wechat_id',
+    type: 'type'
+  };
+
+  export type sys_mediaOrderByRelevanceFieldEnum = (typeof sys_mediaOrderByRelevanceFieldEnum)[keyof typeof sys_mediaOrderByRelevanceFieldEnum]
+
+
+  export const sys_user_mediaOrderByRelevanceFieldEnum: {
+    userId: 'userId',
+    mediaId: 'mediaId'
+  };
+
+  export type sys_user_mediaOrderByRelevanceFieldEnum = (typeof sys_user_mediaOrderByRelevanceFieldEnum)[keyof typeof sys_user_mediaOrderByRelevanceFieldEnum]
+
+
   /**
    * Field references
    */
@@ -7602,6 +9924,7 @@ export namespace Prisma {
     accounts?: Sys_accountListRelationFilter
     role?: XOR<Sys_roleNullableScalarRelationFilter, sys_roleWhereInput> | null
     ban_menus?: Sys_user_ban_menuListRelationFilter
+    sys_user_media?: Sys_user_mediaListRelationFilter
   }
 
   export type sys_userOrderByWithRelationInput = {
@@ -7614,6 +9937,7 @@ export namespace Prisma {
     accounts?: sys_accountOrderByRelationAggregateInput
     role?: sys_roleOrderByWithRelationInput
     ban_menus?: sys_user_ban_menuOrderByRelationAggregateInput
+    sys_user_media?: sys_user_mediaOrderByRelationAggregateInput
     _relevance?: sys_userOrderByRelevanceInput
   }
 
@@ -7630,6 +9954,7 @@ export namespace Prisma {
     accounts?: Sys_accountListRelationFilter
     role?: XOR<Sys_roleNullableScalarRelationFilter, sys_roleWhereInput> | null
     ban_menus?: Sys_user_ban_menuListRelationFilter
+    sys_user_media?: Sys_user_mediaListRelationFilter
   }, "uid" | "account">
 
   export type sys_userOrderByWithAggregationInput = {
@@ -7973,6 +10298,169 @@ export namespace Prisma {
     sort?: IntWithAggregatesFilter<"sys_role"> | number
   }
 
+  export type sys_mediaWhereInput = {
+    AND?: sys_mediaWhereInput | sys_mediaWhereInput[]
+    OR?: sys_mediaWhereInput[]
+    NOT?: sys_mediaWhereInput | sys_mediaWhereInput[]
+    uid?: StringFilter<"sys_media"> | string
+    createdAt?: DateTimeFilter<"sys_media"> | Date | string
+    updatedAt?: DateTimeFilter<"sys_media"> | Date | string
+    name?: StringFilter<"sys_media"> | string
+    size?: IntFilter<"sys_media"> | number
+    hash?: StringFilter<"sys_media"> | string
+    mimeType?: StringFilter<"sys_media"> | string
+    extension?: StringFilter<"sys_media"> | string
+    path?: StringFilter<"sys_media"> | string
+    url?: StringNullableFilter<"sys_media"> | string | null
+    isWechat?: BoolFilter<"sys_media"> | boolean
+    wechat_id?: StringNullableFilter<"sys_media"> | string | null
+    enabled?: BoolFilter<"sys_media"> | boolean
+    type?: StringFilter<"sys_media"> | string
+    width?: IntNullableFilter<"sys_media"> | number | null
+    height?: IntNullableFilter<"sys_media"> | number | null
+    duration?: IntNullableFilter<"sys_media"> | number | null
+    users?: Sys_user_mediaListRelationFilter
+  }
+
+  export type sys_mediaOrderByWithRelationInput = {
+    uid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    name?: SortOrder
+    size?: SortOrder
+    hash?: SortOrder
+    mimeType?: SortOrder
+    extension?: SortOrder
+    path?: SortOrder
+    url?: SortOrderInput | SortOrder
+    isWechat?: SortOrder
+    wechat_id?: SortOrderInput | SortOrder
+    enabled?: SortOrder
+    type?: SortOrder
+    width?: SortOrderInput | SortOrder
+    height?: SortOrderInput | SortOrder
+    duration?: SortOrderInput | SortOrder
+    users?: sys_user_mediaOrderByRelationAggregateInput
+    _relevance?: sys_mediaOrderByRelevanceInput
+  }
+
+  export type sys_mediaWhereUniqueInput = Prisma.AtLeast<{
+    uid?: string
+    hash?: string
+    wechat_id?: string
+    AND?: sys_mediaWhereInput | sys_mediaWhereInput[]
+    OR?: sys_mediaWhereInput[]
+    NOT?: sys_mediaWhereInput | sys_mediaWhereInput[]
+    createdAt?: DateTimeFilter<"sys_media"> | Date | string
+    updatedAt?: DateTimeFilter<"sys_media"> | Date | string
+    name?: StringFilter<"sys_media"> | string
+    size?: IntFilter<"sys_media"> | number
+    mimeType?: StringFilter<"sys_media"> | string
+    extension?: StringFilter<"sys_media"> | string
+    path?: StringFilter<"sys_media"> | string
+    url?: StringNullableFilter<"sys_media"> | string | null
+    isWechat?: BoolFilter<"sys_media"> | boolean
+    enabled?: BoolFilter<"sys_media"> | boolean
+    type?: StringFilter<"sys_media"> | string
+    width?: IntNullableFilter<"sys_media"> | number | null
+    height?: IntNullableFilter<"sys_media"> | number | null
+    duration?: IntNullableFilter<"sys_media"> | number | null
+    users?: Sys_user_mediaListRelationFilter
+  }, "uid" | "hash" | "wechat_id">
+
+  export type sys_mediaOrderByWithAggregationInput = {
+    uid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    name?: SortOrder
+    size?: SortOrder
+    hash?: SortOrder
+    mimeType?: SortOrder
+    extension?: SortOrder
+    path?: SortOrder
+    url?: SortOrderInput | SortOrder
+    isWechat?: SortOrder
+    wechat_id?: SortOrderInput | SortOrder
+    enabled?: SortOrder
+    type?: SortOrder
+    width?: SortOrderInput | SortOrder
+    height?: SortOrderInput | SortOrder
+    duration?: SortOrderInput | SortOrder
+    _count?: sys_mediaCountOrderByAggregateInput
+    _avg?: sys_mediaAvgOrderByAggregateInput
+    _max?: sys_mediaMaxOrderByAggregateInput
+    _min?: sys_mediaMinOrderByAggregateInput
+    _sum?: sys_mediaSumOrderByAggregateInput
+  }
+
+  export type sys_mediaScalarWhereWithAggregatesInput = {
+    AND?: sys_mediaScalarWhereWithAggregatesInput | sys_mediaScalarWhereWithAggregatesInput[]
+    OR?: sys_mediaScalarWhereWithAggregatesInput[]
+    NOT?: sys_mediaScalarWhereWithAggregatesInput | sys_mediaScalarWhereWithAggregatesInput[]
+    uid?: StringWithAggregatesFilter<"sys_media"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"sys_media"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"sys_media"> | Date | string
+    name?: StringWithAggregatesFilter<"sys_media"> | string
+    size?: IntWithAggregatesFilter<"sys_media"> | number
+    hash?: StringWithAggregatesFilter<"sys_media"> | string
+    mimeType?: StringWithAggregatesFilter<"sys_media"> | string
+    extension?: StringWithAggregatesFilter<"sys_media"> | string
+    path?: StringWithAggregatesFilter<"sys_media"> | string
+    url?: StringNullableWithAggregatesFilter<"sys_media"> | string | null
+    isWechat?: BoolWithAggregatesFilter<"sys_media"> | boolean
+    wechat_id?: StringNullableWithAggregatesFilter<"sys_media"> | string | null
+    enabled?: BoolWithAggregatesFilter<"sys_media"> | boolean
+    type?: StringWithAggregatesFilter<"sys_media"> | string
+    width?: IntNullableWithAggregatesFilter<"sys_media"> | number | null
+    height?: IntNullableWithAggregatesFilter<"sys_media"> | number | null
+    duration?: IntNullableWithAggregatesFilter<"sys_media"> | number | null
+  }
+
+  export type sys_user_mediaWhereInput = {
+    AND?: sys_user_mediaWhereInput | sys_user_mediaWhereInput[]
+    OR?: sys_user_mediaWhereInput[]
+    NOT?: sys_user_mediaWhereInput | sys_user_mediaWhereInput[]
+    userId?: StringFilter<"sys_user_media"> | string
+    mediaId?: StringFilter<"sys_user_media"> | string
+    user?: XOR<Sys_userScalarRelationFilter, sys_userWhereInput>
+    media?: XOR<Sys_mediaScalarRelationFilter, sys_mediaWhereInput>
+  }
+
+  export type sys_user_mediaOrderByWithRelationInput = {
+    userId?: SortOrder
+    mediaId?: SortOrder
+    user?: sys_userOrderByWithRelationInput
+    media?: sys_mediaOrderByWithRelationInput
+    _relevance?: sys_user_mediaOrderByRelevanceInput
+  }
+
+  export type sys_user_mediaWhereUniqueInput = Prisma.AtLeast<{
+    userId_mediaId?: sys_user_mediaUserIdMediaIdCompoundUniqueInput
+    AND?: sys_user_mediaWhereInput | sys_user_mediaWhereInput[]
+    OR?: sys_user_mediaWhereInput[]
+    NOT?: sys_user_mediaWhereInput | sys_user_mediaWhereInput[]
+    userId?: StringFilter<"sys_user_media"> | string
+    mediaId?: StringFilter<"sys_user_media"> | string
+    user?: XOR<Sys_userScalarRelationFilter, sys_userWhereInput>
+    media?: XOR<Sys_mediaScalarRelationFilter, sys_mediaWhereInput>
+  }, "userId_mediaId">
+
+  export type sys_user_mediaOrderByWithAggregationInput = {
+    userId?: SortOrder
+    mediaId?: SortOrder
+    _count?: sys_user_mediaCountOrderByAggregateInput
+    _max?: sys_user_mediaMaxOrderByAggregateInput
+    _min?: sys_user_mediaMinOrderByAggregateInput
+  }
+
+  export type sys_user_mediaScalarWhereWithAggregatesInput = {
+    AND?: sys_user_mediaScalarWhereWithAggregatesInput | sys_user_mediaScalarWhereWithAggregatesInput[]
+    OR?: sys_user_mediaScalarWhereWithAggregatesInput[]
+    NOT?: sys_user_mediaScalarWhereWithAggregatesInput | sys_user_mediaScalarWhereWithAggregatesInput[]
+    userId?: StringWithAggregatesFilter<"sys_user_media"> | string
+    mediaId?: StringWithAggregatesFilter<"sys_user_media"> | string
+  }
+
   export type sys_userCreateInput = {
     uid?: string
     createdAt?: Date | string
@@ -7982,6 +10470,7 @@ export namespace Prisma {
     accounts?: sys_accountCreateNestedManyWithoutUserInput
     role?: sys_roleCreateNestedOneWithoutUsersInput
     ban_menus?: sys_user_ban_menuCreateNestedManyWithoutUserInput
+    sys_user_media?: sys_user_mediaCreateNestedManyWithoutUserInput
   }
 
   export type sys_userUncheckedCreateInput = {
@@ -7993,6 +10482,7 @@ export namespace Prisma {
     account: string
     accounts?: sys_accountUncheckedCreateNestedManyWithoutUserInput
     ban_menus?: sys_user_ban_menuUncheckedCreateNestedManyWithoutUserInput
+    sys_user_media?: sys_user_mediaUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type sys_userUpdateInput = {
@@ -8004,6 +10494,7 @@ export namespace Prisma {
     accounts?: sys_accountUpdateManyWithoutUserNestedInput
     role?: sys_roleUpdateOneWithoutUsersNestedInput
     ban_menus?: sys_user_ban_menuUpdateManyWithoutUserNestedInput
+    sys_user_media?: sys_user_mediaUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userUncheckedUpdateInput = {
@@ -8015,6 +10506,7 @@ export namespace Prisma {
     account?: StringFieldUpdateOperationsInput | string
     accounts?: sys_accountUncheckedUpdateManyWithoutUserNestedInput
     ban_menus?: sys_user_ban_menuUncheckedUpdateManyWithoutUserNestedInput
+    sys_user_media?: sys_user_mediaUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userCreateManyInput = {
@@ -8352,6 +10844,184 @@ export namespace Prisma {
     sort?: IntFieldUpdateOperationsInput | number
   }
 
+  export type sys_mediaCreateInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+    size: number
+    hash: string
+    mimeType: string
+    extension: string
+    path: string
+    url?: string | null
+    isWechat?: boolean
+    wechat_id?: string | null
+    enabled?: boolean
+    type?: string
+    width?: number | null
+    height?: number | null
+    duration?: number | null
+    users?: sys_user_mediaCreateNestedManyWithoutMediaInput
+  }
+
+  export type sys_mediaUncheckedCreateInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+    size: number
+    hash: string
+    mimeType: string
+    extension: string
+    path: string
+    url?: string | null
+    isWechat?: boolean
+    wechat_id?: string | null
+    enabled?: boolean
+    type?: string
+    width?: number | null
+    height?: number | null
+    duration?: number | null
+    users?: sys_user_mediaUncheckedCreateNestedManyWithoutMediaInput
+  }
+
+  export type sys_mediaUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    hash?: StringFieldUpdateOperationsInput | string
+    mimeType?: StringFieldUpdateOperationsInput | string
+    extension?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    isWechat?: BoolFieldUpdateOperationsInput | boolean
+    wechat_id?: NullableStringFieldUpdateOperationsInput | string | null
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    type?: StringFieldUpdateOperationsInput | string
+    width?: NullableIntFieldUpdateOperationsInput | number | null
+    height?: NullableIntFieldUpdateOperationsInput | number | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    users?: sys_user_mediaUpdateManyWithoutMediaNestedInput
+  }
+
+  export type sys_mediaUncheckedUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    hash?: StringFieldUpdateOperationsInput | string
+    mimeType?: StringFieldUpdateOperationsInput | string
+    extension?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    isWechat?: BoolFieldUpdateOperationsInput | boolean
+    wechat_id?: NullableStringFieldUpdateOperationsInput | string | null
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    type?: StringFieldUpdateOperationsInput | string
+    width?: NullableIntFieldUpdateOperationsInput | number | null
+    height?: NullableIntFieldUpdateOperationsInput | number | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    users?: sys_user_mediaUncheckedUpdateManyWithoutMediaNestedInput
+  }
+
+  export type sys_mediaCreateManyInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+    size: number
+    hash: string
+    mimeType: string
+    extension: string
+    path: string
+    url?: string | null
+    isWechat?: boolean
+    wechat_id?: string | null
+    enabled?: boolean
+    type?: string
+    width?: number | null
+    height?: number | null
+    duration?: number | null
+  }
+
+  export type sys_mediaUpdateManyMutationInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    hash?: StringFieldUpdateOperationsInput | string
+    mimeType?: StringFieldUpdateOperationsInput | string
+    extension?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    isWechat?: BoolFieldUpdateOperationsInput | boolean
+    wechat_id?: NullableStringFieldUpdateOperationsInput | string | null
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    type?: StringFieldUpdateOperationsInput | string
+    width?: NullableIntFieldUpdateOperationsInput | number | null
+    height?: NullableIntFieldUpdateOperationsInput | number | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type sys_mediaUncheckedUpdateManyInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    hash?: StringFieldUpdateOperationsInput | string
+    mimeType?: StringFieldUpdateOperationsInput | string
+    extension?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    isWechat?: BoolFieldUpdateOperationsInput | boolean
+    wechat_id?: NullableStringFieldUpdateOperationsInput | string | null
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    type?: StringFieldUpdateOperationsInput | string
+    width?: NullableIntFieldUpdateOperationsInput | number | null
+    height?: NullableIntFieldUpdateOperationsInput | number | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type sys_user_mediaCreateInput = {
+    user: sys_userCreateNestedOneWithoutSys_user_mediaInput
+    media: sys_mediaCreateNestedOneWithoutUsersInput
+  }
+
+  export type sys_user_mediaUncheckedCreateInput = {
+    userId: string
+    mediaId: string
+  }
+
+  export type sys_user_mediaUpdateInput = {
+    user?: sys_userUpdateOneRequiredWithoutSys_user_mediaNestedInput
+    media?: sys_mediaUpdateOneRequiredWithoutUsersNestedInput
+  }
+
+  export type sys_user_mediaUncheckedUpdateInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    mediaId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type sys_user_mediaCreateManyInput = {
+    userId: string
+    mediaId: string
+  }
+
+  export type sys_user_mediaUpdateManyMutationInput = {
+
+  }
+
+  export type sys_user_mediaUncheckedUpdateManyInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    mediaId?: StringFieldUpdateOperationsInput | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -8410,6 +11080,12 @@ export namespace Prisma {
     none?: sys_user_ban_menuWhereInput
   }
 
+  export type Sys_user_mediaListRelationFilter = {
+    every?: sys_user_mediaWhereInput
+    some?: sys_user_mediaWhereInput
+    none?: sys_user_mediaWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -8420,6 +11096,10 @@ export namespace Prisma {
   }
 
   export type sys_user_ban_menuOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type sys_user_mediaOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -8810,6 +11490,144 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type sys_mediaOrderByRelevanceInput = {
+    fields: sys_mediaOrderByRelevanceFieldEnum | sys_mediaOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type sys_mediaCountOrderByAggregateInput = {
+    uid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    name?: SortOrder
+    size?: SortOrder
+    hash?: SortOrder
+    mimeType?: SortOrder
+    extension?: SortOrder
+    path?: SortOrder
+    url?: SortOrder
+    isWechat?: SortOrder
+    wechat_id?: SortOrder
+    enabled?: SortOrder
+    type?: SortOrder
+    width?: SortOrder
+    height?: SortOrder
+    duration?: SortOrder
+  }
+
+  export type sys_mediaAvgOrderByAggregateInput = {
+    size?: SortOrder
+    width?: SortOrder
+    height?: SortOrder
+    duration?: SortOrder
+  }
+
+  export type sys_mediaMaxOrderByAggregateInput = {
+    uid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    name?: SortOrder
+    size?: SortOrder
+    hash?: SortOrder
+    mimeType?: SortOrder
+    extension?: SortOrder
+    path?: SortOrder
+    url?: SortOrder
+    isWechat?: SortOrder
+    wechat_id?: SortOrder
+    enabled?: SortOrder
+    type?: SortOrder
+    width?: SortOrder
+    height?: SortOrder
+    duration?: SortOrder
+  }
+
+  export type sys_mediaMinOrderByAggregateInput = {
+    uid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    name?: SortOrder
+    size?: SortOrder
+    hash?: SortOrder
+    mimeType?: SortOrder
+    extension?: SortOrder
+    path?: SortOrder
+    url?: SortOrder
+    isWechat?: SortOrder
+    wechat_id?: SortOrder
+    enabled?: SortOrder
+    type?: SortOrder
+    width?: SortOrder
+    height?: SortOrder
+    duration?: SortOrder
+  }
+
+  export type sys_mediaSumOrderByAggregateInput = {
+    size?: SortOrder
+    width?: SortOrder
+    height?: SortOrder
+    duration?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type Sys_mediaScalarRelationFilter = {
+    is?: sys_mediaWhereInput
+    isNot?: sys_mediaWhereInput
+  }
+
+  export type sys_user_mediaOrderByRelevanceInput = {
+    fields: sys_user_mediaOrderByRelevanceFieldEnum | sys_user_mediaOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type sys_user_mediaUserIdMediaIdCompoundUniqueInput = {
+    userId: string
+    mediaId: string
+  }
+
+  export type sys_user_mediaCountOrderByAggregateInput = {
+    userId?: SortOrder
+    mediaId?: SortOrder
+  }
+
+  export type sys_user_mediaMaxOrderByAggregateInput = {
+    userId?: SortOrder
+    mediaId?: SortOrder
+  }
+
+  export type sys_user_mediaMinOrderByAggregateInput = {
+    userId?: SortOrder
+    mediaId?: SortOrder
+  }
+
   export type sys_accountCreateNestedManyWithoutUserInput = {
     create?: XOR<sys_accountCreateWithoutUserInput, sys_accountUncheckedCreateWithoutUserInput> | sys_accountCreateWithoutUserInput[] | sys_accountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: sys_accountCreateOrConnectWithoutUserInput | sys_accountCreateOrConnectWithoutUserInput[]
@@ -8830,6 +11648,13 @@ export namespace Prisma {
     connect?: sys_user_ban_menuWhereUniqueInput | sys_user_ban_menuWhereUniqueInput[]
   }
 
+  export type sys_user_mediaCreateNestedManyWithoutUserInput = {
+    create?: XOR<sys_user_mediaCreateWithoutUserInput, sys_user_mediaUncheckedCreateWithoutUserInput> | sys_user_mediaCreateWithoutUserInput[] | sys_user_mediaUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: sys_user_mediaCreateOrConnectWithoutUserInput | sys_user_mediaCreateOrConnectWithoutUserInput[]
+    createMany?: sys_user_mediaCreateManyUserInputEnvelope
+    connect?: sys_user_mediaWhereUniqueInput | sys_user_mediaWhereUniqueInput[]
+  }
+
   export type sys_accountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<sys_accountCreateWithoutUserInput, sys_accountUncheckedCreateWithoutUserInput> | sys_accountCreateWithoutUserInput[] | sys_accountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: sys_accountCreateOrConnectWithoutUserInput | sys_accountCreateOrConnectWithoutUserInput[]
@@ -8842,6 +11667,13 @@ export namespace Prisma {
     connectOrCreate?: sys_user_ban_menuCreateOrConnectWithoutUserInput | sys_user_ban_menuCreateOrConnectWithoutUserInput[]
     createMany?: sys_user_ban_menuCreateManyUserInputEnvelope
     connect?: sys_user_ban_menuWhereUniqueInput | sys_user_ban_menuWhereUniqueInput[]
+  }
+
+  export type sys_user_mediaUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<sys_user_mediaCreateWithoutUserInput, sys_user_mediaUncheckedCreateWithoutUserInput> | sys_user_mediaCreateWithoutUserInput[] | sys_user_mediaUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: sys_user_mediaCreateOrConnectWithoutUserInput | sys_user_mediaCreateOrConnectWithoutUserInput[]
+    createMany?: sys_user_mediaCreateManyUserInputEnvelope
+    connect?: sys_user_mediaWhereUniqueInput | sys_user_mediaWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -8890,6 +11722,20 @@ export namespace Prisma {
     deleteMany?: sys_user_ban_menuScalarWhereInput | sys_user_ban_menuScalarWhereInput[]
   }
 
+  export type sys_user_mediaUpdateManyWithoutUserNestedInput = {
+    create?: XOR<sys_user_mediaCreateWithoutUserInput, sys_user_mediaUncheckedCreateWithoutUserInput> | sys_user_mediaCreateWithoutUserInput[] | sys_user_mediaUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: sys_user_mediaCreateOrConnectWithoutUserInput | sys_user_mediaCreateOrConnectWithoutUserInput[]
+    upsert?: sys_user_mediaUpsertWithWhereUniqueWithoutUserInput | sys_user_mediaUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: sys_user_mediaCreateManyUserInputEnvelope
+    set?: sys_user_mediaWhereUniqueInput | sys_user_mediaWhereUniqueInput[]
+    disconnect?: sys_user_mediaWhereUniqueInput | sys_user_mediaWhereUniqueInput[]
+    delete?: sys_user_mediaWhereUniqueInput | sys_user_mediaWhereUniqueInput[]
+    connect?: sys_user_mediaWhereUniqueInput | sys_user_mediaWhereUniqueInput[]
+    update?: sys_user_mediaUpdateWithWhereUniqueWithoutUserInput | sys_user_mediaUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: sys_user_mediaUpdateManyWithWhereWithoutUserInput | sys_user_mediaUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: sys_user_mediaScalarWhereInput | sys_user_mediaScalarWhereInput[]
+  }
+
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
   }
@@ -8920,6 +11766,20 @@ export namespace Prisma {
     update?: sys_user_ban_menuUpdateWithWhereUniqueWithoutUserInput | sys_user_ban_menuUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: sys_user_ban_menuUpdateManyWithWhereWithoutUserInput | sys_user_ban_menuUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: sys_user_ban_menuScalarWhereInput | sys_user_ban_menuScalarWhereInput[]
+  }
+
+  export type sys_user_mediaUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<sys_user_mediaCreateWithoutUserInput, sys_user_mediaUncheckedCreateWithoutUserInput> | sys_user_mediaCreateWithoutUserInput[] | sys_user_mediaUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: sys_user_mediaCreateOrConnectWithoutUserInput | sys_user_mediaCreateOrConnectWithoutUserInput[]
+    upsert?: sys_user_mediaUpsertWithWhereUniqueWithoutUserInput | sys_user_mediaUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: sys_user_mediaCreateManyUserInputEnvelope
+    set?: sys_user_mediaWhereUniqueInput | sys_user_mediaWhereUniqueInput[]
+    disconnect?: sys_user_mediaWhereUniqueInput | sys_user_mediaWhereUniqueInput[]
+    delete?: sys_user_mediaWhereUniqueInput | sys_user_mediaWhereUniqueInput[]
+    connect?: sys_user_mediaWhereUniqueInput | sys_user_mediaWhereUniqueInput[]
+    update?: sys_user_mediaUpdateWithWhereUniqueWithoutUserInput | sys_user_mediaUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: sys_user_mediaUpdateManyWithWhereWithoutUserInput | sys_user_mediaUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: sys_user_mediaScalarWhereInput | sys_user_mediaScalarWhereInput[]
   }
 
   export type sys_userCreateNestedOneWithoutAccountsInput = {
@@ -9234,6 +12094,84 @@ export namespace Prisma {
     deleteMany?: sys_userScalarWhereInput | sys_userScalarWhereInput[]
   }
 
+  export type sys_user_mediaCreateNestedManyWithoutMediaInput = {
+    create?: XOR<sys_user_mediaCreateWithoutMediaInput, sys_user_mediaUncheckedCreateWithoutMediaInput> | sys_user_mediaCreateWithoutMediaInput[] | sys_user_mediaUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: sys_user_mediaCreateOrConnectWithoutMediaInput | sys_user_mediaCreateOrConnectWithoutMediaInput[]
+    createMany?: sys_user_mediaCreateManyMediaInputEnvelope
+    connect?: sys_user_mediaWhereUniqueInput | sys_user_mediaWhereUniqueInput[]
+  }
+
+  export type sys_user_mediaUncheckedCreateNestedManyWithoutMediaInput = {
+    create?: XOR<sys_user_mediaCreateWithoutMediaInput, sys_user_mediaUncheckedCreateWithoutMediaInput> | sys_user_mediaCreateWithoutMediaInput[] | sys_user_mediaUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: sys_user_mediaCreateOrConnectWithoutMediaInput | sys_user_mediaCreateOrConnectWithoutMediaInput[]
+    createMany?: sys_user_mediaCreateManyMediaInputEnvelope
+    connect?: sys_user_mediaWhereUniqueInput | sys_user_mediaWhereUniqueInput[]
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type sys_user_mediaUpdateManyWithoutMediaNestedInput = {
+    create?: XOR<sys_user_mediaCreateWithoutMediaInput, sys_user_mediaUncheckedCreateWithoutMediaInput> | sys_user_mediaCreateWithoutMediaInput[] | sys_user_mediaUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: sys_user_mediaCreateOrConnectWithoutMediaInput | sys_user_mediaCreateOrConnectWithoutMediaInput[]
+    upsert?: sys_user_mediaUpsertWithWhereUniqueWithoutMediaInput | sys_user_mediaUpsertWithWhereUniqueWithoutMediaInput[]
+    createMany?: sys_user_mediaCreateManyMediaInputEnvelope
+    set?: sys_user_mediaWhereUniqueInput | sys_user_mediaWhereUniqueInput[]
+    disconnect?: sys_user_mediaWhereUniqueInput | sys_user_mediaWhereUniqueInput[]
+    delete?: sys_user_mediaWhereUniqueInput | sys_user_mediaWhereUniqueInput[]
+    connect?: sys_user_mediaWhereUniqueInput | sys_user_mediaWhereUniqueInput[]
+    update?: sys_user_mediaUpdateWithWhereUniqueWithoutMediaInput | sys_user_mediaUpdateWithWhereUniqueWithoutMediaInput[]
+    updateMany?: sys_user_mediaUpdateManyWithWhereWithoutMediaInput | sys_user_mediaUpdateManyWithWhereWithoutMediaInput[]
+    deleteMany?: sys_user_mediaScalarWhereInput | sys_user_mediaScalarWhereInput[]
+  }
+
+  export type sys_user_mediaUncheckedUpdateManyWithoutMediaNestedInput = {
+    create?: XOR<sys_user_mediaCreateWithoutMediaInput, sys_user_mediaUncheckedCreateWithoutMediaInput> | sys_user_mediaCreateWithoutMediaInput[] | sys_user_mediaUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: sys_user_mediaCreateOrConnectWithoutMediaInput | sys_user_mediaCreateOrConnectWithoutMediaInput[]
+    upsert?: sys_user_mediaUpsertWithWhereUniqueWithoutMediaInput | sys_user_mediaUpsertWithWhereUniqueWithoutMediaInput[]
+    createMany?: sys_user_mediaCreateManyMediaInputEnvelope
+    set?: sys_user_mediaWhereUniqueInput | sys_user_mediaWhereUniqueInput[]
+    disconnect?: sys_user_mediaWhereUniqueInput | sys_user_mediaWhereUniqueInput[]
+    delete?: sys_user_mediaWhereUniqueInput | sys_user_mediaWhereUniqueInput[]
+    connect?: sys_user_mediaWhereUniqueInput | sys_user_mediaWhereUniqueInput[]
+    update?: sys_user_mediaUpdateWithWhereUniqueWithoutMediaInput | sys_user_mediaUpdateWithWhereUniqueWithoutMediaInput[]
+    updateMany?: sys_user_mediaUpdateManyWithWhereWithoutMediaInput | sys_user_mediaUpdateManyWithWhereWithoutMediaInput[]
+    deleteMany?: sys_user_mediaScalarWhereInput | sys_user_mediaScalarWhereInput[]
+  }
+
+  export type sys_userCreateNestedOneWithoutSys_user_mediaInput = {
+    create?: XOR<sys_userCreateWithoutSys_user_mediaInput, sys_userUncheckedCreateWithoutSys_user_mediaInput>
+    connectOrCreate?: sys_userCreateOrConnectWithoutSys_user_mediaInput
+    connect?: sys_userWhereUniqueInput
+  }
+
+  export type sys_mediaCreateNestedOneWithoutUsersInput = {
+    create?: XOR<sys_mediaCreateWithoutUsersInput, sys_mediaUncheckedCreateWithoutUsersInput>
+    connectOrCreate?: sys_mediaCreateOrConnectWithoutUsersInput
+    connect?: sys_mediaWhereUniqueInput
+  }
+
+  export type sys_userUpdateOneRequiredWithoutSys_user_mediaNestedInput = {
+    create?: XOR<sys_userCreateWithoutSys_user_mediaInput, sys_userUncheckedCreateWithoutSys_user_mediaInput>
+    connectOrCreate?: sys_userCreateOrConnectWithoutSys_user_mediaInput
+    upsert?: sys_userUpsertWithoutSys_user_mediaInput
+    connect?: sys_userWhereUniqueInput
+    update?: XOR<XOR<sys_userUpdateToOneWithWhereWithoutSys_user_mediaInput, sys_userUpdateWithoutSys_user_mediaInput>, sys_userUncheckedUpdateWithoutSys_user_mediaInput>
+  }
+
+  export type sys_mediaUpdateOneRequiredWithoutUsersNestedInput = {
+    create?: XOR<sys_mediaCreateWithoutUsersInput, sys_mediaUncheckedCreateWithoutUsersInput>
+    connectOrCreate?: sys_mediaCreateOrConnectWithoutUsersInput
+    upsert?: sys_mediaUpsertWithoutUsersInput
+    connect?: sys_mediaWhereUniqueInput
+    update?: XOR<XOR<sys_mediaUpdateToOneWithWhereWithoutUsersInput, sys_mediaUpdateWithoutUsersInput>, sys_mediaUncheckedUpdateWithoutUsersInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -9404,6 +12342,33 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type sys_accountCreateWithoutUserInput = {
     uid?: string
     createdAt?: Date | string
@@ -9472,6 +12437,24 @@ export namespace Prisma {
 
   export type sys_user_ban_menuCreateManyUserInputEnvelope = {
     data: sys_user_ban_menuCreateManyUserInput | sys_user_ban_menuCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type sys_user_mediaCreateWithoutUserInput = {
+    media: sys_mediaCreateNestedOneWithoutUsersInput
+  }
+
+  export type sys_user_mediaUncheckedCreateWithoutUserInput = {
+    mediaId: string
+  }
+
+  export type sys_user_mediaCreateOrConnectWithoutUserInput = {
+    where: sys_user_mediaWhereUniqueInput
+    create: XOR<sys_user_mediaCreateWithoutUserInput, sys_user_mediaUncheckedCreateWithoutUserInput>
+  }
+
+  export type sys_user_mediaCreateManyUserInputEnvelope = {
+    data: sys_user_mediaCreateManyUserInput | sys_user_mediaCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -9560,6 +12543,30 @@ export namespace Prisma {
     menuId?: StringFilter<"sys_user_ban_menu"> | string
   }
 
+  export type sys_user_mediaUpsertWithWhereUniqueWithoutUserInput = {
+    where: sys_user_mediaWhereUniqueInput
+    update: XOR<sys_user_mediaUpdateWithoutUserInput, sys_user_mediaUncheckedUpdateWithoutUserInput>
+    create: XOR<sys_user_mediaCreateWithoutUserInput, sys_user_mediaUncheckedCreateWithoutUserInput>
+  }
+
+  export type sys_user_mediaUpdateWithWhereUniqueWithoutUserInput = {
+    where: sys_user_mediaWhereUniqueInput
+    data: XOR<sys_user_mediaUpdateWithoutUserInput, sys_user_mediaUncheckedUpdateWithoutUserInput>
+  }
+
+  export type sys_user_mediaUpdateManyWithWhereWithoutUserInput = {
+    where: sys_user_mediaScalarWhereInput
+    data: XOR<sys_user_mediaUpdateManyMutationInput, sys_user_mediaUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type sys_user_mediaScalarWhereInput = {
+    AND?: sys_user_mediaScalarWhereInput | sys_user_mediaScalarWhereInput[]
+    OR?: sys_user_mediaScalarWhereInput[]
+    NOT?: sys_user_mediaScalarWhereInput | sys_user_mediaScalarWhereInput[]
+    userId?: StringFilter<"sys_user_media"> | string
+    mediaId?: StringFilter<"sys_user_media"> | string
+  }
+
   export type sys_userCreateWithoutAccountsInput = {
     uid?: string
     createdAt?: Date | string
@@ -9568,6 +12575,7 @@ export namespace Prisma {
     account: string
     role?: sys_roleCreateNestedOneWithoutUsersInput
     ban_menus?: sys_user_ban_menuCreateNestedManyWithoutUserInput
+    sys_user_media?: sys_user_mediaCreateNestedManyWithoutUserInput
   }
 
   export type sys_userUncheckedCreateWithoutAccountsInput = {
@@ -9578,6 +12586,7 @@ export namespace Prisma {
     roleId?: string | null
     account: string
     ban_menus?: sys_user_ban_menuUncheckedCreateNestedManyWithoutUserInput
+    sys_user_media?: sys_user_mediaUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type sys_userCreateOrConnectWithoutAccountsInput = {
@@ -9604,6 +12613,7 @@ export namespace Prisma {
     account?: StringFieldUpdateOperationsInput | string
     role?: sys_roleUpdateOneWithoutUsersNestedInput
     ban_menus?: sys_user_ban_menuUpdateManyWithoutUserNestedInput
+    sys_user_media?: sys_user_mediaUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userUncheckedUpdateWithoutAccountsInput = {
@@ -9614,6 +12624,7 @@ export namespace Prisma {
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
     account?: StringFieldUpdateOperationsInput | string
     ban_menus?: sys_user_ban_menuUncheckedUpdateManyWithoutUserNestedInput
+    sys_user_media?: sys_user_mediaUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type sys_menuCreateWithoutChildrenInput = {
@@ -9844,6 +12855,7 @@ export namespace Prisma {
     account: string
     accounts?: sys_accountCreateNestedManyWithoutUserInput
     role?: sys_roleCreateNestedOneWithoutUsersInput
+    sys_user_media?: sys_user_mediaCreateNestedManyWithoutUserInput
   }
 
   export type sys_userUncheckedCreateWithoutBan_menusInput = {
@@ -9854,6 +12866,7 @@ export namespace Prisma {
     roleId?: string | null
     account: string
     accounts?: sys_accountUncheckedCreateNestedManyWithoutUserInput
+    sys_user_media?: sys_user_mediaUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type sys_userCreateOrConnectWithoutBan_menusInput = {
@@ -9913,6 +12926,7 @@ export namespace Prisma {
     account?: StringFieldUpdateOperationsInput | string
     accounts?: sys_accountUpdateManyWithoutUserNestedInput
     role?: sys_roleUpdateOneWithoutUsersNestedInput
+    sys_user_media?: sys_user_mediaUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userUncheckedUpdateWithoutBan_menusInput = {
@@ -9923,6 +12937,7 @@ export namespace Prisma {
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
     account?: StringFieldUpdateOperationsInput | string
     accounts?: sys_accountUncheckedUpdateManyWithoutUserNestedInput
+    sys_user_media?: sys_user_mediaUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type sys_menuUpsertWithoutUser_bansInput = {
@@ -10124,6 +13139,7 @@ export namespace Prisma {
     account: string
     accounts?: sys_accountCreateNestedManyWithoutUserInput
     ban_menus?: sys_user_ban_menuCreateNestedManyWithoutUserInput
+    sys_user_media?: sys_user_mediaCreateNestedManyWithoutUserInput
   }
 
   export type sys_userUncheckedCreateWithoutRoleInput = {
@@ -10134,6 +13150,7 @@ export namespace Prisma {
     account: string
     accounts?: sys_accountUncheckedCreateNestedManyWithoutUserInput
     ban_menus?: sys_user_ban_menuUncheckedCreateNestedManyWithoutUserInput
+    sys_user_media?: sys_user_mediaUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type sys_userCreateOrConnectWithoutRoleInput = {
@@ -10190,6 +13207,196 @@ export namespace Prisma {
     account?: StringFilter<"sys_user"> | string
   }
 
+  export type sys_user_mediaCreateWithoutMediaInput = {
+    user: sys_userCreateNestedOneWithoutSys_user_mediaInput
+  }
+
+  export type sys_user_mediaUncheckedCreateWithoutMediaInput = {
+    userId: string
+  }
+
+  export type sys_user_mediaCreateOrConnectWithoutMediaInput = {
+    where: sys_user_mediaWhereUniqueInput
+    create: XOR<sys_user_mediaCreateWithoutMediaInput, sys_user_mediaUncheckedCreateWithoutMediaInput>
+  }
+
+  export type sys_user_mediaCreateManyMediaInputEnvelope = {
+    data: sys_user_mediaCreateManyMediaInput | sys_user_mediaCreateManyMediaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type sys_user_mediaUpsertWithWhereUniqueWithoutMediaInput = {
+    where: sys_user_mediaWhereUniqueInput
+    update: XOR<sys_user_mediaUpdateWithoutMediaInput, sys_user_mediaUncheckedUpdateWithoutMediaInput>
+    create: XOR<sys_user_mediaCreateWithoutMediaInput, sys_user_mediaUncheckedCreateWithoutMediaInput>
+  }
+
+  export type sys_user_mediaUpdateWithWhereUniqueWithoutMediaInput = {
+    where: sys_user_mediaWhereUniqueInput
+    data: XOR<sys_user_mediaUpdateWithoutMediaInput, sys_user_mediaUncheckedUpdateWithoutMediaInput>
+  }
+
+  export type sys_user_mediaUpdateManyWithWhereWithoutMediaInput = {
+    where: sys_user_mediaScalarWhereInput
+    data: XOR<sys_user_mediaUpdateManyMutationInput, sys_user_mediaUncheckedUpdateManyWithoutMediaInput>
+  }
+
+  export type sys_userCreateWithoutSys_user_mediaInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+    account: string
+    accounts?: sys_accountCreateNestedManyWithoutUserInput
+    role?: sys_roleCreateNestedOneWithoutUsersInput
+    ban_menus?: sys_user_ban_menuCreateNestedManyWithoutUserInput
+  }
+
+  export type sys_userUncheckedCreateWithoutSys_user_mediaInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+    roleId?: string | null
+    account: string
+    accounts?: sys_accountUncheckedCreateNestedManyWithoutUserInput
+    ban_menus?: sys_user_ban_menuUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type sys_userCreateOrConnectWithoutSys_user_mediaInput = {
+    where: sys_userWhereUniqueInput
+    create: XOR<sys_userCreateWithoutSys_user_mediaInput, sys_userUncheckedCreateWithoutSys_user_mediaInput>
+  }
+
+  export type sys_mediaCreateWithoutUsersInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+    size: number
+    hash: string
+    mimeType: string
+    extension: string
+    path: string
+    url?: string | null
+    isWechat?: boolean
+    wechat_id?: string | null
+    enabled?: boolean
+    type?: string
+    width?: number | null
+    height?: number | null
+    duration?: number | null
+  }
+
+  export type sys_mediaUncheckedCreateWithoutUsersInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+    size: number
+    hash: string
+    mimeType: string
+    extension: string
+    path: string
+    url?: string | null
+    isWechat?: boolean
+    wechat_id?: string | null
+    enabled?: boolean
+    type?: string
+    width?: number | null
+    height?: number | null
+    duration?: number | null
+  }
+
+  export type sys_mediaCreateOrConnectWithoutUsersInput = {
+    where: sys_mediaWhereUniqueInput
+    create: XOR<sys_mediaCreateWithoutUsersInput, sys_mediaUncheckedCreateWithoutUsersInput>
+  }
+
+  export type sys_userUpsertWithoutSys_user_mediaInput = {
+    update: XOR<sys_userUpdateWithoutSys_user_mediaInput, sys_userUncheckedUpdateWithoutSys_user_mediaInput>
+    create: XOR<sys_userCreateWithoutSys_user_mediaInput, sys_userUncheckedCreateWithoutSys_user_mediaInput>
+    where?: sys_userWhereInput
+  }
+
+  export type sys_userUpdateToOneWithWhereWithoutSys_user_mediaInput = {
+    where?: sys_userWhereInput
+    data: XOR<sys_userUpdateWithoutSys_user_mediaInput, sys_userUncheckedUpdateWithoutSys_user_mediaInput>
+  }
+
+  export type sys_userUpdateWithoutSys_user_mediaInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    account?: StringFieldUpdateOperationsInput | string
+    accounts?: sys_accountUpdateManyWithoutUserNestedInput
+    role?: sys_roleUpdateOneWithoutUsersNestedInput
+    ban_menus?: sys_user_ban_menuUpdateManyWithoutUserNestedInput
+  }
+
+  export type sys_userUncheckedUpdateWithoutSys_user_mediaInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    account?: StringFieldUpdateOperationsInput | string
+    accounts?: sys_accountUncheckedUpdateManyWithoutUserNestedInput
+    ban_menus?: sys_user_ban_menuUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type sys_mediaUpsertWithoutUsersInput = {
+    update: XOR<sys_mediaUpdateWithoutUsersInput, sys_mediaUncheckedUpdateWithoutUsersInput>
+    create: XOR<sys_mediaCreateWithoutUsersInput, sys_mediaUncheckedCreateWithoutUsersInput>
+    where?: sys_mediaWhereInput
+  }
+
+  export type sys_mediaUpdateToOneWithWhereWithoutUsersInput = {
+    where?: sys_mediaWhereInput
+    data: XOR<sys_mediaUpdateWithoutUsersInput, sys_mediaUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type sys_mediaUpdateWithoutUsersInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    hash?: StringFieldUpdateOperationsInput | string
+    mimeType?: StringFieldUpdateOperationsInput | string
+    extension?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    isWechat?: BoolFieldUpdateOperationsInput | boolean
+    wechat_id?: NullableStringFieldUpdateOperationsInput | string | null
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    type?: StringFieldUpdateOperationsInput | string
+    width?: NullableIntFieldUpdateOperationsInput | number | null
+    height?: NullableIntFieldUpdateOperationsInput | number | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type sys_mediaUncheckedUpdateWithoutUsersInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    hash?: StringFieldUpdateOperationsInput | string
+    mimeType?: StringFieldUpdateOperationsInput | string
+    extension?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    isWechat?: BoolFieldUpdateOperationsInput | boolean
+    wechat_id?: NullableStringFieldUpdateOperationsInput | string | null
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    type?: StringFieldUpdateOperationsInput | string
+    width?: NullableIntFieldUpdateOperationsInput | number | null
+    height?: NullableIntFieldUpdateOperationsInput | number | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
   export type sys_accountCreateManyUserInput = {
     uid?: string
     createdAt?: Date | string
@@ -10200,6 +13407,10 @@ export namespace Prisma {
 
   export type sys_user_ban_menuCreateManyUserInput = {
     menuId: string
+  }
+
+  export type sys_user_mediaCreateManyUserInput = {
+    mediaId: string
   }
 
   export type sys_accountUpdateWithoutUserInput = {
@@ -10236,6 +13447,18 @@ export namespace Prisma {
 
   export type sys_user_ban_menuUncheckedUpdateManyWithoutUserInput = {
     menuId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type sys_user_mediaUpdateWithoutUserInput = {
+    media?: sys_mediaUpdateOneRequiredWithoutUsersNestedInput
+  }
+
+  export type sys_user_mediaUncheckedUpdateWithoutUserInput = {
+    mediaId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type sys_user_mediaUncheckedUpdateManyWithoutUserInput = {
+    mediaId?: StringFieldUpdateOperationsInput | string
   }
 
   export type sys_menuCreateManyParentInput = {
@@ -10360,6 +13583,7 @@ export namespace Prisma {
     account?: StringFieldUpdateOperationsInput | string
     accounts?: sys_accountUpdateManyWithoutUserNestedInput
     ban_menus?: sys_user_ban_menuUpdateManyWithoutUserNestedInput
+    sys_user_media?: sys_user_mediaUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userUncheckedUpdateWithoutRoleInput = {
@@ -10370,6 +13594,7 @@ export namespace Prisma {
     account?: StringFieldUpdateOperationsInput | string
     accounts?: sys_accountUncheckedUpdateManyWithoutUserNestedInput
     ban_menus?: sys_user_ban_menuUncheckedUpdateManyWithoutUserNestedInput
+    sys_user_media?: sys_user_mediaUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userUncheckedUpdateManyWithoutRoleInput = {
@@ -10378,6 +13603,22 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     account?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type sys_user_mediaCreateManyMediaInput = {
+    userId: string
+  }
+
+  export type sys_user_mediaUpdateWithoutMediaInput = {
+    user?: sys_userUpdateOneRequiredWithoutSys_user_mediaNestedInput
+  }
+
+  export type sys_user_mediaUncheckedUpdateWithoutMediaInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type sys_user_mediaUncheckedUpdateManyWithoutMediaInput = {
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
 

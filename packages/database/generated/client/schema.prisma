@@ -21,15 +21,16 @@ enum sys_account_provider {
 
 //系统角色
 model sys_user {
-  uid       String              @id @default(uuid())
-  createdAt DateTime            @default(now())
-  updatedAt DateTime            @default(now()) @updatedAt
-  name      String
-  roleId    String?
-  account   String              @unique
-  accounts  sys_account[]
-  role      sys_role?           @relation(fields: [roleId], references: [uid])
-  ban_menus sys_user_ban_menu[]
+  uid            String              @id @default(uuid())
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @default(now()) @updatedAt
+  name           String
+  roleId         String?
+  account        String              @unique
+  accounts       sys_account[]
+  role           sys_role?           @relation(fields: [roleId], references: [uid])
+  ban_menus      sys_user_ban_menu[]
+  sys_user_media sys_user_media[]
 }
 
 //系统账号
@@ -101,4 +102,34 @@ model sys_role {
   menus     sys_menu_on_role[]
   users     sys_user[]
   sort      Int                @default(10)
+}
+
+model sys_media {
+  uid       String           @id @default(uuid())
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @default(now()) @updatedAt
+  name      String // 文件名
+  size      Int // 文件大小(字节)
+  hash      String           @unique // 文件hash值
+  mimeType  String // 文件MIME类型
+  extension String // 文件扩展名
+  path      String // 文件存储路径
+  url       String? // 文件访问URL
+  isWechat  Boolean          @default(false) // 是否为微信素材
+  wechat_id String?          @unique // 微信素材ID
+  enabled   Boolean          @default(true) // 是否可用
+  type      String           @default("file") // 文件类型:file,image,video,audio等
+  width     Int? // 图片/视频宽度
+  height    Int? // 图片/视频高度
+  duration  Int? // 音视频时长(秒)
+  users     sys_user_media[]
+}
+
+model sys_user_media {
+  user    sys_user  @relation(fields: [userId], references: [uid])
+  media   sys_media @relation(fields: [mediaId], references: [uid])
+  userId  String
+  mediaId String
+
+  @@id([userId, mediaId])
 }

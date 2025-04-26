@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { WechatService } from './wechat.service';
+import { WxService } from './wx.service';
 
-describe('WechatService', () => {
-  let service: WechatService;
+describe('WxService', () => {
+  let service: WxService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [WechatService],
+      providers: [WxService],
     }).compile();
 
-    service = module.get<WechatService>(WechatService);
+    service = module.get<WxService>(WxService);
   });
 
   it('should be defined', () => {

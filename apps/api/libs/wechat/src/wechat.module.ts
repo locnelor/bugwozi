@@ -1,13 +1,14 @@
-import { DynamicModule, Module, Provider } from '@nestjs/common';
+import { DynamicModule, Global, Module, Provider } from '@nestjs/common';
 
 import { WeChatModuleOptions, WeChatModuleRootOptions } from '.';
 import { WECHAT_MODULE_OPTIONS } from './wechat.constants';
 import { WeChatService } from './wechat.service';
 
 @Module({})
+@Global()
 export class WeChatModule {
 
-  public static register (options: WeChatModuleOptions): DynamicModule {
+  public static register(options: WeChatModuleOptions): DynamicModule {
     return {
       global: options.isGlobal,
       module: WeChatModule,
@@ -19,7 +20,7 @@ export class WeChatModule {
     };
   }
 
-  public static forRootAsync (options: WeChatModuleRootOptions): DynamicModule {
+  public static forRootAsync(options: WeChatModuleRootOptions): DynamicModule {
     const providers: Provider[] = [];
     if (options.useFactory) {
       providers.push({

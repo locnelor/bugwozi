@@ -168,6 +168,31 @@ exports.Prisma.Sys_roleScalarFieldEnum = {
   sort: 'sort'
 };
 
+exports.Prisma.Sys_mediaScalarFieldEnum = {
+  uid: 'uid',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  name: 'name',
+  size: 'size',
+  hash: 'hash',
+  mimeType: 'mimeType',
+  extension: 'extension',
+  path: 'path',
+  url: 'url',
+  isWechat: 'isWechat',
+  wechat_id: 'wechat_id',
+  enabled: 'enabled',
+  type: 'type',
+  width: 'width',
+  height: 'height',
+  duration: 'duration'
+};
+
+exports.Prisma.Sys_user_mediaScalarFieldEnum = {
+  userId: 'userId',
+  mediaId: 'mediaId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -214,6 +239,23 @@ exports.Prisma.sys_roleOrderByRelevanceFieldEnum = {
   name: 'name',
   comment: 'comment'
 };
+
+exports.Prisma.sys_mediaOrderByRelevanceFieldEnum = {
+  uid: 'uid',
+  name: 'name',
+  hash: 'hash',
+  mimeType: 'mimeType',
+  extension: 'extension',
+  path: 'path',
+  url: 'url',
+  wechat_id: 'wechat_id',
+  type: 'type'
+};
+
+exports.Prisma.sys_user_mediaOrderByRelevanceFieldEnum = {
+  userId: 'userId',
+  mediaId: 'mediaId'
+};
 exports.sys_account_provider = exports.$Enums.sys_account_provider = {
   we_chat: 'we_chat',
   github: 'github',
@@ -229,7 +271,9 @@ exports.Prisma.ModelName = {
   sys_menu: 'sys_menu',
   sys_user_ban_menu: 'sys_user_ban_menu',
   sys_menu_on_role: 'sys_menu_on_role',
-  sys_role: 'sys_role'
+  sys_role: 'sys_role',
+  sys_media: 'sys_media',
+  sys_user_media: 'sys_user_media'
 };
 
 /**

@@ -10,8 +10,8 @@ import { SystemModule } from './system/system.module';
 import { BlogModule } from './blog/blog.module';
 import { OrderModule } from './order/order.module';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { WechatModule } from './wechat/wechat.module';
 import { RedisCache, WeChatModule } from '@app/wechat';
+import { WxModule } from './wx/wx.module';
 
 @Module({
   imports: [
@@ -85,7 +85,7 @@ import { RedisCache, WeChatModule } from '@app/wechat';
     BlogModule,
     OrderModule,
     DashboardModule,
-    WechatModule,
+    WxModule,
   ],
   controllers: [AppController],
   providers: [AppService],
