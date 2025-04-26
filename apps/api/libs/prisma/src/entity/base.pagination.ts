@@ -17,8 +17,8 @@ export class BasePagination {
 @InputType()
 export class BasePaginationInput {
   @Field(() => Int, { defaultValue: 1 })
-  page: number
+  take: number
 
   @Field(() => Int, { defaultValue: 10 })
-  size: number
+  skip: number
 }
