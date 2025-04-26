@@ -17,7 +17,7 @@ export class RoleService {
     return this.prisma.sys_role.findMany()
   }
 
-  async findList({ page, size, name, comment, status }: RolePaginationInput) {
+  async findList({ skip, take, name, comment, status }: RolePaginationInput) {
     const where: Prisma.sys_roleWhereInput = {
       status
     };
@@ -30,14 +30,12 @@ export class RoleService {
     const total = await this.prisma.sys_role.count({ where });
     const data = await this.prisma.sys_role.findMany({
       where,
-      skip: (page - 1) * size,
-      take: size,
+      skip,
+      take,
     })
     return {
       total,
       data,
-      page,
-      size
     }
   }
 
