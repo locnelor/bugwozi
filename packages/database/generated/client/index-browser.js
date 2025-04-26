@@ -195,15 +195,15 @@ exports.Prisma.Sys_user_mediaScalarFieldEnum = {
 
 exports.Prisma.Blog_categoriesScalarFieldEnum = {
   uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   name: 'name'
 };
 
 exports.Prisma.Blog_postsScalarFieldEnum = {
   uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   title: 'title',
   content: 'content',
   status: 'status',
@@ -218,15 +218,15 @@ exports.Prisma.Blog_posts_on_tagsScalarFieldEnum = {
 
 exports.Prisma.Blog_tagScalarFieldEnum = {
   uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   name: 'name'
 };
 
 exports.Prisma.Blog_commentsScalarFieldEnum = {
   uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   content: 'content',
   status: 'status',
   userId: 'userId',
@@ -235,8 +235,8 @@ exports.Prisma.Blog_commentsScalarFieldEnum = {
 
 exports.Prisma.Blog_linksScalarFieldEnum = {
   uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   name: 'name',
   url: 'url',
   logo: 'logo',
@@ -246,8 +246,8 @@ exports.Prisma.Blog_linksScalarFieldEnum = {
 
 exports.Prisma.Blog_announcementsScalarFieldEnum = {
   uid: 'uid',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   title: 'title',
   content: 'content',
   sort: 'sort',

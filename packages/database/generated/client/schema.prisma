@@ -139,18 +139,18 @@ model sys_user_media {
 //*********************** 博客系统
 // 博客分类
 model blog_categories {
-  uid      String       @id @default(uuid())
-  createAt DateTime     @default(now())
-  updateAt DateTime     @default(now()) @updatedAt
-  name     String
-  posts    blog_posts[]
+  uid       String       @id @default(uuid())
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @default(now()) @updatedAt
+  name      String
+  posts     blog_posts[]
 }
 
 // 博客文章
 model blog_posts {
   uid          String               @id @default(uuid())
-  createAt     DateTime             @default(now())
-  updateAt     DateTime             @default(now()) @updatedAt
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @default(now()) @updatedAt
   title        String
   content      String               @db.Text
   status       Boolean              @default(true)
@@ -174,45 +174,45 @@ model blog_posts_on_tags {
 
 // 博客标签
 model blog_tag {
-  uid      String               @id @default(uuid())
-  createAt DateTime             @default(now())
-  updateAt DateTime             @default(now()) @updatedAt
-  name     String
-  blogs    blog_posts_on_tags[]
+  uid       String               @id @default(uuid())
+  createdAt DateTime             @default(now())
+  updatedAt DateTime             @default(now()) @updatedAt
+  name      String
+  blogs     blog_posts_on_tags[]
 }
 
 // 博客评论
 model blog_comments {
-  uid      String     @id @default(uuid())
-  createAt DateTime   @default(now())
-  updateAt DateTime   @default(now()) @updatedAt
-  content  String     @db.Text
-  status   Boolean    @default(true)
-  userId   String
-  postId   String
-  user     sys_user   @relation(fields: [userId], references: [uid])
-  post     blog_posts @relation(fields: [postId], references: [uid])
+  uid       String     @id @default(uuid())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @default(now()) @updatedAt
+  content   String     @db.Text
+  status    Boolean    @default(true)
+  userId    String
+  postId    String
+  user      sys_user   @relation(fields: [userId], references: [uid])
+  post      blog_posts @relation(fields: [postId], references: [uid])
 }
 
 // 友情链接
 model blog_links {
-  uid      String   @id @default(uuid())
-  createAt DateTime @default(now())
-  updateAt DateTime @default(now()) @updatedAt
-  name     String // 链接名称
-  url      String // 链接地址
-  logo     String? // logo地址
-  sort     Int      @default(0) // 排序
-  status   Boolean  @default(true)
+  uid       String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  name      String // 链接名称
+  url       String // 链接地址
+  logo      String? // logo地址
+  sort      Int      @default(0) // 排序
+  status    Boolean  @default(true)
 }
 
 // 公告
 model blog_announcements {
-  uid      String   @id @default(uuid())
-  createAt DateTime @default(now())
-  updateAt DateTime @default(now()) @updatedAt
-  title    String // 公告标题
-  content  String   @db.Text // 公告内容
-  sort     Int      @default(0) // 排序
-  status   Boolean  @default(true)
+  uid       String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  title     String // 公告标题
+  content   String   @db.Text // 公告内容
+  sort      Int      @default(0) // 排序
+  status    Boolean  @default(true)
 }
