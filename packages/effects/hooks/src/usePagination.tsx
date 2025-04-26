@@ -15,7 +15,9 @@ export const usePagination = ({
   defaultPage = 1,
   defaultSize = 10
 }: UsePaginationOptions) => {
-  const [refetch, { data: queryData, loading }] = useLazyQuery(query)
+  const [refetch, { data: queryData, loading }] = useLazyQuery(query, {
+    fetchPolicy: "no-cache"
+  })
   const [page, setPage] = useState(defaultPage)
   const [size, setSize] = useState(defaultSize)
   const [total, setTotal] = useState(0)

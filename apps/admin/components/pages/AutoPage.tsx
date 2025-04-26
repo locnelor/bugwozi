@@ -4,7 +4,7 @@ import PageCard from "./PageCard";
 import TablePage from "./TablePage";
 import { PropsWithChildren, ReactNode, useState } from "react";
 import { useColumns } from "#/hooks/useTable";
-import { Button, Space, message, Form, Input, InputNumber, Select, DatePicker, Switch, TreeSelect, ButtonProps, Popconfirm } from "antd";
+import { Button, Space, message, Form, Input, InputNumber, Select, DatePicker, Switch, TreeSelect, ButtonProps, Popconfirm, FormProps } from "antd";
 import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import AutoFormModal from "./AutoFormModal";
 
@@ -41,6 +41,7 @@ interface AutoPageProps extends PropsWithChildren {
         name: string;
         variables?: any
     };
+    searchFormProps?: FormProps,
     pagination?: ReactNode,
     operation?: (record: any) => ReactNode,
     side?: ReactNode
@@ -67,6 +68,7 @@ const AutoPage = ({
     pagination,
     operation,
     side,
+    searchFormProps,
     children
 }: AutoPageProps) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -158,8 +160,15 @@ const AutoPage = ({
         <PageCard>
             <Form
                 form={searchForm}
-                layout="vertical"
                 onFinish={handleSearch}
+                {...searchFormProps}
+                layout="inline"
+                style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+                    gap: '16px',
+                    alignItems: 'flex-start'
+                }}
             >
                 {search.fields.map((field) => (
                     <Form.Item
