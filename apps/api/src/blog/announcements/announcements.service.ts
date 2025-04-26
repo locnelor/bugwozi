@@ -3,7 +3,7 @@ import { PrismaService } from '@app/prisma';
 import { CreateAnnouncementInput } from './dto/create-announcement.input';
 import { UpdateAnnouncementInput } from './dto/update-announcement.input';
 import { AnnouncementsPaginationInput } from './dto/announcements.pagination';
-
+import { Prisma } from '@pkg/database';
 @Injectable()
 export class AnnouncementsService {
   constructor(private readonly prisma: PrismaService) { }
@@ -19,8 +19,13 @@ export class AnnouncementsService {
     });
   }
 
-  findAll(pagination: AnnouncementsPaginationInput) {
-    const { skip, take, where } = pagination;
+  findAll({ skip, take, title, status }: AnnouncementsPaginationInput) {
+    const where: Prisma.blog_announcementsWhereInput = {
+      status
+    };
+    if (title) where.title = {
+      contains: title
+    }
     return this.prisma.blog_announcements.findMany({
       skip,
       take,
@@ -36,15 +41,10 @@ export class AnnouncementsService {
     });
   }
 
-  update(uid: string, updateAnnouncementInput: UpdateAnnouncementInput) {
+  update({ uid, ...data }: UpdateAnnouncementInput) {
     return this.prisma.blog_announcements.update({
       where: { uid },
-      data: {
-        title: updateAnnouncementInput.title,
-        content: updateAnnouncementInput.content,
-        sort: updateAnnouncementInput.sort,
-        status: updateAnnouncementInput.status,
-      },
+      data,
     });
   }
 

@@ -3,25 +3,24 @@ import { PrismaService } from '@app/prisma';
 import { CreatePostInput } from './dto/create-post.input';
 import { UpdatePostInput } from './dto/update-post.input';
 import { PostsPaginationInput } from './dto/posts.pagination';
+import { Prisma } from '@pkg/database';
 @Injectable()
 export class PostsService {
   constructor(private readonly prisma: PrismaService) { }
 
-  create(createPostInput: CreatePostInput) {
+  create(data: CreatePostInput) {
     return this.prisma.blog_posts.create({
-      data: {
-        title: createPostInput.title,
-        content: createPostInput.content,
-        description: createPostInput.description,
-        status: createPostInput.status,
-        userId: createPostInput.userId,
-        categoriesId: createPostInput.categoriesId,
-      },
+      data,
     });
   }
 
-  findAll(pagination: PostsPaginationInput) {
-    const { skip, take, where } = pagination;
+  findAll({ skip, take, title, status, categoriesId }: PostsPaginationInput) {
+    const where: Prisma.blog_postsWhereInput = {};
+    if (title) where.title = {
+      contains: title
+    }
+    if (status) where.status = status;
+    if (categoriesId) where.categoriesId = categoriesId;
     return this.prisma.blog_posts.findMany({
       skip,
       take,
@@ -53,16 +52,10 @@ export class PostsService {
     });
   }
 
-  update(uid: string, updatePostInput: UpdatePostInput) {
+  update({ uid, ...data }: UpdatePostInput) {
     return this.prisma.blog_posts.update({
       where: { uid },
-      data: {
-        title: updatePostInput.title,
-        content: updatePostInput.content,
-        description: updatePostInput.description,
-        status: updatePostInput.status,
-        categoriesId: updatePostInput.categoriesId,
-      },
+      data,
     });
   }
 

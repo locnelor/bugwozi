@@ -5,12 +5,6 @@ import { Field, InputType, Int, ObjectType } from "@nestjs/graphql";
 export class BasePagination {
   @Field(() => Int)
   total: number
-
-  @Field(() => Int)
-  page: number
-
-  @Field(() => Int)
-  size: number
 }
 
 

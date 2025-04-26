@@ -3,7 +3,7 @@ import { PrismaService } from '@app/prisma';
 import { CreateTagInput } from './dto/create-tag.input';
 import { UpdateTagInput } from './dto/update-tag.input';
 import { TagPaginationInput } from './dto/tag.pagination';
-
+import { Prisma } from '@pkg/database';
 @Injectable()
 export class TagService {
   constructor(private readonly prisma: PrismaService) {}
@@ -16,8 +16,11 @@ export class TagService {
     });
   }
 
-  findAll(pagination: TagPaginationInput) {
-    const { skip, take, where } = pagination;
+  findAll({ skip, take, name }: TagPaginationInput) {
+    const where: Prisma.blog_tagWhereInput = {};
+    if (name) where.name = {
+      contains: name
+    }
     return this.prisma.blog_tag.findMany({
       skip,
       take,
@@ -45,12 +48,10 @@ export class TagService {
     });
   }
 
-  update(uid: string, updateTagInput: UpdateTagInput) {
+  update({ uid, ...data }: UpdateTagInput) {
     return this.prisma.blog_tag.update({
       where: { uid },
-      data: {
-        name: updateTagInput.name,
-      },
+      data,
     });
   }
 

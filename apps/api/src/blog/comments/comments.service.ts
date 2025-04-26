@@ -3,10 +3,10 @@ import { PrismaService } from '@app/prisma';
 import { CreateCommentInput } from './dto/create-comment.input';
 import { UpdateCommentInput } from './dto/update-comment.input';
 import { CommentsPaginationInput } from './dto/comments.pagination';
-
+import { Prisma } from '@pkg/database';
 @Injectable()
 export class CommentsService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   create(createCommentInput: CreateCommentInput) {
     return this.prisma.blog_comments.create({
@@ -19,8 +19,15 @@ export class CommentsService {
     });
   }
 
-  findAll(pagination: CommentsPaginationInput) {
-    const { skip, take, where } = pagination;
+  findAll({ skip, take, content, status, userId, postId }: CommentsPaginationInput) {
+    const where: Prisma.blog_commentsWhereInput = {
+      status,
+      userId,
+      postId
+    };
+    if (content) where.content = {
+      contains: content
+    }
     return this.prisma.blog_comments.findMany({
       skip,
       take,
@@ -42,13 +49,10 @@ export class CommentsService {
     });
   }
 
-  update(uid: string, updateCommentInput: UpdateCommentInput) {
+  update({ uid, ...data }: UpdateCommentInput) {
     return this.prisma.blog_comments.update({
       where: { uid },
-      data: {
-        content: updateCommentInput.content,
-        status: updateCommentInput.status,
-      },
+      data,
     });
   }
 

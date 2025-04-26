@@ -33,10 +33,9 @@ export class AnnouncementsResolver {
   @Mutation(() => BlogAnnouncementsEntity)
   @UseGuards(BlogArticleGuards.GqlAuthGuard([UPDATE_POWER]))
   updateAnnouncement(
-    @Args('uid') uid: string,
     @Args('updateAnnouncementInput') updateAnnouncementInput: UpdateAnnouncementInput,
   ) {
-    return this.announcementsService.update(uid, updateAnnouncementInput);
+    return this.announcementsService.update(updateAnnouncementInput);
   }
 
   @Mutation(() => BlogAnnouncementsEntity)

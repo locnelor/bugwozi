@@ -3,25 +3,26 @@ import { PrismaService } from '@app/prisma';
 import { CreateLinkInput } from './dto/create-link.input';
 import { UpdateLinkInput } from './dto/update-link.input';
 import { LinksPaginationInput } from './dto/links.pagination';
-
+import { Prisma } from '@pkg/database';
 @Injectable()
 export class LinksService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
-  create(createLinkInput: CreateLinkInput) {
+  create(data: CreateLinkInput) {
     return this.prisma.blog_links.create({
-      data: {
-        name: createLinkInput.name,
-        url: createLinkInput.url,
-        logo: createLinkInput.logo,
-        sort: createLinkInput.sort,
-        status: createLinkInput.status,
-      },
+      data,
     });
   }
 
-  findAll(pagination: LinksPaginationInput) {
-    const { skip, take, where } = pagination;
+  findAll({ skip, take, name, status, url }: LinksPaginationInput) {
+    const where: Prisma.blog_linksWhereInput = {};
+    if (name) where.name = {
+      contains: name
+    }
+    if (status) where.status = status;
+    if (url) where.url = {
+      contains: url
+    }
     return this.prisma.blog_links.findMany({
       skip,
       take,
@@ -38,16 +39,10 @@ export class LinksService {
     });
   }
 
-  update(uid: string, updateLinkInput: UpdateLinkInput) {
+  update({ uid, ...data }: UpdateLinkInput) {
     return this.prisma.blog_links.update({
       where: { uid },
-      data: {
-        name: updateLinkInput.name,
-        url: updateLinkInput.url,
-        logo: updateLinkInput.logo,
-        sort: updateLinkInput.sort,
-        status: updateLinkInput.status,
-      },
+      data,
     });
   }
 

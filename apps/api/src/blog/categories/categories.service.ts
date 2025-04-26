@@ -3,22 +3,22 @@ import { PrismaService } from '@app/prisma';
 import { CreateCategoryInput } from './dto/create-category.input';
 import { UpdateCategoryInput } from './dto/update-category.input';
 import { CategoriesPaginationInput } from './dto/categories.pagination';
-
+import { Prisma } from '@pkg/database';
 @Injectable()
 export class CategoriesService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
-  create(createCategoryInput: CreateCategoryInput) {
+  create(data: CreateCategoryInput) {
     return this.prisma.blog_categories.create({
-      data: {
-        name: createCategoryInput.name,
-        description: createCategoryInput.description,
-      },
+      data,
     });
   }
 
-  findAll(pagination: CategoriesPaginationInput) {
-    const { skip, take, where } = pagination;
+  findAll({ skip, take, name }: CategoriesPaginationInput) {
+    const where: Prisma.blog_categoriesWhereInput = {};
+    if (name) where.name = {
+      contains: name
+    }
     return this.prisma.blog_categories.findMany({
       skip,
       take,
@@ -38,13 +38,10 @@ export class CategoriesService {
     });
   }
 
-  update(uid: string, updateCategoryInput: UpdateCategoryInput) {
+  update({ uid, ...data }: UpdateCategoryInput) {
     return this.prisma.blog_categories.update({
       where: { uid },
-      data: {
-        name: updateCategoryInput.name,
-        description: updateCategoryInput.description,
-      },
+      data,
     });
   }
 

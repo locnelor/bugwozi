@@ -5,43 +5,41 @@ import { CreateCommentInput } from './dto/create-comment.input';
 import { UpdateCommentInput } from './dto/update-comment.input';
 import { CommentsPaginationInput, CommentsPaginationEntity } from './dto/comments.pagination';
 import { UseGuards } from '@nestjs/common';
-import { BlogCommentGuards } from '@app/auth-power';
-import { GqlAuthGuard } from '@app/auth';
+import { BlogCommentGuards, CREATE_POWER, DELETE_POWER, UPDATE_POWER, VIEW_POWER } from '@app/auth-power';
 
 @Resolver(() => BlogCommentsEntity)
-@UseGuards(GqlAuthGuard)
+@UseGuards(BlogCommentGuards.GqlAuthGuard())
 export class CommentsResolver {
-  constructor(private readonly commentsService: CommentsService) {}
+  constructor(private readonly commentsService: CommentsService) { }
 
   @Mutation(() => BlogCommentsEntity)
-  @UseGuards(BlogCommentGuards)
+  @UseGuards(BlogCommentGuards.GqlAuthGuard([CREATE_POWER]))
   createComment(@Args('createCommentInput') createCommentInput: CreateCommentInput) {
     return this.commentsService.create(createCommentInput);
   }
 
   @Query(() => CommentsPaginationEntity)
-  @UseGuards(BlogCommentGuards)
+  @UseGuards(BlogCommentGuards.GqlAuthGuard([VIEW_POWER]))
   comments(@Args('pagination') pagination: CommentsPaginationInput) {
     return this.commentsService.findAll(pagination);
   }
 
   @Query(() => BlogCommentsEntity)
-  @UseGuards(BlogCommentGuards)
+  @UseGuards(BlogCommentGuards.GqlAuthGuard([VIEW_POWER]))
   comment(@Args('uid') uid: string) {
     return this.commentsService.findOne(uid);
   }
 
   @Mutation(() => BlogCommentsEntity)
-  @UseGuards(BlogCommentGuards)
+  @UseGuards(BlogCommentGuards.GqlAuthGuard([UPDATE_POWER]))
   updateComment(
-    @Args('uid') uid: string,
     @Args('updateCommentInput') updateCommentInput: UpdateCommentInput,
   ) {
-    return this.commentsService.update(uid, updateCommentInput);
+    return this.commentsService.update(updateCommentInput);
   }
 
   @Mutation(() => BlogCommentsEntity)
-  @UseGuards(BlogCommentGuards)
+  @UseGuards(BlogCommentGuards.GqlAuthGuard([DELETE_POWER]))
   removeComment(@Args('uid') uid: string) {
     return this.commentsService.remove(uid);
   }

@@ -5,43 +5,41 @@ import { CreatePostInput } from './dto/create-post.input';
 import { UpdatePostInput } from './dto/update-post.input';
 import { PostsPaginationInput, PostsPaginationEntity } from './dto/posts.pagination';
 import { UseGuards } from '@nestjs/common';
-import { BlogArticleGuards } from '@app/auth-power';
-import { GqlAuthGuard } from '@app/auth';
+import { BlogArticleGuards, CREATE_POWER, DELETE_POWER, UPDATE_POWER, VIEW_POWER } from '@app/auth-power';
 
 @Resolver(() => BlogPostsEntity)
-@UseGuards(GqlAuthGuard)
+@UseGuards(BlogArticleGuards.GqlAuthGuard())
 export class PostsResolver {
-  constructor(private readonly postsService: PostsService) {}
+  constructor(private readonly postsService: PostsService) { }
 
   @Mutation(() => BlogPostsEntity)
-  @UseGuards(BlogArticleGuards)
+  @UseGuards(BlogArticleGuards.GqlAuthGuard([CREATE_POWER]))
   createPost(@Args('createPostInput') createPostInput: CreatePostInput) {
     return this.postsService.create(createPostInput);
   }
 
   @Query(() => PostsPaginationEntity)
-  @UseGuards(BlogArticleGuards)
+  @UseGuards(BlogArticleGuards.GqlAuthGuard([VIEW_POWER]))
   posts(@Args('pagination') pagination: PostsPaginationInput) {
     return this.postsService.findAll(pagination);
   }
 
   @Query(() => BlogPostsEntity)
-  @UseGuards(BlogArticleGuards)
+  @UseGuards(BlogArticleGuards.GqlAuthGuard([VIEW_POWER]))
   post(@Args('uid') uid: string) {
     return this.postsService.findOne(uid);
   }
 
   @Mutation(() => BlogPostsEntity)
-  @UseGuards(BlogArticleGuards)
+  @UseGuards(BlogArticleGuards.GqlAuthGuard([UPDATE_POWER]))
   updatePost(
-    @Args('uid') uid: string,
     @Args('updatePostInput') updatePostInput: UpdatePostInput,
   ) {
-    return this.postsService.update(uid, updatePostInput);
+    return this.postsService.update(updatePostInput);
   }
 
   @Mutation(() => BlogPostsEntity)
-  @UseGuards(BlogArticleGuards)
+  @UseGuards(BlogArticleGuards.GqlAuthGuard([DELETE_POWER]))
   removePost(@Args('uid') uid: string) {
     return this.postsService.remove(uid);
   }

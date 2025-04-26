@@ -15,23 +15,20 @@ export class UserService {
     return this.prisma.sys_user.findMany()
   }
 
-  async findList({ page, size, name }: UserPaginationInput) {
-    const where: Prisma.sys_userWhereInput = {
-    };
+  async findList({ skip, take, name }: UserPaginationInput) {
+    const where: Prisma.sys_userWhereInput = {};
     if (!!name) where.name = {
       contains: name
     }
     const total = await this.prisma.sys_user.count({ where });
     const data = await this.prisma.sys_user.findMany({
       where,
-      skip: (page - 1) * size,
-      take: size,
+      skip,
+      take
     })
     return {
       total,
       data,
-      page,
-      size
     }
   }
 
