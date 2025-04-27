@@ -21,18 +21,19 @@ enum sys_account_provider {
 
 //系统角色
 model sys_user {
-  uid           String              @id @default(uuid())
-  createdAt     DateTime            @default(now())
-  updatedAt     DateTime            @default(now()) @updatedAt
-  name          String
-  roleId        String?
-  account       String              @unique
-  accounts      sys_account[]
-  role          sys_role?           @relation(fields: [roleId], references: [uid])
-  ban_menus     sys_user_ban_menu[]
-  user_media    sys_user_media[]
-  blog_posts    blog_posts[]
-  blog_comments blog_comments[]
+  uid              String              @id @default(uuid())
+  createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @default(now()) @updatedAt
+  name             String
+  roleId           String?
+  account          String              @unique
+  accounts         sys_account[]
+  role             sys_role?           @relation(fields: [roleId], references: [uid])
+  ban_menus        sys_user_ban_menu[]
+  user_media       sys_user_media[]
+  blog_posts       blog_posts[]
+  blog_comments    blog_comments[]
+  bookkeep_records bookkeep_record[]
 }
 
 //系统账号
@@ -107,24 +108,25 @@ model sys_role {
 }
 
 model sys_media {
-  uid       String           @id @default(uuid())
-  createdAt DateTime         @default(now())
-  updatedAt DateTime         @default(now()) @updatedAt
-  name      String // 文件名
-  size      Int // 文件大小(字节)
-  hash      String           @unique // 文件hash值
-  mimeType  String // 文件MIME类型
-  extension String // 文件扩展名
-  path      String // 文件存储路径
-  url       String? // 文件访问URL
-  isWechat  Boolean          @default(false) // 是否为微信素材
-  wechat_id String?          @unique // 微信素材ID
-  enabled   Boolean          @default(true) // 是否可用
-  type      String           @default("file") // 文件类型:file,image,video,audio等
-  width     Int? // 图片/视频宽度
-  height    Int? // 图片/视频高度
-  duration  Int? // 音视频时长(秒)
-  users     sys_user_media[]
+  uid              String            @id @default(uuid())
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @default(now()) @updatedAt
+  name             String // 文件名
+  size             Int // 文件大小(字节)
+  hash             String            @unique // 文件hash值
+  mimeType         String // 文件MIME类型
+  extension        String // 文件扩展名
+  path             String // 文件存储路径
+  url              String? // 文件访问URL
+  isWechat         Boolean           @default(false) // 是否为微信素材
+  wechat_id        String?           @unique // 微信素材ID
+  enabled          Boolean           @default(true) // 是否可用
+  type             String            @default("file") // 文件类型:file,image,video,audio等
+  width            Int? // 图片/视频宽度
+  height           Int? // 图片/视频高度
+  duration         Int? // 音视频时长(秒)
+  users            sys_user_media[]
+  bookkeep_records bookkeep_record[]
 }
 
 model sys_user_media {
@@ -216,4 +218,50 @@ model blog_announcements {
   content   String   @db.Text // 公告内容
   sort      Int      @default(0) // 排序
   status    Boolean  @default(true)
+}
+
+//*********************** 记账系统
+// 记账类型
+enum bookkeep_type {
+  income
+  expense
+}
+
+// 记账记录
+model bookkeep_record {
+  uid         String                    @id @default(uuid())
+  createdAt   DateTime                  @default(now())
+  updatedAt   DateTime                  @default(now()) @updatedAt
+  type        bookkeep_type
+  amount      Float
+  category    String
+  description String?                   @db.Text
+  date        DateTime
+  userId      String
+  user        sys_user                  @relation(fields: [userId], references: [uid])
+  mediaId     String?
+  media       sys_media?                @relation(fields: [mediaId], references: [uid])
+  tags        bookkeep_record_on_tags[]
+
+  @@index([userId])
+  @@index([date])
+}
+
+// 记账标签
+model bookkeep_tag {
+  uid       String                    @id @default(uuid())
+  createdAt DateTime                  @default(now())
+  updatedAt DateTime                  @default(now()) @updatedAt
+  name      String
+  records   bookkeep_record_on_tags[]
+}
+
+// 记账记录标签关联
+model bookkeep_record_on_tags {
+  recordId String
+  tagId    String
+  record   bookkeep_record @relation(fields: [recordId], references: [uid])
+  tag      bookkeep_tag    @relation(fields: [tagId], references: [uid])
+
+  @@id([recordId, tagId])
 }

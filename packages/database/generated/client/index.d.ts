@@ -92,6 +92,21 @@ export type blog_links = $Result.DefaultSelection<Prisma.$blog_linksPayload>
  * 
  */
 export type blog_announcements = $Result.DefaultSelection<Prisma.$blog_announcementsPayload>
+/**
+ * Model bookkeep_record
+ * 
+ */
+export type bookkeep_record = $Result.DefaultSelection<Prisma.$bookkeep_recordPayload>
+/**
+ * Model bookkeep_tag
+ * 
+ */
+export type bookkeep_tag = $Result.DefaultSelection<Prisma.$bookkeep_tagPayload>
+/**
+ * Model bookkeep_record_on_tags
+ * 
+ */
+export type bookkeep_record_on_tags = $Result.DefaultSelection<Prisma.$bookkeep_record_on_tagsPayload>
 
 /**
  * Enums
@@ -108,11 +123,23 @@ export namespace $Enums {
 
 export type sys_account_provider = (typeof sys_account_provider)[keyof typeof sys_account_provider]
 
+
+export const bookkeep_type: {
+  income: 'income',
+  expense: 'expense'
+};
+
+export type bookkeep_type = (typeof bookkeep_type)[keyof typeof bookkeep_type]
+
 }
 
 export type sys_account_provider = $Enums.sys_account_provider
 
 export const sys_account_provider: typeof $Enums.sys_account_provider
+
+export type bookkeep_type = $Enums.bookkeep_type
+
+export const bookkeep_type: typeof $Enums.bookkeep_type
 
 /**
  * ##  Prisma Client ʲˢ
@@ -388,6 +415,36 @@ export class PrismaClient<
     * ```
     */
   get blog_announcements(): Prisma.blog_announcementsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.bookkeep_record`: Exposes CRUD operations for the **bookkeep_record** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Bookkeep_records
+    * const bookkeep_records = await prisma.bookkeep_record.findMany()
+    * ```
+    */
+  get bookkeep_record(): Prisma.bookkeep_recordDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.bookkeep_tag`: Exposes CRUD operations for the **bookkeep_tag** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Bookkeep_tags
+    * const bookkeep_tags = await prisma.bookkeep_tag.findMany()
+    * ```
+    */
+  get bookkeep_tag(): Prisma.bookkeep_tagDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.bookkeep_record_on_tags`: Exposes CRUD operations for the **bookkeep_record_on_tags** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Bookkeep_record_on_tags
+    * const bookkeep_record_on_tags = await prisma.bookkeep_record_on_tags.findMany()
+    * ```
+    */
+  get bookkeep_record_on_tags(): Prisma.bookkeep_record_on_tagsDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -842,7 +899,10 @@ export namespace Prisma {
     blog_tag: 'blog_tag',
     blog_comments: 'blog_comments',
     blog_links: 'blog_links',
-    blog_announcements: 'blog_announcements'
+    blog_announcements: 'blog_announcements',
+    bookkeep_record: 'bookkeep_record',
+    bookkeep_tag: 'bookkeep_tag',
+    bookkeep_record_on_tags: 'bookkeep_record_on_tags'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -861,7 +921,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "sys_user" | "sys_account" | "sys_menu" | "sys_user_ban_menu" | "sys_menu_on_role" | "sys_role" | "sys_media" | "sys_user_media" | "blog_categories" | "blog_posts" | "blog_posts_on_tags" | "blog_tag" | "blog_comments" | "blog_links" | "blog_announcements"
+      modelProps: "sys_user" | "sys_account" | "sys_menu" | "sys_user_ban_menu" | "sys_menu_on_role" | "sys_role" | "sys_media" | "sys_user_media" | "blog_categories" | "blog_posts" | "blog_posts_on_tags" | "blog_tag" | "blog_comments" | "blog_links" | "blog_announcements" | "bookkeep_record" | "bookkeep_tag" | "bookkeep_record_on_tags"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1855,6 +1915,204 @@ export namespace Prisma {
           }
         }
       }
+      bookkeep_record: {
+        payload: Prisma.$bookkeep_recordPayload<ExtArgs>
+        fields: Prisma.bookkeep_recordFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.bookkeep_recordFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_recordPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.bookkeep_recordFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_recordPayload>
+          }
+          findFirst: {
+            args: Prisma.bookkeep_recordFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_recordPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.bookkeep_recordFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_recordPayload>
+          }
+          findMany: {
+            args: Prisma.bookkeep_recordFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_recordPayload>[]
+          }
+          create: {
+            args: Prisma.bookkeep_recordCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_recordPayload>
+          }
+          createMany: {
+            args: Prisma.bookkeep_recordCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.bookkeep_recordDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_recordPayload>
+          }
+          update: {
+            args: Prisma.bookkeep_recordUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_recordPayload>
+          }
+          deleteMany: {
+            args: Prisma.bookkeep_recordDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.bookkeep_recordUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.bookkeep_recordUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_recordPayload>
+          }
+          aggregate: {
+            args: Prisma.Bookkeep_recordAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBookkeep_record>
+          }
+          groupBy: {
+            args: Prisma.bookkeep_recordGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Bookkeep_recordGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.bookkeep_recordCountArgs<ExtArgs>
+            result: $Utils.Optional<Bookkeep_recordCountAggregateOutputType> | number
+          }
+        }
+      }
+      bookkeep_tag: {
+        payload: Prisma.$bookkeep_tagPayload<ExtArgs>
+        fields: Prisma.bookkeep_tagFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.bookkeep_tagFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_tagPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.bookkeep_tagFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_tagPayload>
+          }
+          findFirst: {
+            args: Prisma.bookkeep_tagFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_tagPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.bookkeep_tagFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_tagPayload>
+          }
+          findMany: {
+            args: Prisma.bookkeep_tagFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_tagPayload>[]
+          }
+          create: {
+            args: Prisma.bookkeep_tagCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_tagPayload>
+          }
+          createMany: {
+            args: Prisma.bookkeep_tagCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.bookkeep_tagDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_tagPayload>
+          }
+          update: {
+            args: Prisma.bookkeep_tagUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_tagPayload>
+          }
+          deleteMany: {
+            args: Prisma.bookkeep_tagDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.bookkeep_tagUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.bookkeep_tagUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_tagPayload>
+          }
+          aggregate: {
+            args: Prisma.Bookkeep_tagAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBookkeep_tag>
+          }
+          groupBy: {
+            args: Prisma.bookkeep_tagGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Bookkeep_tagGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.bookkeep_tagCountArgs<ExtArgs>
+            result: $Utils.Optional<Bookkeep_tagCountAggregateOutputType> | number
+          }
+        }
+      }
+      bookkeep_record_on_tags: {
+        payload: Prisma.$bookkeep_record_on_tagsPayload<ExtArgs>
+        fields: Prisma.bookkeep_record_on_tagsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.bookkeep_record_on_tagsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_record_on_tagsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.bookkeep_record_on_tagsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_record_on_tagsPayload>
+          }
+          findFirst: {
+            args: Prisma.bookkeep_record_on_tagsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_record_on_tagsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.bookkeep_record_on_tagsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_record_on_tagsPayload>
+          }
+          findMany: {
+            args: Prisma.bookkeep_record_on_tagsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_record_on_tagsPayload>[]
+          }
+          create: {
+            args: Prisma.bookkeep_record_on_tagsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_record_on_tagsPayload>
+          }
+          createMany: {
+            args: Prisma.bookkeep_record_on_tagsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.bookkeep_record_on_tagsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_record_on_tagsPayload>
+          }
+          update: {
+            args: Prisma.bookkeep_record_on_tagsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_record_on_tagsPayload>
+          }
+          deleteMany: {
+            args: Prisma.bookkeep_record_on_tagsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.bookkeep_record_on_tagsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.bookkeep_record_on_tagsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$bookkeep_record_on_tagsPayload>
+          }
+          aggregate: {
+            args: Prisma.Bookkeep_record_on_tagsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBookkeep_record_on_tags>
+          }
+          groupBy: {
+            args: Prisma.bookkeep_record_on_tagsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Bookkeep_record_on_tagsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.bookkeep_record_on_tagsCountArgs<ExtArgs>
+            result: $Utils.Optional<Bookkeep_record_on_tagsCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1954,6 +2212,9 @@ export namespace Prisma {
     blog_comments?: blog_commentsOmit
     blog_links?: blog_linksOmit
     blog_announcements?: blog_announcementsOmit
+    bookkeep_record?: bookkeep_recordOmit
+    bookkeep_tag?: bookkeep_tagOmit
+    bookkeep_record_on_tags?: bookkeep_record_on_tagsOmit
   }
 
   /* Types for Logging */
@@ -2053,6 +2314,7 @@ export namespace Prisma {
     user_media: number
     blog_posts: number
     blog_comments: number
+    bookkeep_records: number
   }
 
   export type Sys_userCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2061,6 +2323,7 @@ export namespace Prisma {
     user_media?: boolean | Sys_userCountOutputTypeCountUser_mediaArgs
     blog_posts?: boolean | Sys_userCountOutputTypeCountBlog_postsArgs
     blog_comments?: boolean | Sys_userCountOutputTypeCountBlog_commentsArgs
+    bookkeep_records?: boolean | Sys_userCountOutputTypeCountBookkeep_recordsArgs
   }
 
   // Custom InputTypes
@@ -2107,6 +2370,13 @@ export namespace Prisma {
    */
   export type Sys_userCountOutputTypeCountBlog_commentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: blog_commentsWhereInput
+  }
+
+  /**
+   * Sys_userCountOutputType without action
+   */
+  export type Sys_userCountOutputTypeCountBookkeep_recordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: bookkeep_recordWhereInput
   }
 
 
@@ -2205,10 +2475,12 @@ export namespace Prisma {
 
   export type Sys_mediaCountOutputType = {
     users: number
+    bookkeep_records: number
   }
 
   export type Sys_mediaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users?: boolean | Sys_mediaCountOutputTypeCountUsersArgs
+    bookkeep_records?: boolean | Sys_mediaCountOutputTypeCountBookkeep_recordsArgs
   }
 
   // Custom InputTypes
@@ -2227,6 +2499,13 @@ export namespace Prisma {
    */
   export type Sys_mediaCountOutputTypeCountUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: sys_user_mediaWhereInput
+  }
+
+  /**
+   * Sys_mediaCountOutputType without action
+   */
+  export type Sys_mediaCountOutputTypeCountBookkeep_recordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: bookkeep_recordWhereInput
   }
 
 
@@ -2329,6 +2608,68 @@ export namespace Prisma {
    */
   export type Blog_tagCountOutputTypeCountBlogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: blog_posts_on_tagsWhereInput
+  }
+
+
+  /**
+   * Count Type Bookkeep_recordCountOutputType
+   */
+
+  export type Bookkeep_recordCountOutputType = {
+    tags: number
+  }
+
+  export type Bookkeep_recordCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tags?: boolean | Bookkeep_recordCountOutputTypeCountTagsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Bookkeep_recordCountOutputType without action
+   */
+  export type Bookkeep_recordCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bookkeep_recordCountOutputType
+     */
+    select?: Bookkeep_recordCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Bookkeep_recordCountOutputType without action
+   */
+  export type Bookkeep_recordCountOutputTypeCountTagsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: bookkeep_record_on_tagsWhereInput
+  }
+
+
+  /**
+   * Count Type Bookkeep_tagCountOutputType
+   */
+
+  export type Bookkeep_tagCountOutputType = {
+    records: number
+  }
+
+  export type Bookkeep_tagCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    records?: boolean | Bookkeep_tagCountOutputTypeCountRecordsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Bookkeep_tagCountOutputType without action
+   */
+  export type Bookkeep_tagCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bookkeep_tagCountOutputType
+     */
+    select?: Bookkeep_tagCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Bookkeep_tagCountOutputType without action
+   */
+  export type Bookkeep_tagCountOutputTypeCountRecordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: bookkeep_record_on_tagsWhereInput
   }
 
 
@@ -2514,6 +2855,7 @@ export namespace Prisma {
     user_media?: boolean | sys_user$user_mediaArgs<ExtArgs>
     blog_posts?: boolean | sys_user$blog_postsArgs<ExtArgs>
     blog_comments?: boolean | sys_user$blog_commentsArgs<ExtArgs>
+    bookkeep_records?: boolean | sys_user$bookkeep_recordsArgs<ExtArgs>
     _count?: boolean | Sys_userCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["sys_user"]>
 
@@ -2536,6 +2878,7 @@ export namespace Prisma {
     user_media?: boolean | sys_user$user_mediaArgs<ExtArgs>
     blog_posts?: boolean | sys_user$blog_postsArgs<ExtArgs>
     blog_comments?: boolean | sys_user$blog_commentsArgs<ExtArgs>
+    bookkeep_records?: boolean | sys_user$bookkeep_recordsArgs<ExtArgs>
     _count?: boolean | Sys_userCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -2548,6 +2891,7 @@ export namespace Prisma {
       user_media: Prisma.$sys_user_mediaPayload<ExtArgs>[]
       blog_posts: Prisma.$blog_postsPayload<ExtArgs>[]
       blog_comments: Prisma.$blog_commentsPayload<ExtArgs>[]
+      bookkeep_records: Prisma.$bookkeep_recordPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       uid: string
@@ -2902,6 +3246,7 @@ export namespace Prisma {
     user_media<T extends sys_user$user_mediaArgs<ExtArgs> = {}>(args?: Subset<T, sys_user$user_mediaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sys_user_mediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     blog_posts<T extends sys_user$blog_postsArgs<ExtArgs> = {}>(args?: Subset<T, sys_user$blog_postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$blog_postsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     blog_comments<T extends sys_user$blog_commentsArgs<ExtArgs> = {}>(args?: Subset<T, sys_user$blog_commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$blog_commentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    bookkeep_records<T extends sys_user$bookkeep_recordsArgs<ExtArgs> = {}>(args?: Subset<T, sys_user$bookkeep_recordsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$bookkeep_recordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3416,6 +3761,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Blog_commentsScalarFieldEnum | Blog_commentsScalarFieldEnum[]
+  }
+
+  /**
+   * sys_user.bookkeep_records
+   */
+  export type sys_user$bookkeep_recordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_record
+     */
+    select?: bookkeep_recordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_record
+     */
+    omit?: bookkeep_recordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_recordInclude<ExtArgs> | null
+    where?: bookkeep_recordWhereInput
+    orderBy?: bookkeep_recordOrderByWithRelationInput | bookkeep_recordOrderByWithRelationInput[]
+    cursor?: bookkeep_recordWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Bookkeep_recordScalarFieldEnum | Bookkeep_recordScalarFieldEnum[]
   }
 
   /**
@@ -8684,6 +9053,7 @@ export namespace Prisma {
     height?: boolean
     duration?: boolean
     users?: boolean | sys_media$usersArgs<ExtArgs>
+    bookkeep_records?: boolean | sys_media$bookkeep_recordsArgs<ExtArgs>
     _count?: boolean | Sys_mediaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["sys_media"]>
 
@@ -8712,6 +9082,7 @@ export namespace Prisma {
   export type sys_mediaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createdAt" | "updatedAt" | "name" | "size" | "hash" | "mimeType" | "extension" | "path" | "url" | "isWechat" | "wechat_id" | "enabled" | "type" | "width" | "height" | "duration", ExtArgs["result"]["sys_media"]>
   export type sys_mediaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users?: boolean | sys_media$usersArgs<ExtArgs>
+    bookkeep_records?: boolean | sys_media$bookkeep_recordsArgs<ExtArgs>
     _count?: boolean | Sys_mediaCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -8719,6 +9090,7 @@ export namespace Prisma {
     name: "sys_media"
     objects: {
       users: Prisma.$sys_user_mediaPayload<ExtArgs>[]
+      bookkeep_records: Prisma.$bookkeep_recordPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       uid: string
@@ -9079,6 +9451,7 @@ export namespace Prisma {
   export interface Prisma__sys_mediaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     users<T extends sys_media$usersArgs<ExtArgs> = {}>(args?: Subset<T, sys_media$usersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sys_user_mediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    bookkeep_records<T extends sys_media$bookkeep_recordsArgs<ExtArgs> = {}>(args?: Subset<T, sys_media$bookkeep_recordsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$bookkeep_recordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9489,6 +9862,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Sys_user_mediaScalarFieldEnum | Sys_user_mediaScalarFieldEnum[]
+  }
+
+  /**
+   * sys_media.bookkeep_records
+   */
+  export type sys_media$bookkeep_recordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_record
+     */
+    select?: bookkeep_recordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_record
+     */
+    omit?: bookkeep_recordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_recordInclude<ExtArgs> | null
+    where?: bookkeep_recordWhereInput
+    orderBy?: bookkeep_recordOrderByWithRelationInput | bookkeep_recordOrderByWithRelationInput[]
+    cursor?: bookkeep_recordWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Bookkeep_recordScalarFieldEnum | Bookkeep_recordScalarFieldEnum[]
   }
 
   /**
@@ -17095,6 +17492,2921 @@ export namespace Prisma {
 
 
   /**
+   * Model bookkeep_record
+   */
+
+  export type AggregateBookkeep_record = {
+    _count: Bookkeep_recordCountAggregateOutputType | null
+    _avg: Bookkeep_recordAvgAggregateOutputType | null
+    _sum: Bookkeep_recordSumAggregateOutputType | null
+    _min: Bookkeep_recordMinAggregateOutputType | null
+    _max: Bookkeep_recordMaxAggregateOutputType | null
+  }
+
+  export type Bookkeep_recordAvgAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type Bookkeep_recordSumAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type Bookkeep_recordMinAggregateOutputType = {
+    uid: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    type: $Enums.bookkeep_type | null
+    amount: number | null
+    category: string | null
+    description: string | null
+    date: Date | null
+    userId: string | null
+    mediaId: string | null
+  }
+
+  export type Bookkeep_recordMaxAggregateOutputType = {
+    uid: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    type: $Enums.bookkeep_type | null
+    amount: number | null
+    category: string | null
+    description: string | null
+    date: Date | null
+    userId: string | null
+    mediaId: string | null
+  }
+
+  export type Bookkeep_recordCountAggregateOutputType = {
+    uid: number
+    createdAt: number
+    updatedAt: number
+    type: number
+    amount: number
+    category: number
+    description: number
+    date: number
+    userId: number
+    mediaId: number
+    _all: number
+  }
+
+
+  export type Bookkeep_recordAvgAggregateInputType = {
+    amount?: true
+  }
+
+  export type Bookkeep_recordSumAggregateInputType = {
+    amount?: true
+  }
+
+  export type Bookkeep_recordMinAggregateInputType = {
+    uid?: true
+    createdAt?: true
+    updatedAt?: true
+    type?: true
+    amount?: true
+    category?: true
+    description?: true
+    date?: true
+    userId?: true
+    mediaId?: true
+  }
+
+  export type Bookkeep_recordMaxAggregateInputType = {
+    uid?: true
+    createdAt?: true
+    updatedAt?: true
+    type?: true
+    amount?: true
+    category?: true
+    description?: true
+    date?: true
+    userId?: true
+    mediaId?: true
+  }
+
+  export type Bookkeep_recordCountAggregateInputType = {
+    uid?: true
+    createdAt?: true
+    updatedAt?: true
+    type?: true
+    amount?: true
+    category?: true
+    description?: true
+    date?: true
+    userId?: true
+    mediaId?: true
+    _all?: true
+  }
+
+  export type Bookkeep_recordAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which bookkeep_record to aggregate.
+     */
+    where?: bookkeep_recordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of bookkeep_records to fetch.
+     */
+    orderBy?: bookkeep_recordOrderByWithRelationInput | bookkeep_recordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: bookkeep_recordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` bookkeep_records from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` bookkeep_records.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned bookkeep_records
+    **/
+    _count?: true | Bookkeep_recordCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Bookkeep_recordAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Bookkeep_recordSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Bookkeep_recordMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Bookkeep_recordMaxAggregateInputType
+  }
+
+  export type GetBookkeep_recordAggregateType<T extends Bookkeep_recordAggregateArgs> = {
+        [P in keyof T & keyof AggregateBookkeep_record]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBookkeep_record[P]>
+      : GetScalarType<T[P], AggregateBookkeep_record[P]>
+  }
+
+
+
+
+  export type bookkeep_recordGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: bookkeep_recordWhereInput
+    orderBy?: bookkeep_recordOrderByWithAggregationInput | bookkeep_recordOrderByWithAggregationInput[]
+    by: Bookkeep_recordScalarFieldEnum[] | Bookkeep_recordScalarFieldEnum
+    having?: bookkeep_recordScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Bookkeep_recordCountAggregateInputType | true
+    _avg?: Bookkeep_recordAvgAggregateInputType
+    _sum?: Bookkeep_recordSumAggregateInputType
+    _min?: Bookkeep_recordMinAggregateInputType
+    _max?: Bookkeep_recordMaxAggregateInputType
+  }
+
+  export type Bookkeep_recordGroupByOutputType = {
+    uid: string
+    createdAt: Date
+    updatedAt: Date
+    type: $Enums.bookkeep_type
+    amount: number
+    category: string
+    description: string | null
+    date: Date
+    userId: string
+    mediaId: string | null
+    _count: Bookkeep_recordCountAggregateOutputType | null
+    _avg: Bookkeep_recordAvgAggregateOutputType | null
+    _sum: Bookkeep_recordSumAggregateOutputType | null
+    _min: Bookkeep_recordMinAggregateOutputType | null
+    _max: Bookkeep_recordMaxAggregateOutputType | null
+  }
+
+  type GetBookkeep_recordGroupByPayload<T extends bookkeep_recordGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Bookkeep_recordGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Bookkeep_recordGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Bookkeep_recordGroupByOutputType[P]>
+            : GetScalarType<T[P], Bookkeep_recordGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type bookkeep_recordSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    uid?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    type?: boolean
+    amount?: boolean
+    category?: boolean
+    description?: boolean
+    date?: boolean
+    userId?: boolean
+    mediaId?: boolean
+    user?: boolean | sys_userDefaultArgs<ExtArgs>
+    media?: boolean | bookkeep_record$mediaArgs<ExtArgs>
+    tags?: boolean | bookkeep_record$tagsArgs<ExtArgs>
+    _count?: boolean | Bookkeep_recordCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["bookkeep_record"]>
+
+
+
+  export type bookkeep_recordSelectScalar = {
+    uid?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    type?: boolean
+    amount?: boolean
+    category?: boolean
+    description?: boolean
+    date?: boolean
+    userId?: boolean
+    mediaId?: boolean
+  }
+
+  export type bookkeep_recordOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createdAt" | "updatedAt" | "type" | "amount" | "category" | "description" | "date" | "userId" | "mediaId", ExtArgs["result"]["bookkeep_record"]>
+  export type bookkeep_recordInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | sys_userDefaultArgs<ExtArgs>
+    media?: boolean | bookkeep_record$mediaArgs<ExtArgs>
+    tags?: boolean | bookkeep_record$tagsArgs<ExtArgs>
+    _count?: boolean | Bookkeep_recordCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $bookkeep_recordPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "bookkeep_record"
+    objects: {
+      user: Prisma.$sys_userPayload<ExtArgs>
+      media: Prisma.$sys_mediaPayload<ExtArgs> | null
+      tags: Prisma.$bookkeep_record_on_tagsPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      uid: string
+      createdAt: Date
+      updatedAt: Date
+      type: $Enums.bookkeep_type
+      amount: number
+      category: string
+      description: string | null
+      date: Date
+      userId: string
+      mediaId: string | null
+    }, ExtArgs["result"]["bookkeep_record"]>
+    composites: {}
+  }
+
+  type bookkeep_recordGetPayload<S extends boolean | null | undefined | bookkeep_recordDefaultArgs> = $Result.GetResult<Prisma.$bookkeep_recordPayload, S>
+
+  type bookkeep_recordCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<bookkeep_recordFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Bookkeep_recordCountAggregateInputType | true
+    }
+
+  export interface bookkeep_recordDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['bookkeep_record'], meta: { name: 'bookkeep_record' } }
+    /**
+     * Find zero or one Bookkeep_record that matches the filter.
+     * @param {bookkeep_recordFindUniqueArgs} args - Arguments to find a Bookkeep_record
+     * @example
+     * // Get one Bookkeep_record
+     * const bookkeep_record = await prisma.bookkeep_record.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends bookkeep_recordFindUniqueArgs>(args: SelectSubset<T, bookkeep_recordFindUniqueArgs<ExtArgs>>): Prisma__bookkeep_recordClient<$Result.GetResult<Prisma.$bookkeep_recordPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Bookkeep_record that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {bookkeep_recordFindUniqueOrThrowArgs} args - Arguments to find a Bookkeep_record
+     * @example
+     * // Get one Bookkeep_record
+     * const bookkeep_record = await prisma.bookkeep_record.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends bookkeep_recordFindUniqueOrThrowArgs>(args: SelectSubset<T, bookkeep_recordFindUniqueOrThrowArgs<ExtArgs>>): Prisma__bookkeep_recordClient<$Result.GetResult<Prisma.$bookkeep_recordPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Bookkeep_record that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {bookkeep_recordFindFirstArgs} args - Arguments to find a Bookkeep_record
+     * @example
+     * // Get one Bookkeep_record
+     * const bookkeep_record = await prisma.bookkeep_record.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends bookkeep_recordFindFirstArgs>(args?: SelectSubset<T, bookkeep_recordFindFirstArgs<ExtArgs>>): Prisma__bookkeep_recordClient<$Result.GetResult<Prisma.$bookkeep_recordPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Bookkeep_record that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {bookkeep_recordFindFirstOrThrowArgs} args - Arguments to find a Bookkeep_record
+     * @example
+     * // Get one Bookkeep_record
+     * const bookkeep_record = await prisma.bookkeep_record.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends bookkeep_recordFindFirstOrThrowArgs>(args?: SelectSubset<T, bookkeep_recordFindFirstOrThrowArgs<ExtArgs>>): Prisma__bookkeep_recordClient<$Result.GetResult<Prisma.$bookkeep_recordPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Bookkeep_records that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {bookkeep_recordFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Bookkeep_records
+     * const bookkeep_records = await prisma.bookkeep_record.findMany()
+     * 
+     * // Get first 10 Bookkeep_records
+     * const bookkeep_records = await prisma.bookkeep_record.findMany({ take: 10 })
+     * 
+     * // Only select the `uid`
+     * const bookkeep_recordWithUidOnly = await prisma.bookkeep_record.findMany({ select: { uid: true } })
+     * 
+     */
+    findMany<T extends bookkeep_recordFindManyArgs>(args?: SelectSubset<T, bookkeep_recordFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$bookkeep_recordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Bookkeep_record.
+     * @param {bookkeep_recordCreateArgs} args - Arguments to create a Bookkeep_record.
+     * @example
+     * // Create one Bookkeep_record
+     * const Bookkeep_record = await prisma.bookkeep_record.create({
+     *   data: {
+     *     // ... data to create a Bookkeep_record
+     *   }
+     * })
+     * 
+     */
+    create<T extends bookkeep_recordCreateArgs>(args: SelectSubset<T, bookkeep_recordCreateArgs<ExtArgs>>): Prisma__bookkeep_recordClient<$Result.GetResult<Prisma.$bookkeep_recordPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Bookkeep_records.
+     * @param {bookkeep_recordCreateManyArgs} args - Arguments to create many Bookkeep_records.
+     * @example
+     * // Create many Bookkeep_records
+     * const bookkeep_record = await prisma.bookkeep_record.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends bookkeep_recordCreateManyArgs>(args?: SelectSubset<T, bookkeep_recordCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Bookkeep_record.
+     * @param {bookkeep_recordDeleteArgs} args - Arguments to delete one Bookkeep_record.
+     * @example
+     * // Delete one Bookkeep_record
+     * const Bookkeep_record = await prisma.bookkeep_record.delete({
+     *   where: {
+     *     // ... filter to delete one Bookkeep_record
+     *   }
+     * })
+     * 
+     */
+    delete<T extends bookkeep_recordDeleteArgs>(args: SelectSubset<T, bookkeep_recordDeleteArgs<ExtArgs>>): Prisma__bookkeep_recordClient<$Result.GetResult<Prisma.$bookkeep_recordPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Bookkeep_record.
+     * @param {bookkeep_recordUpdateArgs} args - Arguments to update one Bookkeep_record.
+     * @example
+     * // Update one Bookkeep_record
+     * const bookkeep_record = await prisma.bookkeep_record.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends bookkeep_recordUpdateArgs>(args: SelectSubset<T, bookkeep_recordUpdateArgs<ExtArgs>>): Prisma__bookkeep_recordClient<$Result.GetResult<Prisma.$bookkeep_recordPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Bookkeep_records.
+     * @param {bookkeep_recordDeleteManyArgs} args - Arguments to filter Bookkeep_records to delete.
+     * @example
+     * // Delete a few Bookkeep_records
+     * const { count } = await prisma.bookkeep_record.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends bookkeep_recordDeleteManyArgs>(args?: SelectSubset<T, bookkeep_recordDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Bookkeep_records.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {bookkeep_recordUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Bookkeep_records
+     * const bookkeep_record = await prisma.bookkeep_record.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends bookkeep_recordUpdateManyArgs>(args: SelectSubset<T, bookkeep_recordUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Bookkeep_record.
+     * @param {bookkeep_recordUpsertArgs} args - Arguments to update or create a Bookkeep_record.
+     * @example
+     * // Update or create a Bookkeep_record
+     * const bookkeep_record = await prisma.bookkeep_record.upsert({
+     *   create: {
+     *     // ... data to create a Bookkeep_record
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Bookkeep_record we want to update
+     *   }
+     * })
+     */
+    upsert<T extends bookkeep_recordUpsertArgs>(args: SelectSubset<T, bookkeep_recordUpsertArgs<ExtArgs>>): Prisma__bookkeep_recordClient<$Result.GetResult<Prisma.$bookkeep_recordPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Bookkeep_records.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {bookkeep_recordCountArgs} args - Arguments to filter Bookkeep_records to count.
+     * @example
+     * // Count the number of Bookkeep_records
+     * const count = await prisma.bookkeep_record.count({
+     *   where: {
+     *     // ... the filter for the Bookkeep_records we want to count
+     *   }
+     * })
+    **/
+    count<T extends bookkeep_recordCountArgs>(
+      args?: Subset<T, bookkeep_recordCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Bookkeep_recordCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Bookkeep_record.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Bookkeep_recordAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Bookkeep_recordAggregateArgs>(args: Subset<T, Bookkeep_recordAggregateArgs>): Prisma.PrismaPromise<GetBookkeep_recordAggregateType<T>>
+
+    /**
+     * Group by Bookkeep_record.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {bookkeep_recordGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends bookkeep_recordGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: bookkeep_recordGroupByArgs['orderBy'] }
+        : { orderBy?: bookkeep_recordGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, bookkeep_recordGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBookkeep_recordGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the bookkeep_record model
+   */
+  readonly fields: bookkeep_recordFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for bookkeep_record.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__bookkeep_recordClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends sys_userDefaultArgs<ExtArgs> = {}>(args?: Subset<T, sys_userDefaultArgs<ExtArgs>>): Prisma__sys_userClient<$Result.GetResult<Prisma.$sys_userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    media<T extends bookkeep_record$mediaArgs<ExtArgs> = {}>(args?: Subset<T, bookkeep_record$mediaArgs<ExtArgs>>): Prisma__sys_mediaClient<$Result.GetResult<Prisma.$sys_mediaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    tags<T extends bookkeep_record$tagsArgs<ExtArgs> = {}>(args?: Subset<T, bookkeep_record$tagsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$bookkeep_record_on_tagsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the bookkeep_record model
+   */
+  interface bookkeep_recordFieldRefs {
+    readonly uid: FieldRef<"bookkeep_record", 'String'>
+    readonly createdAt: FieldRef<"bookkeep_record", 'DateTime'>
+    readonly updatedAt: FieldRef<"bookkeep_record", 'DateTime'>
+    readonly type: FieldRef<"bookkeep_record", 'bookkeep_type'>
+    readonly amount: FieldRef<"bookkeep_record", 'Float'>
+    readonly category: FieldRef<"bookkeep_record", 'String'>
+    readonly description: FieldRef<"bookkeep_record", 'String'>
+    readonly date: FieldRef<"bookkeep_record", 'DateTime'>
+    readonly userId: FieldRef<"bookkeep_record", 'String'>
+    readonly mediaId: FieldRef<"bookkeep_record", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * bookkeep_record findUnique
+   */
+  export type bookkeep_recordFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_record
+     */
+    select?: bookkeep_recordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_record
+     */
+    omit?: bookkeep_recordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_recordInclude<ExtArgs> | null
+    /**
+     * Filter, which bookkeep_record to fetch.
+     */
+    where: bookkeep_recordWhereUniqueInput
+  }
+
+  /**
+   * bookkeep_record findUniqueOrThrow
+   */
+  export type bookkeep_recordFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_record
+     */
+    select?: bookkeep_recordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_record
+     */
+    omit?: bookkeep_recordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_recordInclude<ExtArgs> | null
+    /**
+     * Filter, which bookkeep_record to fetch.
+     */
+    where: bookkeep_recordWhereUniqueInput
+  }
+
+  /**
+   * bookkeep_record findFirst
+   */
+  export type bookkeep_recordFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_record
+     */
+    select?: bookkeep_recordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_record
+     */
+    omit?: bookkeep_recordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_recordInclude<ExtArgs> | null
+    /**
+     * Filter, which bookkeep_record to fetch.
+     */
+    where?: bookkeep_recordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of bookkeep_records to fetch.
+     */
+    orderBy?: bookkeep_recordOrderByWithRelationInput | bookkeep_recordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for bookkeep_records.
+     */
+    cursor?: bookkeep_recordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` bookkeep_records from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` bookkeep_records.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of bookkeep_records.
+     */
+    distinct?: Bookkeep_recordScalarFieldEnum | Bookkeep_recordScalarFieldEnum[]
+  }
+
+  /**
+   * bookkeep_record findFirstOrThrow
+   */
+  export type bookkeep_recordFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_record
+     */
+    select?: bookkeep_recordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_record
+     */
+    omit?: bookkeep_recordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_recordInclude<ExtArgs> | null
+    /**
+     * Filter, which bookkeep_record to fetch.
+     */
+    where?: bookkeep_recordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of bookkeep_records to fetch.
+     */
+    orderBy?: bookkeep_recordOrderByWithRelationInput | bookkeep_recordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for bookkeep_records.
+     */
+    cursor?: bookkeep_recordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` bookkeep_records from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` bookkeep_records.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of bookkeep_records.
+     */
+    distinct?: Bookkeep_recordScalarFieldEnum | Bookkeep_recordScalarFieldEnum[]
+  }
+
+  /**
+   * bookkeep_record findMany
+   */
+  export type bookkeep_recordFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_record
+     */
+    select?: bookkeep_recordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_record
+     */
+    omit?: bookkeep_recordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_recordInclude<ExtArgs> | null
+    /**
+     * Filter, which bookkeep_records to fetch.
+     */
+    where?: bookkeep_recordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of bookkeep_records to fetch.
+     */
+    orderBy?: bookkeep_recordOrderByWithRelationInput | bookkeep_recordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing bookkeep_records.
+     */
+    cursor?: bookkeep_recordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` bookkeep_records from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` bookkeep_records.
+     */
+    skip?: number
+    distinct?: Bookkeep_recordScalarFieldEnum | Bookkeep_recordScalarFieldEnum[]
+  }
+
+  /**
+   * bookkeep_record create
+   */
+  export type bookkeep_recordCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_record
+     */
+    select?: bookkeep_recordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_record
+     */
+    omit?: bookkeep_recordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_recordInclude<ExtArgs> | null
+    /**
+     * The data needed to create a bookkeep_record.
+     */
+    data: XOR<bookkeep_recordCreateInput, bookkeep_recordUncheckedCreateInput>
+  }
+
+  /**
+   * bookkeep_record createMany
+   */
+  export type bookkeep_recordCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many bookkeep_records.
+     */
+    data: bookkeep_recordCreateManyInput | bookkeep_recordCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * bookkeep_record update
+   */
+  export type bookkeep_recordUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_record
+     */
+    select?: bookkeep_recordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_record
+     */
+    omit?: bookkeep_recordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_recordInclude<ExtArgs> | null
+    /**
+     * The data needed to update a bookkeep_record.
+     */
+    data: XOR<bookkeep_recordUpdateInput, bookkeep_recordUncheckedUpdateInput>
+    /**
+     * Choose, which bookkeep_record to update.
+     */
+    where: bookkeep_recordWhereUniqueInput
+  }
+
+  /**
+   * bookkeep_record updateMany
+   */
+  export type bookkeep_recordUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update bookkeep_records.
+     */
+    data: XOR<bookkeep_recordUpdateManyMutationInput, bookkeep_recordUncheckedUpdateManyInput>
+    /**
+     * Filter which bookkeep_records to update
+     */
+    where?: bookkeep_recordWhereInput
+    /**
+     * Limit how many bookkeep_records to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * bookkeep_record upsert
+   */
+  export type bookkeep_recordUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_record
+     */
+    select?: bookkeep_recordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_record
+     */
+    omit?: bookkeep_recordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_recordInclude<ExtArgs> | null
+    /**
+     * The filter to search for the bookkeep_record to update in case it exists.
+     */
+    where: bookkeep_recordWhereUniqueInput
+    /**
+     * In case the bookkeep_record found by the `where` argument doesn't exist, create a new bookkeep_record with this data.
+     */
+    create: XOR<bookkeep_recordCreateInput, bookkeep_recordUncheckedCreateInput>
+    /**
+     * In case the bookkeep_record was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<bookkeep_recordUpdateInput, bookkeep_recordUncheckedUpdateInput>
+  }
+
+  /**
+   * bookkeep_record delete
+   */
+  export type bookkeep_recordDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_record
+     */
+    select?: bookkeep_recordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_record
+     */
+    omit?: bookkeep_recordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_recordInclude<ExtArgs> | null
+    /**
+     * Filter which bookkeep_record to delete.
+     */
+    where: bookkeep_recordWhereUniqueInput
+  }
+
+  /**
+   * bookkeep_record deleteMany
+   */
+  export type bookkeep_recordDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which bookkeep_records to delete
+     */
+    where?: bookkeep_recordWhereInput
+    /**
+     * Limit how many bookkeep_records to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * bookkeep_record.media
+   */
+  export type bookkeep_record$mediaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_media
+     */
+    select?: sys_mediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_media
+     */
+    omit?: sys_mediaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_mediaInclude<ExtArgs> | null
+    where?: sys_mediaWhereInput
+  }
+
+  /**
+   * bookkeep_record.tags
+   */
+  export type bookkeep_record$tagsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_record_on_tags
+     */
+    select?: bookkeep_record_on_tagsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_record_on_tags
+     */
+    omit?: bookkeep_record_on_tagsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_record_on_tagsInclude<ExtArgs> | null
+    where?: bookkeep_record_on_tagsWhereInput
+    orderBy?: bookkeep_record_on_tagsOrderByWithRelationInput | bookkeep_record_on_tagsOrderByWithRelationInput[]
+    cursor?: bookkeep_record_on_tagsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Bookkeep_record_on_tagsScalarFieldEnum | Bookkeep_record_on_tagsScalarFieldEnum[]
+  }
+
+  /**
+   * bookkeep_record without action
+   */
+  export type bookkeep_recordDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_record
+     */
+    select?: bookkeep_recordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_record
+     */
+    omit?: bookkeep_recordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_recordInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model bookkeep_tag
+   */
+
+  export type AggregateBookkeep_tag = {
+    _count: Bookkeep_tagCountAggregateOutputType | null
+    _min: Bookkeep_tagMinAggregateOutputType | null
+    _max: Bookkeep_tagMaxAggregateOutputType | null
+  }
+
+  export type Bookkeep_tagMinAggregateOutputType = {
+    uid: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    name: string | null
+  }
+
+  export type Bookkeep_tagMaxAggregateOutputType = {
+    uid: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    name: string | null
+  }
+
+  export type Bookkeep_tagCountAggregateOutputType = {
+    uid: number
+    createdAt: number
+    updatedAt: number
+    name: number
+    _all: number
+  }
+
+
+  export type Bookkeep_tagMinAggregateInputType = {
+    uid?: true
+    createdAt?: true
+    updatedAt?: true
+    name?: true
+  }
+
+  export type Bookkeep_tagMaxAggregateInputType = {
+    uid?: true
+    createdAt?: true
+    updatedAt?: true
+    name?: true
+  }
+
+  export type Bookkeep_tagCountAggregateInputType = {
+    uid?: true
+    createdAt?: true
+    updatedAt?: true
+    name?: true
+    _all?: true
+  }
+
+  export type Bookkeep_tagAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which bookkeep_tag to aggregate.
+     */
+    where?: bookkeep_tagWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of bookkeep_tags to fetch.
+     */
+    orderBy?: bookkeep_tagOrderByWithRelationInput | bookkeep_tagOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: bookkeep_tagWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` bookkeep_tags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` bookkeep_tags.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned bookkeep_tags
+    **/
+    _count?: true | Bookkeep_tagCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Bookkeep_tagMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Bookkeep_tagMaxAggregateInputType
+  }
+
+  export type GetBookkeep_tagAggregateType<T extends Bookkeep_tagAggregateArgs> = {
+        [P in keyof T & keyof AggregateBookkeep_tag]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBookkeep_tag[P]>
+      : GetScalarType<T[P], AggregateBookkeep_tag[P]>
+  }
+
+
+
+
+  export type bookkeep_tagGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: bookkeep_tagWhereInput
+    orderBy?: bookkeep_tagOrderByWithAggregationInput | bookkeep_tagOrderByWithAggregationInput[]
+    by: Bookkeep_tagScalarFieldEnum[] | Bookkeep_tagScalarFieldEnum
+    having?: bookkeep_tagScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Bookkeep_tagCountAggregateInputType | true
+    _min?: Bookkeep_tagMinAggregateInputType
+    _max?: Bookkeep_tagMaxAggregateInputType
+  }
+
+  export type Bookkeep_tagGroupByOutputType = {
+    uid: string
+    createdAt: Date
+    updatedAt: Date
+    name: string
+    _count: Bookkeep_tagCountAggregateOutputType | null
+    _min: Bookkeep_tagMinAggregateOutputType | null
+    _max: Bookkeep_tagMaxAggregateOutputType | null
+  }
+
+  type GetBookkeep_tagGroupByPayload<T extends bookkeep_tagGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Bookkeep_tagGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Bookkeep_tagGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Bookkeep_tagGroupByOutputType[P]>
+            : GetScalarType<T[P], Bookkeep_tagGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type bookkeep_tagSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    uid?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    name?: boolean
+    records?: boolean | bookkeep_tag$recordsArgs<ExtArgs>
+    _count?: boolean | Bookkeep_tagCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["bookkeep_tag"]>
+
+
+
+  export type bookkeep_tagSelectScalar = {
+    uid?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    name?: boolean
+  }
+
+  export type bookkeep_tagOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createdAt" | "updatedAt" | "name", ExtArgs["result"]["bookkeep_tag"]>
+  export type bookkeep_tagInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    records?: boolean | bookkeep_tag$recordsArgs<ExtArgs>
+    _count?: boolean | Bookkeep_tagCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $bookkeep_tagPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "bookkeep_tag"
+    objects: {
+      records: Prisma.$bookkeep_record_on_tagsPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      uid: string
+      createdAt: Date
+      updatedAt: Date
+      name: string
+    }, ExtArgs["result"]["bookkeep_tag"]>
+    composites: {}
+  }
+
+  type bookkeep_tagGetPayload<S extends boolean | null | undefined | bookkeep_tagDefaultArgs> = $Result.GetResult<Prisma.$bookkeep_tagPayload, S>
+
+  type bookkeep_tagCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<bookkeep_tagFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Bookkeep_tagCountAggregateInputType | true
+    }
+
+  export interface bookkeep_tagDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['bookkeep_tag'], meta: { name: 'bookkeep_tag' } }
+    /**
+     * Find zero or one Bookkeep_tag that matches the filter.
+     * @param {bookkeep_tagFindUniqueArgs} args - Arguments to find a Bookkeep_tag
+     * @example
+     * // Get one Bookkeep_tag
+     * const bookkeep_tag = await prisma.bookkeep_tag.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends bookkeep_tagFindUniqueArgs>(args: SelectSubset<T, bookkeep_tagFindUniqueArgs<ExtArgs>>): Prisma__bookkeep_tagClient<$Result.GetResult<Prisma.$bookkeep_tagPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Bookkeep_tag that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {bookkeep_tagFindUniqueOrThrowArgs} args - Arguments to find a Bookkeep_tag
+     * @example
+     * // Get one Bookkeep_tag
+     * const bookkeep_tag = await prisma.bookkeep_tag.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends bookkeep_tagFindUniqueOrThrowArgs>(args: SelectSubset<T, bookkeep_tagFindUniqueOrThrowArgs<ExtArgs>>): Prisma__bookkeep_tagClient<$Result.GetResult<Prisma.$bookkeep_tagPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Bookkeep_tag that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {bookkeep_tagFindFirstArgs} args - Arguments to find a Bookkeep_tag
+     * @example
+     * // Get one Bookkeep_tag
+     * const bookkeep_tag = await prisma.bookkeep_tag.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends bookkeep_tagFindFirstArgs>(args?: SelectSubset<T, bookkeep_tagFindFirstArgs<ExtArgs>>): Prisma__bookkeep_tagClient<$Result.GetResult<Prisma.$bookkeep_tagPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Bookkeep_tag that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {bookkeep_tagFindFirstOrThrowArgs} args - Arguments to find a Bookkeep_tag
+     * @example
+     * // Get one Bookkeep_tag
+     * const bookkeep_tag = await prisma.bookkeep_tag.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends bookkeep_tagFindFirstOrThrowArgs>(args?: SelectSubset<T, bookkeep_tagFindFirstOrThrowArgs<ExtArgs>>): Prisma__bookkeep_tagClient<$Result.GetResult<Prisma.$bookkeep_tagPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Bookkeep_tags that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {bookkeep_tagFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Bookkeep_tags
+     * const bookkeep_tags = await prisma.bookkeep_tag.findMany()
+     * 
+     * // Get first 10 Bookkeep_tags
+     * const bookkeep_tags = await prisma.bookkeep_tag.findMany({ take: 10 })
+     * 
+     * // Only select the `uid`
+     * const bookkeep_tagWithUidOnly = await prisma.bookkeep_tag.findMany({ select: { uid: true } })
+     * 
+     */
+    findMany<T extends bookkeep_tagFindManyArgs>(args?: SelectSubset<T, bookkeep_tagFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$bookkeep_tagPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Bookkeep_tag.
+     * @param {bookkeep_tagCreateArgs} args - Arguments to create a Bookkeep_tag.
+     * @example
+     * // Create one Bookkeep_tag
+     * const Bookkeep_tag = await prisma.bookkeep_tag.create({
+     *   data: {
+     *     // ... data to create a Bookkeep_tag
+     *   }
+     * })
+     * 
+     */
+    create<T extends bookkeep_tagCreateArgs>(args: SelectSubset<T, bookkeep_tagCreateArgs<ExtArgs>>): Prisma__bookkeep_tagClient<$Result.GetResult<Prisma.$bookkeep_tagPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Bookkeep_tags.
+     * @param {bookkeep_tagCreateManyArgs} args - Arguments to create many Bookkeep_tags.
+     * @example
+     * // Create many Bookkeep_tags
+     * const bookkeep_tag = await prisma.bookkeep_tag.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends bookkeep_tagCreateManyArgs>(args?: SelectSubset<T, bookkeep_tagCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Bookkeep_tag.
+     * @param {bookkeep_tagDeleteArgs} args - Arguments to delete one Bookkeep_tag.
+     * @example
+     * // Delete one Bookkeep_tag
+     * const Bookkeep_tag = await prisma.bookkeep_tag.delete({
+     *   where: {
+     *     // ... filter to delete one Bookkeep_tag
+     *   }
+     * })
+     * 
+     */
+    delete<T extends bookkeep_tagDeleteArgs>(args: SelectSubset<T, bookkeep_tagDeleteArgs<ExtArgs>>): Prisma__bookkeep_tagClient<$Result.GetResult<Prisma.$bookkeep_tagPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Bookkeep_tag.
+     * @param {bookkeep_tagUpdateArgs} args - Arguments to update one Bookkeep_tag.
+     * @example
+     * // Update one Bookkeep_tag
+     * const bookkeep_tag = await prisma.bookkeep_tag.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends bookkeep_tagUpdateArgs>(args: SelectSubset<T, bookkeep_tagUpdateArgs<ExtArgs>>): Prisma__bookkeep_tagClient<$Result.GetResult<Prisma.$bookkeep_tagPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Bookkeep_tags.
+     * @param {bookkeep_tagDeleteManyArgs} args - Arguments to filter Bookkeep_tags to delete.
+     * @example
+     * // Delete a few Bookkeep_tags
+     * const { count } = await prisma.bookkeep_tag.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends bookkeep_tagDeleteManyArgs>(args?: SelectSubset<T, bookkeep_tagDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Bookkeep_tags.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {bookkeep_tagUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Bookkeep_tags
+     * const bookkeep_tag = await prisma.bookkeep_tag.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends bookkeep_tagUpdateManyArgs>(args: SelectSubset<T, bookkeep_tagUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Bookkeep_tag.
+     * @param {bookkeep_tagUpsertArgs} args - Arguments to update or create a Bookkeep_tag.
+     * @example
+     * // Update or create a Bookkeep_tag
+     * const bookkeep_tag = await prisma.bookkeep_tag.upsert({
+     *   create: {
+     *     // ... data to create a Bookkeep_tag
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Bookkeep_tag we want to update
+     *   }
+     * })
+     */
+    upsert<T extends bookkeep_tagUpsertArgs>(args: SelectSubset<T, bookkeep_tagUpsertArgs<ExtArgs>>): Prisma__bookkeep_tagClient<$Result.GetResult<Prisma.$bookkeep_tagPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Bookkeep_tags.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {bookkeep_tagCountArgs} args - Arguments to filter Bookkeep_tags to count.
+     * @example
+     * // Count the number of Bookkeep_tags
+     * const count = await prisma.bookkeep_tag.count({
+     *   where: {
+     *     // ... the filter for the Bookkeep_tags we want to count
+     *   }
+     * })
+    **/
+    count<T extends bookkeep_tagCountArgs>(
+      args?: Subset<T, bookkeep_tagCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Bookkeep_tagCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Bookkeep_tag.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Bookkeep_tagAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Bookkeep_tagAggregateArgs>(args: Subset<T, Bookkeep_tagAggregateArgs>): Prisma.PrismaPromise<GetBookkeep_tagAggregateType<T>>
+
+    /**
+     * Group by Bookkeep_tag.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {bookkeep_tagGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends bookkeep_tagGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: bookkeep_tagGroupByArgs['orderBy'] }
+        : { orderBy?: bookkeep_tagGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, bookkeep_tagGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBookkeep_tagGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the bookkeep_tag model
+   */
+  readonly fields: bookkeep_tagFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for bookkeep_tag.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__bookkeep_tagClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    records<T extends bookkeep_tag$recordsArgs<ExtArgs> = {}>(args?: Subset<T, bookkeep_tag$recordsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$bookkeep_record_on_tagsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the bookkeep_tag model
+   */
+  interface bookkeep_tagFieldRefs {
+    readonly uid: FieldRef<"bookkeep_tag", 'String'>
+    readonly createdAt: FieldRef<"bookkeep_tag", 'DateTime'>
+    readonly updatedAt: FieldRef<"bookkeep_tag", 'DateTime'>
+    readonly name: FieldRef<"bookkeep_tag", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * bookkeep_tag findUnique
+   */
+  export type bookkeep_tagFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_tag
+     */
+    select?: bookkeep_tagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_tag
+     */
+    omit?: bookkeep_tagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_tagInclude<ExtArgs> | null
+    /**
+     * Filter, which bookkeep_tag to fetch.
+     */
+    where: bookkeep_tagWhereUniqueInput
+  }
+
+  /**
+   * bookkeep_tag findUniqueOrThrow
+   */
+  export type bookkeep_tagFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_tag
+     */
+    select?: bookkeep_tagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_tag
+     */
+    omit?: bookkeep_tagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_tagInclude<ExtArgs> | null
+    /**
+     * Filter, which bookkeep_tag to fetch.
+     */
+    where: bookkeep_tagWhereUniqueInput
+  }
+
+  /**
+   * bookkeep_tag findFirst
+   */
+  export type bookkeep_tagFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_tag
+     */
+    select?: bookkeep_tagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_tag
+     */
+    omit?: bookkeep_tagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_tagInclude<ExtArgs> | null
+    /**
+     * Filter, which bookkeep_tag to fetch.
+     */
+    where?: bookkeep_tagWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of bookkeep_tags to fetch.
+     */
+    orderBy?: bookkeep_tagOrderByWithRelationInput | bookkeep_tagOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for bookkeep_tags.
+     */
+    cursor?: bookkeep_tagWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` bookkeep_tags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` bookkeep_tags.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of bookkeep_tags.
+     */
+    distinct?: Bookkeep_tagScalarFieldEnum | Bookkeep_tagScalarFieldEnum[]
+  }
+
+  /**
+   * bookkeep_tag findFirstOrThrow
+   */
+  export type bookkeep_tagFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_tag
+     */
+    select?: bookkeep_tagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_tag
+     */
+    omit?: bookkeep_tagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_tagInclude<ExtArgs> | null
+    /**
+     * Filter, which bookkeep_tag to fetch.
+     */
+    where?: bookkeep_tagWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of bookkeep_tags to fetch.
+     */
+    orderBy?: bookkeep_tagOrderByWithRelationInput | bookkeep_tagOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for bookkeep_tags.
+     */
+    cursor?: bookkeep_tagWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` bookkeep_tags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` bookkeep_tags.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of bookkeep_tags.
+     */
+    distinct?: Bookkeep_tagScalarFieldEnum | Bookkeep_tagScalarFieldEnum[]
+  }
+
+  /**
+   * bookkeep_tag findMany
+   */
+  export type bookkeep_tagFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_tag
+     */
+    select?: bookkeep_tagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_tag
+     */
+    omit?: bookkeep_tagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_tagInclude<ExtArgs> | null
+    /**
+     * Filter, which bookkeep_tags to fetch.
+     */
+    where?: bookkeep_tagWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of bookkeep_tags to fetch.
+     */
+    orderBy?: bookkeep_tagOrderByWithRelationInput | bookkeep_tagOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing bookkeep_tags.
+     */
+    cursor?: bookkeep_tagWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` bookkeep_tags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` bookkeep_tags.
+     */
+    skip?: number
+    distinct?: Bookkeep_tagScalarFieldEnum | Bookkeep_tagScalarFieldEnum[]
+  }
+
+  /**
+   * bookkeep_tag create
+   */
+  export type bookkeep_tagCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_tag
+     */
+    select?: bookkeep_tagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_tag
+     */
+    omit?: bookkeep_tagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_tagInclude<ExtArgs> | null
+    /**
+     * The data needed to create a bookkeep_tag.
+     */
+    data: XOR<bookkeep_tagCreateInput, bookkeep_tagUncheckedCreateInput>
+  }
+
+  /**
+   * bookkeep_tag createMany
+   */
+  export type bookkeep_tagCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many bookkeep_tags.
+     */
+    data: bookkeep_tagCreateManyInput | bookkeep_tagCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * bookkeep_tag update
+   */
+  export type bookkeep_tagUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_tag
+     */
+    select?: bookkeep_tagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_tag
+     */
+    omit?: bookkeep_tagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_tagInclude<ExtArgs> | null
+    /**
+     * The data needed to update a bookkeep_tag.
+     */
+    data: XOR<bookkeep_tagUpdateInput, bookkeep_tagUncheckedUpdateInput>
+    /**
+     * Choose, which bookkeep_tag to update.
+     */
+    where: bookkeep_tagWhereUniqueInput
+  }
+
+  /**
+   * bookkeep_tag updateMany
+   */
+  export type bookkeep_tagUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update bookkeep_tags.
+     */
+    data: XOR<bookkeep_tagUpdateManyMutationInput, bookkeep_tagUncheckedUpdateManyInput>
+    /**
+     * Filter which bookkeep_tags to update
+     */
+    where?: bookkeep_tagWhereInput
+    /**
+     * Limit how many bookkeep_tags to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * bookkeep_tag upsert
+   */
+  export type bookkeep_tagUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_tag
+     */
+    select?: bookkeep_tagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_tag
+     */
+    omit?: bookkeep_tagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_tagInclude<ExtArgs> | null
+    /**
+     * The filter to search for the bookkeep_tag to update in case it exists.
+     */
+    where: bookkeep_tagWhereUniqueInput
+    /**
+     * In case the bookkeep_tag found by the `where` argument doesn't exist, create a new bookkeep_tag with this data.
+     */
+    create: XOR<bookkeep_tagCreateInput, bookkeep_tagUncheckedCreateInput>
+    /**
+     * In case the bookkeep_tag was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<bookkeep_tagUpdateInput, bookkeep_tagUncheckedUpdateInput>
+  }
+
+  /**
+   * bookkeep_tag delete
+   */
+  export type bookkeep_tagDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_tag
+     */
+    select?: bookkeep_tagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_tag
+     */
+    omit?: bookkeep_tagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_tagInclude<ExtArgs> | null
+    /**
+     * Filter which bookkeep_tag to delete.
+     */
+    where: bookkeep_tagWhereUniqueInput
+  }
+
+  /**
+   * bookkeep_tag deleteMany
+   */
+  export type bookkeep_tagDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which bookkeep_tags to delete
+     */
+    where?: bookkeep_tagWhereInput
+    /**
+     * Limit how many bookkeep_tags to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * bookkeep_tag.records
+   */
+  export type bookkeep_tag$recordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_record_on_tags
+     */
+    select?: bookkeep_record_on_tagsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_record_on_tags
+     */
+    omit?: bookkeep_record_on_tagsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_record_on_tagsInclude<ExtArgs> | null
+    where?: bookkeep_record_on_tagsWhereInput
+    orderBy?: bookkeep_record_on_tagsOrderByWithRelationInput | bookkeep_record_on_tagsOrderByWithRelationInput[]
+    cursor?: bookkeep_record_on_tagsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Bookkeep_record_on_tagsScalarFieldEnum | Bookkeep_record_on_tagsScalarFieldEnum[]
+  }
+
+  /**
+   * bookkeep_tag without action
+   */
+  export type bookkeep_tagDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_tag
+     */
+    select?: bookkeep_tagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_tag
+     */
+    omit?: bookkeep_tagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_tagInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model bookkeep_record_on_tags
+   */
+
+  export type AggregateBookkeep_record_on_tags = {
+    _count: Bookkeep_record_on_tagsCountAggregateOutputType | null
+    _min: Bookkeep_record_on_tagsMinAggregateOutputType | null
+    _max: Bookkeep_record_on_tagsMaxAggregateOutputType | null
+  }
+
+  export type Bookkeep_record_on_tagsMinAggregateOutputType = {
+    recordId: string | null
+    tagId: string | null
+  }
+
+  export type Bookkeep_record_on_tagsMaxAggregateOutputType = {
+    recordId: string | null
+    tagId: string | null
+  }
+
+  export type Bookkeep_record_on_tagsCountAggregateOutputType = {
+    recordId: number
+    tagId: number
+    _all: number
+  }
+
+
+  export type Bookkeep_record_on_tagsMinAggregateInputType = {
+    recordId?: true
+    tagId?: true
+  }
+
+  export type Bookkeep_record_on_tagsMaxAggregateInputType = {
+    recordId?: true
+    tagId?: true
+  }
+
+  export type Bookkeep_record_on_tagsCountAggregateInputType = {
+    recordId?: true
+    tagId?: true
+    _all?: true
+  }
+
+  export type Bookkeep_record_on_tagsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which bookkeep_record_on_tags to aggregate.
+     */
+    where?: bookkeep_record_on_tagsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of bookkeep_record_on_tags to fetch.
+     */
+    orderBy?: bookkeep_record_on_tagsOrderByWithRelationInput | bookkeep_record_on_tagsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: bookkeep_record_on_tagsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` bookkeep_record_on_tags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` bookkeep_record_on_tags.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned bookkeep_record_on_tags
+    **/
+    _count?: true | Bookkeep_record_on_tagsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Bookkeep_record_on_tagsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Bookkeep_record_on_tagsMaxAggregateInputType
+  }
+
+  export type GetBookkeep_record_on_tagsAggregateType<T extends Bookkeep_record_on_tagsAggregateArgs> = {
+        [P in keyof T & keyof AggregateBookkeep_record_on_tags]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBookkeep_record_on_tags[P]>
+      : GetScalarType<T[P], AggregateBookkeep_record_on_tags[P]>
+  }
+
+
+
+
+  export type bookkeep_record_on_tagsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: bookkeep_record_on_tagsWhereInput
+    orderBy?: bookkeep_record_on_tagsOrderByWithAggregationInput | bookkeep_record_on_tagsOrderByWithAggregationInput[]
+    by: Bookkeep_record_on_tagsScalarFieldEnum[] | Bookkeep_record_on_tagsScalarFieldEnum
+    having?: bookkeep_record_on_tagsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Bookkeep_record_on_tagsCountAggregateInputType | true
+    _min?: Bookkeep_record_on_tagsMinAggregateInputType
+    _max?: Bookkeep_record_on_tagsMaxAggregateInputType
+  }
+
+  export type Bookkeep_record_on_tagsGroupByOutputType = {
+    recordId: string
+    tagId: string
+    _count: Bookkeep_record_on_tagsCountAggregateOutputType | null
+    _min: Bookkeep_record_on_tagsMinAggregateOutputType | null
+    _max: Bookkeep_record_on_tagsMaxAggregateOutputType | null
+  }
+
+  type GetBookkeep_record_on_tagsGroupByPayload<T extends bookkeep_record_on_tagsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Bookkeep_record_on_tagsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Bookkeep_record_on_tagsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Bookkeep_record_on_tagsGroupByOutputType[P]>
+            : GetScalarType<T[P], Bookkeep_record_on_tagsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type bookkeep_record_on_tagsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    recordId?: boolean
+    tagId?: boolean
+    record?: boolean | bookkeep_recordDefaultArgs<ExtArgs>
+    tag?: boolean | bookkeep_tagDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["bookkeep_record_on_tags"]>
+
+
+
+  export type bookkeep_record_on_tagsSelectScalar = {
+    recordId?: boolean
+    tagId?: boolean
+  }
+
+  export type bookkeep_record_on_tagsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"recordId" | "tagId", ExtArgs["result"]["bookkeep_record_on_tags"]>
+  export type bookkeep_record_on_tagsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    record?: boolean | bookkeep_recordDefaultArgs<ExtArgs>
+    tag?: boolean | bookkeep_tagDefaultArgs<ExtArgs>
+  }
+
+  export type $bookkeep_record_on_tagsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "bookkeep_record_on_tags"
+    objects: {
+      record: Prisma.$bookkeep_recordPayload<ExtArgs>
+      tag: Prisma.$bookkeep_tagPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      recordId: string
+      tagId: string
+    }, ExtArgs["result"]["bookkeep_record_on_tags"]>
+    composites: {}
+  }
+
+  type bookkeep_record_on_tagsGetPayload<S extends boolean | null | undefined | bookkeep_record_on_tagsDefaultArgs> = $Result.GetResult<Prisma.$bookkeep_record_on_tagsPayload, S>
+
+  type bookkeep_record_on_tagsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<bookkeep_record_on_tagsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Bookkeep_record_on_tagsCountAggregateInputType | true
+    }
+
+  export interface bookkeep_record_on_tagsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['bookkeep_record_on_tags'], meta: { name: 'bookkeep_record_on_tags' } }
+    /**
+     * Find zero or one Bookkeep_record_on_tags that matches the filter.
+     * @param {bookkeep_record_on_tagsFindUniqueArgs} args - Arguments to find a Bookkeep_record_on_tags
+     * @example
+     * // Get one Bookkeep_record_on_tags
+     * const bookkeep_record_on_tags = await prisma.bookkeep_record_on_tags.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends bookkeep_record_on_tagsFindUniqueArgs>(args: SelectSubset<T, bookkeep_record_on_tagsFindUniqueArgs<ExtArgs>>): Prisma__bookkeep_record_on_tagsClient<$Result.GetResult<Prisma.$bookkeep_record_on_tagsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Bookkeep_record_on_tags that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {bookkeep_record_on_tagsFindUniqueOrThrowArgs} args - Arguments to find a Bookkeep_record_on_tags
+     * @example
+     * // Get one Bookkeep_record_on_tags
+     * const bookkeep_record_on_tags = await prisma.bookkeep_record_on_tags.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends bookkeep_record_on_tagsFindUniqueOrThrowArgs>(args: SelectSubset<T, bookkeep_record_on_tagsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__bookkeep_record_on_tagsClient<$Result.GetResult<Prisma.$bookkeep_record_on_tagsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Bookkeep_record_on_tags that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {bookkeep_record_on_tagsFindFirstArgs} args - Arguments to find a Bookkeep_record_on_tags
+     * @example
+     * // Get one Bookkeep_record_on_tags
+     * const bookkeep_record_on_tags = await prisma.bookkeep_record_on_tags.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends bookkeep_record_on_tagsFindFirstArgs>(args?: SelectSubset<T, bookkeep_record_on_tagsFindFirstArgs<ExtArgs>>): Prisma__bookkeep_record_on_tagsClient<$Result.GetResult<Prisma.$bookkeep_record_on_tagsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Bookkeep_record_on_tags that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {bookkeep_record_on_tagsFindFirstOrThrowArgs} args - Arguments to find a Bookkeep_record_on_tags
+     * @example
+     * // Get one Bookkeep_record_on_tags
+     * const bookkeep_record_on_tags = await prisma.bookkeep_record_on_tags.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends bookkeep_record_on_tagsFindFirstOrThrowArgs>(args?: SelectSubset<T, bookkeep_record_on_tagsFindFirstOrThrowArgs<ExtArgs>>): Prisma__bookkeep_record_on_tagsClient<$Result.GetResult<Prisma.$bookkeep_record_on_tagsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Bookkeep_record_on_tags that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {bookkeep_record_on_tagsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Bookkeep_record_on_tags
+     * const bookkeep_record_on_tags = await prisma.bookkeep_record_on_tags.findMany()
+     * 
+     * // Get first 10 Bookkeep_record_on_tags
+     * const bookkeep_record_on_tags = await prisma.bookkeep_record_on_tags.findMany({ take: 10 })
+     * 
+     * // Only select the `recordId`
+     * const bookkeep_record_on_tagsWithRecordIdOnly = await prisma.bookkeep_record_on_tags.findMany({ select: { recordId: true } })
+     * 
+     */
+    findMany<T extends bookkeep_record_on_tagsFindManyArgs>(args?: SelectSubset<T, bookkeep_record_on_tagsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$bookkeep_record_on_tagsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Bookkeep_record_on_tags.
+     * @param {bookkeep_record_on_tagsCreateArgs} args - Arguments to create a Bookkeep_record_on_tags.
+     * @example
+     * // Create one Bookkeep_record_on_tags
+     * const Bookkeep_record_on_tags = await prisma.bookkeep_record_on_tags.create({
+     *   data: {
+     *     // ... data to create a Bookkeep_record_on_tags
+     *   }
+     * })
+     * 
+     */
+    create<T extends bookkeep_record_on_tagsCreateArgs>(args: SelectSubset<T, bookkeep_record_on_tagsCreateArgs<ExtArgs>>): Prisma__bookkeep_record_on_tagsClient<$Result.GetResult<Prisma.$bookkeep_record_on_tagsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Bookkeep_record_on_tags.
+     * @param {bookkeep_record_on_tagsCreateManyArgs} args - Arguments to create many Bookkeep_record_on_tags.
+     * @example
+     * // Create many Bookkeep_record_on_tags
+     * const bookkeep_record_on_tags = await prisma.bookkeep_record_on_tags.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends bookkeep_record_on_tagsCreateManyArgs>(args?: SelectSubset<T, bookkeep_record_on_tagsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Bookkeep_record_on_tags.
+     * @param {bookkeep_record_on_tagsDeleteArgs} args - Arguments to delete one Bookkeep_record_on_tags.
+     * @example
+     * // Delete one Bookkeep_record_on_tags
+     * const Bookkeep_record_on_tags = await prisma.bookkeep_record_on_tags.delete({
+     *   where: {
+     *     // ... filter to delete one Bookkeep_record_on_tags
+     *   }
+     * })
+     * 
+     */
+    delete<T extends bookkeep_record_on_tagsDeleteArgs>(args: SelectSubset<T, bookkeep_record_on_tagsDeleteArgs<ExtArgs>>): Prisma__bookkeep_record_on_tagsClient<$Result.GetResult<Prisma.$bookkeep_record_on_tagsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Bookkeep_record_on_tags.
+     * @param {bookkeep_record_on_tagsUpdateArgs} args - Arguments to update one Bookkeep_record_on_tags.
+     * @example
+     * // Update one Bookkeep_record_on_tags
+     * const bookkeep_record_on_tags = await prisma.bookkeep_record_on_tags.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends bookkeep_record_on_tagsUpdateArgs>(args: SelectSubset<T, bookkeep_record_on_tagsUpdateArgs<ExtArgs>>): Prisma__bookkeep_record_on_tagsClient<$Result.GetResult<Prisma.$bookkeep_record_on_tagsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Bookkeep_record_on_tags.
+     * @param {bookkeep_record_on_tagsDeleteManyArgs} args - Arguments to filter Bookkeep_record_on_tags to delete.
+     * @example
+     * // Delete a few Bookkeep_record_on_tags
+     * const { count } = await prisma.bookkeep_record_on_tags.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends bookkeep_record_on_tagsDeleteManyArgs>(args?: SelectSubset<T, bookkeep_record_on_tagsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Bookkeep_record_on_tags.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {bookkeep_record_on_tagsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Bookkeep_record_on_tags
+     * const bookkeep_record_on_tags = await prisma.bookkeep_record_on_tags.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends bookkeep_record_on_tagsUpdateManyArgs>(args: SelectSubset<T, bookkeep_record_on_tagsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Bookkeep_record_on_tags.
+     * @param {bookkeep_record_on_tagsUpsertArgs} args - Arguments to update or create a Bookkeep_record_on_tags.
+     * @example
+     * // Update or create a Bookkeep_record_on_tags
+     * const bookkeep_record_on_tags = await prisma.bookkeep_record_on_tags.upsert({
+     *   create: {
+     *     // ... data to create a Bookkeep_record_on_tags
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Bookkeep_record_on_tags we want to update
+     *   }
+     * })
+     */
+    upsert<T extends bookkeep_record_on_tagsUpsertArgs>(args: SelectSubset<T, bookkeep_record_on_tagsUpsertArgs<ExtArgs>>): Prisma__bookkeep_record_on_tagsClient<$Result.GetResult<Prisma.$bookkeep_record_on_tagsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Bookkeep_record_on_tags.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {bookkeep_record_on_tagsCountArgs} args - Arguments to filter Bookkeep_record_on_tags to count.
+     * @example
+     * // Count the number of Bookkeep_record_on_tags
+     * const count = await prisma.bookkeep_record_on_tags.count({
+     *   where: {
+     *     // ... the filter for the Bookkeep_record_on_tags we want to count
+     *   }
+     * })
+    **/
+    count<T extends bookkeep_record_on_tagsCountArgs>(
+      args?: Subset<T, bookkeep_record_on_tagsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Bookkeep_record_on_tagsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Bookkeep_record_on_tags.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Bookkeep_record_on_tagsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Bookkeep_record_on_tagsAggregateArgs>(args: Subset<T, Bookkeep_record_on_tagsAggregateArgs>): Prisma.PrismaPromise<GetBookkeep_record_on_tagsAggregateType<T>>
+
+    /**
+     * Group by Bookkeep_record_on_tags.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {bookkeep_record_on_tagsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends bookkeep_record_on_tagsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: bookkeep_record_on_tagsGroupByArgs['orderBy'] }
+        : { orderBy?: bookkeep_record_on_tagsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, bookkeep_record_on_tagsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBookkeep_record_on_tagsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the bookkeep_record_on_tags model
+   */
+  readonly fields: bookkeep_record_on_tagsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for bookkeep_record_on_tags.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__bookkeep_record_on_tagsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    record<T extends bookkeep_recordDefaultArgs<ExtArgs> = {}>(args?: Subset<T, bookkeep_recordDefaultArgs<ExtArgs>>): Prisma__bookkeep_recordClient<$Result.GetResult<Prisma.$bookkeep_recordPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    tag<T extends bookkeep_tagDefaultArgs<ExtArgs> = {}>(args?: Subset<T, bookkeep_tagDefaultArgs<ExtArgs>>): Prisma__bookkeep_tagClient<$Result.GetResult<Prisma.$bookkeep_tagPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the bookkeep_record_on_tags model
+   */
+  interface bookkeep_record_on_tagsFieldRefs {
+    readonly recordId: FieldRef<"bookkeep_record_on_tags", 'String'>
+    readonly tagId: FieldRef<"bookkeep_record_on_tags", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * bookkeep_record_on_tags findUnique
+   */
+  export type bookkeep_record_on_tagsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_record_on_tags
+     */
+    select?: bookkeep_record_on_tagsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_record_on_tags
+     */
+    omit?: bookkeep_record_on_tagsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_record_on_tagsInclude<ExtArgs> | null
+    /**
+     * Filter, which bookkeep_record_on_tags to fetch.
+     */
+    where: bookkeep_record_on_tagsWhereUniqueInput
+  }
+
+  /**
+   * bookkeep_record_on_tags findUniqueOrThrow
+   */
+  export type bookkeep_record_on_tagsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_record_on_tags
+     */
+    select?: bookkeep_record_on_tagsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_record_on_tags
+     */
+    omit?: bookkeep_record_on_tagsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_record_on_tagsInclude<ExtArgs> | null
+    /**
+     * Filter, which bookkeep_record_on_tags to fetch.
+     */
+    where: bookkeep_record_on_tagsWhereUniqueInput
+  }
+
+  /**
+   * bookkeep_record_on_tags findFirst
+   */
+  export type bookkeep_record_on_tagsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_record_on_tags
+     */
+    select?: bookkeep_record_on_tagsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_record_on_tags
+     */
+    omit?: bookkeep_record_on_tagsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_record_on_tagsInclude<ExtArgs> | null
+    /**
+     * Filter, which bookkeep_record_on_tags to fetch.
+     */
+    where?: bookkeep_record_on_tagsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of bookkeep_record_on_tags to fetch.
+     */
+    orderBy?: bookkeep_record_on_tagsOrderByWithRelationInput | bookkeep_record_on_tagsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for bookkeep_record_on_tags.
+     */
+    cursor?: bookkeep_record_on_tagsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` bookkeep_record_on_tags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` bookkeep_record_on_tags.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of bookkeep_record_on_tags.
+     */
+    distinct?: Bookkeep_record_on_tagsScalarFieldEnum | Bookkeep_record_on_tagsScalarFieldEnum[]
+  }
+
+  /**
+   * bookkeep_record_on_tags findFirstOrThrow
+   */
+  export type bookkeep_record_on_tagsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_record_on_tags
+     */
+    select?: bookkeep_record_on_tagsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_record_on_tags
+     */
+    omit?: bookkeep_record_on_tagsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_record_on_tagsInclude<ExtArgs> | null
+    /**
+     * Filter, which bookkeep_record_on_tags to fetch.
+     */
+    where?: bookkeep_record_on_tagsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of bookkeep_record_on_tags to fetch.
+     */
+    orderBy?: bookkeep_record_on_tagsOrderByWithRelationInput | bookkeep_record_on_tagsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for bookkeep_record_on_tags.
+     */
+    cursor?: bookkeep_record_on_tagsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` bookkeep_record_on_tags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` bookkeep_record_on_tags.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of bookkeep_record_on_tags.
+     */
+    distinct?: Bookkeep_record_on_tagsScalarFieldEnum | Bookkeep_record_on_tagsScalarFieldEnum[]
+  }
+
+  /**
+   * bookkeep_record_on_tags findMany
+   */
+  export type bookkeep_record_on_tagsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_record_on_tags
+     */
+    select?: bookkeep_record_on_tagsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_record_on_tags
+     */
+    omit?: bookkeep_record_on_tagsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_record_on_tagsInclude<ExtArgs> | null
+    /**
+     * Filter, which bookkeep_record_on_tags to fetch.
+     */
+    where?: bookkeep_record_on_tagsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of bookkeep_record_on_tags to fetch.
+     */
+    orderBy?: bookkeep_record_on_tagsOrderByWithRelationInput | bookkeep_record_on_tagsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing bookkeep_record_on_tags.
+     */
+    cursor?: bookkeep_record_on_tagsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` bookkeep_record_on_tags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` bookkeep_record_on_tags.
+     */
+    skip?: number
+    distinct?: Bookkeep_record_on_tagsScalarFieldEnum | Bookkeep_record_on_tagsScalarFieldEnum[]
+  }
+
+  /**
+   * bookkeep_record_on_tags create
+   */
+  export type bookkeep_record_on_tagsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_record_on_tags
+     */
+    select?: bookkeep_record_on_tagsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_record_on_tags
+     */
+    omit?: bookkeep_record_on_tagsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_record_on_tagsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a bookkeep_record_on_tags.
+     */
+    data: XOR<bookkeep_record_on_tagsCreateInput, bookkeep_record_on_tagsUncheckedCreateInput>
+  }
+
+  /**
+   * bookkeep_record_on_tags createMany
+   */
+  export type bookkeep_record_on_tagsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many bookkeep_record_on_tags.
+     */
+    data: bookkeep_record_on_tagsCreateManyInput | bookkeep_record_on_tagsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * bookkeep_record_on_tags update
+   */
+  export type bookkeep_record_on_tagsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_record_on_tags
+     */
+    select?: bookkeep_record_on_tagsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_record_on_tags
+     */
+    omit?: bookkeep_record_on_tagsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_record_on_tagsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a bookkeep_record_on_tags.
+     */
+    data: XOR<bookkeep_record_on_tagsUpdateInput, bookkeep_record_on_tagsUncheckedUpdateInput>
+    /**
+     * Choose, which bookkeep_record_on_tags to update.
+     */
+    where: bookkeep_record_on_tagsWhereUniqueInput
+  }
+
+  /**
+   * bookkeep_record_on_tags updateMany
+   */
+  export type bookkeep_record_on_tagsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update bookkeep_record_on_tags.
+     */
+    data: XOR<bookkeep_record_on_tagsUpdateManyMutationInput, bookkeep_record_on_tagsUncheckedUpdateManyInput>
+    /**
+     * Filter which bookkeep_record_on_tags to update
+     */
+    where?: bookkeep_record_on_tagsWhereInput
+    /**
+     * Limit how many bookkeep_record_on_tags to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * bookkeep_record_on_tags upsert
+   */
+  export type bookkeep_record_on_tagsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_record_on_tags
+     */
+    select?: bookkeep_record_on_tagsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_record_on_tags
+     */
+    omit?: bookkeep_record_on_tagsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_record_on_tagsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the bookkeep_record_on_tags to update in case it exists.
+     */
+    where: bookkeep_record_on_tagsWhereUniqueInput
+    /**
+     * In case the bookkeep_record_on_tags found by the `where` argument doesn't exist, create a new bookkeep_record_on_tags with this data.
+     */
+    create: XOR<bookkeep_record_on_tagsCreateInput, bookkeep_record_on_tagsUncheckedCreateInput>
+    /**
+     * In case the bookkeep_record_on_tags was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<bookkeep_record_on_tagsUpdateInput, bookkeep_record_on_tagsUncheckedUpdateInput>
+  }
+
+  /**
+   * bookkeep_record_on_tags delete
+   */
+  export type bookkeep_record_on_tagsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_record_on_tags
+     */
+    select?: bookkeep_record_on_tagsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_record_on_tags
+     */
+    omit?: bookkeep_record_on_tagsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_record_on_tagsInclude<ExtArgs> | null
+    /**
+     * Filter which bookkeep_record_on_tags to delete.
+     */
+    where: bookkeep_record_on_tagsWhereUniqueInput
+  }
+
+  /**
+   * bookkeep_record_on_tags deleteMany
+   */
+  export type bookkeep_record_on_tagsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which bookkeep_record_on_tags to delete
+     */
+    where?: bookkeep_record_on_tagsWhereInput
+    /**
+     * Limit how many bookkeep_record_on_tags to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * bookkeep_record_on_tags without action
+   */
+  export type bookkeep_record_on_tagsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the bookkeep_record_on_tags
+     */
+    select?: bookkeep_record_on_tagsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the bookkeep_record_on_tags
+     */
+    omit?: bookkeep_record_on_tagsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: bookkeep_record_on_tagsInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -17291,6 +20603,40 @@ export namespace Prisma {
   export type Blog_announcementsScalarFieldEnum = (typeof Blog_announcementsScalarFieldEnum)[keyof typeof Blog_announcementsScalarFieldEnum]
 
 
+  export const Bookkeep_recordScalarFieldEnum: {
+    uid: 'uid',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    type: 'type',
+    amount: 'amount',
+    category: 'category',
+    description: 'description',
+    date: 'date',
+    userId: 'userId',
+    mediaId: 'mediaId'
+  };
+
+  export type Bookkeep_recordScalarFieldEnum = (typeof Bookkeep_recordScalarFieldEnum)[keyof typeof Bookkeep_recordScalarFieldEnum]
+
+
+  export const Bookkeep_tagScalarFieldEnum: {
+    uid: 'uid',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    name: 'name'
+  };
+
+  export type Bookkeep_tagScalarFieldEnum = (typeof Bookkeep_tagScalarFieldEnum)[keyof typeof Bookkeep_tagScalarFieldEnum]
+
+
+  export const Bookkeep_record_on_tagsScalarFieldEnum: {
+    recordId: 'recordId',
+    tagId: 'tagId'
+  };
+
+  export type Bookkeep_record_on_tagsScalarFieldEnum = (typeof Bookkeep_record_on_tagsScalarFieldEnum)[keyof typeof Bookkeep_record_on_tagsScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -17450,6 +20796,33 @@ export namespace Prisma {
   export type blog_announcementsOrderByRelevanceFieldEnum = (typeof blog_announcementsOrderByRelevanceFieldEnum)[keyof typeof blog_announcementsOrderByRelevanceFieldEnum]
 
 
+  export const bookkeep_recordOrderByRelevanceFieldEnum: {
+    uid: 'uid',
+    category: 'category',
+    description: 'description',
+    userId: 'userId',
+    mediaId: 'mediaId'
+  };
+
+  export type bookkeep_recordOrderByRelevanceFieldEnum = (typeof bookkeep_recordOrderByRelevanceFieldEnum)[keyof typeof bookkeep_recordOrderByRelevanceFieldEnum]
+
+
+  export const bookkeep_tagOrderByRelevanceFieldEnum: {
+    uid: 'uid',
+    name: 'name'
+  };
+
+  export type bookkeep_tagOrderByRelevanceFieldEnum = (typeof bookkeep_tagOrderByRelevanceFieldEnum)[keyof typeof bookkeep_tagOrderByRelevanceFieldEnum]
+
+
+  export const bookkeep_record_on_tagsOrderByRelevanceFieldEnum: {
+    recordId: 'recordId',
+    tagId: 'tagId'
+  };
+
+  export type bookkeep_record_on_tagsOrderByRelevanceFieldEnum = (typeof bookkeep_record_on_tagsOrderByRelevanceFieldEnum)[keyof typeof bookkeep_record_on_tagsOrderByRelevanceFieldEnum]
+
+
   /**
    * Field references
    */
@@ -17491,6 +20864,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'bookkeep_type'
+   */
+  export type Enumbookkeep_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'bookkeep_type'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -17516,6 +20896,7 @@ export namespace Prisma {
     user_media?: Sys_user_mediaListRelationFilter
     blog_posts?: Blog_postsListRelationFilter
     blog_comments?: Blog_commentsListRelationFilter
+    bookkeep_records?: Bookkeep_recordListRelationFilter
   }
 
   export type sys_userOrderByWithRelationInput = {
@@ -17531,6 +20912,7 @@ export namespace Prisma {
     user_media?: sys_user_mediaOrderByRelationAggregateInput
     blog_posts?: blog_postsOrderByRelationAggregateInput
     blog_comments?: blog_commentsOrderByRelationAggregateInput
+    bookkeep_records?: bookkeep_recordOrderByRelationAggregateInput
     _relevance?: sys_userOrderByRelevanceInput
   }
 
@@ -17550,6 +20932,7 @@ export namespace Prisma {
     user_media?: Sys_user_mediaListRelationFilter
     blog_posts?: Blog_postsListRelationFilter
     blog_comments?: Blog_commentsListRelationFilter
+    bookkeep_records?: Bookkeep_recordListRelationFilter
   }, "uid" | "account">
 
   export type sys_userOrderByWithAggregationInput = {
@@ -17915,6 +21298,7 @@ export namespace Prisma {
     height?: IntNullableFilter<"sys_media"> | number | null
     duration?: IntNullableFilter<"sys_media"> | number | null
     users?: Sys_user_mediaListRelationFilter
+    bookkeep_records?: Bookkeep_recordListRelationFilter
   }
 
   export type sys_mediaOrderByWithRelationInput = {
@@ -17936,6 +21320,7 @@ export namespace Prisma {
     height?: SortOrderInput | SortOrder
     duration?: SortOrderInput | SortOrder
     users?: sys_user_mediaOrderByRelationAggregateInput
+    bookkeep_records?: bookkeep_recordOrderByRelationAggregateInput
     _relevance?: sys_mediaOrderByRelevanceInput
   }
 
@@ -17961,6 +21346,7 @@ export namespace Prisma {
     height?: IntNullableFilter<"sys_media"> | number | null
     duration?: IntNullableFilter<"sys_media"> | number | null
     users?: Sys_user_mediaListRelationFilter
+    bookkeep_records?: Bookkeep_recordListRelationFilter
   }, "uid" | "hash" | "wechat_id">
 
   export type sys_mediaOrderByWithAggregationInput = {
@@ -18492,6 +21878,191 @@ export namespace Prisma {
     status?: BoolWithAggregatesFilter<"blog_announcements"> | boolean
   }
 
+  export type bookkeep_recordWhereInput = {
+    AND?: bookkeep_recordWhereInput | bookkeep_recordWhereInput[]
+    OR?: bookkeep_recordWhereInput[]
+    NOT?: bookkeep_recordWhereInput | bookkeep_recordWhereInput[]
+    uid?: StringFilter<"bookkeep_record"> | string
+    createdAt?: DateTimeFilter<"bookkeep_record"> | Date | string
+    updatedAt?: DateTimeFilter<"bookkeep_record"> | Date | string
+    type?: Enumbookkeep_typeFilter<"bookkeep_record"> | $Enums.bookkeep_type
+    amount?: FloatFilter<"bookkeep_record"> | number
+    category?: StringFilter<"bookkeep_record"> | string
+    description?: StringNullableFilter<"bookkeep_record"> | string | null
+    date?: DateTimeFilter<"bookkeep_record"> | Date | string
+    userId?: StringFilter<"bookkeep_record"> | string
+    mediaId?: StringNullableFilter<"bookkeep_record"> | string | null
+    user?: XOR<Sys_userScalarRelationFilter, sys_userWhereInput>
+    media?: XOR<Sys_mediaNullableScalarRelationFilter, sys_mediaWhereInput> | null
+    tags?: Bookkeep_record_on_tagsListRelationFilter
+  }
+
+  export type bookkeep_recordOrderByWithRelationInput = {
+    uid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    type?: SortOrder
+    amount?: SortOrder
+    category?: SortOrder
+    description?: SortOrderInput | SortOrder
+    date?: SortOrder
+    userId?: SortOrder
+    mediaId?: SortOrderInput | SortOrder
+    user?: sys_userOrderByWithRelationInput
+    media?: sys_mediaOrderByWithRelationInput
+    tags?: bookkeep_record_on_tagsOrderByRelationAggregateInput
+    _relevance?: bookkeep_recordOrderByRelevanceInput
+  }
+
+  export type bookkeep_recordWhereUniqueInput = Prisma.AtLeast<{
+    uid?: string
+    AND?: bookkeep_recordWhereInput | bookkeep_recordWhereInput[]
+    OR?: bookkeep_recordWhereInput[]
+    NOT?: bookkeep_recordWhereInput | bookkeep_recordWhereInput[]
+    createdAt?: DateTimeFilter<"bookkeep_record"> | Date | string
+    updatedAt?: DateTimeFilter<"bookkeep_record"> | Date | string
+    type?: Enumbookkeep_typeFilter<"bookkeep_record"> | $Enums.bookkeep_type
+    amount?: FloatFilter<"bookkeep_record"> | number
+    category?: StringFilter<"bookkeep_record"> | string
+    description?: StringNullableFilter<"bookkeep_record"> | string | null
+    date?: DateTimeFilter<"bookkeep_record"> | Date | string
+    userId?: StringFilter<"bookkeep_record"> | string
+    mediaId?: StringNullableFilter<"bookkeep_record"> | string | null
+    user?: XOR<Sys_userScalarRelationFilter, sys_userWhereInput>
+    media?: XOR<Sys_mediaNullableScalarRelationFilter, sys_mediaWhereInput> | null
+    tags?: Bookkeep_record_on_tagsListRelationFilter
+  }, "uid">
+
+  export type bookkeep_recordOrderByWithAggregationInput = {
+    uid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    type?: SortOrder
+    amount?: SortOrder
+    category?: SortOrder
+    description?: SortOrderInput | SortOrder
+    date?: SortOrder
+    userId?: SortOrder
+    mediaId?: SortOrderInput | SortOrder
+    _count?: bookkeep_recordCountOrderByAggregateInput
+    _avg?: bookkeep_recordAvgOrderByAggregateInput
+    _max?: bookkeep_recordMaxOrderByAggregateInput
+    _min?: bookkeep_recordMinOrderByAggregateInput
+    _sum?: bookkeep_recordSumOrderByAggregateInput
+  }
+
+  export type bookkeep_recordScalarWhereWithAggregatesInput = {
+    AND?: bookkeep_recordScalarWhereWithAggregatesInput | bookkeep_recordScalarWhereWithAggregatesInput[]
+    OR?: bookkeep_recordScalarWhereWithAggregatesInput[]
+    NOT?: bookkeep_recordScalarWhereWithAggregatesInput | bookkeep_recordScalarWhereWithAggregatesInput[]
+    uid?: StringWithAggregatesFilter<"bookkeep_record"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"bookkeep_record"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"bookkeep_record"> | Date | string
+    type?: Enumbookkeep_typeWithAggregatesFilter<"bookkeep_record"> | $Enums.bookkeep_type
+    amount?: FloatWithAggregatesFilter<"bookkeep_record"> | number
+    category?: StringWithAggregatesFilter<"bookkeep_record"> | string
+    description?: StringNullableWithAggregatesFilter<"bookkeep_record"> | string | null
+    date?: DateTimeWithAggregatesFilter<"bookkeep_record"> | Date | string
+    userId?: StringWithAggregatesFilter<"bookkeep_record"> | string
+    mediaId?: StringNullableWithAggregatesFilter<"bookkeep_record"> | string | null
+  }
+
+  export type bookkeep_tagWhereInput = {
+    AND?: bookkeep_tagWhereInput | bookkeep_tagWhereInput[]
+    OR?: bookkeep_tagWhereInput[]
+    NOT?: bookkeep_tagWhereInput | bookkeep_tagWhereInput[]
+    uid?: StringFilter<"bookkeep_tag"> | string
+    createdAt?: DateTimeFilter<"bookkeep_tag"> | Date | string
+    updatedAt?: DateTimeFilter<"bookkeep_tag"> | Date | string
+    name?: StringFilter<"bookkeep_tag"> | string
+    records?: Bookkeep_record_on_tagsListRelationFilter
+  }
+
+  export type bookkeep_tagOrderByWithRelationInput = {
+    uid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    name?: SortOrder
+    records?: bookkeep_record_on_tagsOrderByRelationAggregateInput
+    _relevance?: bookkeep_tagOrderByRelevanceInput
+  }
+
+  export type bookkeep_tagWhereUniqueInput = Prisma.AtLeast<{
+    uid?: string
+    AND?: bookkeep_tagWhereInput | bookkeep_tagWhereInput[]
+    OR?: bookkeep_tagWhereInput[]
+    NOT?: bookkeep_tagWhereInput | bookkeep_tagWhereInput[]
+    createdAt?: DateTimeFilter<"bookkeep_tag"> | Date | string
+    updatedAt?: DateTimeFilter<"bookkeep_tag"> | Date | string
+    name?: StringFilter<"bookkeep_tag"> | string
+    records?: Bookkeep_record_on_tagsListRelationFilter
+  }, "uid">
+
+  export type bookkeep_tagOrderByWithAggregationInput = {
+    uid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    name?: SortOrder
+    _count?: bookkeep_tagCountOrderByAggregateInput
+    _max?: bookkeep_tagMaxOrderByAggregateInput
+    _min?: bookkeep_tagMinOrderByAggregateInput
+  }
+
+  export type bookkeep_tagScalarWhereWithAggregatesInput = {
+    AND?: bookkeep_tagScalarWhereWithAggregatesInput | bookkeep_tagScalarWhereWithAggregatesInput[]
+    OR?: bookkeep_tagScalarWhereWithAggregatesInput[]
+    NOT?: bookkeep_tagScalarWhereWithAggregatesInput | bookkeep_tagScalarWhereWithAggregatesInput[]
+    uid?: StringWithAggregatesFilter<"bookkeep_tag"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"bookkeep_tag"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"bookkeep_tag"> | Date | string
+    name?: StringWithAggregatesFilter<"bookkeep_tag"> | string
+  }
+
+  export type bookkeep_record_on_tagsWhereInput = {
+    AND?: bookkeep_record_on_tagsWhereInput | bookkeep_record_on_tagsWhereInput[]
+    OR?: bookkeep_record_on_tagsWhereInput[]
+    NOT?: bookkeep_record_on_tagsWhereInput | bookkeep_record_on_tagsWhereInput[]
+    recordId?: StringFilter<"bookkeep_record_on_tags"> | string
+    tagId?: StringFilter<"bookkeep_record_on_tags"> | string
+    record?: XOR<Bookkeep_recordScalarRelationFilter, bookkeep_recordWhereInput>
+    tag?: XOR<Bookkeep_tagScalarRelationFilter, bookkeep_tagWhereInput>
+  }
+
+  export type bookkeep_record_on_tagsOrderByWithRelationInput = {
+    recordId?: SortOrder
+    tagId?: SortOrder
+    record?: bookkeep_recordOrderByWithRelationInput
+    tag?: bookkeep_tagOrderByWithRelationInput
+    _relevance?: bookkeep_record_on_tagsOrderByRelevanceInput
+  }
+
+  export type bookkeep_record_on_tagsWhereUniqueInput = Prisma.AtLeast<{
+    recordId_tagId?: bookkeep_record_on_tagsRecordIdTagIdCompoundUniqueInput
+    AND?: bookkeep_record_on_tagsWhereInput | bookkeep_record_on_tagsWhereInput[]
+    OR?: bookkeep_record_on_tagsWhereInput[]
+    NOT?: bookkeep_record_on_tagsWhereInput | bookkeep_record_on_tagsWhereInput[]
+    recordId?: StringFilter<"bookkeep_record_on_tags"> | string
+    tagId?: StringFilter<"bookkeep_record_on_tags"> | string
+    record?: XOR<Bookkeep_recordScalarRelationFilter, bookkeep_recordWhereInput>
+    tag?: XOR<Bookkeep_tagScalarRelationFilter, bookkeep_tagWhereInput>
+  }, "recordId_tagId">
+
+  export type bookkeep_record_on_tagsOrderByWithAggregationInput = {
+    recordId?: SortOrder
+    tagId?: SortOrder
+    _count?: bookkeep_record_on_tagsCountOrderByAggregateInput
+    _max?: bookkeep_record_on_tagsMaxOrderByAggregateInput
+    _min?: bookkeep_record_on_tagsMinOrderByAggregateInput
+  }
+
+  export type bookkeep_record_on_tagsScalarWhereWithAggregatesInput = {
+    AND?: bookkeep_record_on_tagsScalarWhereWithAggregatesInput | bookkeep_record_on_tagsScalarWhereWithAggregatesInput[]
+    OR?: bookkeep_record_on_tagsScalarWhereWithAggregatesInput[]
+    NOT?: bookkeep_record_on_tagsScalarWhereWithAggregatesInput | bookkeep_record_on_tagsScalarWhereWithAggregatesInput[]
+    recordId?: StringWithAggregatesFilter<"bookkeep_record_on_tags"> | string
+    tagId?: StringWithAggregatesFilter<"bookkeep_record_on_tags"> | string
+  }
+
   export type sys_userCreateInput = {
     uid?: string
     createdAt?: Date | string
@@ -18504,6 +22075,7 @@ export namespace Prisma {
     user_media?: sys_user_mediaCreateNestedManyWithoutUserInput
     blog_posts?: blog_postsCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsCreateNestedManyWithoutUserInput
+    bookkeep_records?: bookkeep_recordCreateNestedManyWithoutUserInput
   }
 
   export type sys_userUncheckedCreateInput = {
@@ -18518,6 +22090,7 @@ export namespace Prisma {
     user_media?: sys_user_mediaUncheckedCreateNestedManyWithoutUserInput
     blog_posts?: blog_postsUncheckedCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsUncheckedCreateNestedManyWithoutUserInput
+    bookkeep_records?: bookkeep_recordUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type sys_userUpdateInput = {
@@ -18532,6 +22105,7 @@ export namespace Prisma {
     user_media?: sys_user_mediaUpdateManyWithoutUserNestedInput
     blog_posts?: blog_postsUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUpdateManyWithoutUserNestedInput
+    bookkeep_records?: bookkeep_recordUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userUncheckedUpdateInput = {
@@ -18546,6 +22120,7 @@ export namespace Prisma {
     user_media?: sys_user_mediaUncheckedUpdateManyWithoutUserNestedInput
     blog_posts?: blog_postsUncheckedUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUncheckedUpdateManyWithoutUserNestedInput
+    bookkeep_records?: bookkeep_recordUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userCreateManyInput = {
@@ -18902,6 +22477,7 @@ export namespace Prisma {
     height?: number | null
     duration?: number | null
     users?: sys_user_mediaCreateNestedManyWithoutMediaInput
+    bookkeep_records?: bookkeep_recordCreateNestedManyWithoutMediaInput
   }
 
   export type sys_mediaUncheckedCreateInput = {
@@ -18923,6 +22499,7 @@ export namespace Prisma {
     height?: number | null
     duration?: number | null
     users?: sys_user_mediaUncheckedCreateNestedManyWithoutMediaInput
+    bookkeep_records?: bookkeep_recordUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type sys_mediaUpdateInput = {
@@ -18944,6 +22521,7 @@ export namespace Prisma {
     height?: NullableIntFieldUpdateOperationsInput | number | null
     duration?: NullableIntFieldUpdateOperationsInput | number | null
     users?: sys_user_mediaUpdateManyWithoutMediaNestedInput
+    bookkeep_records?: bookkeep_recordUpdateManyWithoutMediaNestedInput
   }
 
   export type sys_mediaUncheckedUpdateInput = {
@@ -18965,6 +22543,7 @@ export namespace Prisma {
     height?: NullableIntFieldUpdateOperationsInput | number | null
     duration?: NullableIntFieldUpdateOperationsInput | number | null
     users?: sys_user_mediaUncheckedUpdateManyWithoutMediaNestedInput
+    bookkeep_records?: bookkeep_recordUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type sys_mediaCreateManyInput = {
@@ -19506,6 +23085,186 @@ export namespace Prisma {
     status?: BoolFieldUpdateOperationsInput | boolean
   }
 
+  export type bookkeep_recordCreateInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    type: $Enums.bookkeep_type
+    amount: number
+    category: string
+    description?: string | null
+    date: Date | string
+    user: sys_userCreateNestedOneWithoutBookkeep_recordsInput
+    media?: sys_mediaCreateNestedOneWithoutBookkeep_recordsInput
+    tags?: bookkeep_record_on_tagsCreateNestedManyWithoutRecordInput
+  }
+
+  export type bookkeep_recordUncheckedCreateInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    type: $Enums.bookkeep_type
+    amount: number
+    category: string
+    description?: string | null
+    date: Date | string
+    userId: string
+    mediaId?: string | null
+    tags?: bookkeep_record_on_tagsUncheckedCreateNestedManyWithoutRecordInput
+  }
+
+  export type bookkeep_recordUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: Enumbookkeep_typeFieldUpdateOperationsInput | $Enums.bookkeep_type
+    amount?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: sys_userUpdateOneRequiredWithoutBookkeep_recordsNestedInput
+    media?: sys_mediaUpdateOneWithoutBookkeep_recordsNestedInput
+    tags?: bookkeep_record_on_tagsUpdateManyWithoutRecordNestedInput
+  }
+
+  export type bookkeep_recordUncheckedUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: Enumbookkeep_typeFieldUpdateOperationsInput | $Enums.bookkeep_type
+    amount?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    mediaId?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: bookkeep_record_on_tagsUncheckedUpdateManyWithoutRecordNestedInput
+  }
+
+  export type bookkeep_recordCreateManyInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    type: $Enums.bookkeep_type
+    amount: number
+    category: string
+    description?: string | null
+    date: Date | string
+    userId: string
+    mediaId?: string | null
+  }
+
+  export type bookkeep_recordUpdateManyMutationInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: Enumbookkeep_typeFieldUpdateOperationsInput | $Enums.bookkeep_type
+    amount?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type bookkeep_recordUncheckedUpdateManyInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: Enumbookkeep_typeFieldUpdateOperationsInput | $Enums.bookkeep_type
+    amount?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    mediaId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type bookkeep_tagCreateInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+    records?: bookkeep_record_on_tagsCreateNestedManyWithoutTagInput
+  }
+
+  export type bookkeep_tagUncheckedCreateInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+    records?: bookkeep_record_on_tagsUncheckedCreateNestedManyWithoutTagInput
+  }
+
+  export type bookkeep_tagUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    records?: bookkeep_record_on_tagsUpdateManyWithoutTagNestedInput
+  }
+
+  export type bookkeep_tagUncheckedUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    records?: bookkeep_record_on_tagsUncheckedUpdateManyWithoutTagNestedInput
+  }
+
+  export type bookkeep_tagCreateManyInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+  }
+
+  export type bookkeep_tagUpdateManyMutationInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type bookkeep_tagUncheckedUpdateManyInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type bookkeep_record_on_tagsCreateInput = {
+    record: bookkeep_recordCreateNestedOneWithoutTagsInput
+    tag: bookkeep_tagCreateNestedOneWithoutRecordsInput
+  }
+
+  export type bookkeep_record_on_tagsUncheckedCreateInput = {
+    recordId: string
+    tagId: string
+  }
+
+  export type bookkeep_record_on_tagsUpdateInput = {
+    record?: bookkeep_recordUpdateOneRequiredWithoutTagsNestedInput
+    tag?: bookkeep_tagUpdateOneRequiredWithoutRecordsNestedInput
+  }
+
+  export type bookkeep_record_on_tagsUncheckedUpdateInput = {
+    recordId?: StringFieldUpdateOperationsInput | string
+    tagId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type bookkeep_record_on_tagsCreateManyInput = {
+    recordId: string
+    tagId: string
+  }
+
+  export type bookkeep_record_on_tagsUpdateManyMutationInput = {
+
+  }
+
+  export type bookkeep_record_on_tagsUncheckedUpdateManyInput = {
+    recordId?: StringFieldUpdateOperationsInput | string
+    tagId?: StringFieldUpdateOperationsInput | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -19582,6 +23341,12 @@ export namespace Prisma {
     none?: blog_commentsWhereInput
   }
 
+  export type Bookkeep_recordListRelationFilter = {
+    every?: bookkeep_recordWhereInput
+    some?: bookkeep_recordWhereInput
+    none?: bookkeep_recordWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -19604,6 +23369,10 @@ export namespace Prisma {
   }
 
   export type blog_commentsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type bookkeep_recordOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -20406,6 +24175,181 @@ export namespace Prisma {
     sort?: SortOrder
   }
 
+  export type Enumbookkeep_typeFilter<$PrismaModel = never> = {
+    equals?: $Enums.bookkeep_type | Enumbookkeep_typeFieldRefInput<$PrismaModel>
+    in?: $Enums.bookkeep_type[]
+    notIn?: $Enums.bookkeep_type[]
+    not?: NestedEnumbookkeep_typeFilter<$PrismaModel> | $Enums.bookkeep_type
+  }
+
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type Sys_mediaNullableScalarRelationFilter = {
+    is?: sys_mediaWhereInput | null
+    isNot?: sys_mediaWhereInput | null
+  }
+
+  export type Bookkeep_record_on_tagsListRelationFilter = {
+    every?: bookkeep_record_on_tagsWhereInput
+    some?: bookkeep_record_on_tagsWhereInput
+    none?: bookkeep_record_on_tagsWhereInput
+  }
+
+  export type bookkeep_record_on_tagsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type bookkeep_recordOrderByRelevanceInput = {
+    fields: bookkeep_recordOrderByRelevanceFieldEnum | bookkeep_recordOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type bookkeep_recordCountOrderByAggregateInput = {
+    uid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    type?: SortOrder
+    amount?: SortOrder
+    category?: SortOrder
+    description?: SortOrder
+    date?: SortOrder
+    userId?: SortOrder
+    mediaId?: SortOrder
+  }
+
+  export type bookkeep_recordAvgOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type bookkeep_recordMaxOrderByAggregateInput = {
+    uid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    type?: SortOrder
+    amount?: SortOrder
+    category?: SortOrder
+    description?: SortOrder
+    date?: SortOrder
+    userId?: SortOrder
+    mediaId?: SortOrder
+  }
+
+  export type bookkeep_recordMinOrderByAggregateInput = {
+    uid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    type?: SortOrder
+    amount?: SortOrder
+    category?: SortOrder
+    description?: SortOrder
+    date?: SortOrder
+    userId?: SortOrder
+    mediaId?: SortOrder
+  }
+
+  export type bookkeep_recordSumOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type Enumbookkeep_typeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.bookkeep_type | Enumbookkeep_typeFieldRefInput<$PrismaModel>
+    in?: $Enums.bookkeep_type[]
+    notIn?: $Enums.bookkeep_type[]
+    not?: NestedEnumbookkeep_typeWithAggregatesFilter<$PrismaModel> | $Enums.bookkeep_type
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumbookkeep_typeFilter<$PrismaModel>
+    _max?: NestedEnumbookkeep_typeFilter<$PrismaModel>
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type bookkeep_tagOrderByRelevanceInput = {
+    fields: bookkeep_tagOrderByRelevanceFieldEnum | bookkeep_tagOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type bookkeep_tagCountOrderByAggregateInput = {
+    uid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    name?: SortOrder
+  }
+
+  export type bookkeep_tagMaxOrderByAggregateInput = {
+    uid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    name?: SortOrder
+  }
+
+  export type bookkeep_tagMinOrderByAggregateInput = {
+    uid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    name?: SortOrder
+  }
+
+  export type Bookkeep_recordScalarRelationFilter = {
+    is?: bookkeep_recordWhereInput
+    isNot?: bookkeep_recordWhereInput
+  }
+
+  export type Bookkeep_tagScalarRelationFilter = {
+    is?: bookkeep_tagWhereInput
+    isNot?: bookkeep_tagWhereInput
+  }
+
+  export type bookkeep_record_on_tagsOrderByRelevanceInput = {
+    fields: bookkeep_record_on_tagsOrderByRelevanceFieldEnum | bookkeep_record_on_tagsOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type bookkeep_record_on_tagsRecordIdTagIdCompoundUniqueInput = {
+    recordId: string
+    tagId: string
+  }
+
+  export type bookkeep_record_on_tagsCountOrderByAggregateInput = {
+    recordId?: SortOrder
+    tagId?: SortOrder
+  }
+
+  export type bookkeep_record_on_tagsMaxOrderByAggregateInput = {
+    recordId?: SortOrder
+    tagId?: SortOrder
+  }
+
+  export type bookkeep_record_on_tagsMinOrderByAggregateInput = {
+    recordId?: SortOrder
+    tagId?: SortOrder
+  }
+
   export type sys_accountCreateNestedManyWithoutUserInput = {
     create?: XOR<sys_accountCreateWithoutUserInput, sys_accountUncheckedCreateWithoutUserInput> | sys_accountCreateWithoutUserInput[] | sys_accountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: sys_accountCreateOrConnectWithoutUserInput | sys_accountCreateOrConnectWithoutUserInput[]
@@ -20447,6 +24391,13 @@ export namespace Prisma {
     connect?: blog_commentsWhereUniqueInput | blog_commentsWhereUniqueInput[]
   }
 
+  export type bookkeep_recordCreateNestedManyWithoutUserInput = {
+    create?: XOR<bookkeep_recordCreateWithoutUserInput, bookkeep_recordUncheckedCreateWithoutUserInput> | bookkeep_recordCreateWithoutUserInput[] | bookkeep_recordUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: bookkeep_recordCreateOrConnectWithoutUserInput | bookkeep_recordCreateOrConnectWithoutUserInput[]
+    createMany?: bookkeep_recordCreateManyUserInputEnvelope
+    connect?: bookkeep_recordWhereUniqueInput | bookkeep_recordWhereUniqueInput[]
+  }
+
   export type sys_accountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<sys_accountCreateWithoutUserInput, sys_accountUncheckedCreateWithoutUserInput> | sys_accountCreateWithoutUserInput[] | sys_accountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: sys_accountCreateOrConnectWithoutUserInput | sys_accountCreateOrConnectWithoutUserInput[]
@@ -20480,6 +24431,13 @@ export namespace Prisma {
     connectOrCreate?: blog_commentsCreateOrConnectWithoutUserInput | blog_commentsCreateOrConnectWithoutUserInput[]
     createMany?: blog_commentsCreateManyUserInputEnvelope
     connect?: blog_commentsWhereUniqueInput | blog_commentsWhereUniqueInput[]
+  }
+
+  export type bookkeep_recordUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<bookkeep_recordCreateWithoutUserInput, bookkeep_recordUncheckedCreateWithoutUserInput> | bookkeep_recordCreateWithoutUserInput[] | bookkeep_recordUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: bookkeep_recordCreateOrConnectWithoutUserInput | bookkeep_recordCreateOrConnectWithoutUserInput[]
+    createMany?: bookkeep_recordCreateManyUserInputEnvelope
+    connect?: bookkeep_recordWhereUniqueInput | bookkeep_recordWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -20570,6 +24528,20 @@ export namespace Prisma {
     deleteMany?: blog_commentsScalarWhereInput | blog_commentsScalarWhereInput[]
   }
 
+  export type bookkeep_recordUpdateManyWithoutUserNestedInput = {
+    create?: XOR<bookkeep_recordCreateWithoutUserInput, bookkeep_recordUncheckedCreateWithoutUserInput> | bookkeep_recordCreateWithoutUserInput[] | bookkeep_recordUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: bookkeep_recordCreateOrConnectWithoutUserInput | bookkeep_recordCreateOrConnectWithoutUserInput[]
+    upsert?: bookkeep_recordUpsertWithWhereUniqueWithoutUserInput | bookkeep_recordUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: bookkeep_recordCreateManyUserInputEnvelope
+    set?: bookkeep_recordWhereUniqueInput | bookkeep_recordWhereUniqueInput[]
+    disconnect?: bookkeep_recordWhereUniqueInput | bookkeep_recordWhereUniqueInput[]
+    delete?: bookkeep_recordWhereUniqueInput | bookkeep_recordWhereUniqueInput[]
+    connect?: bookkeep_recordWhereUniqueInput | bookkeep_recordWhereUniqueInput[]
+    update?: bookkeep_recordUpdateWithWhereUniqueWithoutUserInput | bookkeep_recordUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: bookkeep_recordUpdateManyWithWhereWithoutUserInput | bookkeep_recordUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: bookkeep_recordScalarWhereInput | bookkeep_recordScalarWhereInput[]
+  }
+
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
   }
@@ -20642,6 +24614,20 @@ export namespace Prisma {
     update?: blog_commentsUpdateWithWhereUniqueWithoutUserInput | blog_commentsUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: blog_commentsUpdateManyWithWhereWithoutUserInput | blog_commentsUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: blog_commentsScalarWhereInput | blog_commentsScalarWhereInput[]
+  }
+
+  export type bookkeep_recordUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<bookkeep_recordCreateWithoutUserInput, bookkeep_recordUncheckedCreateWithoutUserInput> | bookkeep_recordCreateWithoutUserInput[] | bookkeep_recordUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: bookkeep_recordCreateOrConnectWithoutUserInput | bookkeep_recordCreateOrConnectWithoutUserInput[]
+    upsert?: bookkeep_recordUpsertWithWhereUniqueWithoutUserInput | bookkeep_recordUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: bookkeep_recordCreateManyUserInputEnvelope
+    set?: bookkeep_recordWhereUniqueInput | bookkeep_recordWhereUniqueInput[]
+    disconnect?: bookkeep_recordWhereUniqueInput | bookkeep_recordWhereUniqueInput[]
+    delete?: bookkeep_recordWhereUniqueInput | bookkeep_recordWhereUniqueInput[]
+    connect?: bookkeep_recordWhereUniqueInput | bookkeep_recordWhereUniqueInput[]
+    update?: bookkeep_recordUpdateWithWhereUniqueWithoutUserInput | bookkeep_recordUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: bookkeep_recordUpdateManyWithWhereWithoutUserInput | bookkeep_recordUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: bookkeep_recordScalarWhereInput | bookkeep_recordScalarWhereInput[]
   }
 
   export type sys_userCreateNestedOneWithoutAccountsInput = {
@@ -20963,11 +24949,25 @@ export namespace Prisma {
     connect?: sys_user_mediaWhereUniqueInput | sys_user_mediaWhereUniqueInput[]
   }
 
+  export type bookkeep_recordCreateNestedManyWithoutMediaInput = {
+    create?: XOR<bookkeep_recordCreateWithoutMediaInput, bookkeep_recordUncheckedCreateWithoutMediaInput> | bookkeep_recordCreateWithoutMediaInput[] | bookkeep_recordUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: bookkeep_recordCreateOrConnectWithoutMediaInput | bookkeep_recordCreateOrConnectWithoutMediaInput[]
+    createMany?: bookkeep_recordCreateManyMediaInputEnvelope
+    connect?: bookkeep_recordWhereUniqueInput | bookkeep_recordWhereUniqueInput[]
+  }
+
   export type sys_user_mediaUncheckedCreateNestedManyWithoutMediaInput = {
     create?: XOR<sys_user_mediaCreateWithoutMediaInput, sys_user_mediaUncheckedCreateWithoutMediaInput> | sys_user_mediaCreateWithoutMediaInput[] | sys_user_mediaUncheckedCreateWithoutMediaInput[]
     connectOrCreate?: sys_user_mediaCreateOrConnectWithoutMediaInput | sys_user_mediaCreateOrConnectWithoutMediaInput[]
     createMany?: sys_user_mediaCreateManyMediaInputEnvelope
     connect?: sys_user_mediaWhereUniqueInput | sys_user_mediaWhereUniqueInput[]
+  }
+
+  export type bookkeep_recordUncheckedCreateNestedManyWithoutMediaInput = {
+    create?: XOR<bookkeep_recordCreateWithoutMediaInput, bookkeep_recordUncheckedCreateWithoutMediaInput> | bookkeep_recordCreateWithoutMediaInput[] | bookkeep_recordUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: bookkeep_recordCreateOrConnectWithoutMediaInput | bookkeep_recordCreateOrConnectWithoutMediaInput[]
+    createMany?: bookkeep_recordCreateManyMediaInputEnvelope
+    connect?: bookkeep_recordWhereUniqueInput | bookkeep_recordWhereUniqueInput[]
   }
 
   export type NullableIntFieldUpdateOperationsInput = {
@@ -20992,6 +24992,20 @@ export namespace Prisma {
     deleteMany?: sys_user_mediaScalarWhereInput | sys_user_mediaScalarWhereInput[]
   }
 
+  export type bookkeep_recordUpdateManyWithoutMediaNestedInput = {
+    create?: XOR<bookkeep_recordCreateWithoutMediaInput, bookkeep_recordUncheckedCreateWithoutMediaInput> | bookkeep_recordCreateWithoutMediaInput[] | bookkeep_recordUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: bookkeep_recordCreateOrConnectWithoutMediaInput | bookkeep_recordCreateOrConnectWithoutMediaInput[]
+    upsert?: bookkeep_recordUpsertWithWhereUniqueWithoutMediaInput | bookkeep_recordUpsertWithWhereUniqueWithoutMediaInput[]
+    createMany?: bookkeep_recordCreateManyMediaInputEnvelope
+    set?: bookkeep_recordWhereUniqueInput | bookkeep_recordWhereUniqueInput[]
+    disconnect?: bookkeep_recordWhereUniqueInput | bookkeep_recordWhereUniqueInput[]
+    delete?: bookkeep_recordWhereUniqueInput | bookkeep_recordWhereUniqueInput[]
+    connect?: bookkeep_recordWhereUniqueInput | bookkeep_recordWhereUniqueInput[]
+    update?: bookkeep_recordUpdateWithWhereUniqueWithoutMediaInput | bookkeep_recordUpdateWithWhereUniqueWithoutMediaInput[]
+    updateMany?: bookkeep_recordUpdateManyWithWhereWithoutMediaInput | bookkeep_recordUpdateManyWithWhereWithoutMediaInput[]
+    deleteMany?: bookkeep_recordScalarWhereInput | bookkeep_recordScalarWhereInput[]
+  }
+
   export type sys_user_mediaUncheckedUpdateManyWithoutMediaNestedInput = {
     create?: XOR<sys_user_mediaCreateWithoutMediaInput, sys_user_mediaUncheckedCreateWithoutMediaInput> | sys_user_mediaCreateWithoutMediaInput[] | sys_user_mediaUncheckedCreateWithoutMediaInput[]
     connectOrCreate?: sys_user_mediaCreateOrConnectWithoutMediaInput | sys_user_mediaCreateOrConnectWithoutMediaInput[]
@@ -21004,6 +25018,20 @@ export namespace Prisma {
     update?: sys_user_mediaUpdateWithWhereUniqueWithoutMediaInput | sys_user_mediaUpdateWithWhereUniqueWithoutMediaInput[]
     updateMany?: sys_user_mediaUpdateManyWithWhereWithoutMediaInput | sys_user_mediaUpdateManyWithWhereWithoutMediaInput[]
     deleteMany?: sys_user_mediaScalarWhereInput | sys_user_mediaScalarWhereInput[]
+  }
+
+  export type bookkeep_recordUncheckedUpdateManyWithoutMediaNestedInput = {
+    create?: XOR<bookkeep_recordCreateWithoutMediaInput, bookkeep_recordUncheckedCreateWithoutMediaInput> | bookkeep_recordCreateWithoutMediaInput[] | bookkeep_recordUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: bookkeep_recordCreateOrConnectWithoutMediaInput | bookkeep_recordCreateOrConnectWithoutMediaInput[]
+    upsert?: bookkeep_recordUpsertWithWhereUniqueWithoutMediaInput | bookkeep_recordUpsertWithWhereUniqueWithoutMediaInput[]
+    createMany?: bookkeep_recordCreateManyMediaInputEnvelope
+    set?: bookkeep_recordWhereUniqueInput | bookkeep_recordWhereUniqueInput[]
+    disconnect?: bookkeep_recordWhereUniqueInput | bookkeep_recordWhereUniqueInput[]
+    delete?: bookkeep_recordWhereUniqueInput | bookkeep_recordWhereUniqueInput[]
+    connect?: bookkeep_recordWhereUniqueInput | bookkeep_recordWhereUniqueInput[]
+    update?: bookkeep_recordUpdateWithWhereUniqueWithoutMediaInput | bookkeep_recordUpdateWithWhereUniqueWithoutMediaInput[]
+    updateMany?: bookkeep_recordUpdateManyWithWhereWithoutMediaInput | bookkeep_recordUpdateManyWithWhereWithoutMediaInput[]
+    deleteMany?: bookkeep_recordScalarWhereInput | bookkeep_recordScalarWhereInput[]
   }
 
   export type sys_userCreateNestedOneWithoutUser_mediaInput = {
@@ -21288,6 +25316,160 @@ export namespace Prisma {
     update?: XOR<XOR<blog_postsUpdateToOneWithWhereWithoutCommentsInput, blog_postsUpdateWithoutCommentsInput>, blog_postsUncheckedUpdateWithoutCommentsInput>
   }
 
+  export type sys_userCreateNestedOneWithoutBookkeep_recordsInput = {
+    create?: XOR<sys_userCreateWithoutBookkeep_recordsInput, sys_userUncheckedCreateWithoutBookkeep_recordsInput>
+    connectOrCreate?: sys_userCreateOrConnectWithoutBookkeep_recordsInput
+    connect?: sys_userWhereUniqueInput
+  }
+
+  export type sys_mediaCreateNestedOneWithoutBookkeep_recordsInput = {
+    create?: XOR<sys_mediaCreateWithoutBookkeep_recordsInput, sys_mediaUncheckedCreateWithoutBookkeep_recordsInput>
+    connectOrCreate?: sys_mediaCreateOrConnectWithoutBookkeep_recordsInput
+    connect?: sys_mediaWhereUniqueInput
+  }
+
+  export type bookkeep_record_on_tagsCreateNestedManyWithoutRecordInput = {
+    create?: XOR<bookkeep_record_on_tagsCreateWithoutRecordInput, bookkeep_record_on_tagsUncheckedCreateWithoutRecordInput> | bookkeep_record_on_tagsCreateWithoutRecordInput[] | bookkeep_record_on_tagsUncheckedCreateWithoutRecordInput[]
+    connectOrCreate?: bookkeep_record_on_tagsCreateOrConnectWithoutRecordInput | bookkeep_record_on_tagsCreateOrConnectWithoutRecordInput[]
+    createMany?: bookkeep_record_on_tagsCreateManyRecordInputEnvelope
+    connect?: bookkeep_record_on_tagsWhereUniqueInput | bookkeep_record_on_tagsWhereUniqueInput[]
+  }
+
+  export type bookkeep_record_on_tagsUncheckedCreateNestedManyWithoutRecordInput = {
+    create?: XOR<bookkeep_record_on_tagsCreateWithoutRecordInput, bookkeep_record_on_tagsUncheckedCreateWithoutRecordInput> | bookkeep_record_on_tagsCreateWithoutRecordInput[] | bookkeep_record_on_tagsUncheckedCreateWithoutRecordInput[]
+    connectOrCreate?: bookkeep_record_on_tagsCreateOrConnectWithoutRecordInput | bookkeep_record_on_tagsCreateOrConnectWithoutRecordInput[]
+    createMany?: bookkeep_record_on_tagsCreateManyRecordInputEnvelope
+    connect?: bookkeep_record_on_tagsWhereUniqueInput | bookkeep_record_on_tagsWhereUniqueInput[]
+  }
+
+  export type Enumbookkeep_typeFieldUpdateOperationsInput = {
+    set?: $Enums.bookkeep_type
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type sys_userUpdateOneRequiredWithoutBookkeep_recordsNestedInput = {
+    create?: XOR<sys_userCreateWithoutBookkeep_recordsInput, sys_userUncheckedCreateWithoutBookkeep_recordsInput>
+    connectOrCreate?: sys_userCreateOrConnectWithoutBookkeep_recordsInput
+    upsert?: sys_userUpsertWithoutBookkeep_recordsInput
+    connect?: sys_userWhereUniqueInput
+    update?: XOR<XOR<sys_userUpdateToOneWithWhereWithoutBookkeep_recordsInput, sys_userUpdateWithoutBookkeep_recordsInput>, sys_userUncheckedUpdateWithoutBookkeep_recordsInput>
+  }
+
+  export type sys_mediaUpdateOneWithoutBookkeep_recordsNestedInput = {
+    create?: XOR<sys_mediaCreateWithoutBookkeep_recordsInput, sys_mediaUncheckedCreateWithoutBookkeep_recordsInput>
+    connectOrCreate?: sys_mediaCreateOrConnectWithoutBookkeep_recordsInput
+    upsert?: sys_mediaUpsertWithoutBookkeep_recordsInput
+    disconnect?: sys_mediaWhereInput | boolean
+    delete?: sys_mediaWhereInput | boolean
+    connect?: sys_mediaWhereUniqueInput
+    update?: XOR<XOR<sys_mediaUpdateToOneWithWhereWithoutBookkeep_recordsInput, sys_mediaUpdateWithoutBookkeep_recordsInput>, sys_mediaUncheckedUpdateWithoutBookkeep_recordsInput>
+  }
+
+  export type bookkeep_record_on_tagsUpdateManyWithoutRecordNestedInput = {
+    create?: XOR<bookkeep_record_on_tagsCreateWithoutRecordInput, bookkeep_record_on_tagsUncheckedCreateWithoutRecordInput> | bookkeep_record_on_tagsCreateWithoutRecordInput[] | bookkeep_record_on_tagsUncheckedCreateWithoutRecordInput[]
+    connectOrCreate?: bookkeep_record_on_tagsCreateOrConnectWithoutRecordInput | bookkeep_record_on_tagsCreateOrConnectWithoutRecordInput[]
+    upsert?: bookkeep_record_on_tagsUpsertWithWhereUniqueWithoutRecordInput | bookkeep_record_on_tagsUpsertWithWhereUniqueWithoutRecordInput[]
+    createMany?: bookkeep_record_on_tagsCreateManyRecordInputEnvelope
+    set?: bookkeep_record_on_tagsWhereUniqueInput | bookkeep_record_on_tagsWhereUniqueInput[]
+    disconnect?: bookkeep_record_on_tagsWhereUniqueInput | bookkeep_record_on_tagsWhereUniqueInput[]
+    delete?: bookkeep_record_on_tagsWhereUniqueInput | bookkeep_record_on_tagsWhereUniqueInput[]
+    connect?: bookkeep_record_on_tagsWhereUniqueInput | bookkeep_record_on_tagsWhereUniqueInput[]
+    update?: bookkeep_record_on_tagsUpdateWithWhereUniqueWithoutRecordInput | bookkeep_record_on_tagsUpdateWithWhereUniqueWithoutRecordInput[]
+    updateMany?: bookkeep_record_on_tagsUpdateManyWithWhereWithoutRecordInput | bookkeep_record_on_tagsUpdateManyWithWhereWithoutRecordInput[]
+    deleteMany?: bookkeep_record_on_tagsScalarWhereInput | bookkeep_record_on_tagsScalarWhereInput[]
+  }
+
+  export type bookkeep_record_on_tagsUncheckedUpdateManyWithoutRecordNestedInput = {
+    create?: XOR<bookkeep_record_on_tagsCreateWithoutRecordInput, bookkeep_record_on_tagsUncheckedCreateWithoutRecordInput> | bookkeep_record_on_tagsCreateWithoutRecordInput[] | bookkeep_record_on_tagsUncheckedCreateWithoutRecordInput[]
+    connectOrCreate?: bookkeep_record_on_tagsCreateOrConnectWithoutRecordInput | bookkeep_record_on_tagsCreateOrConnectWithoutRecordInput[]
+    upsert?: bookkeep_record_on_tagsUpsertWithWhereUniqueWithoutRecordInput | bookkeep_record_on_tagsUpsertWithWhereUniqueWithoutRecordInput[]
+    createMany?: bookkeep_record_on_tagsCreateManyRecordInputEnvelope
+    set?: bookkeep_record_on_tagsWhereUniqueInput | bookkeep_record_on_tagsWhereUniqueInput[]
+    disconnect?: bookkeep_record_on_tagsWhereUniqueInput | bookkeep_record_on_tagsWhereUniqueInput[]
+    delete?: bookkeep_record_on_tagsWhereUniqueInput | bookkeep_record_on_tagsWhereUniqueInput[]
+    connect?: bookkeep_record_on_tagsWhereUniqueInput | bookkeep_record_on_tagsWhereUniqueInput[]
+    update?: bookkeep_record_on_tagsUpdateWithWhereUniqueWithoutRecordInput | bookkeep_record_on_tagsUpdateWithWhereUniqueWithoutRecordInput[]
+    updateMany?: bookkeep_record_on_tagsUpdateManyWithWhereWithoutRecordInput | bookkeep_record_on_tagsUpdateManyWithWhereWithoutRecordInput[]
+    deleteMany?: bookkeep_record_on_tagsScalarWhereInput | bookkeep_record_on_tagsScalarWhereInput[]
+  }
+
+  export type bookkeep_record_on_tagsCreateNestedManyWithoutTagInput = {
+    create?: XOR<bookkeep_record_on_tagsCreateWithoutTagInput, bookkeep_record_on_tagsUncheckedCreateWithoutTagInput> | bookkeep_record_on_tagsCreateWithoutTagInput[] | bookkeep_record_on_tagsUncheckedCreateWithoutTagInput[]
+    connectOrCreate?: bookkeep_record_on_tagsCreateOrConnectWithoutTagInput | bookkeep_record_on_tagsCreateOrConnectWithoutTagInput[]
+    createMany?: bookkeep_record_on_tagsCreateManyTagInputEnvelope
+    connect?: bookkeep_record_on_tagsWhereUniqueInput | bookkeep_record_on_tagsWhereUniqueInput[]
+  }
+
+  export type bookkeep_record_on_tagsUncheckedCreateNestedManyWithoutTagInput = {
+    create?: XOR<bookkeep_record_on_tagsCreateWithoutTagInput, bookkeep_record_on_tagsUncheckedCreateWithoutTagInput> | bookkeep_record_on_tagsCreateWithoutTagInput[] | bookkeep_record_on_tagsUncheckedCreateWithoutTagInput[]
+    connectOrCreate?: bookkeep_record_on_tagsCreateOrConnectWithoutTagInput | bookkeep_record_on_tagsCreateOrConnectWithoutTagInput[]
+    createMany?: bookkeep_record_on_tagsCreateManyTagInputEnvelope
+    connect?: bookkeep_record_on_tagsWhereUniqueInput | bookkeep_record_on_tagsWhereUniqueInput[]
+  }
+
+  export type bookkeep_record_on_tagsUpdateManyWithoutTagNestedInput = {
+    create?: XOR<bookkeep_record_on_tagsCreateWithoutTagInput, bookkeep_record_on_tagsUncheckedCreateWithoutTagInput> | bookkeep_record_on_tagsCreateWithoutTagInput[] | bookkeep_record_on_tagsUncheckedCreateWithoutTagInput[]
+    connectOrCreate?: bookkeep_record_on_tagsCreateOrConnectWithoutTagInput | bookkeep_record_on_tagsCreateOrConnectWithoutTagInput[]
+    upsert?: bookkeep_record_on_tagsUpsertWithWhereUniqueWithoutTagInput | bookkeep_record_on_tagsUpsertWithWhereUniqueWithoutTagInput[]
+    createMany?: bookkeep_record_on_tagsCreateManyTagInputEnvelope
+    set?: bookkeep_record_on_tagsWhereUniqueInput | bookkeep_record_on_tagsWhereUniqueInput[]
+    disconnect?: bookkeep_record_on_tagsWhereUniqueInput | bookkeep_record_on_tagsWhereUniqueInput[]
+    delete?: bookkeep_record_on_tagsWhereUniqueInput | bookkeep_record_on_tagsWhereUniqueInput[]
+    connect?: bookkeep_record_on_tagsWhereUniqueInput | bookkeep_record_on_tagsWhereUniqueInput[]
+    update?: bookkeep_record_on_tagsUpdateWithWhereUniqueWithoutTagInput | bookkeep_record_on_tagsUpdateWithWhereUniqueWithoutTagInput[]
+    updateMany?: bookkeep_record_on_tagsUpdateManyWithWhereWithoutTagInput | bookkeep_record_on_tagsUpdateManyWithWhereWithoutTagInput[]
+    deleteMany?: bookkeep_record_on_tagsScalarWhereInput | bookkeep_record_on_tagsScalarWhereInput[]
+  }
+
+  export type bookkeep_record_on_tagsUncheckedUpdateManyWithoutTagNestedInput = {
+    create?: XOR<bookkeep_record_on_tagsCreateWithoutTagInput, bookkeep_record_on_tagsUncheckedCreateWithoutTagInput> | bookkeep_record_on_tagsCreateWithoutTagInput[] | bookkeep_record_on_tagsUncheckedCreateWithoutTagInput[]
+    connectOrCreate?: bookkeep_record_on_tagsCreateOrConnectWithoutTagInput | bookkeep_record_on_tagsCreateOrConnectWithoutTagInput[]
+    upsert?: bookkeep_record_on_tagsUpsertWithWhereUniqueWithoutTagInput | bookkeep_record_on_tagsUpsertWithWhereUniqueWithoutTagInput[]
+    createMany?: bookkeep_record_on_tagsCreateManyTagInputEnvelope
+    set?: bookkeep_record_on_tagsWhereUniqueInput | bookkeep_record_on_tagsWhereUniqueInput[]
+    disconnect?: bookkeep_record_on_tagsWhereUniqueInput | bookkeep_record_on_tagsWhereUniqueInput[]
+    delete?: bookkeep_record_on_tagsWhereUniqueInput | bookkeep_record_on_tagsWhereUniqueInput[]
+    connect?: bookkeep_record_on_tagsWhereUniqueInput | bookkeep_record_on_tagsWhereUniqueInput[]
+    update?: bookkeep_record_on_tagsUpdateWithWhereUniqueWithoutTagInput | bookkeep_record_on_tagsUpdateWithWhereUniqueWithoutTagInput[]
+    updateMany?: bookkeep_record_on_tagsUpdateManyWithWhereWithoutTagInput | bookkeep_record_on_tagsUpdateManyWithWhereWithoutTagInput[]
+    deleteMany?: bookkeep_record_on_tagsScalarWhereInput | bookkeep_record_on_tagsScalarWhereInput[]
+  }
+
+  export type bookkeep_recordCreateNestedOneWithoutTagsInput = {
+    create?: XOR<bookkeep_recordCreateWithoutTagsInput, bookkeep_recordUncheckedCreateWithoutTagsInput>
+    connectOrCreate?: bookkeep_recordCreateOrConnectWithoutTagsInput
+    connect?: bookkeep_recordWhereUniqueInput
+  }
+
+  export type bookkeep_tagCreateNestedOneWithoutRecordsInput = {
+    create?: XOR<bookkeep_tagCreateWithoutRecordsInput, bookkeep_tagUncheckedCreateWithoutRecordsInput>
+    connectOrCreate?: bookkeep_tagCreateOrConnectWithoutRecordsInput
+    connect?: bookkeep_tagWhereUniqueInput
+  }
+
+  export type bookkeep_recordUpdateOneRequiredWithoutTagsNestedInput = {
+    create?: XOR<bookkeep_recordCreateWithoutTagsInput, bookkeep_recordUncheckedCreateWithoutTagsInput>
+    connectOrCreate?: bookkeep_recordCreateOrConnectWithoutTagsInput
+    upsert?: bookkeep_recordUpsertWithoutTagsInput
+    connect?: bookkeep_recordWhereUniqueInput
+    update?: XOR<XOR<bookkeep_recordUpdateToOneWithWhereWithoutTagsInput, bookkeep_recordUpdateWithoutTagsInput>, bookkeep_recordUncheckedUpdateWithoutTagsInput>
+  }
+
+  export type bookkeep_tagUpdateOneRequiredWithoutRecordsNestedInput = {
+    create?: XOR<bookkeep_tagCreateWithoutRecordsInput, bookkeep_tagUncheckedCreateWithoutRecordsInput>
+    connectOrCreate?: bookkeep_tagCreateOrConnectWithoutRecordsInput
+    upsert?: bookkeep_tagUpsertWithoutRecordsInput
+    connect?: bookkeep_tagWhereUniqueInput
+    update?: XOR<XOR<bookkeep_tagUpdateToOneWithWhereWithoutRecordsInput, bookkeep_tagUpdateWithoutRecordsInput>, bookkeep_tagUncheckedUpdateWithoutRecordsInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -21485,6 +25667,39 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedEnumbookkeep_typeFilter<$PrismaModel = never> = {
+    equals?: $Enums.bookkeep_type | Enumbookkeep_typeFieldRefInput<$PrismaModel>
+    in?: $Enums.bookkeep_type[]
+    notIn?: $Enums.bookkeep_type[]
+    not?: NestedEnumbookkeep_typeFilter<$PrismaModel> | $Enums.bookkeep_type
+  }
+
+  export type NestedEnumbookkeep_typeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.bookkeep_type | Enumbookkeep_typeFieldRefInput<$PrismaModel>
+    in?: $Enums.bookkeep_type[]
+    notIn?: $Enums.bookkeep_type[]
+    not?: NestedEnumbookkeep_typeWithAggregatesFilter<$PrismaModel> | $Enums.bookkeep_type
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumbookkeep_typeFilter<$PrismaModel>
+    _max?: NestedEnumbookkeep_typeFilter<$PrismaModel>
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
   export type sys_accountCreateWithoutUserInput = {
     uid?: string
     createdAt?: Date | string
@@ -21633,6 +25848,42 @@ export namespace Prisma {
 
   export type blog_commentsCreateManyUserInputEnvelope = {
     data: blog_commentsCreateManyUserInput | blog_commentsCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type bookkeep_recordCreateWithoutUserInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    type: $Enums.bookkeep_type
+    amount: number
+    category: string
+    description?: string | null
+    date: Date | string
+    media?: sys_mediaCreateNestedOneWithoutBookkeep_recordsInput
+    tags?: bookkeep_record_on_tagsCreateNestedManyWithoutRecordInput
+  }
+
+  export type bookkeep_recordUncheckedCreateWithoutUserInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    type: $Enums.bookkeep_type
+    amount: number
+    category: string
+    description?: string | null
+    date: Date | string
+    mediaId?: string | null
+    tags?: bookkeep_record_on_tagsUncheckedCreateNestedManyWithoutRecordInput
+  }
+
+  export type bookkeep_recordCreateOrConnectWithoutUserInput = {
+    where: bookkeep_recordWhereUniqueInput
+    create: XOR<bookkeep_recordCreateWithoutUserInput, bookkeep_recordUncheckedCreateWithoutUserInput>
+  }
+
+  export type bookkeep_recordCreateManyUserInputEnvelope = {
+    data: bookkeep_recordCreateManyUserInput | bookkeep_recordCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -21804,6 +26055,38 @@ export namespace Prisma {
     postId?: StringFilter<"blog_comments"> | string
   }
 
+  export type bookkeep_recordUpsertWithWhereUniqueWithoutUserInput = {
+    where: bookkeep_recordWhereUniqueInput
+    update: XOR<bookkeep_recordUpdateWithoutUserInput, bookkeep_recordUncheckedUpdateWithoutUserInput>
+    create: XOR<bookkeep_recordCreateWithoutUserInput, bookkeep_recordUncheckedCreateWithoutUserInput>
+  }
+
+  export type bookkeep_recordUpdateWithWhereUniqueWithoutUserInput = {
+    where: bookkeep_recordWhereUniqueInput
+    data: XOR<bookkeep_recordUpdateWithoutUserInput, bookkeep_recordUncheckedUpdateWithoutUserInput>
+  }
+
+  export type bookkeep_recordUpdateManyWithWhereWithoutUserInput = {
+    where: bookkeep_recordScalarWhereInput
+    data: XOR<bookkeep_recordUpdateManyMutationInput, bookkeep_recordUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type bookkeep_recordScalarWhereInput = {
+    AND?: bookkeep_recordScalarWhereInput | bookkeep_recordScalarWhereInput[]
+    OR?: bookkeep_recordScalarWhereInput[]
+    NOT?: bookkeep_recordScalarWhereInput | bookkeep_recordScalarWhereInput[]
+    uid?: StringFilter<"bookkeep_record"> | string
+    createdAt?: DateTimeFilter<"bookkeep_record"> | Date | string
+    updatedAt?: DateTimeFilter<"bookkeep_record"> | Date | string
+    type?: Enumbookkeep_typeFilter<"bookkeep_record"> | $Enums.bookkeep_type
+    amount?: FloatFilter<"bookkeep_record"> | number
+    category?: StringFilter<"bookkeep_record"> | string
+    description?: StringNullableFilter<"bookkeep_record"> | string | null
+    date?: DateTimeFilter<"bookkeep_record"> | Date | string
+    userId?: StringFilter<"bookkeep_record"> | string
+    mediaId?: StringNullableFilter<"bookkeep_record"> | string | null
+  }
+
   export type sys_userCreateWithoutAccountsInput = {
     uid?: string
     createdAt?: Date | string
@@ -21815,6 +26098,7 @@ export namespace Prisma {
     user_media?: sys_user_mediaCreateNestedManyWithoutUserInput
     blog_posts?: blog_postsCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsCreateNestedManyWithoutUserInput
+    bookkeep_records?: bookkeep_recordCreateNestedManyWithoutUserInput
   }
 
   export type sys_userUncheckedCreateWithoutAccountsInput = {
@@ -21828,6 +26112,7 @@ export namespace Prisma {
     user_media?: sys_user_mediaUncheckedCreateNestedManyWithoutUserInput
     blog_posts?: blog_postsUncheckedCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsUncheckedCreateNestedManyWithoutUserInput
+    bookkeep_records?: bookkeep_recordUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type sys_userCreateOrConnectWithoutAccountsInput = {
@@ -21857,6 +26142,7 @@ export namespace Prisma {
     user_media?: sys_user_mediaUpdateManyWithoutUserNestedInput
     blog_posts?: blog_postsUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUpdateManyWithoutUserNestedInput
+    bookkeep_records?: bookkeep_recordUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userUncheckedUpdateWithoutAccountsInput = {
@@ -21870,6 +26156,7 @@ export namespace Prisma {
     user_media?: sys_user_mediaUncheckedUpdateManyWithoutUserNestedInput
     blog_posts?: blog_postsUncheckedUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUncheckedUpdateManyWithoutUserNestedInput
+    bookkeep_records?: bookkeep_recordUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type sys_menuCreateWithoutChildrenInput = {
@@ -22103,6 +26390,7 @@ export namespace Prisma {
     user_media?: sys_user_mediaCreateNestedManyWithoutUserInput
     blog_posts?: blog_postsCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsCreateNestedManyWithoutUserInput
+    bookkeep_records?: bookkeep_recordCreateNestedManyWithoutUserInput
   }
 
   export type sys_userUncheckedCreateWithoutBan_menusInput = {
@@ -22116,6 +26404,7 @@ export namespace Prisma {
     user_media?: sys_user_mediaUncheckedCreateNestedManyWithoutUserInput
     blog_posts?: blog_postsUncheckedCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsUncheckedCreateNestedManyWithoutUserInput
+    bookkeep_records?: bookkeep_recordUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type sys_userCreateOrConnectWithoutBan_menusInput = {
@@ -22178,6 +26467,7 @@ export namespace Prisma {
     user_media?: sys_user_mediaUpdateManyWithoutUserNestedInput
     blog_posts?: blog_postsUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUpdateManyWithoutUserNestedInput
+    bookkeep_records?: bookkeep_recordUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userUncheckedUpdateWithoutBan_menusInput = {
@@ -22191,6 +26481,7 @@ export namespace Prisma {
     user_media?: sys_user_mediaUncheckedUpdateManyWithoutUserNestedInput
     blog_posts?: blog_postsUncheckedUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUncheckedUpdateManyWithoutUserNestedInput
+    bookkeep_records?: bookkeep_recordUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type sys_menuUpsertWithoutUser_bansInput = {
@@ -22395,6 +26686,7 @@ export namespace Prisma {
     user_media?: sys_user_mediaCreateNestedManyWithoutUserInput
     blog_posts?: blog_postsCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsCreateNestedManyWithoutUserInput
+    bookkeep_records?: bookkeep_recordCreateNestedManyWithoutUserInput
   }
 
   export type sys_userUncheckedCreateWithoutRoleInput = {
@@ -22408,6 +26700,7 @@ export namespace Prisma {
     user_media?: sys_user_mediaUncheckedCreateNestedManyWithoutUserInput
     blog_posts?: blog_postsUncheckedCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsUncheckedCreateNestedManyWithoutUserInput
+    bookkeep_records?: bookkeep_recordUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type sys_userCreateOrConnectWithoutRoleInput = {
@@ -22482,6 +26775,42 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type bookkeep_recordCreateWithoutMediaInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    type: $Enums.bookkeep_type
+    amount: number
+    category: string
+    description?: string | null
+    date: Date | string
+    user: sys_userCreateNestedOneWithoutBookkeep_recordsInput
+    tags?: bookkeep_record_on_tagsCreateNestedManyWithoutRecordInput
+  }
+
+  export type bookkeep_recordUncheckedCreateWithoutMediaInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    type: $Enums.bookkeep_type
+    amount: number
+    category: string
+    description?: string | null
+    date: Date | string
+    userId: string
+    tags?: bookkeep_record_on_tagsUncheckedCreateNestedManyWithoutRecordInput
+  }
+
+  export type bookkeep_recordCreateOrConnectWithoutMediaInput = {
+    where: bookkeep_recordWhereUniqueInput
+    create: XOR<bookkeep_recordCreateWithoutMediaInput, bookkeep_recordUncheckedCreateWithoutMediaInput>
+  }
+
+  export type bookkeep_recordCreateManyMediaInputEnvelope = {
+    data: bookkeep_recordCreateManyMediaInput | bookkeep_recordCreateManyMediaInput[]
+    skipDuplicates?: boolean
+  }
+
   export type sys_user_mediaUpsertWithWhereUniqueWithoutMediaInput = {
     where: sys_user_mediaWhereUniqueInput
     update: XOR<sys_user_mediaUpdateWithoutMediaInput, sys_user_mediaUncheckedUpdateWithoutMediaInput>
@@ -22498,6 +26827,22 @@ export namespace Prisma {
     data: XOR<sys_user_mediaUpdateManyMutationInput, sys_user_mediaUncheckedUpdateManyWithoutMediaInput>
   }
 
+  export type bookkeep_recordUpsertWithWhereUniqueWithoutMediaInput = {
+    where: bookkeep_recordWhereUniqueInput
+    update: XOR<bookkeep_recordUpdateWithoutMediaInput, bookkeep_recordUncheckedUpdateWithoutMediaInput>
+    create: XOR<bookkeep_recordCreateWithoutMediaInput, bookkeep_recordUncheckedCreateWithoutMediaInput>
+  }
+
+  export type bookkeep_recordUpdateWithWhereUniqueWithoutMediaInput = {
+    where: bookkeep_recordWhereUniqueInput
+    data: XOR<bookkeep_recordUpdateWithoutMediaInput, bookkeep_recordUncheckedUpdateWithoutMediaInput>
+  }
+
+  export type bookkeep_recordUpdateManyWithWhereWithoutMediaInput = {
+    where: bookkeep_recordScalarWhereInput
+    data: XOR<bookkeep_recordUpdateManyMutationInput, bookkeep_recordUncheckedUpdateManyWithoutMediaInput>
+  }
+
   export type sys_userCreateWithoutUser_mediaInput = {
     uid?: string
     createdAt?: Date | string
@@ -22509,6 +26854,7 @@ export namespace Prisma {
     ban_menus?: sys_user_ban_menuCreateNestedManyWithoutUserInput
     blog_posts?: blog_postsCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsCreateNestedManyWithoutUserInput
+    bookkeep_records?: bookkeep_recordCreateNestedManyWithoutUserInput
   }
 
   export type sys_userUncheckedCreateWithoutUser_mediaInput = {
@@ -22522,6 +26868,7 @@ export namespace Prisma {
     ban_menus?: sys_user_ban_menuUncheckedCreateNestedManyWithoutUserInput
     blog_posts?: blog_postsUncheckedCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsUncheckedCreateNestedManyWithoutUserInput
+    bookkeep_records?: bookkeep_recordUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type sys_userCreateOrConnectWithoutUser_mediaInput = {
@@ -22547,6 +26894,7 @@ export namespace Prisma {
     width?: number | null
     height?: number | null
     duration?: number | null
+    bookkeep_records?: bookkeep_recordCreateNestedManyWithoutMediaInput
   }
 
   export type sys_mediaUncheckedCreateWithoutUsersInput = {
@@ -22567,6 +26915,7 @@ export namespace Prisma {
     width?: number | null
     height?: number | null
     duration?: number | null
+    bookkeep_records?: bookkeep_recordUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type sys_mediaCreateOrConnectWithoutUsersInput = {
@@ -22596,6 +26945,7 @@ export namespace Prisma {
     ban_menus?: sys_user_ban_menuUpdateManyWithoutUserNestedInput
     blog_posts?: blog_postsUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUpdateManyWithoutUserNestedInput
+    bookkeep_records?: bookkeep_recordUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userUncheckedUpdateWithoutUser_mediaInput = {
@@ -22609,6 +26959,7 @@ export namespace Prisma {
     ban_menus?: sys_user_ban_menuUncheckedUpdateManyWithoutUserNestedInput
     blog_posts?: blog_postsUncheckedUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUncheckedUpdateManyWithoutUserNestedInput
+    bookkeep_records?: bookkeep_recordUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type sys_mediaUpsertWithoutUsersInput = {
@@ -22640,6 +26991,7 @@ export namespace Prisma {
     width?: NullableIntFieldUpdateOperationsInput | number | null
     height?: NullableIntFieldUpdateOperationsInput | number | null
     duration?: NullableIntFieldUpdateOperationsInput | number | null
+    bookkeep_records?: bookkeep_recordUpdateManyWithoutMediaNestedInput
   }
 
   export type sys_mediaUncheckedUpdateWithoutUsersInput = {
@@ -22660,6 +27012,7 @@ export namespace Prisma {
     width?: NullableIntFieldUpdateOperationsInput | number | null
     height?: NullableIntFieldUpdateOperationsInput | number | null
     duration?: NullableIntFieldUpdateOperationsInput | number | null
+    bookkeep_records?: bookkeep_recordUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type blog_postsCreateWithoutCategoriesInput = {
@@ -22744,6 +27097,7 @@ export namespace Prisma {
     ban_menus?: sys_user_ban_menuCreateNestedManyWithoutUserInput
     user_media?: sys_user_mediaCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsCreateNestedManyWithoutUserInput
+    bookkeep_records?: bookkeep_recordCreateNestedManyWithoutUserInput
   }
 
   export type sys_userUncheckedCreateWithoutBlog_postsInput = {
@@ -22757,6 +27111,7 @@ export namespace Prisma {
     ban_menus?: sys_user_ban_menuUncheckedCreateNestedManyWithoutUserInput
     user_media?: sys_user_mediaUncheckedCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsUncheckedCreateNestedManyWithoutUserInput
+    bookkeep_records?: bookkeep_recordUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type sys_userCreateOrConnectWithoutBlog_postsInput = {
@@ -22859,6 +27214,7 @@ export namespace Prisma {
     ban_menus?: sys_user_ban_menuUpdateManyWithoutUserNestedInput
     user_media?: sys_user_mediaUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUpdateManyWithoutUserNestedInput
+    bookkeep_records?: bookkeep_recordUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userUncheckedUpdateWithoutBlog_postsInput = {
@@ -22872,6 +27228,7 @@ export namespace Prisma {
     ban_menus?: sys_user_ban_menuUncheckedUpdateManyWithoutUserNestedInput
     user_media?: sys_user_mediaUncheckedUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUncheckedUpdateManyWithoutUserNestedInput
+    bookkeep_records?: bookkeep_recordUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type blog_posts_on_tagsUpsertWithWhereUniqueWithoutPostsInput = {
@@ -23067,6 +27424,7 @@ export namespace Prisma {
     ban_menus?: sys_user_ban_menuCreateNestedManyWithoutUserInput
     user_media?: sys_user_mediaCreateNestedManyWithoutUserInput
     blog_posts?: blog_postsCreateNestedManyWithoutUserInput
+    bookkeep_records?: bookkeep_recordCreateNestedManyWithoutUserInput
   }
 
   export type sys_userUncheckedCreateWithoutBlog_commentsInput = {
@@ -23080,6 +27438,7 @@ export namespace Prisma {
     ban_menus?: sys_user_ban_menuUncheckedCreateNestedManyWithoutUserInput
     user_media?: sys_user_mediaUncheckedCreateNestedManyWithoutUserInput
     blog_posts?: blog_postsUncheckedCreateNestedManyWithoutUserInput
+    bookkeep_records?: bookkeep_recordUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type sys_userCreateOrConnectWithoutBlog_commentsInput = {
@@ -23138,6 +27497,7 @@ export namespace Prisma {
     ban_menus?: sys_user_ban_menuUpdateManyWithoutUserNestedInput
     user_media?: sys_user_mediaUpdateManyWithoutUserNestedInput
     blog_posts?: blog_postsUpdateManyWithoutUserNestedInput
+    bookkeep_records?: bookkeep_recordUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userUncheckedUpdateWithoutBlog_commentsInput = {
@@ -23151,6 +27511,7 @@ export namespace Prisma {
     ban_menus?: sys_user_ban_menuUncheckedUpdateManyWithoutUserNestedInput
     user_media?: sys_user_mediaUncheckedUpdateManyWithoutUserNestedInput
     blog_posts?: blog_postsUncheckedUpdateManyWithoutUserNestedInput
+    bookkeep_records?: bookkeep_recordUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type blog_postsUpsertWithoutCommentsInput = {
@@ -23188,6 +27549,366 @@ export namespace Prisma {
     tags?: blog_posts_on_tagsUncheckedUpdateManyWithoutPostsNestedInput
   }
 
+  export type sys_userCreateWithoutBookkeep_recordsInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+    account: string
+    accounts?: sys_accountCreateNestedManyWithoutUserInput
+    role?: sys_roleCreateNestedOneWithoutUsersInput
+    ban_menus?: sys_user_ban_menuCreateNestedManyWithoutUserInput
+    user_media?: sys_user_mediaCreateNestedManyWithoutUserInput
+    blog_posts?: blog_postsCreateNestedManyWithoutUserInput
+    blog_comments?: blog_commentsCreateNestedManyWithoutUserInput
+  }
+
+  export type sys_userUncheckedCreateWithoutBookkeep_recordsInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+    roleId?: string | null
+    account: string
+    accounts?: sys_accountUncheckedCreateNestedManyWithoutUserInput
+    ban_menus?: sys_user_ban_menuUncheckedCreateNestedManyWithoutUserInput
+    user_media?: sys_user_mediaUncheckedCreateNestedManyWithoutUserInput
+    blog_posts?: blog_postsUncheckedCreateNestedManyWithoutUserInput
+    blog_comments?: blog_commentsUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type sys_userCreateOrConnectWithoutBookkeep_recordsInput = {
+    where: sys_userWhereUniqueInput
+    create: XOR<sys_userCreateWithoutBookkeep_recordsInput, sys_userUncheckedCreateWithoutBookkeep_recordsInput>
+  }
+
+  export type sys_mediaCreateWithoutBookkeep_recordsInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+    size: number
+    hash: string
+    mimeType: string
+    extension: string
+    path: string
+    url?: string | null
+    isWechat?: boolean
+    wechat_id?: string | null
+    enabled?: boolean
+    type?: string
+    width?: number | null
+    height?: number | null
+    duration?: number | null
+    users?: sys_user_mediaCreateNestedManyWithoutMediaInput
+  }
+
+  export type sys_mediaUncheckedCreateWithoutBookkeep_recordsInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+    size: number
+    hash: string
+    mimeType: string
+    extension: string
+    path: string
+    url?: string | null
+    isWechat?: boolean
+    wechat_id?: string | null
+    enabled?: boolean
+    type?: string
+    width?: number | null
+    height?: number | null
+    duration?: number | null
+    users?: sys_user_mediaUncheckedCreateNestedManyWithoutMediaInput
+  }
+
+  export type sys_mediaCreateOrConnectWithoutBookkeep_recordsInput = {
+    where: sys_mediaWhereUniqueInput
+    create: XOR<sys_mediaCreateWithoutBookkeep_recordsInput, sys_mediaUncheckedCreateWithoutBookkeep_recordsInput>
+  }
+
+  export type bookkeep_record_on_tagsCreateWithoutRecordInput = {
+    tag: bookkeep_tagCreateNestedOneWithoutRecordsInput
+  }
+
+  export type bookkeep_record_on_tagsUncheckedCreateWithoutRecordInput = {
+    tagId: string
+  }
+
+  export type bookkeep_record_on_tagsCreateOrConnectWithoutRecordInput = {
+    where: bookkeep_record_on_tagsWhereUniqueInput
+    create: XOR<bookkeep_record_on_tagsCreateWithoutRecordInput, bookkeep_record_on_tagsUncheckedCreateWithoutRecordInput>
+  }
+
+  export type bookkeep_record_on_tagsCreateManyRecordInputEnvelope = {
+    data: bookkeep_record_on_tagsCreateManyRecordInput | bookkeep_record_on_tagsCreateManyRecordInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type sys_userUpsertWithoutBookkeep_recordsInput = {
+    update: XOR<sys_userUpdateWithoutBookkeep_recordsInput, sys_userUncheckedUpdateWithoutBookkeep_recordsInput>
+    create: XOR<sys_userCreateWithoutBookkeep_recordsInput, sys_userUncheckedCreateWithoutBookkeep_recordsInput>
+    where?: sys_userWhereInput
+  }
+
+  export type sys_userUpdateToOneWithWhereWithoutBookkeep_recordsInput = {
+    where?: sys_userWhereInput
+    data: XOR<sys_userUpdateWithoutBookkeep_recordsInput, sys_userUncheckedUpdateWithoutBookkeep_recordsInput>
+  }
+
+  export type sys_userUpdateWithoutBookkeep_recordsInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    account?: StringFieldUpdateOperationsInput | string
+    accounts?: sys_accountUpdateManyWithoutUserNestedInput
+    role?: sys_roleUpdateOneWithoutUsersNestedInput
+    ban_menus?: sys_user_ban_menuUpdateManyWithoutUserNestedInput
+    user_media?: sys_user_mediaUpdateManyWithoutUserNestedInput
+    blog_posts?: blog_postsUpdateManyWithoutUserNestedInput
+    blog_comments?: blog_commentsUpdateManyWithoutUserNestedInput
+  }
+
+  export type sys_userUncheckedUpdateWithoutBookkeep_recordsInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    account?: StringFieldUpdateOperationsInput | string
+    accounts?: sys_accountUncheckedUpdateManyWithoutUserNestedInput
+    ban_menus?: sys_user_ban_menuUncheckedUpdateManyWithoutUserNestedInput
+    user_media?: sys_user_mediaUncheckedUpdateManyWithoutUserNestedInput
+    blog_posts?: blog_postsUncheckedUpdateManyWithoutUserNestedInput
+    blog_comments?: blog_commentsUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type sys_mediaUpsertWithoutBookkeep_recordsInput = {
+    update: XOR<sys_mediaUpdateWithoutBookkeep_recordsInput, sys_mediaUncheckedUpdateWithoutBookkeep_recordsInput>
+    create: XOR<sys_mediaCreateWithoutBookkeep_recordsInput, sys_mediaUncheckedCreateWithoutBookkeep_recordsInput>
+    where?: sys_mediaWhereInput
+  }
+
+  export type sys_mediaUpdateToOneWithWhereWithoutBookkeep_recordsInput = {
+    where?: sys_mediaWhereInput
+    data: XOR<sys_mediaUpdateWithoutBookkeep_recordsInput, sys_mediaUncheckedUpdateWithoutBookkeep_recordsInput>
+  }
+
+  export type sys_mediaUpdateWithoutBookkeep_recordsInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    hash?: StringFieldUpdateOperationsInput | string
+    mimeType?: StringFieldUpdateOperationsInput | string
+    extension?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    isWechat?: BoolFieldUpdateOperationsInput | boolean
+    wechat_id?: NullableStringFieldUpdateOperationsInput | string | null
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    type?: StringFieldUpdateOperationsInput | string
+    width?: NullableIntFieldUpdateOperationsInput | number | null
+    height?: NullableIntFieldUpdateOperationsInput | number | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    users?: sys_user_mediaUpdateManyWithoutMediaNestedInput
+  }
+
+  export type sys_mediaUncheckedUpdateWithoutBookkeep_recordsInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    hash?: StringFieldUpdateOperationsInput | string
+    mimeType?: StringFieldUpdateOperationsInput | string
+    extension?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    isWechat?: BoolFieldUpdateOperationsInput | boolean
+    wechat_id?: NullableStringFieldUpdateOperationsInput | string | null
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    type?: StringFieldUpdateOperationsInput | string
+    width?: NullableIntFieldUpdateOperationsInput | number | null
+    height?: NullableIntFieldUpdateOperationsInput | number | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    users?: sys_user_mediaUncheckedUpdateManyWithoutMediaNestedInput
+  }
+
+  export type bookkeep_record_on_tagsUpsertWithWhereUniqueWithoutRecordInput = {
+    where: bookkeep_record_on_tagsWhereUniqueInput
+    update: XOR<bookkeep_record_on_tagsUpdateWithoutRecordInput, bookkeep_record_on_tagsUncheckedUpdateWithoutRecordInput>
+    create: XOR<bookkeep_record_on_tagsCreateWithoutRecordInput, bookkeep_record_on_tagsUncheckedCreateWithoutRecordInput>
+  }
+
+  export type bookkeep_record_on_tagsUpdateWithWhereUniqueWithoutRecordInput = {
+    where: bookkeep_record_on_tagsWhereUniqueInput
+    data: XOR<bookkeep_record_on_tagsUpdateWithoutRecordInput, bookkeep_record_on_tagsUncheckedUpdateWithoutRecordInput>
+  }
+
+  export type bookkeep_record_on_tagsUpdateManyWithWhereWithoutRecordInput = {
+    where: bookkeep_record_on_tagsScalarWhereInput
+    data: XOR<bookkeep_record_on_tagsUpdateManyMutationInput, bookkeep_record_on_tagsUncheckedUpdateManyWithoutRecordInput>
+  }
+
+  export type bookkeep_record_on_tagsScalarWhereInput = {
+    AND?: bookkeep_record_on_tagsScalarWhereInput | bookkeep_record_on_tagsScalarWhereInput[]
+    OR?: bookkeep_record_on_tagsScalarWhereInput[]
+    NOT?: bookkeep_record_on_tagsScalarWhereInput | bookkeep_record_on_tagsScalarWhereInput[]
+    recordId?: StringFilter<"bookkeep_record_on_tags"> | string
+    tagId?: StringFilter<"bookkeep_record_on_tags"> | string
+  }
+
+  export type bookkeep_record_on_tagsCreateWithoutTagInput = {
+    record: bookkeep_recordCreateNestedOneWithoutTagsInput
+  }
+
+  export type bookkeep_record_on_tagsUncheckedCreateWithoutTagInput = {
+    recordId: string
+  }
+
+  export type bookkeep_record_on_tagsCreateOrConnectWithoutTagInput = {
+    where: bookkeep_record_on_tagsWhereUniqueInput
+    create: XOR<bookkeep_record_on_tagsCreateWithoutTagInput, bookkeep_record_on_tagsUncheckedCreateWithoutTagInput>
+  }
+
+  export type bookkeep_record_on_tagsCreateManyTagInputEnvelope = {
+    data: bookkeep_record_on_tagsCreateManyTagInput | bookkeep_record_on_tagsCreateManyTagInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type bookkeep_record_on_tagsUpsertWithWhereUniqueWithoutTagInput = {
+    where: bookkeep_record_on_tagsWhereUniqueInput
+    update: XOR<bookkeep_record_on_tagsUpdateWithoutTagInput, bookkeep_record_on_tagsUncheckedUpdateWithoutTagInput>
+    create: XOR<bookkeep_record_on_tagsCreateWithoutTagInput, bookkeep_record_on_tagsUncheckedCreateWithoutTagInput>
+  }
+
+  export type bookkeep_record_on_tagsUpdateWithWhereUniqueWithoutTagInput = {
+    where: bookkeep_record_on_tagsWhereUniqueInput
+    data: XOR<bookkeep_record_on_tagsUpdateWithoutTagInput, bookkeep_record_on_tagsUncheckedUpdateWithoutTagInput>
+  }
+
+  export type bookkeep_record_on_tagsUpdateManyWithWhereWithoutTagInput = {
+    where: bookkeep_record_on_tagsScalarWhereInput
+    data: XOR<bookkeep_record_on_tagsUpdateManyMutationInput, bookkeep_record_on_tagsUncheckedUpdateManyWithoutTagInput>
+  }
+
+  export type bookkeep_recordCreateWithoutTagsInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    type: $Enums.bookkeep_type
+    amount: number
+    category: string
+    description?: string | null
+    date: Date | string
+    user: sys_userCreateNestedOneWithoutBookkeep_recordsInput
+    media?: sys_mediaCreateNestedOneWithoutBookkeep_recordsInput
+  }
+
+  export type bookkeep_recordUncheckedCreateWithoutTagsInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    type: $Enums.bookkeep_type
+    amount: number
+    category: string
+    description?: string | null
+    date: Date | string
+    userId: string
+    mediaId?: string | null
+  }
+
+  export type bookkeep_recordCreateOrConnectWithoutTagsInput = {
+    where: bookkeep_recordWhereUniqueInput
+    create: XOR<bookkeep_recordCreateWithoutTagsInput, bookkeep_recordUncheckedCreateWithoutTagsInput>
+  }
+
+  export type bookkeep_tagCreateWithoutRecordsInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+  }
+
+  export type bookkeep_tagUncheckedCreateWithoutRecordsInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+  }
+
+  export type bookkeep_tagCreateOrConnectWithoutRecordsInput = {
+    where: bookkeep_tagWhereUniqueInput
+    create: XOR<bookkeep_tagCreateWithoutRecordsInput, bookkeep_tagUncheckedCreateWithoutRecordsInput>
+  }
+
+  export type bookkeep_recordUpsertWithoutTagsInput = {
+    update: XOR<bookkeep_recordUpdateWithoutTagsInput, bookkeep_recordUncheckedUpdateWithoutTagsInput>
+    create: XOR<bookkeep_recordCreateWithoutTagsInput, bookkeep_recordUncheckedCreateWithoutTagsInput>
+    where?: bookkeep_recordWhereInput
+  }
+
+  export type bookkeep_recordUpdateToOneWithWhereWithoutTagsInput = {
+    where?: bookkeep_recordWhereInput
+    data: XOR<bookkeep_recordUpdateWithoutTagsInput, bookkeep_recordUncheckedUpdateWithoutTagsInput>
+  }
+
+  export type bookkeep_recordUpdateWithoutTagsInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: Enumbookkeep_typeFieldUpdateOperationsInput | $Enums.bookkeep_type
+    amount?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: sys_userUpdateOneRequiredWithoutBookkeep_recordsNestedInput
+    media?: sys_mediaUpdateOneWithoutBookkeep_recordsNestedInput
+  }
+
+  export type bookkeep_recordUncheckedUpdateWithoutTagsInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: Enumbookkeep_typeFieldUpdateOperationsInput | $Enums.bookkeep_type
+    amount?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    mediaId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type bookkeep_tagUpsertWithoutRecordsInput = {
+    update: XOR<bookkeep_tagUpdateWithoutRecordsInput, bookkeep_tagUncheckedUpdateWithoutRecordsInput>
+    create: XOR<bookkeep_tagCreateWithoutRecordsInput, bookkeep_tagUncheckedCreateWithoutRecordsInput>
+    where?: bookkeep_tagWhereInput
+  }
+
+  export type bookkeep_tagUpdateToOneWithWhereWithoutRecordsInput = {
+    where?: bookkeep_tagWhereInput
+    data: XOR<bookkeep_tagUpdateWithoutRecordsInput, bookkeep_tagUncheckedUpdateWithoutRecordsInput>
+  }
+
+  export type bookkeep_tagUpdateWithoutRecordsInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type bookkeep_tagUncheckedUpdateWithoutRecordsInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
   export type sys_accountCreateManyUserInput = {
     uid?: string
     createdAt?: Date | string
@@ -23221,6 +27942,18 @@ export namespace Prisma {
     content: string
     status?: boolean
     postId: string
+  }
+
+  export type bookkeep_recordCreateManyUserInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    type: $Enums.bookkeep_type
+    amount: number
+    category: string
+    description?: string | null
+    date: Date | string
+    mediaId?: string | null
   }
 
   export type sys_accountUpdateWithoutUserInput = {
@@ -23330,6 +28063,44 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
     postId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type bookkeep_recordUpdateWithoutUserInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: Enumbookkeep_typeFieldUpdateOperationsInput | $Enums.bookkeep_type
+    amount?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    media?: sys_mediaUpdateOneWithoutBookkeep_recordsNestedInput
+    tags?: bookkeep_record_on_tagsUpdateManyWithoutRecordNestedInput
+  }
+
+  export type bookkeep_recordUncheckedUpdateWithoutUserInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: Enumbookkeep_typeFieldUpdateOperationsInput | $Enums.bookkeep_type
+    amount?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    mediaId?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: bookkeep_record_on_tagsUncheckedUpdateManyWithoutRecordNestedInput
+  }
+
+  export type bookkeep_recordUncheckedUpdateManyWithoutUserInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: Enumbookkeep_typeFieldUpdateOperationsInput | $Enums.bookkeep_type
+    amount?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    mediaId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type sys_menuCreateManyParentInput = {
@@ -23457,6 +28228,7 @@ export namespace Prisma {
     user_media?: sys_user_mediaUpdateManyWithoutUserNestedInput
     blog_posts?: blog_postsUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUpdateManyWithoutUserNestedInput
+    bookkeep_records?: bookkeep_recordUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userUncheckedUpdateWithoutRoleInput = {
@@ -23470,6 +28242,7 @@ export namespace Prisma {
     user_media?: sys_user_mediaUncheckedUpdateManyWithoutUserNestedInput
     blog_posts?: blog_postsUncheckedUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUncheckedUpdateManyWithoutUserNestedInput
+    bookkeep_records?: bookkeep_recordUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userUncheckedUpdateManyWithoutRoleInput = {
@@ -23484,6 +28257,18 @@ export namespace Prisma {
     userId: string
   }
 
+  export type bookkeep_recordCreateManyMediaInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    type: $Enums.bookkeep_type
+    amount: number
+    category: string
+    description?: string | null
+    date: Date | string
+    userId: string
+  }
+
   export type sys_user_mediaUpdateWithoutMediaInput = {
     user?: sys_userUpdateOneRequiredWithoutUser_mediaNestedInput
   }
@@ -23493,6 +28278,44 @@ export namespace Prisma {
   }
 
   export type sys_user_mediaUncheckedUpdateManyWithoutMediaInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type bookkeep_recordUpdateWithoutMediaInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: Enumbookkeep_typeFieldUpdateOperationsInput | $Enums.bookkeep_type
+    amount?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: sys_userUpdateOneRequiredWithoutBookkeep_recordsNestedInput
+    tags?: bookkeep_record_on_tagsUpdateManyWithoutRecordNestedInput
+  }
+
+  export type bookkeep_recordUncheckedUpdateWithoutMediaInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: Enumbookkeep_typeFieldUpdateOperationsInput | $Enums.bookkeep_type
+    amount?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    tags?: bookkeep_record_on_tagsUncheckedUpdateManyWithoutRecordNestedInput
+  }
+
+  export type bookkeep_recordUncheckedUpdateManyWithoutMediaInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: Enumbookkeep_typeFieldUpdateOperationsInput | $Enums.bookkeep_type
+    amount?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -23606,6 +28429,38 @@ export namespace Prisma {
 
   export type blog_posts_on_tagsUncheckedUpdateManyWithoutTagInput = {
     postsId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type bookkeep_record_on_tagsCreateManyRecordInput = {
+    tagId: string
+  }
+
+  export type bookkeep_record_on_tagsUpdateWithoutRecordInput = {
+    tag?: bookkeep_tagUpdateOneRequiredWithoutRecordsNestedInput
+  }
+
+  export type bookkeep_record_on_tagsUncheckedUpdateWithoutRecordInput = {
+    tagId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type bookkeep_record_on_tagsUncheckedUpdateManyWithoutRecordInput = {
+    tagId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type bookkeep_record_on_tagsCreateManyTagInput = {
+    recordId: string
+  }
+
+  export type bookkeep_record_on_tagsUpdateWithoutTagInput = {
+    record?: bookkeep_recordUpdateOneRequiredWithoutTagsNestedInput
+  }
+
+  export type bookkeep_record_on_tagsUncheckedUpdateWithoutTagInput = {
+    recordId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type bookkeep_record_on_tagsUncheckedUpdateManyWithoutTagInput = {
+    recordId?: StringFieldUpdateOperationsInput | string
   }
 
 

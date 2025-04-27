@@ -10,6 +10,7 @@
     "db:migrate:deploy": "turbo run db:migrate:deploy",
     "db:migrate:dev": "turbo run db:migrate:dev",
     "db:pull": "turbo run db:pull",
+    "dev:bookkeeping": "turbo run dev --filter @web/bookkeeping",
     "dev:api": "turbo run dev --filter @web/api",
     "dev:blog": "turbo run dev --filter @web/blog",
     "dev:study": "turbo run dev --filter @web/study-room & pnpm --filter @web/api run dev study-room",

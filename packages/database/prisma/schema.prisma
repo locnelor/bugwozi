@@ -33,6 +33,7 @@ model sys_user {
   user_media    sys_user_media[]
   blog_posts    blog_posts[]
   blog_comments blog_comments[]
+  bookkeep_records bookkeep_record[]
 }
 
 //系统账号
@@ -125,6 +126,7 @@ model sys_media {
   height    Int? // 图片/视频高度
   duration  Int? // 音视频时长(秒)
   users     sys_user_media[]
+  bookkeep_records bookkeep_record[]
 }
 
 model sys_user_media {
@@ -216,4 +218,50 @@ model blog_announcements {
   content   String   @db.Text // 公告内容
   sort      Int      @default(0) // 排序
   status    Boolean  @default(true)
+}
+
+//*********************** 记账系统
+// 记账类型
+enum bookkeep_type {
+  income
+  expense
+}
+
+// 记账记录
+model bookkeep_record {
+  uid       String        @id @default(uuid())
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @default(now()) @updatedAt
+  type      bookkeep_type
+  amount    Float
+  category  String
+  description String?     @db.Text
+  date      DateTime
+  userId    String
+  user      sys_user      @relation(fields: [userId], references: [uid])
+  mediaId   String?
+  media     sys_media?    @relation(fields: [mediaId], references: [uid])
+  tags      bookkeep_record_on_tags[]
+
+  @@index([userId])
+  @@index([date])
+}
+
+// 记账标签
+model bookkeep_tag {
+  uid       String                    @id @default(uuid())
+  createdAt DateTime                  @default(now())
+  updatedAt DateTime                  @default(now()) @updatedAt
+  name      String
+  records   bookkeep_record_on_tags[]
+}
+
+// 记账记录标签关联
+model bookkeep_record_on_tags {
+  recordId String
+  tagId    String
+  record   bookkeep_record @relation(fields: [recordId], references: [uid])
+  tag      bookkeep_tag    @relation(fields: [tagId], references: [uid])
+
+  @@id([recordId, tagId])
 }

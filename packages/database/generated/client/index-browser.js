@@ -255,6 +255,31 @@ exports.Prisma.Blog_announcementsScalarFieldEnum = {
   status: 'status'
 };
 
+exports.Prisma.Bookkeep_recordScalarFieldEnum = {
+  uid: 'uid',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  type: 'type',
+  amount: 'amount',
+  category: 'category',
+  description: 'description',
+  date: 'date',
+  userId: 'userId',
+  mediaId: 'mediaId'
+};
+
+exports.Prisma.Bookkeep_tagScalarFieldEnum = {
+  uid: 'uid',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  name: 'name'
+};
+
+exports.Prisma.Bookkeep_record_on_tagsScalarFieldEnum = {
+  recordId: 'recordId',
+  tagId: 'tagId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -362,6 +387,24 @@ exports.Prisma.blog_announcementsOrderByRelevanceFieldEnum = {
   title: 'title',
   content: 'content'
 };
+
+exports.Prisma.bookkeep_recordOrderByRelevanceFieldEnum = {
+  uid: 'uid',
+  category: 'category',
+  description: 'description',
+  userId: 'userId',
+  mediaId: 'mediaId'
+};
+
+exports.Prisma.bookkeep_tagOrderByRelevanceFieldEnum = {
+  uid: 'uid',
+  name: 'name'
+};
+
+exports.Prisma.bookkeep_record_on_tagsOrderByRelevanceFieldEnum = {
+  recordId: 'recordId',
+  tagId: 'tagId'
+};
 exports.sys_account_provider = exports.$Enums.sys_account_provider = {
   we_chat: 'we_chat',
   github: 'github',
@@ -369,6 +412,11 @@ exports.sys_account_provider = exports.$Enums.sys_account_provider = {
   email: 'email',
   phone: 'phone',
   account: 'account'
+};
+
+exports.bookkeep_type = exports.$Enums.bookkeep_type = {
+  income: 'income',
+  expense: 'expense'
 };
 
 exports.Prisma.ModelName = {
@@ -386,7 +434,10 @@ exports.Prisma.ModelName = {
   blog_tag: 'blog_tag',
   blog_comments: 'blog_comments',
   blog_links: 'blog_links',
-  blog_announcements: 'blog_announcements'
+  blog_announcements: 'blog_announcements',
+  bookkeep_record: 'bookkeep_record',
+  bookkeep_tag: 'bookkeep_tag',
+  bookkeep_record_on_tags: 'bookkeep_record_on_tags'
 };
 
 /**
