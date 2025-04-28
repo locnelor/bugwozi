@@ -12,7 +12,7 @@ export class WxService {
   ) {
     // 初始化时测试获取访问令牌
     this.getAccessToken()
-      .then(token => this.logger.log(`微信公众号服务初始化成功，获取到访问令牌：${token.access_token}`))
+      .then(token => this.logger.log(`微信公众号服务初始化成功，获取到访问令牌：`, token))
       .catch(err => this.logger.error(`微信公众号服务初始化失败：${err.message}`, err.stack));
   }
 

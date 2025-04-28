@@ -8,7 +8,7 @@ import { UseGuards } from '@nestjs/common';
 import { BlogArticleGuards, CREATE_POWER, DELETE_POWER, UPDATE_POWER, VIEW_POWER } from '@app/auth-power';
 
 @Resolver(() => BlogAnnouncementsEntity)
-@UseGuards(BlogArticleGuards.GqlAuthGuard)
+@UseGuards(BlogArticleGuards.GqlAuthGuard())
 export class AnnouncementsResolver {
   constructor(private readonly announcementsService: AnnouncementsService) { }
 

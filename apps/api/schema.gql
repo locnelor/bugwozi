@@ -73,16 +73,115 @@ type SysMenuEntity {
 
 type UserPaginationEntity {
   total: Int!
-  page: Int!
-  size: Int!
   data: [SysUserEntity!]!
 }
 
 type RolePaginationEntity {
   total: Int!
-  page: Int!
-  size: Int!
   data: [SysRoleEntity!]!
+}
+
+type BlogCategoriesEntity {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  uid: String!
+  name: String!
+  description: String
+  posts: [BlogPostsEntity!]
+}
+
+type BlogTagEntity {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  uid: String!
+  name: String!
+  description: String
+  blogd: [BlogPostsOnTagsEntity!]
+}
+
+type BlogPostsOnTagsEntity {
+  postsId: String!
+  tagId: String!
+  tag: BlogTagEntity
+  post: BlogPostsEntity
+}
+
+type BlogPostsEntity {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  uid: String!
+  categoriesId: String!
+  title: String!
+  content: String!
+  description: String
+  status: Boolean!
+  userId: String!
+  user: SysUserEntity
+  tags: [BlogPostsOnTagsEntity!]
+  categories: [BlogCategoriesEntity!]
+}
+
+type PostsPaginationEntity {
+  total: Int!
+  data: [BlogPostsEntity!]!
+}
+
+type TagPaginationEntity {
+  total: Int!
+  data: [BlogTagEntity!]!
+}
+
+type CategoriesPaginationEntity {
+  total: Int!
+  data: [BlogCategoriesEntity!]!
+}
+
+type BlogCommentsEntity {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  uid: String!
+  content: String!
+  status: Boolean!
+  userId: String!
+  postId: String!
+  user: SysUserEntity
+  post: BlogPostsEntity
+}
+
+type CommentsPaginationEntity {
+  total: Int!
+  data: [BlogCommentsEntity!]!
+}
+
+type BlogLinksEntity {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  uid: String!
+  name: String!
+  url: String!
+  logo: String
+  sort: Float!
+  status: Boolean!
+}
+
+type LinksPaginationEntity {
+  total: Int!
+  data: [BlogLinksEntity!]!
+}
+
+type BlogAnnouncementsEntity {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  uid: String!
+  title: String!
+  content: String!
+  sort: Float!
+  status: Boolean!
+}
+
+type AnnouncementsPaginationEntity {
+  total: Int!
+  data: [BlogAnnouncementsEntity!]!
 }
 
 type Query {
@@ -96,20 +195,77 @@ type Query {
   roleList(pagination: RolePaginationInput!): RolePaginationEntity!
   findMenuOnRoles(id: String!): [SysMenuOnRoleEntity!]!
   viewer: SysUserEntity!
+  posts(pagination: PostsPaginationInput!): PostsPaginationEntity!
+  post(uid: String!): BlogPostsEntity!
+  tags(pagination: TagPaginationInput!): TagPaginationEntity!
+  tag(uid: String!): BlogTagEntity!
+  categories(pagination: CategoriesPaginationInput!): CategoriesPaginationEntity!
+  category(uid: String!): BlogCategoriesEntity!
+  comments(pagination: CommentsPaginationInput!): CommentsPaginationEntity!
+  comment(uid: String!): BlogCommentsEntity!
+  links(pagination: LinksPaginationInput!): LinksPaginationEntity!
+  link(uid: String!): BlogLinksEntity!
+  announcements(pagination: AnnouncementsPaginationInput!): AnnouncementsPaginationEntity!
+  announcement(uid: String!): BlogAnnouncementsEntity!
 }
 
 input UserPaginationInput {
-  page: Int! = 1
-  size: Int! = 10
+  take: Int! = 1
+  skip: Int! = 10
   name: String
 }
 
 input RolePaginationInput {
-  page: Int! = 1
-  size: Int! = 10
+  take: Int! = 1
+  skip: Int! = 10
   name: String
   status: Boolean
   comment: String
+}
+
+input PostsPaginationInput {
+  take: Int! = 1
+  skip: Int! = 10
+  title: String
+  status: Boolean
+  userId: String
+  categoriesId: String
+}
+
+input TagPaginationInput {
+  take: Int! = 1
+  skip: Int! = 10
+  name: String
+}
+
+input CategoriesPaginationInput {
+  take: Int! = 1
+  skip: Int! = 10
+  name: String
+}
+
+input CommentsPaginationInput {
+  take: Int! = 1
+  skip: Int! = 10
+  content: String
+  status: Boolean
+  userId: String
+  postId: String
+}
+
+input LinksPaginationInput {
+  take: Int! = 1
+  skip: Int! = 10
+  name: String
+  url: String
+  status: Boolean
+}
+
+input AnnouncementsPaginationInput {
+  take: Int! = 1
+  skip: Int! = 10
+  title: String
+  status: Boolean
 }
 
 type Mutation {
@@ -122,6 +278,24 @@ type Mutation {
   assignRole(data: AssignRoleInput!): Int!
   removeRole(uid: String!): SysRoleEntity!
   authAccountLogin(account: String!, password: String!): SysUserEntity!
+  createPost(createPostInput: CreatePostInput!): BlogPostsEntity!
+  updatePost(updatePostInput: UpdatePostInput!): BlogPostsEntity!
+  removePost(uid: String!): BlogPostsEntity!
+  createTag(createTagInput: CreateTagInput!): BlogTagEntity!
+  updateTag(updateTagInput: UpdateTagInput!): BlogTagEntity!
+  removeTag(uid: String!): BlogTagEntity!
+  createCategory(createCategoryInput: CreateCategoryInput!): BlogCategoriesEntity!
+  updateCategory(updateCategoryInput: UpdateCategoryInput!): BlogCategoriesEntity!
+  removeCategory(uid: String!): BlogCategoriesEntity!
+  createComment(createCommentInput: CreateCommentInput!): BlogCommentsEntity!
+  updateComment(updateCommentInput: UpdateCommentInput!): BlogCommentsEntity!
+  removeComment(uid: String!): BlogCommentsEntity!
+  createLink(createLinkInput: CreateLinkInput!): BlogLinksEntity!
+  updateLink(updateLinkInput: UpdateLinkInput!): BlogLinksEntity!
+  removeLink(uid: String!): BlogLinksEntity!
+  createAnnouncement(createAnnouncementInput: CreateAnnouncementInput!): BlogAnnouncementsEntity!
+  updateAnnouncement(updateAnnouncementInput: UpdateAnnouncementInput!): BlogAnnouncementsEntity!
+  removeAnnouncement(uid: String!): BlogAnnouncementsEntity!
 }
 
 input CreateUserInput {
@@ -155,4 +329,90 @@ input UpdateRoleInput {
 input AssignRoleInput {
   roleId: String!
   menuIds: [String!]!
+}
+
+input CreatePostInput {
+  title: String!
+  content: String!
+  description: String
+  status: Boolean!
+  userId: String!
+  categoriesId: String
+}
+
+input UpdatePostInput {
+  title: String
+  content: String
+  description: String
+  status: Boolean
+  userId: String
+  categoriesId: String
+  uid: String!
+}
+
+input CreateTagInput {
+  name: String!
+}
+
+input UpdateTagInput {
+  name: String
+  uid: String!
+}
+
+input CreateCategoryInput {
+  name: String!
+  description: String
+}
+
+input UpdateCategoryInput {
+  name: String
+  description: String
+  uid: String!
+}
+
+input CreateCommentInput {
+  content: String!
+  status: Boolean!
+  userId: String!
+  postId: String!
+}
+
+input UpdateCommentInput {
+  content: String
+  status: Boolean
+  userId: String
+  postId: String
+  uid: String!
+}
+
+input CreateLinkInput {
+  name: String!
+  url: String!
+  logo: String
+  sort: Float! = 0
+  status: Boolean! = true
+}
+
+input UpdateLinkInput {
+  name: String
+  url: String
+  logo: String
+  sort: Float = 0
+  status: Boolean = true
+  uid: String!
+}
+
+input CreateAnnouncementInput {
+  title: String!
+  content: String!
+  sort: Float! = 0
+  status: Boolean! = true
+}
+
+input UpdateAnnouncementInput {
+  title: String
+  content: String
+  sort: Float = 0
+  status: Boolean = true
+  uid: String!
 }

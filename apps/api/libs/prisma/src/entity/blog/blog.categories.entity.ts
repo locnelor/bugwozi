@@ -9,7 +9,7 @@ export class BlogCategoriesEntity extends BaseUEntity implements blog_categories
   name: string;
 
   @Field({ nullable: true })
-  description?: string;
+  description: string;
 
   @Field(() => [BlogPostsEntity], { nullable: true })
   posts?: BlogPostsEntity;

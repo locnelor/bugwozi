@@ -1,8 +1,8 @@
 import { Field, ObjectType } from "@nestjs/graphql";
 import type { blog_comments } from "@pkg/database";
 import { BaseUEntity } from "../base.u.entity";
-import { SysUserEntity } from "../system/sys.user.entity";
 import { BlogPostsEntity } from "./blog.posts.entity";
+import { SysUserEntity } from "../sys";
 
 @ObjectType()
 export class BlogCommentsEntity extends BaseUEntity implements blog_comments {
