@@ -2612,6 +2612,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type Blog_commentsCountOutputType
+   */
+
+  export type Blog_commentsCountOutputType = {
+    replies: number
+  }
+
+  export type Blog_commentsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    replies?: boolean | Blog_commentsCountOutputTypeCountRepliesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Blog_commentsCountOutputType without action
+   */
+  export type Blog_commentsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Blog_commentsCountOutputType
+     */
+    select?: Blog_commentsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Blog_commentsCountOutputType without action
+   */
+  export type Blog_commentsCountOutputTypeCountRepliesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: blog_commentsWhereInput
+  }
+
+
+  /**
    * Count Type Bookkeep_recordCountOutputType
    */
 
@@ -11768,8 +11799,20 @@ export namespace Prisma {
 
   export type AggregateBlog_posts = {
     _count: Blog_postsCountAggregateOutputType | null
+    _avg: Blog_postsAvgAggregateOutputType | null
+    _sum: Blog_postsSumAggregateOutputType | null
     _min: Blog_postsMinAggregateOutputType | null
     _max: Blog_postsMaxAggregateOutputType | null
+  }
+
+  export type Blog_postsAvgAggregateOutputType = {
+    views: number | null
+    likes: number | null
+  }
+
+  export type Blog_postsSumAggregateOutputType = {
+    views: number | null
+    likes: number | null
   }
 
   export type Blog_postsMinAggregateOutputType = {
@@ -11778,9 +11821,16 @@ export namespace Prisma {
     updatedAt: Date | null
     title: string | null
     content: string | null
+    excerpt: string | null
+    coverImage: string | null
     status: boolean | null
+    published: boolean | null
+    publishedAt: Date | null
+    views: number | null
+    likes: number | null
     userId: string | null
     categoriesId: string | null
+    slug: string | null
   }
 
   export type Blog_postsMaxAggregateOutputType = {
@@ -11789,9 +11839,16 @@ export namespace Prisma {
     updatedAt: Date | null
     title: string | null
     content: string | null
+    excerpt: string | null
+    coverImage: string | null
     status: boolean | null
+    published: boolean | null
+    publishedAt: Date | null
+    views: number | null
+    likes: number | null
     userId: string | null
     categoriesId: string | null
+    slug: string | null
   }
 
   export type Blog_postsCountAggregateOutputType = {
@@ -11800,12 +11857,29 @@ export namespace Prisma {
     updatedAt: number
     title: number
     content: number
+    excerpt: number
+    coverImage: number
     status: number
+    published: number
+    publishedAt: number
+    views: number
+    likes: number
     userId: number
     categoriesId: number
+    slug: number
     _all: number
   }
 
+
+  export type Blog_postsAvgAggregateInputType = {
+    views?: true
+    likes?: true
+  }
+
+  export type Blog_postsSumAggregateInputType = {
+    views?: true
+    likes?: true
+  }
 
   export type Blog_postsMinAggregateInputType = {
     uid?: true
@@ -11813,9 +11887,16 @@ export namespace Prisma {
     updatedAt?: true
     title?: true
     content?: true
+    excerpt?: true
+    coverImage?: true
     status?: true
+    published?: true
+    publishedAt?: true
+    views?: true
+    likes?: true
     userId?: true
     categoriesId?: true
+    slug?: true
   }
 
   export type Blog_postsMaxAggregateInputType = {
@@ -11824,9 +11905,16 @@ export namespace Prisma {
     updatedAt?: true
     title?: true
     content?: true
+    excerpt?: true
+    coverImage?: true
     status?: true
+    published?: true
+    publishedAt?: true
+    views?: true
+    likes?: true
     userId?: true
     categoriesId?: true
+    slug?: true
   }
 
   export type Blog_postsCountAggregateInputType = {
@@ -11835,9 +11923,16 @@ export namespace Prisma {
     updatedAt?: true
     title?: true
     content?: true
+    excerpt?: true
+    coverImage?: true
     status?: true
+    published?: true
+    publishedAt?: true
+    views?: true
+    likes?: true
     userId?: true
     categoriesId?: true
+    slug?: true
     _all?: true
   }
 
@@ -11879,6 +11974,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: Blog_postsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Blog_postsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: Blog_postsMinAggregateInputType
@@ -11909,6 +12016,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: Blog_postsCountAggregateInputType | true
+    _avg?: Blog_postsAvgAggregateInputType
+    _sum?: Blog_postsSumAggregateInputType
     _min?: Blog_postsMinAggregateInputType
     _max?: Blog_postsMaxAggregateInputType
   }
@@ -11919,10 +12028,19 @@ export namespace Prisma {
     updatedAt: Date
     title: string
     content: string
+    excerpt: string | null
+    coverImage: string | null
     status: boolean
+    published: boolean
+    publishedAt: Date | null
+    views: number
+    likes: number
     userId: string
     categoriesId: string | null
+    slug: string | null
     _count: Blog_postsCountAggregateOutputType | null
+    _avg: Blog_postsAvgAggregateOutputType | null
+    _sum: Blog_postsSumAggregateOutputType | null
     _min: Blog_postsMinAggregateOutputType | null
     _max: Blog_postsMaxAggregateOutputType | null
   }
@@ -11947,9 +12065,16 @@ export namespace Prisma {
     updatedAt?: boolean
     title?: boolean
     content?: boolean
+    excerpt?: boolean
+    coverImage?: boolean
     status?: boolean
+    published?: boolean
+    publishedAt?: boolean
+    views?: boolean
+    likes?: boolean
     userId?: boolean
     categoriesId?: boolean
+    slug?: boolean
     categories?: boolean | blog_posts$categoriesArgs<ExtArgs>
     user?: boolean | sys_userDefaultArgs<ExtArgs>
     tags?: boolean | blog_posts$tagsArgs<ExtArgs>
@@ -11965,12 +12090,19 @@ export namespace Prisma {
     updatedAt?: boolean
     title?: boolean
     content?: boolean
+    excerpt?: boolean
+    coverImage?: boolean
     status?: boolean
+    published?: boolean
+    publishedAt?: boolean
+    views?: boolean
+    likes?: boolean
     userId?: boolean
     categoriesId?: boolean
+    slug?: boolean
   }
 
-  export type blog_postsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createdAt" | "updatedAt" | "title" | "content" | "status" | "userId" | "categoriesId", ExtArgs["result"]["blog_posts"]>
+  export type blog_postsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createdAt" | "updatedAt" | "title" | "content" | "excerpt" | "coverImage" | "status" | "published" | "publishedAt" | "views" | "likes" | "userId" | "categoriesId" | "slug", ExtArgs["result"]["blog_posts"]>
   export type blog_postsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     categories?: boolean | blog_posts$categoriesArgs<ExtArgs>
     user?: boolean | sys_userDefaultArgs<ExtArgs>
@@ -11993,9 +12125,16 @@ export namespace Prisma {
       updatedAt: Date
       title: string
       content: string
+      excerpt: string | null
+      coverImage: string | null
       status: boolean
+      published: boolean
+      publishedAt: Date | null
+      views: number
+      likes: number
       userId: string
       categoriesId: string | null
+      slug: string | null
     }, ExtArgs["result"]["blog_posts"]>
     composites: {}
   }
@@ -12374,9 +12513,16 @@ export namespace Prisma {
     readonly updatedAt: FieldRef<"blog_posts", 'DateTime'>
     readonly title: FieldRef<"blog_posts", 'String'>
     readonly content: FieldRef<"blog_posts", 'String'>
+    readonly excerpt: FieldRef<"blog_posts", 'String'>
+    readonly coverImage: FieldRef<"blog_posts", 'String'>
     readonly status: FieldRef<"blog_posts", 'Boolean'>
+    readonly published: FieldRef<"blog_posts", 'Boolean'>
+    readonly publishedAt: FieldRef<"blog_posts", 'DateTime'>
+    readonly views: FieldRef<"blog_posts", 'Int'>
+    readonly likes: FieldRef<"blog_posts", 'Int'>
     readonly userId: FieldRef<"blog_posts", 'String'>
     readonly categoriesId: FieldRef<"blog_posts", 'String'>
+    readonly slug: FieldRef<"blog_posts", 'String'>
   }
     
 
@@ -13720,6 +13866,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     name: string | null
+    description: string | null
   }
 
   export type Blog_tagMaxAggregateOutputType = {
@@ -13727,6 +13874,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     name: string | null
+    description: string | null
   }
 
   export type Blog_tagCountAggregateOutputType = {
@@ -13734,6 +13882,7 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     name: number
+    description: number
     _all: number
   }
 
@@ -13743,6 +13892,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     name?: true
+    description?: true
   }
 
   export type Blog_tagMaxAggregateInputType = {
@@ -13750,6 +13900,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     name?: true
+    description?: true
   }
 
   export type Blog_tagCountAggregateInputType = {
@@ -13757,6 +13908,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     name?: true
+    description?: true
     _all?: true
   }
 
@@ -13837,6 +13989,7 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     name: string
+    description: string | null
     _count: Blog_tagCountAggregateOutputType | null
     _min: Blog_tagMinAggregateOutputType | null
     _max: Blog_tagMaxAggregateOutputType | null
@@ -13861,6 +14014,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     name?: boolean
+    description?: boolean
     blogs?: boolean | blog_tag$blogsArgs<ExtArgs>
     _count?: boolean | Blog_tagCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["blog_tag"]>
@@ -13872,9 +14026,10 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     name?: boolean
+    description?: boolean
   }
 
-  export type blog_tagOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createdAt" | "updatedAt" | "name", ExtArgs["result"]["blog_tag"]>
+  export type blog_tagOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createdAt" | "updatedAt" | "name" | "description", ExtArgs["result"]["blog_tag"]>
   export type blog_tagInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     blogs?: boolean | blog_tag$blogsArgs<ExtArgs>
     _count?: boolean | Blog_tagCountOutputTypeDefaultArgs<ExtArgs>
@@ -13890,6 +14045,7 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       name: string
+      description: string | null
     }, ExtArgs["result"]["blog_tag"]>
     composites: {}
   }
@@ -14264,6 +14420,7 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"blog_tag", 'DateTime'>
     readonly updatedAt: FieldRef<"blog_tag", 'DateTime'>
     readonly name: FieldRef<"blog_tag", 'String'>
+    readonly description: FieldRef<"blog_tag", 'String'>
   }
     
 
@@ -14667,6 +14824,7 @@ export namespace Prisma {
     status: boolean | null
     userId: string | null
     postId: string | null
+    parentId: string | null
   }
 
   export type Blog_commentsMaxAggregateOutputType = {
@@ -14677,6 +14835,7 @@ export namespace Prisma {
     status: boolean | null
     userId: string | null
     postId: string | null
+    parentId: string | null
   }
 
   export type Blog_commentsCountAggregateOutputType = {
@@ -14687,6 +14846,7 @@ export namespace Prisma {
     status: number
     userId: number
     postId: number
+    parentId: number
     _all: number
   }
 
@@ -14699,6 +14859,7 @@ export namespace Prisma {
     status?: true
     userId?: true
     postId?: true
+    parentId?: true
   }
 
   export type Blog_commentsMaxAggregateInputType = {
@@ -14709,6 +14870,7 @@ export namespace Prisma {
     status?: true
     userId?: true
     postId?: true
+    parentId?: true
   }
 
   export type Blog_commentsCountAggregateInputType = {
@@ -14719,6 +14881,7 @@ export namespace Prisma {
     status?: true
     userId?: true
     postId?: true
+    parentId?: true
     _all?: true
   }
 
@@ -14802,6 +14965,7 @@ export namespace Prisma {
     status: boolean
     userId: string
     postId: string
+    parentId: string | null
     _count: Blog_commentsCountAggregateOutputType | null
     _min: Blog_commentsMinAggregateOutputType | null
     _max: Blog_commentsMaxAggregateOutputType | null
@@ -14829,8 +14993,12 @@ export namespace Prisma {
     status?: boolean
     userId?: boolean
     postId?: boolean
+    parentId?: boolean
     user?: boolean | sys_userDefaultArgs<ExtArgs>
     post?: boolean | blog_postsDefaultArgs<ExtArgs>
+    parent?: boolean | blog_comments$parentArgs<ExtArgs>
+    replies?: boolean | blog_comments$repliesArgs<ExtArgs>
+    _count?: boolean | Blog_commentsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["blog_comments"]>
 
 
@@ -14843,12 +15011,16 @@ export namespace Prisma {
     status?: boolean
     userId?: boolean
     postId?: boolean
+    parentId?: boolean
   }
 
-  export type blog_commentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createdAt" | "updatedAt" | "content" | "status" | "userId" | "postId", ExtArgs["result"]["blog_comments"]>
+  export type blog_commentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createdAt" | "updatedAt" | "content" | "status" | "userId" | "postId" | "parentId", ExtArgs["result"]["blog_comments"]>
   export type blog_commentsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | sys_userDefaultArgs<ExtArgs>
     post?: boolean | blog_postsDefaultArgs<ExtArgs>
+    parent?: boolean | blog_comments$parentArgs<ExtArgs>
+    replies?: boolean | blog_comments$repliesArgs<ExtArgs>
+    _count?: boolean | Blog_commentsCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $blog_commentsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -14856,6 +15028,8 @@ export namespace Prisma {
     objects: {
       user: Prisma.$sys_userPayload<ExtArgs>
       post: Prisma.$blog_postsPayload<ExtArgs>
+      parent: Prisma.$blog_commentsPayload<ExtArgs> | null
+      replies: Prisma.$blog_commentsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       uid: string
@@ -14865,6 +15039,7 @@ export namespace Prisma {
       status: boolean
       userId: string
       postId: string
+      parentId: string | null
     }, ExtArgs["result"]["blog_comments"]>
     composites: {}
   }
@@ -15207,6 +15382,8 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends sys_userDefaultArgs<ExtArgs> = {}>(args?: Subset<T, sys_userDefaultArgs<ExtArgs>>): Prisma__sys_userClient<$Result.GetResult<Prisma.$sys_userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     post<T extends blog_postsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, blog_postsDefaultArgs<ExtArgs>>): Prisma__blog_postsClient<$Result.GetResult<Prisma.$blog_postsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    parent<T extends blog_comments$parentArgs<ExtArgs> = {}>(args?: Subset<T, blog_comments$parentArgs<ExtArgs>>): Prisma__blog_commentsClient<$Result.GetResult<Prisma.$blog_commentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    replies<T extends blog_comments$repliesArgs<ExtArgs> = {}>(args?: Subset<T, blog_comments$repliesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$blog_commentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -15243,6 +15420,7 @@ export namespace Prisma {
     readonly status: FieldRef<"blog_comments", 'Boolean'>
     readonly userId: FieldRef<"blog_comments", 'String'>
     readonly postId: FieldRef<"blog_comments", 'String'>
+    readonly parentId: FieldRef<"blog_comments", 'String'>
   }
     
 
@@ -15586,6 +15764,49 @@ export namespace Prisma {
   }
 
   /**
+   * blog_comments.parent
+   */
+  export type blog_comments$parentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the blog_comments
+     */
+    select?: blog_commentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the blog_comments
+     */
+    omit?: blog_commentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: blog_commentsInclude<ExtArgs> | null
+    where?: blog_commentsWhereInput
+  }
+
+  /**
+   * blog_comments.replies
+   */
+  export type blog_comments$repliesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the blog_comments
+     */
+    select?: blog_commentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the blog_comments
+     */
+    omit?: blog_commentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: blog_commentsInclude<ExtArgs> | null
+    where?: blog_commentsWhereInput
+    orderBy?: blog_commentsOrderByWithRelationInput | blog_commentsOrderByWithRelationInput[]
+    cursor?: blog_commentsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Blog_commentsScalarFieldEnum | Blog_commentsScalarFieldEnum[]
+  }
+
+  /**
    * blog_comments without action
    */
   export type blog_commentsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -15618,10 +15839,12 @@ export namespace Prisma {
 
   export type Blog_linksAvgAggregateOutputType = {
     sort: number | null
+    clicks: number | null
   }
 
   export type Blog_linksSumAggregateOutputType = {
     sort: number | null
+    clicks: number | null
   }
 
   export type Blog_linksMinAggregateOutputType = {
@@ -15631,8 +15854,10 @@ export namespace Prisma {
     name: string | null
     url: string | null
     logo: string | null
+    description: string | null
     sort: number | null
     status: boolean | null
+    clicks: number | null
   }
 
   export type Blog_linksMaxAggregateOutputType = {
@@ -15642,8 +15867,10 @@ export namespace Prisma {
     name: string | null
     url: string | null
     logo: string | null
+    description: string | null
     sort: number | null
     status: boolean | null
+    clicks: number | null
   }
 
   export type Blog_linksCountAggregateOutputType = {
@@ -15653,18 +15880,22 @@ export namespace Prisma {
     name: number
     url: number
     logo: number
+    description: number
     sort: number
     status: number
+    clicks: number
     _all: number
   }
 
 
   export type Blog_linksAvgAggregateInputType = {
     sort?: true
+    clicks?: true
   }
 
   export type Blog_linksSumAggregateInputType = {
     sort?: true
+    clicks?: true
   }
 
   export type Blog_linksMinAggregateInputType = {
@@ -15674,8 +15905,10 @@ export namespace Prisma {
     name?: true
     url?: true
     logo?: true
+    description?: true
     sort?: true
     status?: true
+    clicks?: true
   }
 
   export type Blog_linksMaxAggregateInputType = {
@@ -15685,8 +15918,10 @@ export namespace Prisma {
     name?: true
     url?: true
     logo?: true
+    description?: true
     sort?: true
     status?: true
+    clicks?: true
   }
 
   export type Blog_linksCountAggregateInputType = {
@@ -15696,8 +15931,10 @@ export namespace Prisma {
     name?: true
     url?: true
     logo?: true
+    description?: true
     sort?: true
     status?: true
+    clicks?: true
     _all?: true
   }
 
@@ -15794,8 +16031,10 @@ export namespace Prisma {
     name: string
     url: string
     logo: string | null
+    description: string | null
     sort: number
     status: boolean
+    clicks: number
     _count: Blog_linksCountAggregateOutputType | null
     _avg: Blog_linksAvgAggregateOutputType | null
     _sum: Blog_linksSumAggregateOutputType | null
@@ -15824,8 +16063,10 @@ export namespace Prisma {
     name?: boolean
     url?: boolean
     logo?: boolean
+    description?: boolean
     sort?: boolean
     status?: boolean
+    clicks?: boolean
   }, ExtArgs["result"]["blog_links"]>
 
 
@@ -15837,11 +16078,13 @@ export namespace Prisma {
     name?: boolean
     url?: boolean
     logo?: boolean
+    description?: boolean
     sort?: boolean
     status?: boolean
+    clicks?: boolean
   }
 
-  export type blog_linksOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createdAt" | "updatedAt" | "name" | "url" | "logo" | "sort" | "status", ExtArgs["result"]["blog_links"]>
+  export type blog_linksOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createdAt" | "updatedAt" | "name" | "url" | "logo" | "description" | "sort" | "status" | "clicks", ExtArgs["result"]["blog_links"]>
 
   export type $blog_linksPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "blog_links"
@@ -15853,8 +16096,10 @@ export namespace Prisma {
       name: string
       url: string
       logo: string | null
+      description: string | null
       sort: number
       status: boolean
+      clicks: number
     }, ExtArgs["result"]["blog_links"]>
     composites: {}
   }
@@ -16230,8 +16475,10 @@ export namespace Prisma {
     readonly name: FieldRef<"blog_links", 'String'>
     readonly url: FieldRef<"blog_links", 'String'>
     readonly logo: FieldRef<"blog_links", 'String'>
+    readonly description: FieldRef<"blog_links", 'String'>
     readonly sort: FieldRef<"blog_links", 'Int'>
     readonly status: FieldRef<"blog_links", 'Boolean'>
+    readonly clicks: FieldRef<"blog_links", 'Int'>
   }
     
 
@@ -16581,6 +16828,10 @@ export namespace Prisma {
     content: string | null
     sort: number | null
     status: boolean | null
+    startTime: Date | null
+    endTime: Date | null
+    important: boolean | null
+    author: string | null
   }
 
   export type Blog_announcementsMaxAggregateOutputType = {
@@ -16591,6 +16842,10 @@ export namespace Prisma {
     content: string | null
     sort: number | null
     status: boolean | null
+    startTime: Date | null
+    endTime: Date | null
+    important: boolean | null
+    author: string | null
   }
 
   export type Blog_announcementsCountAggregateOutputType = {
@@ -16601,6 +16856,10 @@ export namespace Prisma {
     content: number
     sort: number
     status: number
+    startTime: number
+    endTime: number
+    important: number
+    author: number
     _all: number
   }
 
@@ -16621,6 +16880,10 @@ export namespace Prisma {
     content?: true
     sort?: true
     status?: true
+    startTime?: true
+    endTime?: true
+    important?: true
+    author?: true
   }
 
   export type Blog_announcementsMaxAggregateInputType = {
@@ -16631,6 +16894,10 @@ export namespace Prisma {
     content?: true
     sort?: true
     status?: true
+    startTime?: true
+    endTime?: true
+    important?: true
+    author?: true
   }
 
   export type Blog_announcementsCountAggregateInputType = {
@@ -16641,6 +16908,10 @@ export namespace Prisma {
     content?: true
     sort?: true
     status?: true
+    startTime?: true
+    endTime?: true
+    important?: true
+    author?: true
     _all?: true
   }
 
@@ -16738,6 +17009,10 @@ export namespace Prisma {
     content: string
     sort: number
     status: boolean
+    startTime: Date | null
+    endTime: Date | null
+    important: boolean
+    author: string | null
     _count: Blog_announcementsCountAggregateOutputType | null
     _avg: Blog_announcementsAvgAggregateOutputType | null
     _sum: Blog_announcementsSumAggregateOutputType | null
@@ -16767,6 +17042,10 @@ export namespace Prisma {
     content?: boolean
     sort?: boolean
     status?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    important?: boolean
+    author?: boolean
   }, ExtArgs["result"]["blog_announcements"]>
 
 
@@ -16779,9 +17058,13 @@ export namespace Prisma {
     content?: boolean
     sort?: boolean
     status?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    important?: boolean
+    author?: boolean
   }
 
-  export type blog_announcementsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createdAt" | "updatedAt" | "title" | "content" | "sort" | "status", ExtArgs["result"]["blog_announcements"]>
+  export type blog_announcementsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createdAt" | "updatedAt" | "title" | "content" | "sort" | "status" | "startTime" | "endTime" | "important" | "author", ExtArgs["result"]["blog_announcements"]>
 
   export type $blog_announcementsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "blog_announcements"
@@ -16794,6 +17077,10 @@ export namespace Prisma {
       content: string
       sort: number
       status: boolean
+      startTime: Date | null
+      endTime: Date | null
+      important: boolean
+      author: string | null
     }, ExtArgs["result"]["blog_announcements"]>
     composites: {}
   }
@@ -17170,6 +17457,10 @@ export namespace Prisma {
     readonly content: FieldRef<"blog_announcements", 'String'>
     readonly sort: FieldRef<"blog_announcements", 'Int'>
     readonly status: FieldRef<"blog_announcements", 'Boolean'>
+    readonly startTime: FieldRef<"blog_announcements", 'DateTime'>
+    readonly endTime: FieldRef<"blog_announcements", 'DateTime'>
+    readonly important: FieldRef<"blog_announcements", 'Boolean'>
+    readonly author: FieldRef<"blog_announcements", 'String'>
   }
     
 
@@ -20537,9 +20828,16 @@ export namespace Prisma {
     updatedAt: 'updatedAt',
     title: 'title',
     content: 'content',
+    excerpt: 'excerpt',
+    coverImage: 'coverImage',
     status: 'status',
+    published: 'published',
+    publishedAt: 'publishedAt',
+    views: 'views',
+    likes: 'likes',
     userId: 'userId',
-    categoriesId: 'categoriesId'
+    categoriesId: 'categoriesId',
+    slug: 'slug'
   };
 
   export type Blog_postsScalarFieldEnum = (typeof Blog_postsScalarFieldEnum)[keyof typeof Blog_postsScalarFieldEnum]
@@ -20557,7 +20855,8 @@ export namespace Prisma {
     uid: 'uid',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    name: 'name'
+    name: 'name',
+    description: 'description'
   };
 
   export type Blog_tagScalarFieldEnum = (typeof Blog_tagScalarFieldEnum)[keyof typeof Blog_tagScalarFieldEnum]
@@ -20570,7 +20869,8 @@ export namespace Prisma {
     content: 'content',
     status: 'status',
     userId: 'userId',
-    postId: 'postId'
+    postId: 'postId',
+    parentId: 'parentId'
   };
 
   export type Blog_commentsScalarFieldEnum = (typeof Blog_commentsScalarFieldEnum)[keyof typeof Blog_commentsScalarFieldEnum]
@@ -20583,8 +20883,10 @@ export namespace Prisma {
     name: 'name',
     url: 'url',
     logo: 'logo',
+    description: 'description',
     sort: 'sort',
-    status: 'status'
+    status: 'status',
+    clicks: 'clicks'
   };
 
   export type Blog_linksScalarFieldEnum = (typeof Blog_linksScalarFieldEnum)[keyof typeof Blog_linksScalarFieldEnum]
@@ -20597,7 +20899,11 @@ export namespace Prisma {
     title: 'title',
     content: 'content',
     sort: 'sort',
-    status: 'status'
+    status: 'status',
+    startTime: 'startTime',
+    endTime: 'endTime',
+    important: 'important',
+    author: 'author'
   };
 
   export type Blog_announcementsScalarFieldEnum = (typeof Blog_announcementsScalarFieldEnum)[keyof typeof Blog_announcementsScalarFieldEnum]
@@ -20744,8 +21050,11 @@ export namespace Prisma {
     uid: 'uid',
     title: 'title',
     content: 'content',
+    excerpt: 'excerpt',
+    coverImage: 'coverImage',
     userId: 'userId',
-    categoriesId: 'categoriesId'
+    categoriesId: 'categoriesId',
+    slug: 'slug'
   };
 
   export type blog_postsOrderByRelevanceFieldEnum = (typeof blog_postsOrderByRelevanceFieldEnum)[keyof typeof blog_postsOrderByRelevanceFieldEnum]
@@ -20761,7 +21070,8 @@ export namespace Prisma {
 
   export const blog_tagOrderByRelevanceFieldEnum: {
     uid: 'uid',
-    name: 'name'
+    name: 'name',
+    description: 'description'
   };
 
   export type blog_tagOrderByRelevanceFieldEnum = (typeof blog_tagOrderByRelevanceFieldEnum)[keyof typeof blog_tagOrderByRelevanceFieldEnum]
@@ -20771,7 +21081,8 @@ export namespace Prisma {
     uid: 'uid',
     content: 'content',
     userId: 'userId',
-    postId: 'postId'
+    postId: 'postId',
+    parentId: 'parentId'
   };
 
   export type blog_commentsOrderByRelevanceFieldEnum = (typeof blog_commentsOrderByRelevanceFieldEnum)[keyof typeof blog_commentsOrderByRelevanceFieldEnum]
@@ -20781,7 +21092,8 @@ export namespace Prisma {
     uid: 'uid',
     name: 'name',
     url: 'url',
-    logo: 'logo'
+    logo: 'logo',
+    description: 'description'
   };
 
   export type blog_linksOrderByRelevanceFieldEnum = (typeof blog_linksOrderByRelevanceFieldEnum)[keyof typeof blog_linksOrderByRelevanceFieldEnum]
@@ -20790,7 +21102,8 @@ export namespace Prisma {
   export const blog_announcementsOrderByRelevanceFieldEnum: {
     uid: 'uid',
     title: 'title',
-    content: 'content'
+    content: 'content',
+    author: 'author'
   };
 
   export type blog_announcementsOrderByRelevanceFieldEnum = (typeof blog_announcementsOrderByRelevanceFieldEnum)[keyof typeof blog_announcementsOrderByRelevanceFieldEnum]
@@ -21507,9 +21820,16 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"blog_posts"> | Date | string
     title?: StringFilter<"blog_posts"> | string
     content?: StringFilter<"blog_posts"> | string
+    excerpt?: StringNullableFilter<"blog_posts"> | string | null
+    coverImage?: StringNullableFilter<"blog_posts"> | string | null
     status?: BoolFilter<"blog_posts"> | boolean
+    published?: BoolFilter<"blog_posts"> | boolean
+    publishedAt?: DateTimeNullableFilter<"blog_posts"> | Date | string | null
+    views?: IntFilter<"blog_posts"> | number
+    likes?: IntFilter<"blog_posts"> | number
     userId?: StringFilter<"blog_posts"> | string
     categoriesId?: StringNullableFilter<"blog_posts"> | string | null
+    slug?: StringNullableFilter<"blog_posts"> | string | null
     categories?: XOR<Blog_categoriesNullableScalarRelationFilter, blog_categoriesWhereInput> | null
     user?: XOR<Sys_userScalarRelationFilter, sys_userWhereInput>
     tags?: Blog_posts_on_tagsListRelationFilter
@@ -21522,9 +21842,16 @@ export namespace Prisma {
     updatedAt?: SortOrder
     title?: SortOrder
     content?: SortOrder
+    excerpt?: SortOrderInput | SortOrder
+    coverImage?: SortOrderInput | SortOrder
     status?: SortOrder
+    published?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    views?: SortOrder
+    likes?: SortOrder
     userId?: SortOrder
     categoriesId?: SortOrderInput | SortOrder
+    slug?: SortOrderInput | SortOrder
     categories?: blog_categoriesOrderByWithRelationInput
     user?: sys_userOrderByWithRelationInput
     tags?: blog_posts_on_tagsOrderByRelationAggregateInput
@@ -21534,6 +21861,7 @@ export namespace Prisma {
 
   export type blog_postsWhereUniqueInput = Prisma.AtLeast<{
     uid?: string
+    slug?: string
     AND?: blog_postsWhereInput | blog_postsWhereInput[]
     OR?: blog_postsWhereInput[]
     NOT?: blog_postsWhereInput | blog_postsWhereInput[]
@@ -21541,14 +21869,20 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"blog_posts"> | Date | string
     title?: StringFilter<"blog_posts"> | string
     content?: StringFilter<"blog_posts"> | string
+    excerpt?: StringNullableFilter<"blog_posts"> | string | null
+    coverImage?: StringNullableFilter<"blog_posts"> | string | null
     status?: BoolFilter<"blog_posts"> | boolean
+    published?: BoolFilter<"blog_posts"> | boolean
+    publishedAt?: DateTimeNullableFilter<"blog_posts"> | Date | string | null
+    views?: IntFilter<"blog_posts"> | number
+    likes?: IntFilter<"blog_posts"> | number
     userId?: StringFilter<"blog_posts"> | string
     categoriesId?: StringNullableFilter<"blog_posts"> | string | null
     categories?: XOR<Blog_categoriesNullableScalarRelationFilter, blog_categoriesWhereInput> | null
     user?: XOR<Sys_userScalarRelationFilter, sys_userWhereInput>
     tags?: Blog_posts_on_tagsListRelationFilter
     comments?: Blog_commentsListRelationFilter
-  }, "uid">
+  }, "uid" | "slug">
 
   export type blog_postsOrderByWithAggregationInput = {
     uid?: SortOrder
@@ -21556,12 +21890,21 @@ export namespace Prisma {
     updatedAt?: SortOrder
     title?: SortOrder
     content?: SortOrder
+    excerpt?: SortOrderInput | SortOrder
+    coverImage?: SortOrderInput | SortOrder
     status?: SortOrder
+    published?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    views?: SortOrder
+    likes?: SortOrder
     userId?: SortOrder
     categoriesId?: SortOrderInput | SortOrder
+    slug?: SortOrderInput | SortOrder
     _count?: blog_postsCountOrderByAggregateInput
+    _avg?: blog_postsAvgOrderByAggregateInput
     _max?: blog_postsMaxOrderByAggregateInput
     _min?: blog_postsMinOrderByAggregateInput
+    _sum?: blog_postsSumOrderByAggregateInput
   }
 
   export type blog_postsScalarWhereWithAggregatesInput = {
@@ -21573,9 +21916,16 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"blog_posts"> | Date | string
     title?: StringWithAggregatesFilter<"blog_posts"> | string
     content?: StringWithAggregatesFilter<"blog_posts"> | string
+    excerpt?: StringNullableWithAggregatesFilter<"blog_posts"> | string | null
+    coverImage?: StringNullableWithAggregatesFilter<"blog_posts"> | string | null
     status?: BoolWithAggregatesFilter<"blog_posts"> | boolean
+    published?: BoolWithAggregatesFilter<"blog_posts"> | boolean
+    publishedAt?: DateTimeNullableWithAggregatesFilter<"blog_posts"> | Date | string | null
+    views?: IntWithAggregatesFilter<"blog_posts"> | number
+    likes?: IntWithAggregatesFilter<"blog_posts"> | number
     userId?: StringWithAggregatesFilter<"blog_posts"> | string
     categoriesId?: StringNullableWithAggregatesFilter<"blog_posts"> | string | null
+    slug?: StringNullableWithAggregatesFilter<"blog_posts"> | string | null
   }
 
   export type blog_posts_on_tagsWhereInput = {
@@ -21631,6 +21981,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"blog_tag"> | Date | string
     updatedAt?: DateTimeFilter<"blog_tag"> | Date | string
     name?: StringFilter<"blog_tag"> | string
+    description?: StringNullableFilter<"blog_tag"> | string | null
     blogs?: Blog_posts_on_tagsListRelationFilter
   }
 
@@ -21639,6 +21990,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     name?: SortOrder
+    description?: SortOrderInput | SortOrder
     blogs?: blog_posts_on_tagsOrderByRelationAggregateInput
     _relevance?: blog_tagOrderByRelevanceInput
   }
@@ -21651,6 +22003,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"blog_tag"> | Date | string
     updatedAt?: DateTimeFilter<"blog_tag"> | Date | string
     name?: StringFilter<"blog_tag"> | string
+    description?: StringNullableFilter<"blog_tag"> | string | null
     blogs?: Blog_posts_on_tagsListRelationFilter
   }, "uid">
 
@@ -21659,6 +22012,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     name?: SortOrder
+    description?: SortOrderInput | SortOrder
     _count?: blog_tagCountOrderByAggregateInput
     _max?: blog_tagMaxOrderByAggregateInput
     _min?: blog_tagMinOrderByAggregateInput
@@ -21672,6 +22026,7 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"blog_tag"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"blog_tag"> | Date | string
     name?: StringWithAggregatesFilter<"blog_tag"> | string
+    description?: StringNullableWithAggregatesFilter<"blog_tag"> | string | null
   }
 
   export type blog_commentsWhereInput = {
@@ -21685,8 +22040,11 @@ export namespace Prisma {
     status?: BoolFilter<"blog_comments"> | boolean
     userId?: StringFilter<"blog_comments"> | string
     postId?: StringFilter<"blog_comments"> | string
+    parentId?: StringNullableFilter<"blog_comments"> | string | null
     user?: XOR<Sys_userScalarRelationFilter, sys_userWhereInput>
     post?: XOR<Blog_postsScalarRelationFilter, blog_postsWhereInput>
+    parent?: XOR<Blog_commentsNullableScalarRelationFilter, blog_commentsWhereInput> | null
+    replies?: Blog_commentsListRelationFilter
   }
 
   export type blog_commentsOrderByWithRelationInput = {
@@ -21697,8 +22055,11 @@ export namespace Prisma {
     status?: SortOrder
     userId?: SortOrder
     postId?: SortOrder
+    parentId?: SortOrderInput | SortOrder
     user?: sys_userOrderByWithRelationInput
     post?: blog_postsOrderByWithRelationInput
+    parent?: blog_commentsOrderByWithRelationInput
+    replies?: blog_commentsOrderByRelationAggregateInput
     _relevance?: blog_commentsOrderByRelevanceInput
   }
 
@@ -21713,8 +22074,11 @@ export namespace Prisma {
     status?: BoolFilter<"blog_comments"> | boolean
     userId?: StringFilter<"blog_comments"> | string
     postId?: StringFilter<"blog_comments"> | string
+    parentId?: StringNullableFilter<"blog_comments"> | string | null
     user?: XOR<Sys_userScalarRelationFilter, sys_userWhereInput>
     post?: XOR<Blog_postsScalarRelationFilter, blog_postsWhereInput>
+    parent?: XOR<Blog_commentsNullableScalarRelationFilter, blog_commentsWhereInput> | null
+    replies?: Blog_commentsListRelationFilter
   }, "uid">
 
   export type blog_commentsOrderByWithAggregationInput = {
@@ -21725,6 +22089,7 @@ export namespace Prisma {
     status?: SortOrder
     userId?: SortOrder
     postId?: SortOrder
+    parentId?: SortOrderInput | SortOrder
     _count?: blog_commentsCountOrderByAggregateInput
     _max?: blog_commentsMaxOrderByAggregateInput
     _min?: blog_commentsMinOrderByAggregateInput
@@ -21741,6 +22106,7 @@ export namespace Prisma {
     status?: BoolWithAggregatesFilter<"blog_comments"> | boolean
     userId?: StringWithAggregatesFilter<"blog_comments"> | string
     postId?: StringWithAggregatesFilter<"blog_comments"> | string
+    parentId?: StringNullableWithAggregatesFilter<"blog_comments"> | string | null
   }
 
   export type blog_linksWhereInput = {
@@ -21753,8 +22119,10 @@ export namespace Prisma {
     name?: StringFilter<"blog_links"> | string
     url?: StringFilter<"blog_links"> | string
     logo?: StringNullableFilter<"blog_links"> | string | null
+    description?: StringNullableFilter<"blog_links"> | string | null
     sort?: IntFilter<"blog_links"> | number
     status?: BoolFilter<"blog_links"> | boolean
+    clicks?: IntFilter<"blog_links"> | number
   }
 
   export type blog_linksOrderByWithRelationInput = {
@@ -21764,8 +22132,10 @@ export namespace Prisma {
     name?: SortOrder
     url?: SortOrder
     logo?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     sort?: SortOrder
     status?: SortOrder
+    clicks?: SortOrder
     _relevance?: blog_linksOrderByRelevanceInput
   }
 
@@ -21779,8 +22149,10 @@ export namespace Prisma {
     name?: StringFilter<"blog_links"> | string
     url?: StringFilter<"blog_links"> | string
     logo?: StringNullableFilter<"blog_links"> | string | null
+    description?: StringNullableFilter<"blog_links"> | string | null
     sort?: IntFilter<"blog_links"> | number
     status?: BoolFilter<"blog_links"> | boolean
+    clicks?: IntFilter<"blog_links"> | number
   }, "uid">
 
   export type blog_linksOrderByWithAggregationInput = {
@@ -21790,8 +22162,10 @@ export namespace Prisma {
     name?: SortOrder
     url?: SortOrder
     logo?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     sort?: SortOrder
     status?: SortOrder
+    clicks?: SortOrder
     _count?: blog_linksCountOrderByAggregateInput
     _avg?: blog_linksAvgOrderByAggregateInput
     _max?: blog_linksMaxOrderByAggregateInput
@@ -21809,8 +22183,10 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"blog_links"> | string
     url?: StringWithAggregatesFilter<"blog_links"> | string
     logo?: StringNullableWithAggregatesFilter<"blog_links"> | string | null
+    description?: StringNullableWithAggregatesFilter<"blog_links"> | string | null
     sort?: IntWithAggregatesFilter<"blog_links"> | number
     status?: BoolWithAggregatesFilter<"blog_links"> | boolean
+    clicks?: IntWithAggregatesFilter<"blog_links"> | number
   }
 
   export type blog_announcementsWhereInput = {
@@ -21824,6 +22200,10 @@ export namespace Prisma {
     content?: StringFilter<"blog_announcements"> | string
     sort?: IntFilter<"blog_announcements"> | number
     status?: BoolFilter<"blog_announcements"> | boolean
+    startTime?: DateTimeNullableFilter<"blog_announcements"> | Date | string | null
+    endTime?: DateTimeNullableFilter<"blog_announcements"> | Date | string | null
+    important?: BoolFilter<"blog_announcements"> | boolean
+    author?: StringNullableFilter<"blog_announcements"> | string | null
   }
 
   export type blog_announcementsOrderByWithRelationInput = {
@@ -21834,6 +22214,10 @@ export namespace Prisma {
     content?: SortOrder
     sort?: SortOrder
     status?: SortOrder
+    startTime?: SortOrderInput | SortOrder
+    endTime?: SortOrderInput | SortOrder
+    important?: SortOrder
+    author?: SortOrderInput | SortOrder
     _relevance?: blog_announcementsOrderByRelevanceInput
   }
 
@@ -21848,6 +22232,10 @@ export namespace Prisma {
     content?: StringFilter<"blog_announcements"> | string
     sort?: IntFilter<"blog_announcements"> | number
     status?: BoolFilter<"blog_announcements"> | boolean
+    startTime?: DateTimeNullableFilter<"blog_announcements"> | Date | string | null
+    endTime?: DateTimeNullableFilter<"blog_announcements"> | Date | string | null
+    important?: BoolFilter<"blog_announcements"> | boolean
+    author?: StringNullableFilter<"blog_announcements"> | string | null
   }, "uid">
 
   export type blog_announcementsOrderByWithAggregationInput = {
@@ -21858,6 +22246,10 @@ export namespace Prisma {
     content?: SortOrder
     sort?: SortOrder
     status?: SortOrder
+    startTime?: SortOrderInput | SortOrder
+    endTime?: SortOrderInput | SortOrder
+    important?: SortOrder
+    author?: SortOrderInput | SortOrder
     _count?: blog_announcementsCountOrderByAggregateInput
     _avg?: blog_announcementsAvgOrderByAggregateInput
     _max?: blog_announcementsMaxOrderByAggregateInput
@@ -21876,6 +22268,10 @@ export namespace Prisma {
     content?: StringWithAggregatesFilter<"blog_announcements"> | string
     sort?: IntWithAggregatesFilter<"blog_announcements"> | number
     status?: BoolWithAggregatesFilter<"blog_announcements"> | boolean
+    startTime?: DateTimeNullableWithAggregatesFilter<"blog_announcements"> | Date | string | null
+    endTime?: DateTimeNullableWithAggregatesFilter<"blog_announcements"> | Date | string | null
+    important?: BoolWithAggregatesFilter<"blog_announcements"> | boolean
+    author?: StringNullableWithAggregatesFilter<"blog_announcements"> | string | null
   }
 
   export type bookkeep_recordWhereInput = {
@@ -22706,7 +23102,14 @@ export namespace Prisma {
     updatedAt?: Date | string
     title: string
     content: string
+    excerpt?: string | null
+    coverImage?: string | null
     status?: boolean
+    published?: boolean
+    publishedAt?: Date | string | null
+    views?: number
+    likes?: number
+    slug?: string | null
     categories?: blog_categoriesCreateNestedOneWithoutPostsInput
     user: sys_userCreateNestedOneWithoutBlog_postsInput
     tags?: blog_posts_on_tagsCreateNestedManyWithoutPostsInput
@@ -22719,9 +23122,16 @@ export namespace Prisma {
     updatedAt?: Date | string
     title: string
     content: string
+    excerpt?: string | null
+    coverImage?: string | null
     status?: boolean
+    published?: boolean
+    publishedAt?: Date | string | null
+    views?: number
+    likes?: number
     userId: string
     categoriesId?: string | null
+    slug?: string | null
     tags?: blog_posts_on_tagsUncheckedCreateNestedManyWithoutPostsInput
     comments?: blog_commentsUncheckedCreateNestedManyWithoutPostInput
   }
@@ -22732,7 +23142,14 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     status?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    views?: IntFieldUpdateOperationsInput | number
+    likes?: IntFieldUpdateOperationsInput | number
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     categories?: blog_categoriesUpdateOneWithoutPostsNestedInput
     user?: sys_userUpdateOneRequiredWithoutBlog_postsNestedInput
     tags?: blog_posts_on_tagsUpdateManyWithoutPostsNestedInput
@@ -22745,9 +23162,16 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     status?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    views?: IntFieldUpdateOperationsInput | number
+    likes?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
     categoriesId?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     tags?: blog_posts_on_tagsUncheckedUpdateManyWithoutPostsNestedInput
     comments?: blog_commentsUncheckedUpdateManyWithoutPostNestedInput
   }
@@ -22758,9 +23182,16 @@ export namespace Prisma {
     updatedAt?: Date | string
     title: string
     content: string
+    excerpt?: string | null
+    coverImage?: string | null
     status?: boolean
+    published?: boolean
+    publishedAt?: Date | string | null
+    views?: number
+    likes?: number
     userId: string
     categoriesId?: string | null
+    slug?: string | null
   }
 
   export type blog_postsUpdateManyMutationInput = {
@@ -22769,7 +23200,14 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     status?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    views?: IntFieldUpdateOperationsInput | number
+    likes?: IntFieldUpdateOperationsInput | number
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type blog_postsUncheckedUpdateManyInput = {
@@ -22778,9 +23216,16 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     status?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    views?: IntFieldUpdateOperationsInput | number
+    likes?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
     categoriesId?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type blog_posts_on_tagsCreateInput = {
@@ -22822,6 +23267,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     name: string
+    description?: string | null
     blogs?: blog_posts_on_tagsCreateNestedManyWithoutTagInput
   }
 
@@ -22830,6 +23276,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     name: string
+    description?: string | null
     blogs?: blog_posts_on_tagsUncheckedCreateNestedManyWithoutTagInput
   }
 
@@ -22838,6 +23285,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     blogs?: blog_posts_on_tagsUpdateManyWithoutTagNestedInput
   }
 
@@ -22846,6 +23294,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     blogs?: blog_posts_on_tagsUncheckedUpdateManyWithoutTagNestedInput
   }
 
@@ -22854,6 +23303,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     name: string
+    description?: string | null
   }
 
   export type blog_tagUpdateManyMutationInput = {
@@ -22861,6 +23311,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type blog_tagUncheckedUpdateManyInput = {
@@ -22868,6 +23319,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type blog_commentsCreateInput = {
@@ -22878,6 +23330,8 @@ export namespace Prisma {
     status?: boolean
     user: sys_userCreateNestedOneWithoutBlog_commentsInput
     post: blog_postsCreateNestedOneWithoutCommentsInput
+    parent?: blog_commentsCreateNestedOneWithoutRepliesInput
+    replies?: blog_commentsCreateNestedManyWithoutParentInput
   }
 
   export type blog_commentsUncheckedCreateInput = {
@@ -22888,6 +23342,8 @@ export namespace Prisma {
     status?: boolean
     userId: string
     postId: string
+    parentId?: string | null
+    replies?: blog_commentsUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type blog_commentsUpdateInput = {
@@ -22898,6 +23354,8 @@ export namespace Prisma {
     status?: BoolFieldUpdateOperationsInput | boolean
     user?: sys_userUpdateOneRequiredWithoutBlog_commentsNestedInput
     post?: blog_postsUpdateOneRequiredWithoutCommentsNestedInput
+    parent?: blog_commentsUpdateOneWithoutRepliesNestedInput
+    replies?: blog_commentsUpdateManyWithoutParentNestedInput
   }
 
   export type blog_commentsUncheckedUpdateInput = {
@@ -22908,6 +23366,8 @@ export namespace Prisma {
     status?: BoolFieldUpdateOperationsInput | boolean
     userId?: StringFieldUpdateOperationsInput | string
     postId?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    replies?: blog_commentsUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type blog_commentsCreateManyInput = {
@@ -22918,6 +23378,7 @@ export namespace Prisma {
     status?: boolean
     userId: string
     postId: string
+    parentId?: string | null
   }
 
   export type blog_commentsUpdateManyMutationInput = {
@@ -22936,6 +23397,7 @@ export namespace Prisma {
     status?: BoolFieldUpdateOperationsInput | boolean
     userId?: StringFieldUpdateOperationsInput | string
     postId?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type blog_linksCreateInput = {
@@ -22945,8 +23407,10 @@ export namespace Prisma {
     name: string
     url: string
     logo?: string | null
+    description?: string | null
     sort?: number
     status?: boolean
+    clicks?: number
   }
 
   export type blog_linksUncheckedCreateInput = {
@@ -22956,8 +23420,10 @@ export namespace Prisma {
     name: string
     url: string
     logo?: string | null
+    description?: string | null
     sort?: number
     status?: boolean
+    clicks?: number
   }
 
   export type blog_linksUpdateInput = {
@@ -22967,8 +23433,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     sort?: IntFieldUpdateOperationsInput | number
     status?: BoolFieldUpdateOperationsInput | boolean
+    clicks?: IntFieldUpdateOperationsInput | number
   }
 
   export type blog_linksUncheckedUpdateInput = {
@@ -22978,8 +23446,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     sort?: IntFieldUpdateOperationsInput | number
     status?: BoolFieldUpdateOperationsInput | boolean
+    clicks?: IntFieldUpdateOperationsInput | number
   }
 
   export type blog_linksCreateManyInput = {
@@ -22989,8 +23459,10 @@ export namespace Prisma {
     name: string
     url: string
     logo?: string | null
+    description?: string | null
     sort?: number
     status?: boolean
+    clicks?: number
   }
 
   export type blog_linksUpdateManyMutationInput = {
@@ -23000,8 +23472,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     sort?: IntFieldUpdateOperationsInput | number
     status?: BoolFieldUpdateOperationsInput | boolean
+    clicks?: IntFieldUpdateOperationsInput | number
   }
 
   export type blog_linksUncheckedUpdateManyInput = {
@@ -23011,8 +23485,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     sort?: IntFieldUpdateOperationsInput | number
     status?: BoolFieldUpdateOperationsInput | boolean
+    clicks?: IntFieldUpdateOperationsInput | number
   }
 
   export type blog_announcementsCreateInput = {
@@ -23023,6 +23499,10 @@ export namespace Prisma {
     content: string
     sort?: number
     status?: boolean
+    startTime?: Date | string | null
+    endTime?: Date | string | null
+    important?: boolean
+    author?: string | null
   }
 
   export type blog_announcementsUncheckedCreateInput = {
@@ -23033,6 +23513,10 @@ export namespace Prisma {
     content: string
     sort?: number
     status?: boolean
+    startTime?: Date | string | null
+    endTime?: Date | string | null
+    important?: boolean
+    author?: string | null
   }
 
   export type blog_announcementsUpdateInput = {
@@ -23043,6 +23527,10 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     sort?: IntFieldUpdateOperationsInput | number
     status?: BoolFieldUpdateOperationsInput | boolean
+    startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    important?: BoolFieldUpdateOperationsInput | boolean
+    author?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type blog_announcementsUncheckedUpdateInput = {
@@ -23053,6 +23541,10 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     sort?: IntFieldUpdateOperationsInput | number
     status?: BoolFieldUpdateOperationsInput | boolean
+    startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    important?: BoolFieldUpdateOperationsInput | boolean
+    author?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type blog_announcementsCreateManyInput = {
@@ -23063,6 +23555,10 @@ export namespace Prisma {
     content: string
     sort?: number
     status?: boolean
+    startTime?: Date | string | null
+    endTime?: Date | string | null
+    important?: boolean
+    author?: string | null
   }
 
   export type blog_announcementsUpdateManyMutationInput = {
@@ -23073,6 +23569,10 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     sort?: IntFieldUpdateOperationsInput | number
     status?: BoolFieldUpdateOperationsInput | boolean
+    startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    important?: BoolFieldUpdateOperationsInput | boolean
+    author?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type blog_announcementsUncheckedUpdateManyInput = {
@@ -23083,6 +23583,10 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     sort?: IntFieldUpdateOperationsInput | number
     status?: BoolFieldUpdateOperationsInput | boolean
+    startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    important?: BoolFieldUpdateOperationsInput | boolean
+    author?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type bookkeep_recordCreateInput = {
@@ -23931,6 +24435,17 @@ export namespace Prisma {
     description?: SortOrder
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type Blog_categoriesNullableScalarRelationFilter = {
     is?: blog_categoriesWhereInput | null
     isNot?: blog_categoriesWhereInput | null
@@ -23958,9 +24473,21 @@ export namespace Prisma {
     updatedAt?: SortOrder
     title?: SortOrder
     content?: SortOrder
+    excerpt?: SortOrder
+    coverImage?: SortOrder
     status?: SortOrder
+    published?: SortOrder
+    publishedAt?: SortOrder
+    views?: SortOrder
+    likes?: SortOrder
     userId?: SortOrder
     categoriesId?: SortOrder
+    slug?: SortOrder
+  }
+
+  export type blog_postsAvgOrderByAggregateInput = {
+    views?: SortOrder
+    likes?: SortOrder
   }
 
   export type blog_postsMaxOrderByAggregateInput = {
@@ -23969,9 +24496,16 @@ export namespace Prisma {
     updatedAt?: SortOrder
     title?: SortOrder
     content?: SortOrder
+    excerpt?: SortOrder
+    coverImage?: SortOrder
     status?: SortOrder
+    published?: SortOrder
+    publishedAt?: SortOrder
+    views?: SortOrder
+    likes?: SortOrder
     userId?: SortOrder
     categoriesId?: SortOrder
+    slug?: SortOrder
   }
 
   export type blog_postsMinOrderByAggregateInput = {
@@ -23980,9 +24514,35 @@ export namespace Prisma {
     updatedAt?: SortOrder
     title?: SortOrder
     content?: SortOrder
+    excerpt?: SortOrder
+    coverImage?: SortOrder
     status?: SortOrder
+    published?: SortOrder
+    publishedAt?: SortOrder
+    views?: SortOrder
+    likes?: SortOrder
     userId?: SortOrder
     categoriesId?: SortOrder
+    slug?: SortOrder
+  }
+
+  export type blog_postsSumOrderByAggregateInput = {
+    views?: SortOrder
+    likes?: SortOrder
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type Blog_postsScalarRelationFilter = {
@@ -24032,6 +24592,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     name?: SortOrder
+    description?: SortOrder
   }
 
   export type blog_tagMaxOrderByAggregateInput = {
@@ -24039,6 +24600,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     name?: SortOrder
+    description?: SortOrder
   }
 
   export type blog_tagMinOrderByAggregateInput = {
@@ -24046,6 +24608,12 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     name?: SortOrder
+    description?: SortOrder
+  }
+
+  export type Blog_commentsNullableScalarRelationFilter = {
+    is?: blog_commentsWhereInput | null
+    isNot?: blog_commentsWhereInput | null
   }
 
   export type blog_commentsOrderByRelevanceInput = {
@@ -24062,6 +24630,7 @@ export namespace Prisma {
     status?: SortOrder
     userId?: SortOrder
     postId?: SortOrder
+    parentId?: SortOrder
   }
 
   export type blog_commentsMaxOrderByAggregateInput = {
@@ -24072,6 +24641,7 @@ export namespace Prisma {
     status?: SortOrder
     userId?: SortOrder
     postId?: SortOrder
+    parentId?: SortOrder
   }
 
   export type blog_commentsMinOrderByAggregateInput = {
@@ -24082,6 +24652,7 @@ export namespace Prisma {
     status?: SortOrder
     userId?: SortOrder
     postId?: SortOrder
+    parentId?: SortOrder
   }
 
   export type blog_linksOrderByRelevanceInput = {
@@ -24097,12 +24668,15 @@ export namespace Prisma {
     name?: SortOrder
     url?: SortOrder
     logo?: SortOrder
+    description?: SortOrder
     sort?: SortOrder
     status?: SortOrder
+    clicks?: SortOrder
   }
 
   export type blog_linksAvgOrderByAggregateInput = {
     sort?: SortOrder
+    clicks?: SortOrder
   }
 
   export type blog_linksMaxOrderByAggregateInput = {
@@ -24112,8 +24686,10 @@ export namespace Prisma {
     name?: SortOrder
     url?: SortOrder
     logo?: SortOrder
+    description?: SortOrder
     sort?: SortOrder
     status?: SortOrder
+    clicks?: SortOrder
   }
 
   export type blog_linksMinOrderByAggregateInput = {
@@ -24123,12 +24699,15 @@ export namespace Prisma {
     name?: SortOrder
     url?: SortOrder
     logo?: SortOrder
+    description?: SortOrder
     sort?: SortOrder
     status?: SortOrder
+    clicks?: SortOrder
   }
 
   export type blog_linksSumOrderByAggregateInput = {
     sort?: SortOrder
+    clicks?: SortOrder
   }
 
   export type blog_announcementsOrderByRelevanceInput = {
@@ -24145,6 +24724,10 @@ export namespace Prisma {
     content?: SortOrder
     sort?: SortOrder
     status?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    important?: SortOrder
+    author?: SortOrder
   }
 
   export type blog_announcementsAvgOrderByAggregateInput = {
@@ -24159,6 +24742,10 @@ export namespace Prisma {
     content?: SortOrder
     sort?: SortOrder
     status?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    important?: SortOrder
+    author?: SortOrder
   }
 
   export type blog_announcementsMinOrderByAggregateInput = {
@@ -24169,6 +24756,10 @@ export namespace Prisma {
     content?: SortOrder
     sort?: SortOrder
     status?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    important?: SortOrder
+    author?: SortOrder
   }
 
   export type blog_announcementsSumOrderByAggregateInput = {
@@ -25144,6 +25735,10 @@ export namespace Prisma {
     connect?: blog_commentsWhereUniqueInput | blog_commentsWhereUniqueInput[]
   }
 
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
   export type blog_categoriesUpdateOneWithoutPostsNestedInput = {
     create?: XOR<blog_categoriesCreateWithoutPostsInput, blog_categoriesUncheckedCreateWithoutPostsInput>
     connectOrCreate?: blog_categoriesCreateOrConnectWithoutPostsInput
@@ -25300,6 +25895,26 @@ export namespace Prisma {
     connect?: blog_postsWhereUniqueInput
   }
 
+  export type blog_commentsCreateNestedOneWithoutRepliesInput = {
+    create?: XOR<blog_commentsCreateWithoutRepliesInput, blog_commentsUncheckedCreateWithoutRepliesInput>
+    connectOrCreate?: blog_commentsCreateOrConnectWithoutRepliesInput
+    connect?: blog_commentsWhereUniqueInput
+  }
+
+  export type blog_commentsCreateNestedManyWithoutParentInput = {
+    create?: XOR<blog_commentsCreateWithoutParentInput, blog_commentsUncheckedCreateWithoutParentInput> | blog_commentsCreateWithoutParentInput[] | blog_commentsUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: blog_commentsCreateOrConnectWithoutParentInput | blog_commentsCreateOrConnectWithoutParentInput[]
+    createMany?: blog_commentsCreateManyParentInputEnvelope
+    connect?: blog_commentsWhereUniqueInput | blog_commentsWhereUniqueInput[]
+  }
+
+  export type blog_commentsUncheckedCreateNestedManyWithoutParentInput = {
+    create?: XOR<blog_commentsCreateWithoutParentInput, blog_commentsUncheckedCreateWithoutParentInput> | blog_commentsCreateWithoutParentInput[] | blog_commentsUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: blog_commentsCreateOrConnectWithoutParentInput | blog_commentsCreateOrConnectWithoutParentInput[]
+    createMany?: blog_commentsCreateManyParentInputEnvelope
+    connect?: blog_commentsWhereUniqueInput | blog_commentsWhereUniqueInput[]
+  }
+
   export type sys_userUpdateOneRequiredWithoutBlog_commentsNestedInput = {
     create?: XOR<sys_userCreateWithoutBlog_commentsInput, sys_userUncheckedCreateWithoutBlog_commentsInput>
     connectOrCreate?: sys_userCreateOrConnectWithoutBlog_commentsInput
@@ -25314,6 +25929,44 @@ export namespace Prisma {
     upsert?: blog_postsUpsertWithoutCommentsInput
     connect?: blog_postsWhereUniqueInput
     update?: XOR<XOR<blog_postsUpdateToOneWithWhereWithoutCommentsInput, blog_postsUpdateWithoutCommentsInput>, blog_postsUncheckedUpdateWithoutCommentsInput>
+  }
+
+  export type blog_commentsUpdateOneWithoutRepliesNestedInput = {
+    create?: XOR<blog_commentsCreateWithoutRepliesInput, blog_commentsUncheckedCreateWithoutRepliesInput>
+    connectOrCreate?: blog_commentsCreateOrConnectWithoutRepliesInput
+    upsert?: blog_commentsUpsertWithoutRepliesInput
+    disconnect?: blog_commentsWhereInput | boolean
+    delete?: blog_commentsWhereInput | boolean
+    connect?: blog_commentsWhereUniqueInput
+    update?: XOR<XOR<blog_commentsUpdateToOneWithWhereWithoutRepliesInput, blog_commentsUpdateWithoutRepliesInput>, blog_commentsUncheckedUpdateWithoutRepliesInput>
+  }
+
+  export type blog_commentsUpdateManyWithoutParentNestedInput = {
+    create?: XOR<blog_commentsCreateWithoutParentInput, blog_commentsUncheckedCreateWithoutParentInput> | blog_commentsCreateWithoutParentInput[] | blog_commentsUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: blog_commentsCreateOrConnectWithoutParentInput | blog_commentsCreateOrConnectWithoutParentInput[]
+    upsert?: blog_commentsUpsertWithWhereUniqueWithoutParentInput | blog_commentsUpsertWithWhereUniqueWithoutParentInput[]
+    createMany?: blog_commentsCreateManyParentInputEnvelope
+    set?: blog_commentsWhereUniqueInput | blog_commentsWhereUniqueInput[]
+    disconnect?: blog_commentsWhereUniqueInput | blog_commentsWhereUniqueInput[]
+    delete?: blog_commentsWhereUniqueInput | blog_commentsWhereUniqueInput[]
+    connect?: blog_commentsWhereUniqueInput | blog_commentsWhereUniqueInput[]
+    update?: blog_commentsUpdateWithWhereUniqueWithoutParentInput | blog_commentsUpdateWithWhereUniqueWithoutParentInput[]
+    updateMany?: blog_commentsUpdateManyWithWhereWithoutParentInput | blog_commentsUpdateManyWithWhereWithoutParentInput[]
+    deleteMany?: blog_commentsScalarWhereInput | blog_commentsScalarWhereInput[]
+  }
+
+  export type blog_commentsUncheckedUpdateManyWithoutParentNestedInput = {
+    create?: XOR<blog_commentsCreateWithoutParentInput, blog_commentsUncheckedCreateWithoutParentInput> | blog_commentsCreateWithoutParentInput[] | blog_commentsUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: blog_commentsCreateOrConnectWithoutParentInput | blog_commentsCreateOrConnectWithoutParentInput[]
+    upsert?: blog_commentsUpsertWithWhereUniqueWithoutParentInput | blog_commentsUpsertWithWhereUniqueWithoutParentInput[]
+    createMany?: blog_commentsCreateManyParentInputEnvelope
+    set?: blog_commentsWhereUniqueInput | blog_commentsWhereUniqueInput[]
+    disconnect?: blog_commentsWhereUniqueInput | blog_commentsWhereUniqueInput[]
+    delete?: blog_commentsWhereUniqueInput | blog_commentsWhereUniqueInput[]
+    connect?: blog_commentsWhereUniqueInput | blog_commentsWhereUniqueInput[]
+    update?: blog_commentsUpdateWithWhereUniqueWithoutParentInput | blog_commentsUpdateWithWhereUniqueWithoutParentInput[]
+    updateMany?: blog_commentsUpdateManyWithWhereWithoutParentInput | blog_commentsUpdateManyWithWhereWithoutParentInput[]
+    deleteMany?: blog_commentsScalarWhereInput | blog_commentsScalarWhereInput[]
   }
 
   export type sys_userCreateNestedOneWithoutBookkeep_recordsInput = {
@@ -25667,6 +26320,31 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type NestedEnumbookkeep_typeFilter<$PrismaModel = never> = {
     equals?: $Enums.bookkeep_type | Enumbookkeep_typeFieldRefInput<$PrismaModel>
     in?: $Enums.bookkeep_type[]
@@ -25795,7 +26473,14 @@ export namespace Prisma {
     updatedAt?: Date | string
     title: string
     content: string
+    excerpt?: string | null
+    coverImage?: string | null
     status?: boolean
+    published?: boolean
+    publishedAt?: Date | string | null
+    views?: number
+    likes?: number
+    slug?: string | null
     categories?: blog_categoriesCreateNestedOneWithoutPostsInput
     tags?: blog_posts_on_tagsCreateNestedManyWithoutPostsInput
     comments?: blog_commentsCreateNestedManyWithoutPostInput
@@ -25807,8 +26492,15 @@ export namespace Prisma {
     updatedAt?: Date | string
     title: string
     content: string
+    excerpt?: string | null
+    coverImage?: string | null
     status?: boolean
+    published?: boolean
+    publishedAt?: Date | string | null
+    views?: number
+    likes?: number
     categoriesId?: string | null
+    slug?: string | null
     tags?: blog_posts_on_tagsUncheckedCreateNestedManyWithoutPostsInput
     comments?: blog_commentsUncheckedCreateNestedManyWithoutPostInput
   }
@@ -25830,6 +26522,8 @@ export namespace Prisma {
     content: string
     status?: boolean
     post: blog_postsCreateNestedOneWithoutCommentsInput
+    parent?: blog_commentsCreateNestedOneWithoutRepliesInput
+    replies?: blog_commentsCreateNestedManyWithoutParentInput
   }
 
   export type blog_commentsUncheckedCreateWithoutUserInput = {
@@ -25839,6 +26533,8 @@ export namespace Prisma {
     content: string
     status?: boolean
     postId: string
+    parentId?: string | null
+    replies?: blog_commentsUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type blog_commentsCreateOrConnectWithoutUserInput = {
@@ -26021,9 +26717,16 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"blog_posts"> | Date | string
     title?: StringFilter<"blog_posts"> | string
     content?: StringFilter<"blog_posts"> | string
+    excerpt?: StringNullableFilter<"blog_posts"> | string | null
+    coverImage?: StringNullableFilter<"blog_posts"> | string | null
     status?: BoolFilter<"blog_posts"> | boolean
+    published?: BoolFilter<"blog_posts"> | boolean
+    publishedAt?: DateTimeNullableFilter<"blog_posts"> | Date | string | null
+    views?: IntFilter<"blog_posts"> | number
+    likes?: IntFilter<"blog_posts"> | number
     userId?: StringFilter<"blog_posts"> | string
     categoriesId?: StringNullableFilter<"blog_posts"> | string | null
+    slug?: StringNullableFilter<"blog_posts"> | string | null
   }
 
   export type blog_commentsUpsertWithWhereUniqueWithoutUserInput = {
@@ -26053,6 +26756,7 @@ export namespace Prisma {
     status?: BoolFilter<"blog_comments"> | boolean
     userId?: StringFilter<"blog_comments"> | string
     postId?: StringFilter<"blog_comments"> | string
+    parentId?: StringNullableFilter<"blog_comments"> | string | null
   }
 
   export type bookkeep_recordUpsertWithWhereUniqueWithoutUserInput = {
@@ -27021,7 +27725,14 @@ export namespace Prisma {
     updatedAt?: Date | string
     title: string
     content: string
+    excerpt?: string | null
+    coverImage?: string | null
     status?: boolean
+    published?: boolean
+    publishedAt?: Date | string | null
+    views?: number
+    likes?: number
+    slug?: string | null
     user: sys_userCreateNestedOneWithoutBlog_postsInput
     tags?: blog_posts_on_tagsCreateNestedManyWithoutPostsInput
     comments?: blog_commentsCreateNestedManyWithoutPostInput
@@ -27033,8 +27744,15 @@ export namespace Prisma {
     updatedAt?: Date | string
     title: string
     content: string
+    excerpt?: string | null
+    coverImage?: string | null
     status?: boolean
+    published?: boolean
+    publishedAt?: Date | string | null
+    views?: number
+    likes?: number
     userId: string
+    slug?: string | null
     tags?: blog_posts_on_tagsUncheckedCreateNestedManyWithoutPostsInput
     comments?: blog_commentsUncheckedCreateNestedManyWithoutPostInput
   }
@@ -27144,6 +27862,8 @@ export namespace Prisma {
     content: string
     status?: boolean
     user: sys_userCreateNestedOneWithoutBlog_commentsInput
+    parent?: blog_commentsCreateNestedOneWithoutRepliesInput
+    replies?: blog_commentsCreateNestedManyWithoutParentInput
   }
 
   export type blog_commentsUncheckedCreateWithoutPostInput = {
@@ -27153,6 +27873,8 @@ export namespace Prisma {
     content: string
     status?: boolean
     userId: string
+    parentId?: string | null
+    replies?: blog_commentsUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type blog_commentsCreateOrConnectWithoutPostInput = {
@@ -27277,7 +27999,14 @@ export namespace Prisma {
     updatedAt?: Date | string
     title: string
     content: string
+    excerpt?: string | null
+    coverImage?: string | null
     status?: boolean
+    published?: boolean
+    publishedAt?: Date | string | null
+    views?: number
+    likes?: number
+    slug?: string | null
     categories?: blog_categoriesCreateNestedOneWithoutPostsInput
     user: sys_userCreateNestedOneWithoutBlog_postsInput
     comments?: blog_commentsCreateNestedManyWithoutPostInput
@@ -27289,9 +28018,16 @@ export namespace Prisma {
     updatedAt?: Date | string
     title: string
     content: string
+    excerpt?: string | null
+    coverImage?: string | null
     status?: boolean
+    published?: boolean
+    publishedAt?: Date | string | null
+    views?: number
+    likes?: number
     userId: string
     categoriesId?: string | null
+    slug?: string | null
     comments?: blog_commentsUncheckedCreateNestedManyWithoutPostInput
   }
 
@@ -27305,6 +28041,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     name: string
+    description?: string | null
   }
 
   export type blog_tagUncheckedCreateWithoutBlogsInput = {
@@ -27312,6 +28049,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     name: string
+    description?: string | null
   }
 
   export type blog_tagCreateOrConnectWithoutBlogsInput = {
@@ -27336,7 +28074,14 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     status?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    views?: IntFieldUpdateOperationsInput | number
+    likes?: IntFieldUpdateOperationsInput | number
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     categories?: blog_categoriesUpdateOneWithoutPostsNestedInput
     user?: sys_userUpdateOneRequiredWithoutBlog_postsNestedInput
     comments?: blog_commentsUpdateManyWithoutPostNestedInput
@@ -27348,9 +28093,16 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     status?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    views?: IntFieldUpdateOperationsInput | number
+    likes?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
     categoriesId?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     comments?: blog_commentsUncheckedUpdateManyWithoutPostNestedInput
   }
 
@@ -27370,6 +28122,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type blog_tagUncheckedUpdateWithoutBlogsInput = {
@@ -27377,6 +28130,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type blog_posts_on_tagsCreateWithoutTagInput = {
@@ -27452,7 +28206,14 @@ export namespace Prisma {
     updatedAt?: Date | string
     title: string
     content: string
+    excerpt?: string | null
+    coverImage?: string | null
     status?: boolean
+    published?: boolean
+    publishedAt?: Date | string | null
+    views?: number
+    likes?: number
+    slug?: string | null
     categories?: blog_categoriesCreateNestedOneWithoutPostsInput
     user: sys_userCreateNestedOneWithoutBlog_postsInput
     tags?: blog_posts_on_tagsCreateNestedManyWithoutPostsInput
@@ -27464,15 +28225,81 @@ export namespace Prisma {
     updatedAt?: Date | string
     title: string
     content: string
+    excerpt?: string | null
+    coverImage?: string | null
     status?: boolean
+    published?: boolean
+    publishedAt?: Date | string | null
+    views?: number
+    likes?: number
     userId: string
     categoriesId?: string | null
+    slug?: string | null
     tags?: blog_posts_on_tagsUncheckedCreateNestedManyWithoutPostsInput
   }
 
   export type blog_postsCreateOrConnectWithoutCommentsInput = {
     where: blog_postsWhereUniqueInput
     create: XOR<blog_postsCreateWithoutCommentsInput, blog_postsUncheckedCreateWithoutCommentsInput>
+  }
+
+  export type blog_commentsCreateWithoutRepliesInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    content: string
+    status?: boolean
+    user: sys_userCreateNestedOneWithoutBlog_commentsInput
+    post: blog_postsCreateNestedOneWithoutCommentsInput
+    parent?: blog_commentsCreateNestedOneWithoutRepliesInput
+  }
+
+  export type blog_commentsUncheckedCreateWithoutRepliesInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    content: string
+    status?: boolean
+    userId: string
+    postId: string
+    parentId?: string | null
+  }
+
+  export type blog_commentsCreateOrConnectWithoutRepliesInput = {
+    where: blog_commentsWhereUniqueInput
+    create: XOR<blog_commentsCreateWithoutRepliesInput, blog_commentsUncheckedCreateWithoutRepliesInput>
+  }
+
+  export type blog_commentsCreateWithoutParentInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    content: string
+    status?: boolean
+    user: sys_userCreateNestedOneWithoutBlog_commentsInput
+    post: blog_postsCreateNestedOneWithoutCommentsInput
+    replies?: blog_commentsCreateNestedManyWithoutParentInput
+  }
+
+  export type blog_commentsUncheckedCreateWithoutParentInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    content: string
+    status?: boolean
+    userId: string
+    postId: string
+    replies?: blog_commentsUncheckedCreateNestedManyWithoutParentInput
+  }
+
+  export type blog_commentsCreateOrConnectWithoutParentInput = {
+    where: blog_commentsWhereUniqueInput
+    create: XOR<blog_commentsCreateWithoutParentInput, blog_commentsUncheckedCreateWithoutParentInput>
+  }
+
+  export type blog_commentsCreateManyParentInputEnvelope = {
+    data: blog_commentsCreateManyParentInput | blog_commentsCreateManyParentInput[]
+    skipDuplicates?: boolean
   }
 
   export type sys_userUpsertWithoutBlog_commentsInput = {
@@ -27531,7 +28358,14 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     status?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    views?: IntFieldUpdateOperationsInput | number
+    likes?: IntFieldUpdateOperationsInput | number
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     categories?: blog_categoriesUpdateOneWithoutPostsNestedInput
     user?: sys_userUpdateOneRequiredWithoutBlog_postsNestedInput
     tags?: blog_posts_on_tagsUpdateManyWithoutPostsNestedInput
@@ -27543,10 +28377,66 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     status?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    views?: IntFieldUpdateOperationsInput | number
+    likes?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
     categoriesId?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     tags?: blog_posts_on_tagsUncheckedUpdateManyWithoutPostsNestedInput
+  }
+
+  export type blog_commentsUpsertWithoutRepliesInput = {
+    update: XOR<blog_commentsUpdateWithoutRepliesInput, blog_commentsUncheckedUpdateWithoutRepliesInput>
+    create: XOR<blog_commentsCreateWithoutRepliesInput, blog_commentsUncheckedCreateWithoutRepliesInput>
+    where?: blog_commentsWhereInput
+  }
+
+  export type blog_commentsUpdateToOneWithWhereWithoutRepliesInput = {
+    where?: blog_commentsWhereInput
+    data: XOR<blog_commentsUpdateWithoutRepliesInput, blog_commentsUncheckedUpdateWithoutRepliesInput>
+  }
+
+  export type blog_commentsUpdateWithoutRepliesInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    content?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    user?: sys_userUpdateOneRequiredWithoutBlog_commentsNestedInput
+    post?: blog_postsUpdateOneRequiredWithoutCommentsNestedInput
+    parent?: blog_commentsUpdateOneWithoutRepliesNestedInput
+  }
+
+  export type blog_commentsUncheckedUpdateWithoutRepliesInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    content?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    userId?: StringFieldUpdateOperationsInput | string
+    postId?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type blog_commentsUpsertWithWhereUniqueWithoutParentInput = {
+    where: blog_commentsWhereUniqueInput
+    update: XOR<blog_commentsUpdateWithoutParentInput, blog_commentsUncheckedUpdateWithoutParentInput>
+    create: XOR<blog_commentsCreateWithoutParentInput, blog_commentsUncheckedCreateWithoutParentInput>
+  }
+
+  export type blog_commentsUpdateWithWhereUniqueWithoutParentInput = {
+    where: blog_commentsWhereUniqueInput
+    data: XOR<blog_commentsUpdateWithoutParentInput, blog_commentsUncheckedUpdateWithoutParentInput>
+  }
+
+  export type blog_commentsUpdateManyWithWhereWithoutParentInput = {
+    where: blog_commentsScalarWhereInput
+    data: XOR<blog_commentsUpdateManyMutationInput, blog_commentsUncheckedUpdateManyWithoutParentInput>
   }
 
   export type sys_userCreateWithoutBookkeep_recordsInput = {
@@ -27931,8 +28821,15 @@ export namespace Prisma {
     updatedAt?: Date | string
     title: string
     content: string
+    excerpt?: string | null
+    coverImage?: string | null
     status?: boolean
+    published?: boolean
+    publishedAt?: Date | string | null
+    views?: number
+    likes?: number
     categoriesId?: string | null
+    slug?: string | null
   }
 
   export type blog_commentsCreateManyUserInput = {
@@ -27942,6 +28839,7 @@ export namespace Prisma {
     content: string
     status?: boolean
     postId: string
+    parentId?: string | null
   }
 
   export type bookkeep_recordCreateManyUserInput = {
@@ -28010,7 +28908,14 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     status?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    views?: IntFieldUpdateOperationsInput | number
+    likes?: IntFieldUpdateOperationsInput | number
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     categories?: blog_categoriesUpdateOneWithoutPostsNestedInput
     tags?: blog_posts_on_tagsUpdateManyWithoutPostsNestedInput
     comments?: blog_commentsUpdateManyWithoutPostNestedInput
@@ -28022,8 +28927,15 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     status?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    views?: IntFieldUpdateOperationsInput | number
+    likes?: IntFieldUpdateOperationsInput | number
     categoriesId?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     tags?: blog_posts_on_tagsUncheckedUpdateManyWithoutPostsNestedInput
     comments?: blog_commentsUncheckedUpdateManyWithoutPostNestedInput
   }
@@ -28034,8 +28946,15 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     status?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    views?: IntFieldUpdateOperationsInput | number
+    likes?: IntFieldUpdateOperationsInput | number
     categoriesId?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type blog_commentsUpdateWithoutUserInput = {
@@ -28045,6 +28964,8 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
     post?: blog_postsUpdateOneRequiredWithoutCommentsNestedInput
+    parent?: blog_commentsUpdateOneWithoutRepliesNestedInput
+    replies?: blog_commentsUpdateManyWithoutParentNestedInput
   }
 
   export type blog_commentsUncheckedUpdateWithoutUserInput = {
@@ -28054,6 +28975,8 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
     postId?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    replies?: blog_commentsUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type blog_commentsUncheckedUpdateManyWithoutUserInput = {
@@ -28063,6 +28986,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
     postId?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type bookkeep_recordUpdateWithoutUserInput = {
@@ -28325,8 +29249,15 @@ export namespace Prisma {
     updatedAt?: Date | string
     title: string
     content: string
+    excerpt?: string | null
+    coverImage?: string | null
     status?: boolean
+    published?: boolean
+    publishedAt?: Date | string | null
+    views?: number
+    likes?: number
     userId: string
+    slug?: string | null
   }
 
   export type blog_postsUpdateWithoutCategoriesInput = {
@@ -28335,7 +29266,14 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     status?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    views?: IntFieldUpdateOperationsInput | number
+    likes?: IntFieldUpdateOperationsInput | number
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     user?: sys_userUpdateOneRequiredWithoutBlog_postsNestedInput
     tags?: blog_posts_on_tagsUpdateManyWithoutPostsNestedInput
     comments?: blog_commentsUpdateManyWithoutPostNestedInput
@@ -28347,8 +29285,15 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     status?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    views?: IntFieldUpdateOperationsInput | number
+    likes?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     tags?: blog_posts_on_tagsUncheckedUpdateManyWithoutPostsNestedInput
     comments?: blog_commentsUncheckedUpdateManyWithoutPostNestedInput
   }
@@ -28359,8 +29304,15 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     status?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    views?: IntFieldUpdateOperationsInput | number
+    likes?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type blog_posts_on_tagsCreateManyPostsInput = {
@@ -28374,6 +29326,7 @@ export namespace Prisma {
     content: string
     status?: boolean
     userId: string
+    parentId?: string | null
   }
 
   export type blog_posts_on_tagsUpdateWithoutPostsInput = {
@@ -28395,6 +29348,8 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
     user?: sys_userUpdateOneRequiredWithoutBlog_commentsNestedInput
+    parent?: blog_commentsUpdateOneWithoutRepliesNestedInput
+    replies?: blog_commentsUpdateManyWithoutParentNestedInput
   }
 
   export type blog_commentsUncheckedUpdateWithoutPostInput = {
@@ -28404,6 +29359,8 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
     userId?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    replies?: blog_commentsUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type blog_commentsUncheckedUpdateManyWithoutPostInput = {
@@ -28413,6 +29370,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
     userId?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type blog_posts_on_tagsCreateManyTagInput = {
@@ -28429,6 +29387,48 @@ export namespace Prisma {
 
   export type blog_posts_on_tagsUncheckedUpdateManyWithoutTagInput = {
     postsId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type blog_commentsCreateManyParentInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    content: string
+    status?: boolean
+    userId: string
+    postId: string
+  }
+
+  export type blog_commentsUpdateWithoutParentInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    content?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    user?: sys_userUpdateOneRequiredWithoutBlog_commentsNestedInput
+    post?: blog_postsUpdateOneRequiredWithoutCommentsNestedInput
+    replies?: blog_commentsUpdateManyWithoutParentNestedInput
+  }
+
+  export type blog_commentsUncheckedUpdateWithoutParentInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    content?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    userId?: StringFieldUpdateOperationsInput | string
+    postId?: StringFieldUpdateOperationsInput | string
+    replies?: blog_commentsUncheckedUpdateManyWithoutParentNestedInput
+  }
+
+  export type blog_commentsUncheckedUpdateManyWithoutParentInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    content?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    userId?: StringFieldUpdateOperationsInput | string
+    postId?: StringFieldUpdateOperationsInput | string
   }
 
   export type bookkeep_record_on_tagsCreateManyRecordInput = {

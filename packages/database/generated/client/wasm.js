@@ -207,9 +207,16 @@ exports.Prisma.Blog_postsScalarFieldEnum = {
   updatedAt: 'updatedAt',
   title: 'title',
   content: 'content',
+  excerpt: 'excerpt',
+  coverImage: 'coverImage',
   status: 'status',
+  published: 'published',
+  publishedAt: 'publishedAt',
+  views: 'views',
+  likes: 'likes',
   userId: 'userId',
-  categoriesId: 'categoriesId'
+  categoriesId: 'categoriesId',
+  slug: 'slug'
 };
 
 exports.Prisma.Blog_posts_on_tagsScalarFieldEnum = {
@@ -221,7 +228,8 @@ exports.Prisma.Blog_tagScalarFieldEnum = {
   uid: 'uid',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  name: 'name'
+  name: 'name',
+  description: 'description'
 };
 
 exports.Prisma.Blog_commentsScalarFieldEnum = {
@@ -231,7 +239,8 @@ exports.Prisma.Blog_commentsScalarFieldEnum = {
   content: 'content',
   status: 'status',
   userId: 'userId',
-  postId: 'postId'
+  postId: 'postId',
+  parentId: 'parentId'
 };
 
 exports.Prisma.Blog_linksScalarFieldEnum = {
@@ -241,8 +250,10 @@ exports.Prisma.Blog_linksScalarFieldEnum = {
   name: 'name',
   url: 'url',
   logo: 'logo',
+  description: 'description',
   sort: 'sort',
-  status: 'status'
+  status: 'status',
+  clicks: 'clicks'
 };
 
 exports.Prisma.Blog_announcementsScalarFieldEnum = {
@@ -252,7 +263,11 @@ exports.Prisma.Blog_announcementsScalarFieldEnum = {
   title: 'title',
   content: 'content',
   sort: 'sort',
-  status: 'status'
+  status: 'status',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  important: 'important',
+  author: 'author'
 };
 
 exports.Prisma.Bookkeep_recordScalarFieldEnum = {
@@ -354,8 +369,11 @@ exports.Prisma.blog_postsOrderByRelevanceFieldEnum = {
   uid: 'uid',
   title: 'title',
   content: 'content',
+  excerpt: 'excerpt',
+  coverImage: 'coverImage',
   userId: 'userId',
-  categoriesId: 'categoriesId'
+  categoriesId: 'categoriesId',
+  slug: 'slug'
 };
 
 exports.Prisma.blog_posts_on_tagsOrderByRelevanceFieldEnum = {
@@ -365,27 +383,31 @@ exports.Prisma.blog_posts_on_tagsOrderByRelevanceFieldEnum = {
 
 exports.Prisma.blog_tagOrderByRelevanceFieldEnum = {
   uid: 'uid',
-  name: 'name'
+  name: 'name',
+  description: 'description'
 };
 
 exports.Prisma.blog_commentsOrderByRelevanceFieldEnum = {
   uid: 'uid',
   content: 'content',
   userId: 'userId',
-  postId: 'postId'
+  postId: 'postId',
+  parentId: 'parentId'
 };
 
 exports.Prisma.blog_linksOrderByRelevanceFieldEnum = {
   uid: 'uid',
   name: 'name',
   url: 'url',
-  logo: 'logo'
+  logo: 'logo',
+  description: 'description'
 };
 
 exports.Prisma.blog_announcementsOrderByRelevanceFieldEnum = {
   uid: 'uid',
   title: 'title',
-  content: 'content'
+  content: 'content',
+  author: 'author'
 };
 
 exports.Prisma.bookkeep_recordOrderByRelevanceFieldEnum = {

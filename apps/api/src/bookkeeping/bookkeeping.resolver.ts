@@ -5,7 +5,7 @@ import OpenAI from 'openai';
 @Resolver()
 export class BookkeepingResolver {
   constructor() {
-    // this.init()
+    this.init()
   }
 
   public async init() {
@@ -14,13 +14,16 @@ export class BookkeepingResolver {
       baseURL: "https://dashscope.aliyuncs.com/compatible-mode/v1"
     })
 
-    // 上传本地图片文件
-    const file = await openai.files.create({
-      file: createReadStream('/img.png'),
-      purpose: "assistants",
-    });
+    // 读取图片并转换为base64
+    const fs = require('fs');
+    const imagePath = '/public/image.png';
+    const imageBuffer = fs.readFileSync(imagePath);
+    const base64Image = imageBuffer.toString('base64');
 
-    // 使用上传的图片进行账单信息识别
+    console.log(base64Image)
+    return;
+
+    // 使用base64图片进行账单信息识别
     const response = await openai.chat.completions.create({
       model: "qwen-vl-max", // 此处以qwen-vl-max为例，可按需更换模型名称
       messages: [
@@ -31,9 +34,13 @@ export class BookkeepingResolver {
         {
           role: "user", content: [
             { type: "text", text: "请识别这张账单图片中的所有信息" },
-            { type: "image_url", image_url: { "url": `file-${file.id}` } }
+            { type: "image_url", image_url: { "url": `data:image/png;base64,${base64Image}` } }
           ]
         }]
     });
+
+    // 输出response的内容
+    console.log('识别结果:', response.choices[0].message.content);
+    return response.choices[0].message.content;
   }
 }
