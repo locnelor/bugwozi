@@ -13,16 +13,19 @@ export const DashboardGuards = makePowerGuard("/dashboard", "仪表盘", {
 export const BlogGuards = makePowerGuard("/blog", "博客系统", {
   sort: 100
 })
-export const BlogArticleGuards = makePowerGuard("/blog/article", "文章管理", {
+export const BlogArticleGuards = makePowerGuard("/blog/posts", "文章管理", {
   parent: BlogGuards.path,
 })
-export const BlogCommentGuards = makePowerGuard("/blog/comment", "评论管理", {
+export const BlogCommentGuards = makePowerGuard("/blog/comments", "评论管理", {
   parent: BlogGuards.path,
 })
-export const BlogLinkGuards = makePowerGuard("/blog/link", "友链管理", {
+export const BlogCategoriesGuards = makePowerGuard("/blog/categories", "分类管理", {
   parent: BlogGuards.path,
 })
-export const BlogTagsGuards = makePowerGuard("/blog/tags", "标签管理", {
+export const BlogLinkGuards = makePowerGuard("/blog/links", "友链管理", {
+  parent: BlogGuards.path,
+})
+export const BlogTagsGuards = makePowerGuard("/blog/tag", "标签管理", {
   parent: BlogGuards.path,
 })
 
