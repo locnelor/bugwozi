@@ -14,10 +14,32 @@
     "author": "小沐禾",
     "copyright": "版权",
     "license": "协议",
-    "links": "友链"
+    "links": "友链",
+    "announcements": "公告",
+    "loadMore": "加载更多"
   },
   "HomePage": {
     "title": "博客",
     "description": "这是我的博客"
+  },
+  "Article": {
+    "views": "浏览",
+    "like": "点赞",
+    "likeSuccess": "点赞成功",
+    "comments": "评论",
+    "leaveComment": "发表评论",
+    "commentRequired": "请输入评论内容",
+    "commentPlaceholder": "请输入您的评论...",
+    "commentSuccess": "评论发表成功",
+    "submit": "提交",
+    "notFound": "文章未找到",
+    "notFoundDesc": "您要查找的文章不存在或已被删除",
+    "backToHome": "返回首页",
+    "backToList": "返回列表"
+  },
+  "Tags": {
+    "popularTags": "热门标签",
+    "articles": "篇文章",
+    "viewArticles": "查看文章"
   }
 }

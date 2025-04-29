@@ -12,9 +12,12 @@ import {
   FolderOutlined,
   CalendarOutlined,
 } from "@ant-design/icons";
-import Link from "next/link";
+import { Link } from "#/i18n/navigation";
+import { useTranslations } from 'next-intl';
 
 export default function HomePage() {
+  const t = useTranslations();
+  
   // Mock data
   const articles = [
     {
@@ -79,12 +82,12 @@ export default function HomePage() {
       key: "home",
       label: (
         <span>
-          <HomeOutlined /> Home
+          <HomeOutlined /> {t('Page.article')}
         </span>
       ),
       children: (
         <div className="space-y-6">
-          <h2 className="text-2xl font-bold">Latest Articles</h2>
+          <h2 className="text-2xl font-bold">{t('Page.recentPosts')}</h2>
           <List
             itemLayout="vertical"
             dataSource={articles}
@@ -100,7 +103,7 @@ export default function HomePage() {
                     </div>
                     <div className="text-sm text-gray-500">
                       <CommentOutlined className="mr-1" />
-                      {item.comments} comments
+                      {item.comments} {t('Page.comment')}
                     </div>
                   </div>
                 }
@@ -122,7 +125,7 @@ export default function HomePage() {
             )}
           />
           <div className="text-center">
-            <Button type="primary">Load More</Button>
+            <Button type="primary">{t('Page.loadMore')}</Button>
           </div>
         </div>
       ),
@@ -131,12 +134,12 @@ export default function HomePage() {
       key: "archives",
       label: (
         <span>
-          <FileTextOutlined /> Archives
+          <FileTextOutlined /> {t('Page.archives')}
         </span>
       ),
       children: (
         <div className="space-y-6">
-          <h2 className="text-2xl font-bold">Article Archives</h2>
+          <h2 className="text-2xl font-bold">{t('Page.archives')}</h2>
           <List
             itemLayout="horizontal"
             dataSource={[
@@ -167,12 +170,12 @@ export default function HomePage() {
       key: "announcements",
       label: (
         <span>
-          <NotificationOutlined /> Announcements
+          <NotificationOutlined /> {t('Page.announcements')}
         </span>
       ),
       children: (
         <div className="space-y-6">
-          <h2 className="text-2xl font-bold">Announcements</h2>
+          <h2 className="text-2xl font-bold">{t('Page.announcements')}</h2>
           <List
             itemLayout="vertical"
             dataSource={announcements}
@@ -199,7 +202,7 @@ export default function HomePage() {
         </div>
         
         <div className="space-y-6">
-          <Card title={<span><FolderOutlined /> Categories</span>} className="shadow-sm">
+          <Card title={<span><FolderOutlined /> {t('Page.categories')}</span>} className="shadow-sm">
             <div className="space-y-2">
               {categories.map(category => (
                 <div key={category.name} className="flex justify-between items-center">
@@ -212,7 +215,7 @@ export default function HomePage() {
             </div>
           </Card>
           
-          <Card title={<span><TagsOutlined /> Tags</span>} className="shadow-sm">
+          <Card title={<span><TagsOutlined /> {t('Page.tags')}</span>} className="shadow-sm">
             <div className="flex flex-wrap gap-2">
               {tags.map(tag => (
                 <Link href={`/tag/${tag.name.toLowerCase()}`} key={tag.name}>
@@ -224,7 +227,7 @@ export default function HomePage() {
             </div>
           </Card>
           
-          <Card title={<span><LinkOutlined /> Links</span>} className="shadow-sm">
+          <Card title={<span><LinkOutlined /> {t('Page.links')}</span>} className="shadow-sm">
             <div className="space-y-2">
               {links.map(link => (
                 <div key={link.id}>
@@ -236,7 +239,7 @@ export default function HomePage() {
             </div>
           </Card>
           
-          <Card title={<span><CommentOutlined /> Recent Comments</span>} className="shadow-sm">
+          <Card title={<span><CommentOutlined /> {t('Page.recentComments')}</span>} className="shadow-sm">
             <div className="space-y-3">
               <div>
                 <div className="text-sm text-gray-500">John on "Getting Started with Next.js"</div>

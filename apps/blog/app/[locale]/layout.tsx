@@ -4,6 +4,7 @@ import { routing } from '#/i18n/routing';
 import './globals.css';
 import BlogHeader from '../../layout/BlogHeader';
 import BlogContent from '../../layout/BlogContent';
+
 export default async function LocaleLayout({
   children,
   params
@@ -12,11 +13,13 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
+  
   return (
-    <html lang={locale} >
+    <html lang={locale}>
       <body>
         <NextIntlClientProvider>
           <BlogHeader />

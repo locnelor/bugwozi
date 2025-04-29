@@ -156,13 +156,24 @@ model blog_posts {
   updatedAt    DateTime             @default(now()) @updatedAt
   title        String
   content      String               @db.Text
+  excerpt      String?              @db.Text // 文章摘要
+  coverImage   String?              // 封面图片URL
   status       Boolean              @default(true)
+  published    Boolean              @default(false) // 是否已发布
+  publishedAt  DateTime?            // 发布时间
+  views        Int                  @default(0) // 浏览量
+  likes        Int                  @default(0) // 点赞数
   userId       String
   categoriesId String?
+  slug         String?              @unique // URL友好的标识
   categories   blog_categories?     @relation(fields: [categoriesId], references: [uid])
   user         sys_user             @relation(fields: [userId], references: [uid])
   tags         blog_posts_on_tags[]
   comments     blog_comments[]
+
+  @@index([slug])
+  @@index([publishedAt])
+  @@index([status, published])
 }
 
 // 博客标签
@@ -177,47 +188,57 @@ model blog_posts_on_tags {
 
 // 博客标签
 model blog_tag {
-  uid       String               @id @default(uuid())
-  createdAt DateTime             @default(now())
-  updatedAt DateTime             @default(now()) @updatedAt
-  name      String
-  blogs     blog_posts_on_tags[]
+  uid         String               @id @default(uuid())
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @default(now()) @updatedAt
+  name        String
+  description String?              // 标签描述
+  blogs       blog_posts_on_tags[]
 }
 
 // 博客评论
 model blog_comments {
-  uid       String     @id @default(uuid())
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @default(now()) @updatedAt
-  content   String     @db.Text
-  status    Boolean    @default(true)
-  userId    String
-  postId    String
-  user      sys_user   @relation(fields: [userId], references: [uid])
-  post      blog_posts @relation(fields: [postId], references: [uid])
+  uid         String          @id @default(uuid())
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @default(now()) @updatedAt
+  content     String          @db.Text
+  status      Boolean         @default(true)
+  userId      String
+  postId      String
+  parentId    String?         // 父评论ID，用于回复
+  user        sys_user        @relation(fields: [userId], references: [uid])
+  post        blog_posts      @relation(fields: [postId], references: [uid])
+  parent      blog_comments?  @relation("CommentReplies", fields: [parentId], references: [uid])
+  replies     blog_comments[] @relation("CommentReplies")
 }
 
 // 友情链接
 model blog_links {
-  uid       String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
-  name      String // 链接名称
-  url       String // 链接地址
-  logo      String? // logo地址
-  sort      Int      @default(0) // 排序
-  status    Boolean  @default(true)
+  uid         String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+  name        String   // 链接名称
+  url         String   // 链接地址
+  logo        String?  // logo地址
+  description String?  // 链接描述
+  sort        Int      @default(0) // 排序
+  status      Boolean  @default(true) // 是否显示
+  clicks      Int      @default(0) // 点击次数
 }
 
 // 公告
 model blog_announcements {
-  uid       String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
-  title     String // 公告标题
-  content   String   @db.Text // 公告内容
-  sort      Int      @default(0) // 排序
-  status    Boolean  @default(true)
+  uid         String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+  title       String   // 公告标题
+  content     String   @db.Text // 公告内容
+  sort        Int      @default(0) // 排序
+  status      Boolean  @default(true) // 是否显示
+  startTime   DateTime? // 开始时间
+  endTime     DateTime? // 结束时间
+  important   Boolean  @default(false) // 是否重要
+  author      String?  // 作者
 }
 
 //*********************** 记账系统

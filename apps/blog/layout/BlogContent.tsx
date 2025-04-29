@@ -1,55 +1,34 @@
-import { useTranslations } from "next-intl";
-import type { PropsWithChildren } from "react";
+"use client";
 
+import { ReactNode } from 'react';
+import { Layout } from 'antd';
+import { useTranslations } from 'next-intl';
 
-const Card = ({ children, title }: PropsWithChildren<{ title?: string }>) => {
+const { Content, Footer } = Layout;
 
-  return (
-    <div className="shadow rounded-2xl mb-3 p-4">
-      {!!title && <div className="text-center">{title}</div>}
-      {children}
-    </div>
-  )
+interface BlogContentProps {
+  children: ReactNode;
 }
-const BlogContent = ({ children }: PropsWithChildren) => {
-  const t = useTranslations("Page")
+
+const BlogContent = ({ children }: BlogContentProps) => {
+  const t = useTranslations();
+  const currentYear = new Date().getFullYear();
+  
   return (
-    <div className="mx-auto" style={{ maxWidth: 1200 }}>
-      <div className="pt-20">
-        <div className="flex gap-2">
-          <div className="w-64">
-            <Card>
-              <div className="flex justify-center items-center min-h-16">
-                icon
-              </div>
-              <div className="text-center">
-                {t("author")}
-              </div>
-              <div className="flex gap-2 justify-center">
-                <div className="flex flex-col gap-2 justify-center">
-                  <div>文章</div>
-                  <div>11</div>
-                </div>
-                <div className="flex flex-col gap-2 justify-center">
-                  <div>标签</div>
-                  <div>11</div>
-                </div>
-                <div className="flex flex-col gap-2 justify-center">
-                  <div>分类</div>
-                  <div>11</div>
-                </div>
-              </div>
-            </Card>
-            <Card title="公告">
-              这里是公告.html
-            </Card>
-          </div>
-          <div className="grow">
-            {children}
-          </div>
+    <Layout>
+      <Content className="min-h-screen pt-8 pb-16">
+        {children}
+      </Content>
+      <Footer className="text-center bg-gray-100">
+        <div className="mb-2">
+          &copy; {currentYear} {t('Page.author')}. {t('Page.copyright')}
         </div>
-      </div>
-    </div >
-  )
-}
-export default BlogContent
+        <div className="text-xs text-gray-500">
+          Powered by Next.js · Ant Design · {t('Page.license')}: MIT
+        </div>
+      </Footer>
+    </Layout>
+  );
+};
+
+export default BlogContent;
