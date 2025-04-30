@@ -286,3 +286,8 @@ model bookkeep_record_on_tags {
 
   @@id([recordId, tagId])
 }
+
+
+
+
+
