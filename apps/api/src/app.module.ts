@@ -13,6 +13,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { RedisCache, WeChatModule } from '@app/wechat';
 import { WxModule } from './wx/wx.module';
 import { BookkeepingModule } from './bookkeeping/bookkeeping.module';
+import { BookModule } from './book/book.module';
 
 @Module({
   imports: [
@@ -88,6 +89,7 @@ import { BookkeepingModule } from './bookkeeping/bookkeeping.module';
     DashboardModule,
     WxModule,
     BookkeepingModule,
+    BookModule,
   ],
   controllers: [AppController],
   providers: [AppService],
