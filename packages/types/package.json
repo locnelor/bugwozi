@@ -10,8 +10,7 @@
     "@internal/tsconfig": "workspace:*",
     "react":"19",
     "@nestjs/graphql": "^13.0.3",
-    "@pkg/database": "workspace:*",
-    "tsc-alias": "^1.8.11"
+    "@pkg/database": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^22.13.10",
