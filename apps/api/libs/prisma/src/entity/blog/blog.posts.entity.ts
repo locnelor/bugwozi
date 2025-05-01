@@ -1,4 +1,4 @@
-import { Field, ObjectType } from "@nestjs/graphql";
+import { Field, Int, ObjectType } from "@nestjs/graphql";
 import { blog_posts } from "@pkg/database";
 import { BaseUEntity } from "../base.u.entity";
 import { BlogCategoriesEntity } from "./blog.categories.entity";
@@ -7,6 +7,27 @@ import { SysUserEntity } from "../sys";
 
 @ObjectType()
 export class BlogPostsEntity extends BaseUEntity implements blog_posts {
+  @Field()
+  excerpt: string;
+
+  @Field()
+  coverImage: string;
+  
+  @Field(()=>Boolean)
+  published: boolean;
+
+  @Field()
+  publishedAt: Date;
+
+  @Field(()=>Int)
+  views: number;
+
+  @Field(()=>Int)
+  likes: number;
+
+  @Field()
+  slug: string;
+  
   @Field()
   categoriesId: string;
 

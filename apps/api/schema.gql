@@ -110,6 +110,13 @@ type BlogPostsEntity {
   createdAt: DateTime!
   updatedAt: DateTime!
   uid: String!
+  excerpt: String!
+  coverImage: String!
+  published: Boolean!
+  publishedAt: DateTime!
+  views: Int!
+  likes: Int!
+  slug: String!
   categoriesId: String!
   title: String!
   content: String!
@@ -140,6 +147,7 @@ type BlogCommentsEntity {
   createdAt: DateTime!
   updatedAt: DateTime!
   uid: String!
+  parentId: String
   content: String!
   status: Boolean!
   userId: String!
@@ -157,6 +165,8 @@ type BlogLinksEntity {
   createdAt: DateTime!
   updatedAt: DateTime!
   uid: String!
+  description: String!
+  clicks: Int!
   name: String!
   url: String!
   logo: String
@@ -173,6 +183,10 @@ type BlogAnnouncementsEntity {
   createdAt: DateTime!
   updatedAt: DateTime!
   uid: String!
+  startTime: DateTime!
+  endTime: DateTime!
+  important: Boolean!
+  author: String!
   title: String!
   content: String!
   sort: Float!

@@ -9,7 +9,7 @@ export class BlogTagEntity extends BaseUEntity implements blog_tag {
   name: string
 
   @Field({ nullable: true })
-  description?: string
+  description: string
 
   @Field(() => [BlogPostsOnTagsEntity], { nullable: true })
   blogd?: BlogPostsOnTagsEntity[]

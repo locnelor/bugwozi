@@ -1,9 +1,16 @@
-import { Field, ObjectType } from "@nestjs/graphql";
+import { Field, Int, ObjectType } from "@nestjs/graphql";
 import type { blog_links } from "@pkg/database";
 import { BaseUEntity } from "../base.u.entity";
 
 @ObjectType()
 export class BlogLinksEntity extends BaseUEntity implements blog_links {
+  @Field()
+  description: string;
+
+  @Field(() => Int)
+  clicks: number;
+
+  
   @Field(() => String)
   name: string
 

@@ -4,6 +4,19 @@ import { BaseUEntity } from "../base.u.entity";
 
 @ObjectType()
 export class BlogAnnouncementsEntity extends BaseUEntity implements blog_announcements {
+  @Field()
+  startTime: Date;
+
+  @Field()
+  endTime: Date;
+
+  @Field(()=>Boolean)
+  important: boolean;
+
+  @Field()
+  author: string;
+
+  
   @Field(() => String)
   title: string
 

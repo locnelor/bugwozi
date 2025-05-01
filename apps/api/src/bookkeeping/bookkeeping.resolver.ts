@@ -5,7 +5,7 @@ import OpenAI from 'openai';
 @Resolver()
 export class BookkeepingResolver {
   constructor() {
-    this.init()
+    // this.init()
   }
 
   public async init() {

@@ -6,6 +6,9 @@ import { SysUserEntity } from "../sys";
 
 @ObjectType()
 export class BlogCommentsEntity extends BaseUEntity implements blog_comments {
+  @Field({ nullable: true })
+  parentId: string;
+
   @Field(() => String)
   content: string
 
