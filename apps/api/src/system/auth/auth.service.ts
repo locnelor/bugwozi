@@ -162,7 +162,14 @@ export class AuthService {
     async scanQrCode(uuid: string) {
         const value = await this.getValue(uuid, QrCodeType.LoginPending)
         if (!value) return;
-        const account = await this.findAccount("we_chat", value);
+        const account = await this.prisma.sys_account.findUnique({
+            where: {
+                uid: value
+            },
+            include: {
+                user: true
+            }
+        })
         await this.setKey(uuid, QrCodeType.Expired)
         return {
             ...account.user,

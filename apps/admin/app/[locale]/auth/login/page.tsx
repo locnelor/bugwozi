@@ -63,7 +63,7 @@ const AuthLoginPage = () => {
           uuid: QrCode.getQrCode.uuid
         }
       })
-    }, 1000)
+    }, 2000)
     return () => clearInterval(time);
   }, [QrCode])
 
