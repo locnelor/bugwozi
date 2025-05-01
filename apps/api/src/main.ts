@@ -8,7 +8,8 @@ import { ConfigService } from '@nestjs/config';
 // import { PrismaService } from '@app/prisma';
 import { FileService } from '@app/file';
 import { AppModule } from './app.module';
-// import * as bodyParser from 'body-parser';
+import { XMLMiddleware } from './wx/xml.middleware';
+import * as bodyParser from 'body-parser';
 
 
 async function bootstrap() {
@@ -28,6 +29,8 @@ async function bootstrap() {
     origin: ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:25001'],
     credentials: true,
   });
+
+  app.use(bodyParser.text({ type: 'application/xml' }));
   // app.use(bodyParser.urlencoded({ extended: true }));
   app.useBodyParser('text');
   app.useBodyParser('raw');
