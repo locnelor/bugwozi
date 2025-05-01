@@ -20,16 +20,17 @@
     "@internal/tailwind-config": "workspace:*",
     "@internal/tsconfig": "workspace:*",
     "@pkg/database": "workspace:*",
-    "@pkg/types": "workspace:*",
-    "@pkg/init": "workspace:*",
     "@pkg/hooks": "workspace:*",
+    "@pkg/init": "workspace:*",
+    "@pkg/types": "workspace:*",
     "antd": "^5.24.3",
     "classnames": "^2.5.1",
     "dayjs": "^1.11.13",
     "next": "15.2.2",
     "next-intl": "^4.0.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-markdown-editor-lite": "^1.3.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.14",
