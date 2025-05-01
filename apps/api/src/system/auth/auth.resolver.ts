@@ -1,5 +1,5 @@
 import { UseGuards } from '@nestjs/common';
-import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { AuthService } from './auth.service';
 import { PrismaService, SysUserEntity } from '@app/prisma';
 import { HashService } from '@app/hash';
@@ -28,4 +28,6 @@ export class AuthResolver {
     ) {
         return this.authService.userLogin(account, password)
     }
+
+
 }

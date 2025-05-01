@@ -193,7 +193,7 @@ export class WeChatService {
    * @param _secret 
    * @returns 
    */
-  private async getToken (_appId?: string, _secret?: string): Promise<string | undefined> {
+  async getToken (_appId?: string, _secret?: string): Promise<string | undefined> {
     let accessToken;
     const { appId, secret } = this.chooseAppIdAndSecret(_appId, _secret);
     const cache = await this.cacheAdapter.get<AccountAccessTokenResult>(`${WeChatService.KEY_ACCESS_TOKEN}_${appId}`);

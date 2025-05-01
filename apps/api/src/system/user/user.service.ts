@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '@app/prisma';
+import { PrismaService, SysUserEntity } from '@app/prisma';
 import { UserPaginationInput } from './dto/user.pagination';
-import { Prisma } from '@pkg/database';
+import { Prisma, sys_account_provider } from '@pkg/database';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 
@@ -10,6 +10,29 @@ export class UserService {
   constructor(
     private readonly prisma: PrismaService
   ) { }
+
+  async bindAccount(
+    user: SysUserEntity,
+    provider: sys_account_provider,
+    value: string
+  ) {
+    const find = await this.prisma.sys_account.findUnique({
+      where: {
+        provider_value: {
+          provider,
+          value
+        }
+      }
+    })
+    if (!!find) return find;
+    return await this.prisma.sys_account.create({
+      data: {
+        provider,
+        value,
+        userId: user.uid
+      }
+    })
+  }
 
   findAll() {
     return this.prisma.sys_user.findMany()

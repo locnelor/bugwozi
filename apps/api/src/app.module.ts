@@ -14,6 +14,7 @@ import { WeChatModule } from '@app/wechat';
 import { WxModule } from './wx/wx.module';
 import { BookkeepingModule } from './bookkeeping/bookkeeping.module';
 import { BookModule } from './book/book.module';
+import { RedisCacheModule } from '@app/redis-cache';
 
 @Module({
   imports: [
@@ -33,7 +34,6 @@ import { BookModule } from './book/book.module';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
-        console.log(configService.get('server'));
         return {
           driver: ApolloDriver,
           subscriptions: {
@@ -81,6 +81,10 @@ import { BookModule } from './book/book.module';
         encodingAESKey: configService.get('WX_AESKEY'),
         debug: true,
       }),
+    }),
+    RedisCacheModule.register({
+      host: "localhost",
+      port: 6379
     }),
     SystemModule,
     BlogModule,

@@ -1,10 +1,7 @@
-import { MessageCrypto, WeChatService } from '@app/wechat';
-import { Body, Controller, Get, Post, Query, Req, Res } from '@nestjs/common';
-import { raw, xml } from 'body-parser';
-import { Request, Response } from 'express';
-
-import getRawBody from 'raw-body';
-import { XMLParser, XMLBuilder } from 'fast-xml-parser';
+import { WeChatService } from '@app/wechat';
+import { Body, Controller, Get, Post, Query, Res } from '@nestjs/common';
+import { Response } from 'express';
+import { XMLBuilder } from 'fast-xml-parser';
 import { createHash } from 'crypto';
 import { ConfigService } from '@nestjs/config';
 interface IWxMessageXmlData {
@@ -22,12 +19,13 @@ interface IWxMessageXmlData {
   EventKey: string;
 
   Content: string
+
+  Ticket: string
 }
 
 @Controller('wechat')
 export class WxController {
   constructor(
-    private readonly wechatService: WeChatService,
     private readonly configService: ConfigService
   ) { }
 
@@ -54,14 +52,23 @@ export class WxController {
 
   @Post("handle")
   async handle(
-    @Req() req: Request,
     @Res() res: Response,
     @Body('xml') msg: IWxMessageXmlData,
-    @Body() body: any
   ) {
-    console.log(msg, body)
+    if (msg.Event === "subscribe") {
+      const openid = msg.FromUserName;
+      const time = msg.CreateTime;
+      const Ticket = msg.Ticket
+      const EventKey = msg.EventKey;
+      console.log(openid)
+      console.log(time)
+      console.log(Ticket);
+      console.log(EventKey)
 
-    // 简单自动回复文本消息
+      res.set('Content-Type', 'application/xml');
+      res.send('');
+      return;
+    }
     const response = {
       xml: {
         ToUserName: msg.FromUserName,
@@ -78,77 +85,4 @@ export class WxController {
     res.set('Content-Type', 'application/xml');
     res.send(responseXml);
   }
-
-  // @Post("handle")
-  // async handle(
-  //   @Req() req: Request,
-  //   @Res() res: Response,
-
-  // ) {
-  //   // /wechat/handle?signature=c3e035bc3bd0588bfba91f671a83698243d6637e&timestamp=1746091789&nonce=2133267148&openid=oWZyw6edoc0XygKjECXTem--pmJI&encrypt_type=aes&msg_signature=9f26728839eaaffda737df1b6b41e491b17b27df
-  //   const timestamp = req.query && req.query.timestamp;
-  //   const nonce = req.query && req.query.nonce;
-  //   const signature = req.query && (req.query.msg_signature || req.query.signature) as string;
-
-  //   let rawBody;
-  //   try {
-  //     rawBody = await getRawBody(req);
-  //   } catch (error) {
-  //     const message = (error as Error).message as string;
-  //     if (message === 'stream is not readable') {
-  //       rawBody = req.body;
-  //     }
-  //   }
-
-  //   let decrypt = '';
-  //   let success = false;
-  //   if (timestamp && nonce && signature && rawBody) {
-  //     decrypt = this.wechatService.decryptMessage(signature, timestamp as string, nonce as string, rawBody.toString());
-  //     success = true;
-  //     console.log('收到微信消息:', decrypt);
-  //   } else {
-  //     throw new Error('消息参数不正确');
-  //   }
-
-  //   if (success && res && typeof res.send === 'function') {
-  //     res.send('success');
-  //   }
-  //   return decrypt;
-  //   // let rawBody;
-  //   // try {
-  //   //   rawBody = await getRawBody(req);
-  //   // } catch (error) {
-  //   //   const message = (error as Error).message as string;
-  //   //   if (message === 'stream is not readable') {
-  //   //     rawBody = req.body;
-  //   //   }
-  //   // }
-
-  //   // console.log(timestamp)
-  //   // console.log(nonce)
-  //   // console.log(rawBody)
-  //   // console.log(signature)
-
-
-  //   // let decrypt = '';
-  //   // let success = false;
-  //   // const aesKey = MessageCrypto.getAESKey(signature || '');
-  //   // const iv = MessageCrypto.getAESKeyIV(aesKey);
-  //   // const parser = new XMLParser();
-  //   // const xml = parser.parse(rawBody.toString());
-  //   // const encryptMessage = xml.Encrypt;
-  //   // const data = MessageCrypto.decrypt(aesKey, iv, encryptMessage);
-  //   // console.log(data)
-
-
-  //   // if (timestamp && nonce && signature && rawBody) {
-  //   //   // decrypt = this.decryptMessage(signature as string, timestamp as string, nonce as string, rawBody.toString());
-  //   //   success = true;
-  //   // } else {
-  //   //   throw new Error('message params incorrect');
-  //   // }
-  //   // const text = await this.wechatService.messagePushExpressHandler(req);
-  //   // console.log(text);
-  //   return ""
-  // }
 }

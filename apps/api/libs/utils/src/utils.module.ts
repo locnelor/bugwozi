@@ -4,6 +4,6 @@ import { RandomNameService } from './random-name/random-name.service';
 
 @Module({
   providers: [UtilsService, RandomNameService],
-  exports: [UtilsService],
+  exports: [UtilsService, RandomNameService],
 })
-export class UtilsModule {}
+export class UtilsModule { }
