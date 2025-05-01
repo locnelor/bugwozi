@@ -10,7 +10,7 @@ import { FileService } from '@app/file';
 import { AppModule } from './app.module';
 import { XMLMiddleware } from './wx/xml.middleware';
 import * as bodyParser from 'body-parser';
-
+require('body-parser-xml')(bodyParser);
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
@@ -30,7 +30,13 @@ async function bootstrap() {
     credentials: true,
   });
 
-  app.use(bodyParser.text({ type: 'application/xml' }));
+  app.use(
+    bodyParser.xml({
+      xmlParseOptions: {
+        explicitArray: false, // 始终返回数组。默认情况下只有数组元素数量大于 1 是才返回数组。
+      },
+    }),
+  );
   // app.use(bodyParser.urlencoded({ extended: true }));
   app.useBodyParser('text');
   app.useBodyParser('raw');

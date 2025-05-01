@@ -7,6 +7,22 @@ import getRawBody from 'raw-body';
 import { XMLParser, XMLBuilder } from 'fast-xml-parser';
 import { createHash } from 'crypto';
 import { ConfigService } from '@nestjs/config';
+interface IWxMessageXmlData {
+  /** 开发者微信号 e.g. `gh_019087f88815`*/
+  ToUserName: string;
+  /** 发送方帐号（一个OpenID）e.g.: `o5w5awUl***5pIJKY`*/
+  FromUserName: string;
+  /** 消息创建时间 （整型）e.g.`1595855711` */
+  CreateTime: string;
+  /** 消息类型，此处为 `event` */
+  MsgType: string;
+  /** 事件类型，subscribe(订阅)、unsubscribe(取消订阅) */
+  Event: 'subscribe' | 'unsubscribe';
+  /** 事件KEY值，目前无用 */
+  EventKey: string;
+
+  Content: string
+}
 
 @Controller('wechat')
 export class WxController {
@@ -39,13 +55,11 @@ export class WxController {
   @Post("handle")
   async handle(
     @Req() req: Request,
-    @Res() res: Response
+    @Res() res: Response,
+    @Body('xml') msg: IWxMessageXmlData,
+    @Body() body: any
   ) {
-    console.log(req.body)
-    const xmlData = req.body;
-
-    const parser = new XMLParser({ ignoreAttributes: false });
-    const msg = parser.parse(xmlData).xml;
+    console.log(msg, body)
 
     // 简单自动回复文本消息
     const response = {
