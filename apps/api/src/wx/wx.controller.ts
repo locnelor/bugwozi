@@ -11,10 +11,10 @@ export class WxController {
 
   @Post("handle")
   async handle(@Req() req: Request, @Res() res: Response) {
-
-    const decrypt = await this.wechatService.messagePushExpressHandler(req, res);
     console.log(req)
     console.log(res)
+    const decrypt = await this.wechatService.messagePushExpressHandler(req, res);
+
     console.log(decrypt);
     // 参数	是否必须	描述
     // ToUserName	是	接收方账号（收到的OpenID）
