@@ -41,6 +41,7 @@ export class WxController {
     @Req() req: Request,
     @Res() res: Response
   ) {
+    console.log(req.body)
     const xmlData = req.body;
 
     const parser = new XMLParser({ ignoreAttributes: false });
