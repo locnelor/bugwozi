@@ -55,6 +55,7 @@ export class WxController {
     @Res() res: Response,
     @Body('xml') msg: IWxMessageXmlData,
   ) {
+    console.log(msg)
     if (msg.Event === "subscribe") {
       const openid = msg.FromUserName;
       const time = msg.CreateTime;
