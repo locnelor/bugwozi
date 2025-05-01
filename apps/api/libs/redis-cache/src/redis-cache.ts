@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Redis } from 'ioredis';
-import { InjectRedis } from '@nestjs-modules/ioredis';
+import { Cache } from 'cache-manager';
 
 export interface ICache {
   get<T>(key: string): Promise<T>;
@@ -18,9 +17,9 @@ export class RedisCache implements ICache {
 
   /**
    * 构造函数
-   * @param redis ioredis实例
+   * @param cache cache manager 实例
    */
-  constructor(@InjectRedis() private readonly redis: Redis) {}
+  constructor(private readonly cache: Cache) {}
 
   /**
    * 获取缓存
@@ -36,9 +35,9 @@ export class RedisCache implements ICache {
     let value = {};
     
     try {
-      const result = await this.redis.get(key);
-      if (result) {
-        value = JSON.parse(result);
+      value = await this.cache.get<T>(key) as T;
+      if (!value) {
+        value = {};
       }
     } catch (error) {
       value = {};
@@ -60,13 +59,11 @@ export class RedisCache implements ICache {
     }
     
     key = this.namespace + key;
-    const stringValue = JSON.stringify(value);
-    
-    if (ttl && ttl > 0) {
-      return this.redis.set(key, stringValue, 'EX', ttl);
-    } else {
-      return this.redis.set(key, stringValue);
+    if (!ttl) {
+      ttl = 0;
     }
+    
+    return this.cache.set(key, value, { ttl });
   }
 
   /**
@@ -79,7 +76,7 @@ export class RedisCache implements ICache {
     
     key = this.namespace + key;
     try {
-      this.redis.del(key);
+      this.cache.del(key);
       return true;
     } catch (error) {
       return false;
@@ -90,8 +87,13 @@ export class RedisCache implements ICache {
    * 关闭连接
    */
   public close(): void {
-    if (this.redis) {
-      this.redis.quit();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if (typeof (this.cache.store as any).getClient === 'function') {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const client = (this.cache.store as any).getClient();
+      if (client) {
+        client.quit();
+      }
     }
   }
 }

@@ -10,10 +10,11 @@ import { SystemModule } from './system/system.module';
 import { BlogModule } from './blog/blog.module';
 import { OrderModule } from './order/order.module';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { RedisCache, WeChatModule } from '@app/wechat';
+import { WeChatModule } from '@app/wechat';
 import { WxModule } from './wx/wx.module';
 import { BookkeepingModule } from './bookkeeping/bookkeeping.module';
 import { BookModule } from './book/book.module';
+import { RedisCache } from '@app/redis-cache/redis-cache';
 
 @Module({
   imports: [
