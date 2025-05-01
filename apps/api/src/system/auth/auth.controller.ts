@@ -1,5 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Res } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { Response } from 'express';
 
 @Controller('auth')
 export class AuthController {
@@ -8,7 +9,9 @@ export class AuthController {
   ) { }
   //获取临时二维码
   @Get("getQrCode")
-  getQrCode() {
-    return this.authService.getLoginQrCode()
+  async getQrCode(@Res() res: Response) {
+    res.setHeader('Content-Type', 'image/png');
+    const buffer = this.authService.getLoginQrCode()
+    res.send(buffer);
   }
 }

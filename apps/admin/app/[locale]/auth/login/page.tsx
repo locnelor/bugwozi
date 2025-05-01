@@ -1,20 +1,20 @@
 "use client"
-import React, { useEffect } from 'react';
-import { Form, Input, Button } from 'antd';
-import { useMsg } from '#/hooks/MessageProvider';
+import React, { useEffect, useState } from 'react';
+import { Form, Input, Button, Modal, Divider, Space } from 'antd';
 import { useRouter } from '#/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { gql, useMutation, useQuery } from '@apollo/client';
 import gqlError from '#/libs/gqlError';
 import { setCookie } from '#/libs/cookie';
 import useViewer from "#/hooks/viewer/useViewer";
+import axios from 'axios';
+import { WechatOutlined, GithubOutlined } from '@ant-design/icons';
 
 const HasWebsiteInitQuery = gql`
   query HasWebsiteInit{
     hasWebsiteInit
   }
 `
-
 
 const AuthAccountLogin = gql`
   mutation AuthAccountLogin(
@@ -30,8 +30,10 @@ const AuthAccountLogin = gql`
   }
 `
 
-
 const AuthLoginPage = () => {
+  const [isWechatModalVisible, setIsWechatModalVisible] = useState(false);
+  const [qrCodeUrl, setQrCodeUrl] = useState('');
+
   const { data } = useQuery(HasWebsiteInitQuery, {
     fetchPolicy: "no-cache"
   })
@@ -53,14 +55,33 @@ const AuthLoginPage = () => {
     if (hasWebsiteInit) return;
     router.push("/auth/init")
   }, [data])
-
-  const { messageApi } = useMsg()
   const t = useTranslations('auth')
 
   const handleSubmit = (variables: any) => {
     auth({
       variables
     })
+  };
+
+  const showWechatModal = async () => {
+    try {
+      const response = await axios.get(`https://api.bugwozi.top/auth/getQrCode?s=${Date.now()}`, {
+        responseType: 'blob'
+      });
+      console.log('Content-Type:', response.headers['content-type']);
+      response.data.text().then(console.log)
+      const url = URL.createObjectURL(response.data);
+      console.log(url, response.data)
+      setQrCodeUrl(url);
+      setIsWechatModalVisible(true);
+    } catch (error) {
+      console.error('获取二维码失败:', error);
+    }
+  };
+
+  const handleGiteeLogin = () => {
+    // 实现Gitee登录逻辑
+    console.log('Gitee登录');
   };
 
   return (
@@ -76,7 +97,6 @@ const AuthLoginPage = () => {
         className="space-y-6"
       >
         <div className="space-y-4">
-
           <Form.Item
             label={t('account')}
             name="account"
@@ -108,7 +128,31 @@ const AuthLoginPage = () => {
             {t('submit')}
           </Button>
         </Form.Item>
+
+        <Divider>其他登录方式</Divider>
+
+        <div className="flex justify-center space-x-4">
+          <Button icon={<WechatOutlined />} onClick={showWechatModal}>
+            微信登录
+          </Button>
+          <Button icon={<GithubOutlined />} onClick={handleGiteeLogin}>
+            Gitee登录
+          </Button>
+        </div>
       </Form>
+
+      <Modal
+        title="微信扫码登录"
+        open={isWechatModalVisible}
+        onCancel={() => setIsWechatModalVisible(false)}
+        footer={null}
+      >
+        {qrCodeUrl && (
+          <div className="flex justify-center">
+            <img src={qrCodeUrl} alt="微信登录二维码" style={{ width: 200 }} />
+          </div>
+        )}
+      </Modal>
     </div>
   )
 };
