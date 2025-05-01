@@ -214,7 +214,6 @@ type Query {
   roleList(pagination: RolePaginationInput!): RolePaginationEntity!
   findMenuOnRoles(id: String!): [SysMenuOnRoleEntity!]!
   viewer: SysUserEntity!
-  getQrCode: QrCodeResult!
   posts(pagination: PostsPaginationInput!): PostsPaginationEntity!
   post(uid: String!): BlogPostsEntity!
   tags(pagination: TagPaginationInput!): TagPaginationEntity!
@@ -299,6 +298,7 @@ type Mutation {
   removeRole(uid: String!): SysRoleEntity!
   authAccountLogin(account: String!, password: String!): SysUserEntity!
   scan(uuid: String!): SysUserEntity
+  getQrCode: QrCodeResult!
   createPost(createPostInput: CreatePostInput!): BlogPostsEntity!
   updatePost(updatePostInput: UpdatePostInput!): BlogPostsEntity!
   removePost(uid: String!): BlogPostsEntity!

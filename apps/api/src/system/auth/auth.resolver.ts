@@ -46,7 +46,7 @@ export class AuthResolver {
         return this.authService.scanQrCode(uuid);
     }
 
-    @Query(() => QrCodeResult)
+    @Mutation(() => QrCodeResult)
     async getQrCode() {
         const { buffer, uuid } = await this.authService.getLoginQrCode()
         const base64 = `data:image/png;base64,${buffer.toString('base64')}`

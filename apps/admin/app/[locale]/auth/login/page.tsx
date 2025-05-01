@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import { Form, Input, Button, Modal, Divider, Space } from 'antd';
+import { Form, Input, Button, Modal, Divider, Space, Spin } from 'antd';
 import { useRouter } from '#/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { gql, useMutation, useQuery } from '@apollo/client';
@@ -30,9 +30,42 @@ const AuthAccountLogin = gql`
   }
 `
 
+const GetQrCodeMutation = gql`
+  mutation GetQrCode{
+    getQrCode{
+      base64
+      uuid
+    }
+  }
+`
+const ScanQrCodeMutation = gql`
+  mutation Scan($uuid:String!){
+    scan(uuid:$uuid){
+      access_token
+    }
+  }
+`
 const AuthLoginPage = () => {
   const [isWechatModalVisible, setIsWechatModalVisible] = useState(false);
-  const [qrCodeUrl, setQrCodeUrl] = useState('');
+  const [getQrCode, { data: QrCode, loading: QrCodeLoading }] = useMutation(GetQrCodeMutation)
+  const [ScanQrCode] = useMutation(ScanQrCodeMutation, {
+    onCompleted({ scan }) {
+      if (!scan) return;
+      setCookie("token", scan.access_token)
+      window.location.href = "/dashboard"
+    },
+  })
+  useEffect(() => {
+    if (!QrCode) return;
+    const time = setInterval(() => {
+      ScanQrCode({
+        variables: {
+          uuid: QrCode.getQrCode.uuid
+        }
+      })
+    }, 1000)
+    return () => clearInterval(time);
+  }, [QrCode])
 
   const { data } = useQuery(HasWebsiteInitQuery, {
     fetchPolicy: "no-cache"
@@ -64,20 +97,8 @@ const AuthLoginPage = () => {
   };
 
   const showWechatModal = async () => {
-    // try {
-    //   const response = await axios.get(`https://api.bugwozi.top/auth/getQrCode?s=${Date.now()}`, {
-    //     responseType: 'blob'
-    //   });
-    //   console.log('Content-Type:', response.headers['content-type']);
-    //   response.data.text().then(console.log)
-    //   const url = URL.createObjectURL(response.data);
-    //   console.log(url, response.data)
-    //   setQrCodeUrl(url);
-    //   setIsWechatModalVisible(true);
-    // } catch (error) {
-    //   console.error('获取二维码失败:', error);
-    // }
     setIsWechatModalVisible(true);
+    getQrCode()
   };
 
   const handleGiteeLogin = () => {
@@ -149,7 +170,9 @@ const AuthLoginPage = () => {
         footer={null}
       >
         <div className="flex justify-center">
-          <img src={`https://api.bugwozi.top/auth/getQrCode?s=${Date.now()}`} alt="微信登录二维码" style={{ width: 200 }} />
+          {QrCodeLoading && <Spin ><div className='w-96 h-96' /></Spin>}
+          {!QrCodeLoading && !!QrCode && <img src={QrCode.getQrCode.base64} />}
+          {/* <img src={`https://api.bugwozi.top/auth/getQrCode?s=${Date.now()}`} alt="微信登录二维码" style={{ width: 200 }} /> */}
         </div>
       </Modal>
     </div>
