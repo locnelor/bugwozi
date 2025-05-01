@@ -11,7 +11,7 @@ export class AuthController {
   @Get("getQrCode")
   async getQrCode(@Res() res: Response) {
     res.setHeader('Content-Type', 'image/png');
-    const buffer = this.authService.getLoginQrCode()
+    const buffer = await this.authService.getLoginQrCode()
     res.send(buffer);
   }
 }

@@ -64,19 +64,20 @@ const AuthLoginPage = () => {
   };
 
   const showWechatModal = async () => {
-    try {
-      const response = await axios.get(`https://api.bugwozi.top/auth/getQrCode?s=${Date.now()}`, {
-        responseType: 'blob'
-      });
-      console.log('Content-Type:', response.headers['content-type']);
-      response.data.text().then(console.log)
-      const url = URL.createObjectURL(response.data);
-      console.log(url, response.data)
-      setQrCodeUrl(url);
-      setIsWechatModalVisible(true);
-    } catch (error) {
-      console.error('获取二维码失败:', error);
-    }
+    // try {
+    //   const response = await axios.get(`https://api.bugwozi.top/auth/getQrCode?s=${Date.now()}`, {
+    //     responseType: 'blob'
+    //   });
+    //   console.log('Content-Type:', response.headers['content-type']);
+    //   response.data.text().then(console.log)
+    //   const url = URL.createObjectURL(response.data);
+    //   console.log(url, response.data)
+    //   setQrCodeUrl(url);
+    //   setIsWechatModalVisible(true);
+    // } catch (error) {
+    //   console.error('获取二维码失败:', error);
+    // }
+    setIsWechatModalVisible(true);
   };
 
   const handleGiteeLogin = () => {
@@ -147,11 +148,9 @@ const AuthLoginPage = () => {
         onCancel={() => setIsWechatModalVisible(false)}
         footer={null}
       >
-        {qrCodeUrl && (
-          <div className="flex justify-center">
-            <img src={qrCodeUrl} alt="微信登录二维码" style={{ width: 200 }} />
-          </div>
-        )}
+        <div className="flex justify-center">
+          <img src={`https://api.bugwozi.top/auth/getQrCode?s=${Date.now()}`} alt="微信登录二维码" style={{ width: 200 }} />
+        </div>
       </Modal>
     </div>
   )
