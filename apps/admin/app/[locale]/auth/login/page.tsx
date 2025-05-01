@@ -57,6 +57,7 @@ const AuthLoginPage = () => {
   })
   useEffect(() => {
     if (!QrCode) return;
+    if (!isWechatModalVisible) return;
     const time = setInterval(() => {
       ScanQrCode({
         variables: {
@@ -65,7 +66,7 @@ const AuthLoginPage = () => {
       })
     }, 2000)
     return () => clearInterval(time);
-  }, [QrCode])
+  }, [QrCode, isWechatModalVisible])
 
   const { data } = useQuery(HasWebsiteInitQuery, {
     fetchPolicy: "no-cache"

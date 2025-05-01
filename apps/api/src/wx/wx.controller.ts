@@ -60,6 +60,17 @@ export class WxController {
   //   @web/api:dev:   Ticket: 'gQFt7zwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAybngyd0FicHNlTUYxYWw4anhFY1cAAgRphxNoAwQsAQAA',
   //   @web/api:dev:   Encrypt: 'Njj7X+wb7LcWYpXdLQUZuzyLnFR1nBMCziZ9kYdfwLVDxareNOF7ltr7CKLE8M//fSeYh1HyTWetu/SecZZhLQQn9S7OsHfy0VJzqcwgNQkoc5PYkELR0Ag6Q9U2XoD6dXCT4WNEMz3/KgqLkdT0+E5r36IObyHAEcIl/O+2nEl/kr8SjgvnctnSN29ibVWHPqEML7G4bfnjGE1sdWRb9xYuA1zCNMJfPloO4eNDSVaMZYDKHZmi3Kijp25Xd6By7Z+jaeD78hzrQVC+jgFlC0HYBzX4gG/y5vMSa4ubeBn/45uL9/O9S2dwAvaivM5yGeGvVW6zcWL521Pr61baKfC1+Ts8Bp8EClG3qNf7QKrRjuRGLq3Hg8+BLWQa9/GzmjmJjIu6NqBW/xX0RNkgndlSV37zW8wMbVM3tu8VCC5TKlW83CopvKC8u6zaeWWxiiUOalLnIaEP/y89nefgxsPY6iDZc/8nHQolk23Gus7spG7LFgewxB5JaMErAn55KRHJS1DjB7TaISu2JNidtbEqYVH22i4nffPrzXeqxjNxPBose6MLMOty2K6Ll94j9aVSjhS7rRtAzf9fGaayftQi2/dGR3peGgb07aRZQM1liwIe0jT4m/ECNQvxjxIY'
 
+
+  // @web/api:dev: [Object: null prototype] {
+  //   @web/api:dev:   ToUserName: 'gh_bdb21a973b5c',
+  //   @web/api:dev:   FromUserName: 'oWZyw6R0mPH-tU00ReQEMxz-oco8',
+  //   @web/api:dev:   CreateTime: '1746112312',
+  //   @web/api:dev:   MsgType: 'event',
+  //   @web/api:dev:   Event: 'subscribe',
+  //   @web/api:dev:   EventKey: 'qrscene_e67b30d1-e393-43ad-b84c-6642cc785a83',
+  //   @web/api:dev:   Ticket: 'gQEa8DwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyVHJCUkFucHNlTUYxOWlnajFFY1EAAgQmjxNoAwQsAQAA',
+  //   @web/api:dev:   Encrypt: 'NSyWLmARQq2WsQoAeTIBL381LAoVAx179ZIeeCw/izkyI3xfsIjwHBUt8PZD/J8V+KGh0NnOKX4H2WpX7qch+HYzGw5TkTiea1Ds9pdqE+Nu4Aa+APIk5L/Jl5bb6sXYeMHK4a/8r+1ndGT6H4Qh7I0uy6gD34ngOhi9oAtK/oZHcnE8KWcuEYwzgzw4aNgdqai0Pk0+W58Q3b43/29UkSX8JsMG339ruSNm6vp7Vnp3lQCP0A4Loa1sBKmM7w027pHHgBnA2M2Gye7Xlt4wl7LzdF2D87fL4ZKfNQCtqOW9T40HbCvC7DMTBmceeNq3Fbw8HxSDxr5h9Le+TuUb8LOcvGWn0siJEaTAxb5i4AaPaomXW9X2AMarO99QCve4BCouSZ6LDrY59H78X80Dgvs7gVGToJpEstUUDSm6lJ1Nvb5K83MDgz9Fsc52risd9OQ/8iRkV788ORkc6zewR4m9a82RNtLJiy2gGakCb5SiGSZjyLmo4BMgFmXPn5/rNIUhg0G51LGD+QLSG8cu17jT9KIExDvqKdU8gGBA7PseLeuMTcYijcYAhcGyhIwMOLSzn41EcAy5pD0jmXqqIM7NRhCKPiHOtBSZXY2Lt2ZggEuoXci+eyxHWSA9UhU81Q5P7oy3/Dvu284w5DHJhfswkcmIQPcxVX+iFtmmS9Y='
+  //   @web/api:dev: }
   @Post("handle")
   async handle(
     @Res() res: Response,
@@ -67,7 +78,7 @@ export class WxController {
   ) {
     console.log(msg)
     const openid = msg.FromUserName;
-    if (msg.Event === "SCAN") {
+    if (msg.Event === "SCAN" || msg.Event === "subscribe") {
       // const time = msg.CreateTime;
       // const Ticket = msg.Ticket
       const EventKey = msg.EventKey;
