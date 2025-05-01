@@ -8,6 +8,7 @@ import { ConfigService } from '@nestjs/config';
 // import { PrismaService } from '@app/prisma';
 import { FileService } from '@app/file';
 import { AppModule } from './app.module';
+// import * as bodyParser from 'body-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
