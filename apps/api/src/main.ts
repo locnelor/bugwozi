@@ -10,6 +10,7 @@ import { FileService } from '@app/file';
 import { AppModule } from './app.module';
 // import * as bodyParser from 'body-parser';
 
+
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     // logger: false,
@@ -27,8 +28,6 @@ async function bootstrap() {
     origin: ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:25001'],
     credentials: true,
   });
-  // app.useGlobalInterceptors(new LoggingInterceptor(new PrismaService))
-  // app.use(bodyParser.xml());
   // app.use(bodyParser.urlencoded({ extended: true }));
   app.useBodyParser('text');
   app.useBodyParser('raw');
