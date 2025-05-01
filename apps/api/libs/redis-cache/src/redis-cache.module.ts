@@ -1,25 +1,28 @@
-import {DynamicModule, Global, Module} from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { RedisCacheService } from './redis-cache.service';
 import { RedisModule } from '@nestjs-modules/ioredis';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Global()
-@Module({})
-export class RedisCacheModule {
-  static register(options: { host: string; port: number; password?: string }): DynamicModule {
-    return {
-      module: RedisCacheModule,
-      imports: [
-        RedisModule.forRoot({
+@Module({
+  imports: [
+    RedisModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => {
+        return {
           type: "single",
           options: {
-            host: options.host,
-            port: options.port,
-            password: options.password,
-          },
-        }),
-      ],
-      providers: [RedisCacheService],
-      exports: [RedisCacheService],
-    };
-  }
+            host: configService.get('REDIS_HOST'),
+            port: configService.get('REDIS_PORT'),
+            password: configService.get('REDIS_PASSWORD')
+          }
+        }
+      },
+    })
+  ],
+  providers: [RedisCacheService],
+  exports: [RedisCacheService]
+})
+export class RedisCacheModule {
 }

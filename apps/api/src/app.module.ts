@@ -82,10 +82,7 @@ import { RedisCacheModule } from '@app/redis-cache';
         debug: true,
       }),
     }),
-    RedisCacheModule.register({
-      host: "localhost",
-      port: 6379
-    }),
+    RedisCacheModule,
     SystemModule,
     BlogModule,
     OrderModule,
