@@ -101,6 +101,9 @@ export class AuthService {
                     provider,
                     value
                 }
+            },
+            include: {
+                user: true
             }
         });
     }
@@ -162,7 +165,7 @@ export class AuthService {
         const account = await this.findAccount("we_chat", value);
         await this.setKey(uuid, QrCodeType.Expired)
         return {
-            ...account,
+            ...account.user,
             ...this.getToken(account)
         }
     }
@@ -208,6 +211,6 @@ export class AuthService {
         })
         await this.setKey(uuid, QrCodeType.Loading, qrCode.ticket)
         const result = await this.wechatService.showQRCode(qrCode.ticket);
-        return result.data
+        return { buffer: result.data, uuid }
     }
 }

@@ -4,6 +4,16 @@ import { AuthService } from './auth.service';
 import { PrismaService, SysUserEntity } from '@app/prisma';
 import { HashService } from '@app/hash';
 import { GqlAuthGuard, GqlCurrentUser } from '@app/auth-power';
+import { Field, ObjectType } from '@nestjs/graphql';
+
+@ObjectType()
+class QrCodeResult {
+    @Field()
+    base64: string;
+
+    @Field()
+    uuid: string;
+}
 
 @Resolver()
 export class AuthResolver {
@@ -29,5 +39,20 @@ export class AuthResolver {
         return this.authService.userLogin(account, password)
     }
 
+    @Mutation(() => SysUserEntity, { nullable: true })
+    scan(
+        @Args("uuid") uuid: string
+    ) {
+        return this.authService.scanQrCode(uuid);
+    }
 
+    @Query(() => QrCodeResult)
+    async getQrCode() {
+        const { buffer, uuid } = await this.authService.getLoginQrCode()
+        const base64 = `data:image/png;base64,${buffer.toString('base64')}`
+        return {
+            base64,
+            uuid
+        }
+    }
 }
