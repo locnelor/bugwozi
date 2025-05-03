@@ -5,7 +5,9 @@ import { cwd } from 'process';
 
 @Injectable()
 export class FileService {
-  constructor() { }
+  constructor() {
+    console.log(FileService.Root)
+  }
   public static readonly Root = cwd();
   private readonly Assets = join(FileService.Root, "assets")
   public makeAssets(path: string) {
@@ -20,6 +22,19 @@ export class FileService {
   }
   public static getSSLPem() {
     return readFileSync(join(this.Root, "keys", "ssh.pem"))
+  }
+  public getCert() {
+    return join(this.Assets, "cert")
+  }
+
+  // publicKey: fs.readFileSync('./apiclient_cert.pem'), // 公钥
+  // privateKey: fs.readFileSync('./apiclient_key.pem'), // 秘钥
+  public getPublicKey() {
+    return readFileSync(join(this.getCert(), "apiclient_cert.pem"))
+  }
+  public getPrivateKey() {
+    return readFileSync(join(this.getCert(), "apiclient_key.pem"))
+
   }
   private readonly configFile = join(this.Assets, "config.json")
   public getConfig() {

@@ -15,7 +15,9 @@ import { WxModule } from './wx/wx.module';
 import { BookkeepingModule } from './bookkeeping/bookkeeping.module';
 import { BookModule } from './book/book.module';
 import { RedisCacheModule } from '@app/redis-cache';
-
+import { cwd } from 'process';
+import { HashModule } from '@app/hash';
+import { FileModule, FileService } from '@app/file';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -72,13 +74,16 @@ import { RedisCacheModule } from '@app/redis-cache';
       },
     }),
     WeChatModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
+      imports: [ConfigModule, FileModule],
+      inject: [ConfigService, FileService],
+      useFactory: (configService: ConfigService, fileService: FileService) => ({
         appId: configService.get('WX_APPID'),
         secret: configService.get('WX_SECRET'),
         token: configService.get('WX_TOKEN'),
         encodingAESKey: configService.get('WX_AESKEY'),
+        mchid: configService.get("mchid"),
+        privateKey: fileService.getPrivateKey(),
+        publicKey: fileService.getPublicKey(),
         debug: true,
       }),
     }),

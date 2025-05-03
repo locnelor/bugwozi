@@ -3,6 +3,7 @@ import { DynamicModule, Global, Module, Provider } from '@nestjs/common';
 import { WeChatModuleOptions, WeChatModuleRootOptions } from '.';
 import { WECHAT_MODULE_OPTIONS } from './wechat.constants';
 import { WeChatService } from './wechat.service';
+import { WePayService } from './wepay.service';
 
 @Module({})
 @Global()
@@ -36,12 +37,19 @@ export class WeChatModule {
         return new WeChatService(opt);
       },
     });
+    providers.push({
+      provide: WePayService,
+      inject: [],
+      useFactory: (opt: WeChatModuleOptions) => {
+        return new WePayService(opt)
+      }
+    })
     return {
       global: options.isGlobal,
       module: WeChatModule,
       imports: options.imports,
       providers,
-      exports: [WeChatService],
+      exports: [WeChatService, WePayService],
     };
   }
 }

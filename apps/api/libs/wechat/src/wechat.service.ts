@@ -3,6 +3,7 @@ import axios from 'axios';
 import { createHash } from 'crypto';
 
 import { Request, Response } from 'express';
+import WxPay from 'wechatpay-node-v3';
 import getRawBody from 'raw-body';
 import {
   AccountAccessTokenResult,
@@ -56,28 +57,34 @@ export class WeChatService {
    * @type {WePayService}
    * @memberof WeChatService
    */
-  public pay: WePayService;
+  // public pay: WePayService;
 
   private debug = false;
 
-  public set cacheAdapter (adapter: ICache) {
+  public set cacheAdapter(adapter: ICache) {
     if (adapter) {
       this._cacheAdapter = adapter;
     }
   }
-  public get cacheAdapter (): ICache {
+  public get cacheAdapter(): ICache {
     return this._cacheAdapter;
   }
+  public pay: WxPay
 
-  constructor (private options: WeChatModuleOptions) {
+  constructor(private options: WeChatModuleOptions) {
     this.mp = new MiniProgramService(options);
+    this.pay = new WxPay({
+      appid: options.appId,
+      mchid: options.mchid,
+      publicKey: options.publicKey,
+      privateKey: options.privateKey
+    })
     if (options && options.cacheAdapter) {
       if (options.debug) {
         this.debug = true;
       }
       this.cacheAdapter = options.cacheAdapter as ICache;
     }
-    this.pay = new WePayService(this.debug);
   }
 
   /**
@@ -85,18 +92,18 @@ export class WeChatService {
    * @deprecated
    * @memberof WeChatService
    */
-  public get config () {
+  public get config() {
     return this.options;
   }
-  
+
   /**
    * @deprecated
    * @memberof WeChatService
    */
-  public set config (options: WeChatModuleOptions) {
+  public set config(options: WeChatModuleOptions) {
     this.options = options;
   }
-  
+
   /**
    * 
    * 获取公众号或者小程序Access token
@@ -113,7 +120,7 @@ export class WeChatService {
    * @tutorial https://developers.weixin.qq.com/doc/offiaccount/Basic_Information/Get_access_token.html
    * @returns 
    */
-  public async getAccountAccessToken (_appId?: string, _secret?: string): Promise<AccountAccessTokenResult> {
+  public async getAccountAccessToken(_appId?: string, _secret?: string): Promise<AccountAccessTokenResult> {
     const { appId, secret } = this.chooseAppIdAndSecret(_appId, _secret);
     const url = `https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${appId}&secret=${secret}`;
     const res = await axios.get<AccountAccessTokenResult>(url);
@@ -161,7 +168,7 @@ export class WeChatService {
    * @tutorial https://developers.weixin.qq.com/doc/offiaccount/Basic_Information/getStableAccessToken.html
    * @returns 
    */
-  public async getStableAccessToken (_appId?: string, _secret?: string, force = false): Promise<AccountAccessTokenResult> {
+  public async getStableAccessToken(_appId?: string, _secret?: string, force = false): Promise<AccountAccessTokenResult> {
     const { appId, secret } = this.chooseAppIdAndSecret(_appId, _secret);
     const url = 'https://api.weixin.qq.com/cgi-bin/stable_token';
     const data = {
@@ -193,7 +200,7 @@ export class WeChatService {
    * @param _secret 
    * @returns 
    */
-  async getToken (_appId?: string, _secret?: string): Promise<string | undefined> {
+  async getToken(_appId?: string, _secret?: string): Promise<string | undefined> {
     let accessToken;
     const { appId, secret } = this.chooseAppIdAndSecret(_appId, _secret);
     const cache = await this.cacheAdapter.get<AccountAccessTokenResult>(`${WeChatService.KEY_ACCESS_TOKEN}_${appId}`);
@@ -216,7 +223,7 @@ export class WeChatService {
    * @param _secret 
    * @returns 
    */
-  private async getTicket (_appId?: string, _secret?: string): Promise<string> {
+  private async getTicket(_appId?: string, _secret?: string): Promise<string> {
     let ticket = '';
     const { appId, secret } = this.chooseAppIdAndSecret(_appId, _secret);
     const cache = await this.cacheAdapter.get<TicketResult>(`${WeChatService.KEY_TICKET}_${appId}`);
@@ -245,7 +252,7 @@ export class WeChatService {
    * @param _secret 
    * @returns 
    */
-  public async getJSApiTicket (_appId?: string, _secret?: string): Promise<TicketResult> {
+  public async getJSApiTicket(_appId?: string, _secret?: string): Promise<TicketResult> {
 
     const { appId, secret } = this.chooseAppIdAndSecret(_appId, _secret);
     const accessToken = await this.getToken(appId, secret);
@@ -276,7 +283,7 @@ export class WeChatService {
    * @throws {Error}
    * @link https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html#62
    */
-  public async jssdkSignature (url: string): Promise<SignatureResult>;
+  public async jssdkSignature(url: string): Promise<SignatureResult>;
   /**
    * 
    * 对URL进行权限签名
@@ -288,8 +295,8 @@ export class WeChatService {
    * @throws {Error}
    * @link https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html#62
    */
-  public async jssdkSignature (url: string, appId: string, secret:string): Promise<SignatureResult>;
-  public async jssdkSignature (url: string, _appId?: string, _secret?: string): Promise<SignatureResult> {
+  public async jssdkSignature(url: string, appId: string, secret: string): Promise<SignatureResult>;
+  public async jssdkSignature(url: string, _appId?: string, _secret?: string): Promise<SignatureResult> {
 
     if (!url) {
       throw new Error(`${WeChatService.name}: JS-SDK signature must provide url param.`);
@@ -327,7 +334,7 @@ export class WeChatService {
    * @param resText 调用res.send()时的回复内容，不提供则回复空串
    * @returns 
    */
-  public async messagePushExpressHandler (req: Request, res?: Response, resText?: string) {
+  public async messagePushExpressHandler(req: Request, res?: Response, resText?: string) {
     const timestamp = req.query && req.query.timestamp;
     const nonce = req.query && req.query.nonce;
     const signature = req.query && (req.query.msg_signature || req.query.signature);
@@ -367,7 +374,7 @@ export class WeChatService {
    * @param resText 调用res.send()时的回复内容，不提供则回复空串
    * @returns 
    */
-  public async plainMessagePushExpressHandler (req: Request, res?: Response, resText?: string) {
+  public async plainMessagePushExpressHandler(req: Request, res?: Response, resText?: string) {
     const timestamp = req.query && req.query.timestamp;
     const nonce = req.query && req.query.nonce;
     const signature = req.query && (req.query.msg_signature || req.query.signature);
@@ -406,7 +413,7 @@ export class WeChatService {
    * @param req 
    * @param res 
    */
-  public checkSignatureExpress (req: Request, res: Response, token?: string) {
+  public checkSignatureExpress(req: Request, res: Response, token?: string) {
     token = token || this.options?.token || '';
     const signature = req.query && req.query.signature || '';
     const timestamp = req.query && req.query.timestamp || '';
@@ -428,7 +435,7 @@ export class WeChatService {
    * @param token 
    * @returns 
    */
-  private checkAccessToken (token: AccountAccessTokenResult): boolean {
+  private checkAccessToken(token: AccountAccessTokenResult): boolean {
     return token && token.expires_in > (Date.now() / 1000);
   }
 
@@ -439,11 +446,11 @@ export class WeChatService {
    * @param ticket 
    * @returns 
    */
-  private checkTicket (ticket: TicketResult): boolean {
+  private checkTicket(ticket: TicketResult): boolean {
     return ticket && ticket.expires_in > (Date.now() / 1000);
   }
 
-  private chooseAppIdAndSecret (appId?: string, secret?: string): { appId: string, secret: string} {
+  private chooseAppIdAndSecret(appId?: string, secret?: string): { appId: string, secret: string } {
     let ret;
     if (!appId || !secret) {
       ret = { appId: this.options?.appId, secret: this.options?.secret };
@@ -488,7 +495,7 @@ export class WeChatService {
    * @returns 
    * @tutorial https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html#1
    */
-  public async getAccessTokenByCode (code: string, _appId?: string, _secret?: string): Promise<UserAccessTokenResult> {
+  public async getAccessTokenByCode(code: string, _appId?: string, _secret?: string): Promise<UserAccessTokenResult> {
     const { appId, secret } = this.chooseAppIdAndSecret(_appId, _secret);
     const url = `https://api.weixin.qq.com/sns/oauth2/access_token?appid=${appId}&secret=${secret}&code=${code}&grant_type=authorization_code`;
     const ret = await axios.get<UserAccessTokenResult>(url);
@@ -506,7 +513,7 @@ export class WeChatService {
    * @returns 
    * @tutorial https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html#3
    */
-  public async getUserInfo (accessToken: string, openid: string, lang: 'zh_CN' | 'zh_TW' | 'en' = 'zh_CN') {
+  public async getUserInfo(accessToken: string, openid: string, lang: 'zh_CN' | 'zh_TW' | 'en' = 'zh_CN') {
     const url = `https://api.weixin.qq.com/sns/userinfo?access_token=${accessToken}&openid=${openid}&lang=${lang}`;
     const ret = await axios.get<DefaultRequestResult & UserInfoResult>(url);
     return ret.data;
@@ -520,7 +527,7 @@ export class WeChatService {
    * @returns 
    * @tutorial https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Template_Message_Interface.html#5
    */
-  public async sendTemplateMessage (message: TemplateMessage, appId?: string, secret?: string): Promise<DefaultRequestResult & { msgid: string }> {
+  public async sendTemplateMessage(message: TemplateMessage, appId?: string, secret?: string): Promise<DefaultRequestResult & { msgid: string }> {
     const token = await this.getToken(appId, secret);
     const url = `https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=${token}`;
     const ret = await axios.post<DefaultRequestResult & { msgid: string }>(url, message);
@@ -535,7 +542,7 @@ export class WeChatService {
    * @returns 
    * @tutorial https://developers.weixin.qq.com/doc/offiaccount/Account_Management/Generating_a_Parametric_QR_Code.html
    */
-  public async createQRCode (data: AccountCreateQRCode, appId?: string, secret?: string): Promise<AccountCreateQRCodeResult> {
+  public async createQRCode(data: AccountCreateQRCode, appId?: string, secret?: string): Promise<AccountCreateQRCodeResult> {
     const token = await this.getToken(appId, secret);
     const url = `https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=${token}`;
     const ret = await axios.post<AccountCreateQRCodeResult>(url, data);
@@ -550,7 +557,7 @@ export class WeChatService {
    * @param ticket 需要UrlEncode
    * @returns 
    */
-  public showQRCode (ticket: string) {
+  public showQRCode(ticket: string) {
     const url = `https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=${ticket}`;
     return axios.get<Buffer>(url, { responseType: 'arraybuffer' });
   }
@@ -566,7 +573,7 @@ export class WeChatService {
    * @link https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/Before_Develop/Technical_Plan.html
    * @link https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/Before_Develop/Message_encryption_and_decryption.html
    */
-  public encryptMessage (message: string, timestamp: string, nonce: string): string {
+  public encryptMessage(message: string, timestamp: string, nonce: string): string {
     return MessageCrypto.encryptMessage(this.options?.appId, this.options?.token || '', this.options?.encodingAESKey || '', message, timestamp, nonce);
   }
 
@@ -584,7 +591,7 @@ export class WeChatService {
    * @link https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/Before_Develop/Message_encryption_and_decryption.html
    * 
    */
-  public decryptMessage (signature: string, timestamp: string, nonce: string, encryptXml: string) {
+  public decryptMessage(signature: string, timestamp: string, nonce: string, encryptXml: string) {
     return MessageCrypto.decryptMessage(this.options?.token || '', this.options?.encodingAESKey || '', signature, timestamp, nonce, encryptXml);
   }
 }
