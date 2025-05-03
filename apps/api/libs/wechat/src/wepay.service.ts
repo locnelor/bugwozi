@@ -64,7 +64,7 @@ export class WePayService {
   constructor(
     private readonly options: WeChatModuleOptions
   ) {
-    this.debug = options.debug
+    this.debug = options?.debug
   }
 
   /**

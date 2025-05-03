@@ -4,6 +4,7 @@ import { createHash } from 'crypto';
 
 import { Request, Response } from 'express';
 import WxPay from 'wechatpay-node-v3';
+const WeChatPay = require("wechatpay-node-v3")
 import getRawBody from 'raw-body';
 import {
   AccountAccessTokenResult,
@@ -22,7 +23,6 @@ import {
 import { MiniProgramService } from './miniprogram.service';
 import { ICache } from './types/utils';
 import { MapCache } from './utils/cache';
-import { WePayService } from './wepay.service';
 
 @Injectable()
 export class WeChatService {
@@ -73,7 +73,7 @@ export class WeChatService {
 
   constructor(private options: WeChatModuleOptions) {
     this.mp = new MiniProgramService(options);
-    this.pay = new WxPay({
+    this.pay = new WeChatPay({
       appid: options.appId,
       mchid: options.mchid,
       publicKey: options.publicKey,

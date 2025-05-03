@@ -9,9 +9,9 @@ export class OrderService {
 
   createNativeOrder() {
     return this.wechatService.pay.transactions_native({
-      description: "",
-      out_trade_no: "",
-      notify_url: "",
+      description: "测试商品",
+      out_trade_no: Date.now().toString(16),
+      notify_url: "https://api.bugwozi.top/order/handle",
       amount: {
         total: 1
       }

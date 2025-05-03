@@ -1,12 +1,19 @@
 import { WeChatService } from '@app/wechat';
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
+import { OrderService } from './order.service';
 
 @Controller('order')
 export class OrderController {
 
   constructor(
-    private readonly wechatService: WeChatService
+    private readonly wechatService: WeChatService,
+    private readonly orderService: OrderService
   ) { }
+
+  @Get("testOrder")
+  testOrder() {
+    return this.orderService.createNativeOrder()
+  }
 
 
   @Post("handle")
