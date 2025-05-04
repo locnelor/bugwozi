@@ -40,7 +40,7 @@ export const ScanNativeOrderMutation = gql`
     $id:String!
   ){
     scanNativeOrder(
-      $uid:id
+      uid:$id
     ){
       out_trade_no
       state
@@ -60,23 +60,42 @@ export const QueryOrder = gql`
 `
 interface Options {
   onCompleted?: (order: any) => any,
-  onError?: (error: any) => any
+  onError?: (error: string) => any
 }
 const usePay = ({
   onCompleted,
   onError
 }: Options = {}) => {
   const [url, setUrl] = useState("");
+  const [order, setOrder] = useState(null);
   const [queryOrder] = useLazyQuery(QueryOrder);
+  const [time, setTime] = useState<NodeJS.Timeout>();
+  const [state, setState] = useState("");
   const [scan] = useMutation(ScanNativeOrderMutation, {
     onCompleted({ scanNativeOrder }) {
       const { state, out_trade_no } = scanNativeOrder
-      console.log(state, out_trade_no)
+      setState(state);
+      if (state === "NOTPAY") return;
+      if (state === "SUCCESS") {
+        queryOrder({
+          variables: {
+            id: out_trade_no,
+          }
+        }).then(({ data: { queryOrder } }) => {
+          setOrder(queryOrder)
+          if (!!onCompleted) onCompleted(queryOrder)
+        })
+        setTime(null);
+        return;
+      }
+      clearTimeout(time);
+      setTime(null);
+      if (onError) onError(state)
     },
   })
-  const [time, setTime] = useState<NodeJS.Timeout>()
   const [getNative, { loading }] = useMutation(GetNativeOrderMutation, {
     onCompleted({ getNativeOrder }) {
+      setOrder(getNativeOrder);
       setUrl(getNativeOrder.url)
       setTime(setInterval(() => {
         scan({
@@ -90,10 +109,10 @@ const usePay = ({
   useEffect(() => {
     return () => clearTimeout(time);
   }, [time])
-  const getOrder = useCallback((uid: any) => {
+  const getOrder = useCallback((id: any) => {
     getNative({
       variables: {
-        uid
+        id
       }
     })
   }, [])
@@ -102,7 +121,9 @@ const usePay = ({
   return {
     getOrder,
     loading,
-    url
+    url,
+    state,
+    order
   }
 }
 export default usePay

@@ -13,7 +13,7 @@ import { ConfigureService } from 'src/configure/configure.service';
 export class OrderService {
   findOne(out_trade_no: string) {
     return this.prisma.sys_order.findUnique({
-      where:{
+      where: {
         out_trade_no
       }
     })
@@ -141,8 +141,8 @@ export class OrderService {
     })
     if (!goods) throw NotFoundGoodsException
     //检查订单
-    const { out_trade_no } = await this.hasOrder(goods.uid, user);
-    if (!!out_trade_no) {
+    const { out_trade_no, state } = await this.hasOrder(goods.uid, user);
+    if (!!out_trade_no && state === "NOTPAY") {
       return await this.prisma.sys_order.findUnique({ where: { out_trade_no } })
     }
     return await this.createOrder(goods, user, order_trade_type.NATIVE);

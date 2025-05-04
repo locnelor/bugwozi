@@ -1,19 +1,36 @@
 import { usePagination } from "@pkg/hooks"
 import { FindGoodsQuery } from "../goods/page"
-import { List, Modal, Button } from "antd"
+import { List, Modal, Button, QRCode, Spin } from "antd"
 import { useOpen } from "@pkg/hooks"
 import { useEffect, useState } from "react"
 import usePay from "#/hooks/usePay"
 
 
 const PayQrCode = ({ goods }: any) => {
-  const { getOrder } = usePay()
+  const { getOrder, state, order, url, loading } = usePay()
   useEffect(() => {
     getOrder(goods.uid);
   }, [])
-  return (
-    <div className="h-96 flex justify-center items-center">
+  console.log(order)
 
+  return (
+    <div className="h-96 flex flex-col justify-center items-center">
+      <Spin spinning={loading}>
+        {url && (
+          <div className="flex flex-col items-center">
+            <div className="mb-4 text-center">
+              <h3 className="text-lg font-medium">{order?.description}</h3>
+              <p className="text-xl font-bold text-red-500 mt-2">¥{order?.amount ? (order.amount / 100).toFixed(2) : '0.00'}</p>
+            </div>
+            <QRCode
+              value={url}
+              size={200}
+              bordered
+            />
+            <p className="mt-4 text-gray-500 text-sm">请使用微信扫码支付</p>
+          </div>
+        )}
+      </Spin>
     </div>
   )
 }
