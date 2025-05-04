@@ -4,11 +4,11 @@ import { usePagination } from "@pkg/hooks"
 import AutoPage from "#/components/pages/AutoPage"
 import { message } from "antd"
 import { useCallback, useMemo } from "react"
+import { timeColumns } from "#/hooks/useTable"
 
 interface CommentsPageProps {
   queries: {
     find: DocumentNode
-    create: DocumentNode
     update: DocumentNode
     remove: DocumentNode
   }
@@ -19,29 +19,8 @@ const CommentsPage = ({ queries }: CommentsPageProps) => {
     query: queries.find,
   })
 
-  const [createComment] = useMutation(queries.create)
   const [updateComment] = useMutation(queries.update)
   const [removeComment] = useMutation(queries.remove)
-
-  const handleCreate = useCallback(async (values: any) => {
-    try {
-      await createComment({
-        variables: {
-          createCommentInput: {
-            content: values.content,
-            postId: values.postId,
-            userId: values.userId,
-            status: values.status,
-          }
-        }
-      })
-      message.success('创建评论成功')
-      onRefresh()
-    } catch (error) {
-      message.error('创建评论失败')
-      console.error(error)
-    }
-  }, [createComment, onRefresh])
 
   const handleUpdate = useCallback(async (values: any) => {
     try {
@@ -77,27 +56,11 @@ const CommentsPage = ({ queries }: CommentsPageProps) => {
     }
   }, [removeComment, onRefresh])
 
-  // 根据查询结果的数据结构推断数据
-  const commentsList = useMemo(() => {
-    if (!data || typeof data !== 'object') return { total: 0, data: [] };
-    const dataKeys = Object.keys(data);
-    if (dataKeys.length === 0) return { total: 0, data: [] };
-    
-    const firstKey = dataKeys[0];
-    return (data as Record<string, any>)[firstKey] || { total: 0, data: [] };
-  }, [data])
-
   return (
     <AutoPage
-      dataSource={commentsList.data}
+      dataSource={data}
       loading={loading}
       columns={[
-        {
-          title: 'ID',
-          dataIndex: 'uid',
-          key: 'uid',
-          width: 100,
-        },
         {
           title: '内容',
           dataIndex: 'content',
@@ -120,18 +83,7 @@ const CommentsPage = ({ queries }: CommentsPageProps) => {
           key: 'status',
           render: (status: boolean) => (status ? '已审核' : '待审核'),
         },
-        {
-          title: '创建时间',
-          dataIndex: 'createAt',
-          key: 'createAt',
-          render: (value: string) => new Date(value).toLocaleString(),
-        },
-        {
-          title: '更新时间',
-          dataIndex: 'updateAt',
-          key: 'updateAt',
-          render: (value: string) => new Date(value).toLocaleString(),
-        },
+        ...timeColumns
       ]}
       search={{
         onSubmit: values => onRefresh(values),
@@ -148,42 +100,6 @@ const CommentsPage = ({ queries }: CommentsPageProps) => {
             rest: {
               options: [
                 { label: '全部', value: undefined },
-                { label: '已审核', value: true },
-                { label: '待审核', value: false },
-              ]
-            }
-          },
-        ]
-      }}
-      create={{
-        onSubmit: handleCreate,
-        name: '创建评论',
-        fields: [
-          {
-            type: 'textarea',
-            name: 'content',
-            label: '内容',
-            rest: { rules: [{ required: true, message: '请输入内容' }] }
-          },
-          {
-            type: 'input',
-            name: 'postId',
-            label: '文章ID',
-            rest: { rules: [{ required: true, message: '请输入文章ID' }] }
-          },
-          {
-            type: 'input',
-            name: 'userId',
-            label: '用户ID',
-            rest: { rules: [{ required: true, message: '请输入用户ID' }] }
-          },
-          {
-            type: 'select',
-            name: 'status',
-            label: '状态',
-            rest: {
-              rules: [{ required: true, message: '请选择状态' }],
-              options: [
                 { label: '已审核', value: true },
                 { label: '待审核', value: false },
               ]

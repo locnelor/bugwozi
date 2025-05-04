@@ -2,9 +2,9 @@
 import { useMutation } from "@apollo/client"
 import { usePagination } from "@pkg/hooks"
 import AutoPage from "#/components/pages/AutoPage"
-import { message } from "antd"
-import { useCallback, useMemo } from "react"
+import { useCallback } from "react"
 import { DocumentNode } from "@apollo/client"
+import { timeColumns } from "#/hooks/useTable"
 
 interface CategoriesPageProps {
   queries: {
@@ -34,10 +34,8 @@ const CategoriesPage = ({ queries }: CategoriesPageProps) => {
           }
         }
       })
-      message.success('创建分类成功')
       onRefresh()
     } catch (error) {
-      message.error('创建分类失败')
       console.error(error)
     }
   }, [createCategory, onRefresh])
@@ -53,10 +51,8 @@ const CategoriesPage = ({ queries }: CategoriesPageProps) => {
           }
         }
       })
-      message.success('更新分类成功')
       onRefresh()
     } catch (error) {
-      message.error('更新分类失败')
       console.error(error)
     }
   }, [updateCategory, onRefresh])
@@ -68,47 +64,29 @@ const CategoriesPage = ({ queries }: CategoriesPageProps) => {
           uid: values.uid
         }
       })
-      message.success('删除分类成功')
       onRefresh()
     } catch (error) {
-      message.error('删除分类失败')
       console.error(error)
     }
   }, [removeCategory, onRefresh])
 
-  const categoriesList = useMemo(() => data?.categories || { total: 0, data: [] }, [data])
 
   return (
     <AutoPage
-      dataSource={categoriesList.data}
+      dataSource={data}
       loading={loading}
       columns={[
         {
-          title: 'ID',
-          dataIndex: 'uid',
-          key: 'uid',
-          width: 100,
-        },
-        {
           title: '名称',
           dataIndex: 'name',
-          key: 'name',
         },
-        {
-          title: '创建时间',
-          dataIndex: 'createAt',
-          key: 'createAt',
-          render: (value: string) => new Date(value).toLocaleString(),
-        },
-        {
-          title: '更新时间',
-          dataIndex: 'updateAt',
-          key: 'updateAt',
-          render: (value: string) => new Date(value).toLocaleString(),
-        },
+        ...timeColumns
       ]}
       search={{
-        onSubmit: values => onRefresh(values),
+        onSubmit: values => {
+          console.log(values)
+          onRefresh(values)
+        },
         fields: [
           {
             type: 'input',

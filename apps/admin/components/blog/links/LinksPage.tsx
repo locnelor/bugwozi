@@ -2,8 +2,8 @@
 import { useMutation, DocumentNode } from "@apollo/client"
 import { usePagination } from "@pkg/hooks"
 import AutoPage from "#/components/pages/AutoPage"
-import { message } from "antd"
-import { useCallback, useMemo } from "react"
+import { useCallback } from "react"
+import { timeColumns } from "#/hooks/useTable"
 
 interface LinksPageProps {
   queries: {
@@ -35,31 +35,21 @@ const LinksPage = ({ queries }: LinksPageProps) => {
           }
         }
       })
-      message.success('创建链接成功')
       onRefresh()
     } catch (error) {
-      message.error('创建链接失败')
       console.error(error)
     }
   }, [createLink, onRefresh])
 
-  const handleUpdate = useCallback(async (values: any) => {
+  const handleUpdate = useCallback(async (updateLinkInput: any) => {
     try {
       await updateLink({
         variables: {
-          updateLinkInput: {
-            uid: values.uid,
-            name: values.name,
-            url: values.url,
-            description: values.description,
-            status: values.status,
-          }
+          updateLinkInput
         }
       })
-      message.success('更新链接成功')
       onRefresh()
     } catch (error) {
-      message.error('更新链接失败')
       console.error(error)
     }
   }, [updateLink, onRefresh])
@@ -71,35 +61,17 @@ const LinksPage = ({ queries }: LinksPageProps) => {
           uid: values.uid
         }
       })
-      message.success('删除链接成功')
       onRefresh()
     } catch (error) {
-      message.error('删除链接失败')
       console.error(error)
     }
   }, [removeLink, onRefresh])
 
-  // 根据查询结果的数据结构推断数据
-  const linksList = useMemo(() => {
-    if (!data || typeof data !== 'object') return { total: 0, data: [] };
-    const dataKeys = Object.keys(data);
-    if (dataKeys.length === 0) return { total: 0, data: [] };
-    
-    const firstKey = dataKeys[0];
-    return (data as Record<string, any>)[firstKey] || { total: 0, data: [] };
-  }, [data])
-
   return (
     <AutoPage
-      dataSource={linksList.data}
+      dataSource={data}
       loading={loading}
       columns={[
-        {
-          title: 'ID',
-          dataIndex: 'uid',
-          key: 'uid',
-          width: 100,
-        },
         {
           title: '名称',
           dataIndex: 'name',
@@ -121,18 +93,7 @@ const LinksPage = ({ queries }: LinksPageProps) => {
           key: 'status',
           render: (status: boolean) => (status ? '显示' : '隐藏'),
         },
-        {
-          title: '创建时间',
-          dataIndex: 'createAt',
-          key: 'createAt',
-          render: (value: string) => new Date(value).toLocaleString(),
-        },
-        {
-          title: '更新时间',
-          dataIndex: 'updateAt',
-          key: 'updateAt',
-          render: (value: string) => new Date(value).toLocaleString(),
-        },
+        ...timeColumns
       ]}
       search={{
         onSubmit: values => onRefresh(values),
@@ -173,9 +134,9 @@ const LinksPage = ({ queries }: LinksPageProps) => {
             rest: { rules: [{ required: true, message: '请输入链接' }] }
           },
           {
-            type: 'textarea',
-            name: 'description',
-            label: '描述',
+            type: "number",
+            name: "sort",
+            label: "排序"
           },
           {
             type: 'select',

@@ -15,12 +15,12 @@ const Page = ({
   sideClassName
 }: PageProps) => {
   return (
-    <BasePage>
+    <BasePage className="h-full">
       <div className="flex gap-4 flex-col h-full">
         {!!header && <PageCard className={headerClassName}>{header}</PageCard>}
         <div className="flex gap-4">
           {!!side && <PageCard className={sideClassName}>{side}</PageCard>}
-          <PageCard>{children}</PageCard>
+          <PageCard className="h-full">{children}</PageCard>
         </div>
       </div>
     </BasePage>

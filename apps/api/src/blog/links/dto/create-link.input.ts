@@ -16,4 +16,4 @@ export class CreateLinkInput {
 
   @Field(() => Boolean, { defaultValue: true })
   status: boolean;
-} 
+}   

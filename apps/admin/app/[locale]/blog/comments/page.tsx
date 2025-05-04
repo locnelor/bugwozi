@@ -52,7 +52,6 @@ export default function CommentsListPage() {
   return <CommentsPage 
     queries={{
       find: FindCommentsQuery,
-      create: CreateCommentMutation,
       update: UpdateCommentMutation,
       remove: RemoveCommentMutation,
     }}

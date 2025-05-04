@@ -11,6 +11,13 @@ import { ConfigureService } from 'src/configure/configure.service';
 
 @Injectable()
 export class OrderService {
+  findOne(out_trade_no: string) {
+    return this.prisma.sys_order.findUnique({
+      where:{
+        out_trade_no
+      }
+    })
+  }
 
   constructor(
     private readonly wechatService: WeChatService,

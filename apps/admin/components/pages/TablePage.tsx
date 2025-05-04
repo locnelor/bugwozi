@@ -26,7 +26,7 @@ const TablePage = ({
         }}
         pagination={false}
       />
-      <div className="flex justify-end absolute bottom-0 left-0 w-full h-16">
+      <div className="flex pr-4 bg-white items-center justify-end absolute bottom-0 left-0 w-full h-16">
         {pagination}
       </div>
     </div>

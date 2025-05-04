@@ -2,8 +2,8 @@
 import { useMutation, DocumentNode } from "@apollo/client"
 import { usePagination } from "@pkg/hooks"
 import AutoPage from "#/components/pages/AutoPage"
-import { message } from "antd"
-import { useCallback, useMemo, useEffect } from "react"
+import { useCallback } from "react"
+import { timeColumns } from "#/hooks/useTable"
 
 interface TagsPageProps {
   queries: {
@@ -33,10 +33,8 @@ const TagsPage = ({ queries }: TagsPageProps) => {
           }
         }
       })
-      message.success('创建标签成功')
       onRefresh()
     } catch (error) {
-      message.error('创建标签失败')
       console.error(error)
     }
   }, [createTag, onRefresh])
@@ -52,10 +50,8 @@ const TagsPage = ({ queries }: TagsPageProps) => {
           }
         }
       })
-      message.success('更新标签成功')
       onRefresh()
     } catch (error) {
-      message.error('更新标签失败')
       console.error(error)
     }
   }, [updateTag, onRefresh])
@@ -67,54 +63,23 @@ const TagsPage = ({ queries }: TagsPageProps) => {
           uid: values.uid
         }
       })
-      message.success('删除标签成功')
       onRefresh()
     } catch (error) {
-      message.error('删除标签失败')
       console.error(error)
     }
   }, [removeTag, onRefresh])
 
-  // 根据查询结果的数据结构推断数据
-  const tagsList = useMemo(() => {
-    if (!data || typeof data !== 'object') return { total: 0, data: [] };
-    // 假设响应中包含tags字段
-    const dataKeys = Object.keys(data);
-    if (dataKeys.length === 0) return { total: 0, data: [] };
-    
-    // 获取第一个键（可能是tags）
-    const firstKey = dataKeys[0];
-    return (data as Record<string, any>)[firstKey] || { total: 0, data: [] };
-  }, [data])
-
   return (
     <AutoPage
-      dataSource={tagsList.data}
+      dataSource={data}
       loading={loading}
       columns={[
-        {
-          title: 'ID',
-          dataIndex: 'uid',
-          key: 'uid',
-          width: 100,
-        },
         {
           title: '名称',
           dataIndex: 'name',
           key: 'name',
         },
-        {
-          title: '创建时间',
-          dataIndex: 'createAt',
-          key: 'createAt',
-          render: (value: string) => new Date(value).toLocaleString(),
-        },
-        {
-          title: '更新时间',
-          dataIndex: 'updateAt',
-          key: 'updateAt',
-          render: (value: string) => new Date(value).toLocaleString(),
-        },
+        ...timeColumns
       ]}
       search={{
         onSubmit: values => onRefresh(values),

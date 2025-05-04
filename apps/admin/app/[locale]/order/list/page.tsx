@@ -43,29 +43,32 @@ const RemoveOrderMutation = gql`
   }
 `
 
-import { useCallback, useMemo } from "react"
+import { useCallback } from "react"
 import { useMutation } from "@apollo/client"
-import { usePagination } from "@pkg/hooks"
+import { useOpen, usePagination } from "@pkg/hooks"
 import AutoPage from "#/components/pages/AutoPage"
-import { message } from "antd"
+import { Button, Modal } from "antd"
+import GoodsCard from "./GoodsCard"
+import { FindGoodsQuery } from "../goods/page"
 
-interface Order {
-  out_trade_no: string;
-  transaction_id?: string;
-  amount: number;
-  description: string;
-  state: 'SUCCESS' | 'REFUND' | 'NOTPAY' | 'CLOSED' | 'REVOKED' | 'USERPAYING' | 'PAYERROR';
-  bank_type?: string;
-  trade_type: string;
-  createdAt: string;
-  updatedAt: string;
-  goods?: {
-    description: string;
-  };
-  user?: {
-    name: string;
-  };
-}
+// interface Order {
+//   out_trade_no: string;
+//   transaction_id?: string;
+//   amount: number;
+//   description: string;
+//   state: 'SUCCESS' | 'REFUND' | 'NOTPAY' | 'CLOSED' | 'REVOKED' | 'USERPAYING' | 'PAYERROR';
+//   bank_type?: string;
+//   trade_type: string;
+//   createdAt: string;
+//   updatedAt: string;
+//   goods?: {
+//     description: string;
+//   };
+//   user?: {
+//     name: string;
+//   };
+// }
+
 
 const OrderListPage = () => {
   const [{ loading, data, onRefresh }, pagination] = usePagination({
@@ -87,10 +90,8 @@ const OrderListPage = () => {
           }
         }
       })
-      message.success('更新订单成功')
       onRefresh()
     } catch (error) {
-      message.error('更新订单失败')
       console.error(error)
     }
   }, [updateOrder, onRefresh])
@@ -102,10 +103,8 @@ const OrderListPage = () => {
           out_trade_no: values.out_trade_no
         }
       })
-      message.success('删除订单成功')
       onRefresh()
     } catch (error) {
-      message.error('删除订单失败')
       console.error(error)
     }
   }, [removeOrder, onRefresh])
@@ -119,6 +118,7 @@ const OrderListPage = () => {
     USERPAYING: '用户支付中',
     PAYERROR: '支付失败'
   }
+  const [open, onOpen, onClose] = useOpen();
 
   return (
     <AutoPage
@@ -203,6 +203,18 @@ const OrderListPage = () => {
           },
         ]
       }}
+      headerChildren={(
+        <div>
+          <Button onClick={onOpen} type="primary">创建订单</Button>
+          <Modal
+            open={open}
+            onClose={onClose}
+            title="创建订单"
+          >
+            <GoodsCard />
+          </Modal>
+        </div>
+      )}
       update={{
         onSubmit: handleUpdate,
         name: '更新订单',

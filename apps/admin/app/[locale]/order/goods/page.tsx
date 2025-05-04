@@ -1,7 +1,7 @@
 "use client"
 import { gql } from "@apollo/client"
 
-const FindGoodsQuery = gql`
+export const FindGoodsQuery = gql`
   query GoodsList($pagination: GoodsPaginationInput!) {
     goodsList(pagination: $pagination) {
       total
@@ -45,11 +45,11 @@ const RemoveGoodsMutation = gql`
   }
 `
 
-import { useCallback, useMemo } from "react"
+import { useCallback } from "react"
 import { useMutation } from "@apollo/client"
 import { usePagination } from "@pkg/hooks"
 import AutoPage from "#/components/pages/AutoPage"
-import { message } from "antd"
+import { timeColumns } from "#/hooks/useTable"
 
 interface Goods {
   uid: string;
@@ -59,13 +59,6 @@ interface Goods {
   updatedAt: string;
   user?: {
     name: string;
-  };
-}
-
-interface GoodsListData {
-  goodsList: {
-    total: number;
-    data: Goods[];
   };
 }
 
@@ -89,10 +82,8 @@ const OrderGoodsPage = () => {
           }
         }
       })
-      message.success('创建商品成功')
       onRefresh()
     } catch (error) {
-      message.error('创建商品失败')
       console.error(error)
     }
   }, [createGoods, onRefresh])
@@ -109,10 +100,8 @@ const OrderGoodsPage = () => {
           }
         }
       })
-      message.success('更新商品成功')
       onRefresh()
     } catch (error) {
-      message.error('更新商品失败')
       console.error(error)
     }
   }, [updateGoods, onRefresh])
@@ -125,10 +114,8 @@ const OrderGoodsPage = () => {
           all: true
         }
       })
-      message.success('删除商品成功')
       onRefresh()
     } catch (error) {
-      message.error('删除商品失败')
       console.error(error)
     }
   }, [removeGoods, onRefresh])
@@ -137,12 +124,6 @@ const OrderGoodsPage = () => {
       dataSource={data}
       loading={loading}
       columns={[
-        {
-          title: 'ID',
-          dataIndex: 'uid',
-          key: 'uid',
-          width: 220,
-        },
         {
           title: '金额',
           dataIndex: 'amount',
@@ -159,18 +140,7 @@ const OrderGoodsPage = () => {
           dataIndex: ['user', 'name'],
           key: 'user',
         },
-        {
-          title: '创建时间',
-          dataIndex: 'createdAt',
-          key: 'createdAt',
-          render: (value: string) => new Date(value).toLocaleString(),
-        },
-        {
-          title: '更新时间',
-          dataIndex: 'updatedAt',
-          key: 'updatedAt',
-          render: (value: string) => new Date(value).toLocaleString(),
-        },
+        ...timeColumns
       ]}
       search={{
         onSubmit: values => onRefresh(values),

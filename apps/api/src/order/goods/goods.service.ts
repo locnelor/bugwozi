@@ -36,7 +36,10 @@ export class GoodsService {
     const data = await this.prisma.sys_goods.findMany({
       where,
       skip,
-      take
+      take,
+      include: {
+        user: true
+      }
     });
 
     return {
@@ -62,7 +65,10 @@ export class GoodsService {
     }
 
     return this.prisma.sys_goods.findUnique({
-      where
+      where,
+      include: {
+        user: true
+      }
     });
   }
 

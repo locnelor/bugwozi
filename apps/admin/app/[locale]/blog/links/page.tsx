@@ -11,7 +11,6 @@ const FindLinksQuery = gql`
         ${BaseUFields}
         name
         url
-        description
         status
       }
     }

@@ -1,6 +1,6 @@
 import { Modal, Form, Input, InputNumber, Select, DatePicker, Switch, TreeSelect } from 'antd';
 import { FormField } from './AutoPage';
-import { useState } from 'react';
+import { useEffect } from 'react';
 
 interface AutoFormModalProps {
     visible: boolean;
@@ -29,6 +29,10 @@ const AutoFormModal = ({
             // Form validation failed
         }
     };
+    useEffect(() => {
+        if (!visible) return;
+        form.setFieldsValue(initialValues || fields.reduce((acc, k) => ({ ...acc, [k.name]: undefined }), {} as any))
+    }, [visible, initialValues])
 
     const renderFormItem = (field: FormField) => {
         const { type, name, label, rest } = field;

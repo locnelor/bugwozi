@@ -1,13 +1,12 @@
 "use client"
 import { gql } from "@apollo/client"
-import { getClient } from "#/libs/client"
 import TagsPage from "#/components/blog/tag/TagsPage"
 import { BaseUFields } from "#/libs/fields"
 
 export const dynamic = "force-dynamic"
 
 const FindTagsQuery = gql`
-  query FindTags($pagination: PaginationArg!) {
+  query FindTags($pagination: TagPaginationInput!) {
     tags(pagination: $pagination) {
       total
       data {

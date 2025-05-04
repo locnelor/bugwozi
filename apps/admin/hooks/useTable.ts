@@ -18,3 +18,16 @@ export const useDataSource = (data?: any[]) => {
         }
     })
 }
+
+export const timeColumns = [
+    {
+        title: '创建时间',
+        dataIndex: 'createdAt',
+        render: (value: string) => new Date(value).toLocaleString(),
+    },
+    {
+        title: '更新时间',
+        dataIndex: 'updatedAt',
+        render: (value: string) => new Date(value).toLocaleString(),
+    },
+]

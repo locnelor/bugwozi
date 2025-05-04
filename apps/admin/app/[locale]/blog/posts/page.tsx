@@ -22,7 +22,7 @@ const FindPostsQuery = gql`
   }
 `
 
-const CreatePostMutation = gql`
+export const CreatePostMutation = gql`
   mutation CreatePost($createPostInput: CreatePostInput!) {
     createPost(createPostInput: $createPostInput) {
       uid
@@ -52,7 +52,6 @@ export default function PostsListPage() {
   return <PostsPage 
     queries={{
       find: FindPostsQuery,
-      create: CreatePostMutation,
       update: UpdatePostMutation,
       remove: RemovePostMutation,
     }}

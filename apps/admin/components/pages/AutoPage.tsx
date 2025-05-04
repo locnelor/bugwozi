@@ -20,6 +20,7 @@ interface AutoPageProps extends PropsWithChildren {
     dataSource: any[];
     columns: any[];
     loading: boolean;
+    headerChildren?: ReactNode
     search?: {
         onSubmit: (variables: any) => any;
         fields: FormField[]
@@ -69,7 +70,8 @@ const AutoPage = ({
     operation,
     side,
     searchFormProps,
-    children
+    children,
+    headerChildren
 }: AutoPageProps) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [editingRecord, setEditingRecord] = useState<any>(null);
@@ -204,17 +206,17 @@ const AutoPage = ({
                 <div className="flex gap-2 flex-1">
                     {side}
                     <PageCard className="flex-1">
-                        <div className="flex justify-end">
+                        <div className="flex justify-end gap-2 mb-4">
                             {create && (
                                 <Button
                                     type="primary"
                                     icon={<PlusOutlined />}
                                     onClick={handleCreate}
-                                    className="mb-4"
                                 >
                                     新增
                                 </Button>
                             )}
+                            {headerChildren}
                         </div>
                         <TablePage
                             dataSource={dataSource}

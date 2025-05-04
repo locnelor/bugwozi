@@ -9,6 +9,7 @@ export class LinksService {
   constructor(private readonly prisma: PrismaService) { }
 
   create(data: CreateLinkInput) {
+    
     return this.prisma.blog_links.create({
       data,
     });

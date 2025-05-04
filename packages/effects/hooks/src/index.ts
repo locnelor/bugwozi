@@ -5,3 +5,4 @@ export const useTest = () => {
     console.log('test')
   }
 }
+export * from "./useOpen"

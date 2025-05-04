@@ -14,7 +14,9 @@ export class CategoriesResolver {
 
   @Mutation(() => BlogCategoriesEntity)
   @UseGuards(BlogArticleGuards.GqlAuthGuard([CREATE_POWER]))
-  createCategory(@Args('createCategoryInput') createCategoryInput: CreateCategoryInput) {
+  createCategory(
+    @Args('createCategoryInput') createCategoryInput: CreateCategoryInput
+  ) {
     return this.categoriesService.create(createCategoryInput);
   }
 

@@ -32,9 +32,9 @@ export const usePagination = ({
         variables: {
           pagination: {
             skip: (page - 1) * size,
-            take: size
+            take: size,
+            ...variables
           },
-          ...variables
         }
       })
     }, 300))
@@ -50,7 +50,7 @@ export const usePagination = ({
       setTotal(listData.total)
       setPage(page => listData.page || page)
       setSize(size => listData.size || size)
-      setData(listData.data)
+      setData(listData.data.map((e: any, key: number) => ({ ...e, key: e.uid || e.id || key })))
     }
   }, [queryData])
 
