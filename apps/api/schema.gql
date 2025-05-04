@@ -71,6 +71,36 @@ type SysMenuEntity {
   user_bans: [SysUserBanMenuEntity!]
 }
 
+type SysOrderEntity {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  out_trade_no: String!
+  transaction_id: String
+  amount: Int!
+  description: String!
+  payOpenId: String
+  trade_type: String!
+  state: String!
+  bank_type: String
+  attach: String
+  userId: String
+  user: SysUserEntity
+  url: String
+  goodsId: String!
+  goods: SysGoodsEntity
+}
+
+type SysGoodsEntity {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  uid: String!
+  user: SysUserEntity
+  userId: String!
+  amount: Int!
+  description: String!
+  orders: [SysOrderEntity!]
+}
+
 type UserPaginationEntity {
   total: Int!
   data: [SysUserEntity!]!
@@ -203,6 +233,16 @@ type AnnouncementsPaginationEntity {
   data: [BlogAnnouncementsEntity!]!
 }
 
+type OrderPaginationEntity {
+  total: Int!
+  data: [SysOrderEntity!]!
+}
+
+type GoodsPaginationEntity {
+  total: Int!
+  data: [SysGoodsEntity!]!
+}
+
 type Query {
   hasWebsiteInit: Boolean!
   users: [SysUserEntity!]!
@@ -226,6 +266,9 @@ type Query {
   link(uid: String!): BlogLinksEntity!
   announcements(pagination: AnnouncementsPaginationInput!): AnnouncementsPaginationEntity!
   announcement(uid: String!): BlogAnnouncementsEntity!
+  orderList(pagination: OrderPaginationInput!): OrderPaginationEntity!
+  goodsList(pagination: GoodsPaginationInput!): GoodsPaginationEntity!
+  findOneGoods(uid: String!, all: Boolean): SysGoodsEntity
 }
 
 input UserPaginationInput {
@@ -287,6 +330,20 @@ input AnnouncementsPaginationInput {
   status: Boolean
 }
 
+input OrderPaginationInput {
+  take: Int! = 1
+  skip: Int! = 10
+  description: String
+  state: String
+}
+
+input GoodsPaginationInput {
+  take: Int! = 1
+  skip: Int! = 10
+  description: String
+  all: Boolean
+}
+
 type Mutation {
   websiteInit(roleName: String!, username: String!, account: String!, password: String!): SysUserEntity!
   createUser(createInput: CreateUserInput!): SysUserEntity!
@@ -317,6 +374,13 @@ type Mutation {
   createAnnouncement(createAnnouncementInput: CreateAnnouncementInput!): BlogAnnouncementsEntity!
   updateAnnouncement(updateAnnouncementInput: UpdateAnnouncementInput!): BlogAnnouncementsEntity!
   removeAnnouncement(uid: String!): BlogAnnouncementsEntity!
+  getNativeOrder(id: String!): SysOrderEntity!
+  scanNativeOrder(uid: String!): String!
+  updateOrder(updateInput: UpdateOrderInput!): SysOrderEntity
+  removeOrder(out_trade_no: String!): SysOrderEntity
+  createGoods(createInput: CreateGoodsInput!): SysGoodsEntity!
+  updateGoods(updateInput: UpdateGoodsInput!): SysGoodsEntity
+  removeGoods(uid: String!, all: Boolean): SysGoodsEntity
 }
 
 input CreateUserInput {
@@ -436,4 +500,24 @@ input UpdateAnnouncementInput {
   sort: Float = 0
   status: Boolean = true
   uid: String!
+}
+
+input UpdateOrderInput {
+  out_trade_no: String!
+  amount: Int
+  description: String
+  state: String
+}
+
+input CreateGoodsInput {
+  amount: Int!
+  description: String!
+  all: Boolean
+}
+
+input UpdateGoodsInput {
+  uid: String!
+  amount: Int
+  description: String
+  all: Boolean
 }

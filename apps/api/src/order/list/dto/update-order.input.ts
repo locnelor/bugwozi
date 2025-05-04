@@ -5,13 +5,13 @@ import { order_state } from "@pkg/database";
 export class UpdateOrderInput {
   @Field()
   out_trade_no: string;
-  
+
   @Field(() => Int, { nullable: true })
   amount?: number;
 
   @Field({ nullable: true })
   description?: string;
-  
-  @Field({ nullable: true })
+
+  @Field(() => String, { nullable: true })
   state?: order_state;
 } 
