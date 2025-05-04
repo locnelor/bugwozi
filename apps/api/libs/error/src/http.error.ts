@@ -64,3 +64,13 @@ export const WebsiteInitFailedException = new HttpError(
   1005,
   "网站初始化失败"
 )
+
+
+/**
+ * 找不到商品
+ */
+
+export const NotFoundGoodsException = new HttpError(
+  1006,
+  "找不到商品"
+)

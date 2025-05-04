@@ -56,6 +56,9 @@ export const OrderListGuards = makePowerGuard("/order/list", "订单列表", {
 export const OrderAnalysisGuards = makePowerGuard("/order/analysis", "订单统计", {
   parent: OrderGuards.path,
 })
+export const OrderGoodsGuards = makePowerGuard("/order/goods", "商品管理", {
+  parent: OrderGuards.path
+})
 
 
 

@@ -18,6 +18,7 @@ import { RedisCacheModule } from '@app/redis-cache';
 import { cwd } from 'process';
 import { HashModule } from '@app/hash';
 import { FileModule, FileService } from '@app/file';
+import { ConfigureModule } from './configure/configure.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -95,6 +96,7 @@ import { FileModule, FileService } from '@app/file';
     WxModule,
     BookkeepingModule,
     BookModule,
+    ConfigureModule,
   ],
   controllers: [AppController],
   providers: [AppService],
