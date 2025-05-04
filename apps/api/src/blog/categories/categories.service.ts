@@ -14,12 +14,12 @@ export class CategoriesService {
     });
   }
 
-  findAll({ skip, take, name }: CategoriesPaginationInput) {
+  async findAll({ skip, take, name }: CategoriesPaginationInput) {
     const where: Prisma.blog_categoriesWhereInput = {};
     if (name) where.name = {
       contains: name
     }
-    return this.prisma.blog_categories.findMany({
+    const data = await this.prisma.blog_categories.findMany({
       skip,
       take,
       where,
@@ -27,6 +27,8 @@ export class CategoriesService {
         posts: true,
       },
     });
+    const total = await this.prisma.blog_categories.count({ where });
+    return { data, total }
   }
 
   findOne(uid: string) {

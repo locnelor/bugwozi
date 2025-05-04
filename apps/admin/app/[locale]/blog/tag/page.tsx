@@ -2,6 +2,7 @@
 import { gql } from "@apollo/client"
 import { getClient } from "#/libs/client"
 import TagsPage from "#/components/blog/tag/TagsPage"
+import { BaseUFields } from "#/libs/fields"
 
 export const dynamic = "force-dynamic"
 
@@ -10,10 +11,8 @@ const FindTagsQuery = gql`
     tags(pagination: $pagination) {
       total
       data {
-        uid
+        ${BaseUFields}
         name
-        createAt
-        updateAt
       }
     }
   }

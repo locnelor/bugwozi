@@ -31,8 +31,8 @@ export const usePagination = ({
       refetch({
         variables: {
           pagination: {
-            page,
-            size
+            skip: (page - 1) * size,
+            take: size
           },
           ...variables
         }
@@ -47,7 +47,6 @@ export const usePagination = ({
     if (queryData) {
       const key = Object.keys(queryData)[0] as string;
       const listData = queryData[key];
-      console.log(queryData, listData)
       setTotal(listData.total)
       setPage(page => listData.page || page)
       setSize(size => listData.size || size)

@@ -1,16 +1,15 @@
 "use client"
 import { gql } from "@apollo/client"
 import CategoriesPage from "#/components/blog/categories/CategoriesPage"
+import { BaseUFields } from "#/libs/fields"
 
 const FindCategoriesQuery = gql`
   query FindCategories($pagination: CategoriesPaginationInput!) {
     categories(pagination: $pagination) {
       total
       data {
-        uid
+        ${BaseUFields}
         name
-        createAt
-        updateAt
       }
     }
   }
@@ -43,7 +42,7 @@ const RemoveCategoryMutation = gql`
 `
 
 export default function CategoriesListPage() {
-  return <CategoriesPage 
+  return <CategoriesPage
     queries={{
       find: FindCategoriesQuery,
       create: CreateCategoryMutation,

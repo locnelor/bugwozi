@@ -19,7 +19,7 @@ export class CommentsService {
     });
   }
 
-  findAll({ skip, take, content, status, userId, postId }: CommentsPaginationInput) {
+  async findAll({ skip, take, content, status, userId, postId }: CommentsPaginationInput) {
     const where: Prisma.blog_commentsWhereInput = {
       status,
       userId,
@@ -28,7 +28,7 @@ export class CommentsService {
     if (content) where.content = {
       contains: content
     }
-    return this.prisma.blog_comments.findMany({
+    const data = await this.prisma.blog_comments.findMany({
       skip,
       take,
       where,
@@ -37,6 +37,8 @@ export class CommentsService {
         post: true,
       },
     });
+    const total = await this.prisma.blog_comments.count({ where });
+    return { data, total }
   }
 
   findOne(uid: string) {

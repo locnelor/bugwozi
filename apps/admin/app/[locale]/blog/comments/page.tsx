@@ -1,17 +1,16 @@
 "use client"
 import { gql } from "@apollo/client"
 import CommentsPage from "#/components/blog/comments/CommentsPage"
+import { BaseUFields } from "#/libs/fields"
 
 const FindCommentsQuery = gql`
   query FindComments($pagination: CommentsPaginationInput!) {
     comments(pagination: $pagination) {
       total
       data {
-        uid
+        ${BaseUFields}
         content
         status
-        createAt
-        updateAt
         post {
           title
         }

@@ -19,20 +19,26 @@ export class AnnouncementsService {
     });
   }
 
-  findAll({ skip, take, title, status }: AnnouncementsPaginationInput) {
+  async findAll({ skip, take, title, status }: AnnouncementsPaginationInput) {
     const where: Prisma.blog_announcementsWhereInput = {
       status
     };
     if (title) where.title = {
       contains: title
     }
-    return this.prisma.blog_announcements.findMany({
+    const data = await this.prisma.blog_announcements.findMany({
       skip,
       take,
+      where,
       orderBy: {
         sort: 'asc',
       },
     });
+    const total = await this.prisma.blog_announcements.count({ where });
+    return {
+      data,
+      total
+    }
   }
 
   findOne(uid: string) {

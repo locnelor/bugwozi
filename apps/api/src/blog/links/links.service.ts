@@ -14,7 +14,7 @@ export class LinksService {
     });
   }
 
-  findAll({ skip, take, name, status, url }: LinksPaginationInput) {
+  async findAll({ skip, take, name, status, url }: LinksPaginationInput) {
     const where: Prisma.blog_linksWhereInput = {};
     if (name) where.name = {
       contains: name
@@ -23,7 +23,7 @@ export class LinksService {
     if (url) where.url = {
       contains: url
     }
-    return this.prisma.blog_links.findMany({
+    const data = await this.prisma.blog_links.findMany({
       skip,
       take,
       where,
@@ -31,6 +31,8 @@ export class LinksService {
         sort: 'asc',
       },
     });
+    const total = await this.prisma.blog_links.count({ where });
+    return { data, total }
   }
 
   findOne(uid: string) {

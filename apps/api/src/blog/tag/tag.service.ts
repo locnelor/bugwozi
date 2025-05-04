@@ -6,7 +6,7 @@ import { TagPaginationInput } from './dto/tag.pagination';
 import { Prisma } from '@pkg/database';
 @Injectable()
 export class TagService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   create(createTagInput: CreateTagInput) {
     return this.prisma.blog_tag.create({
@@ -16,12 +16,12 @@ export class TagService {
     });
   }
 
-  findAll({ skip, take, name }: TagPaginationInput) {
+  async findAll({ skip, take, name }: TagPaginationInput) {
     const where: Prisma.blog_tagWhereInput = {};
     if (name) where.name = {
       contains: name
     }
-    return this.prisma.blog_tag.findMany({
+    const data = await this.prisma.blog_tag.findMany({
       skip,
       take,
       where,
@@ -33,6 +33,8 @@ export class TagService {
         },
       },
     });
+    const total = await this.prisma.blog_tag.count({ where });
+    return { data, total }
   }
 
   findOne(uid: string) {

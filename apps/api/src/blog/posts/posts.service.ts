@@ -14,14 +14,14 @@ export class PostsService {
     });
   }
 
-  findAll({ skip, take, title, status, categoriesId }: PostsPaginationInput) {
+  async findAll({ skip, take, title, status, categoriesId }: PostsPaginationInput) {
     const where: Prisma.blog_postsWhereInput = {};
     if (title) where.title = {
       contains: title
     }
     if (status) where.status = status;
     if (categoriesId) where.categoriesId = categoriesId;
-    return this.prisma.blog_posts.findMany({
+    const data = await this.prisma.blog_posts.findMany({
       skip,
       take,
       where,
@@ -35,6 +35,8 @@ export class PostsService {
         },
       },
     });
+    const total = await this.prisma.blog_posts.count({ where });
+    return { data, total }
   }
 
   findOne(uid: string) {

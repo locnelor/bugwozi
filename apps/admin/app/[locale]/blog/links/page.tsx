@@ -1,19 +1,18 @@
 "use client"
 import { gql } from "@apollo/client"
 import LinksPage from "#/components/blog/links/LinksPage"
+import { BaseUFields } from "#/libs/fields"
 
 const FindLinksQuery = gql`
   query FindLinks($pagination: LinksPaginationInput!) {
     links(pagination: $pagination) {
       total
       data {
-        uid
+        ${BaseUFields}
         name
         url
         description
         status
-        createAt
-        updateAt
       }
     }
   }
@@ -46,7 +45,7 @@ const RemoveLinkMutation = gql`
 `
 
 export default function LinksListPage() {
-  return <LinksPage 
+  return <LinksPage
     queries={{
       find: FindLinksQuery,
       create: CreateLinkMutation,

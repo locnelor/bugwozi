@@ -8,12 +8,9 @@ const FindPostsQuery = gql`
     posts(pagination: $pagination) {
       total
       data {
-        uid
         title
         content
         status
-        createAt
-        updateAt
         user {
           name
         }

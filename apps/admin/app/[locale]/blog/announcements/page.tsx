@@ -1,18 +1,17 @@
 "use client"
 import { gql } from "@apollo/client"
 import AnnouncementsPage from "#/components/blog/announcements/AnnouncementsPage"
+import { BaseUFields } from "#/libs/fields"
 
 const FindAnnouncementsQuery = gql`
   query FindAnnouncements($pagination: AnnouncementsPaginationInput!) {
     announcements(pagination: $pagination) {
       total
       data {
-        uid
+        ${BaseUFields}
         title
         content
         status
-        createAt
-        updateAt
       }
     }
   }
@@ -45,7 +44,7 @@ const RemoveAnnouncementMutation = gql`
 `
 
 export default function AnnouncementsListPage() {
-  return <AnnouncementsPage 
+  return <AnnouncementsPage
     queries={{
       find: FindAnnouncementsQuery,
       create: CreateAnnouncementMutation,
