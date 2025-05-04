@@ -196,6 +196,32 @@ exports.Prisma.Sys_user_mediaScalarFieldEnum = {
   mediaId: 'mediaId'
 };
 
+exports.Prisma.Sys_orderScalarFieldEnum = {
+  out_trade_no: 'out_trade_no',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  url: 'url',
+  transaction_id: 'transaction_id',
+  amount: 'amount',
+  description: 'description',
+  payOpenId: 'payOpenId',
+  trade_type: 'trade_type',
+  state: 'state',
+  bank_type: 'bank_type',
+  attach: 'attach',
+  userId: 'userId',
+  goodsId: 'goodsId'
+};
+
+exports.Prisma.Sys_goodsScalarFieldEnum = {
+  uid: 'uid',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId',
+  amount: 'amount',
+  description: 'description'
+};
+
 exports.Prisma.Blog_categoriesScalarFieldEnum = {
   uid: 'uid',
   createdAt: 'createdAt',
@@ -362,6 +388,24 @@ exports.Prisma.sys_user_mediaOrderByRelevanceFieldEnum = {
   mediaId: 'mediaId'
 };
 
+exports.Prisma.sys_orderOrderByRelevanceFieldEnum = {
+  out_trade_no: 'out_trade_no',
+  url: 'url',
+  transaction_id: 'transaction_id',
+  description: 'description',
+  payOpenId: 'payOpenId',
+  bank_type: 'bank_type',
+  attach: 'attach',
+  userId: 'userId',
+  goodsId: 'goodsId'
+};
+
+exports.Prisma.sys_goodsOrderByRelevanceFieldEnum = {
+  uid: 'uid',
+  userId: 'userId',
+  description: 'description'
+};
+
 exports.Prisma.blog_categoriesOrderByRelevanceFieldEnum = {
   uid: 'uid',
   name: 'name',
@@ -439,6 +483,26 @@ exports.sys_account_provider = exports.$Enums.sys_account_provider = {
   account: 'account'
 };
 
+exports.order_trade_type = exports.$Enums.order_trade_type = {
+  SYSTEM: 'SYSTEM',
+  NATIVE: 'NATIVE',
+  JSAPI: 'JSAPI',
+  APP: 'APP',
+  MICROPAY: 'MICROPAY',
+  MWEB: 'MWEB',
+  FACEPAY: 'FACEPAY'
+};
+
+exports.order_state = exports.$Enums.order_state = {
+  SUCCESS: 'SUCCESS',
+  REFUND: 'REFUND',
+  NOTPAY: 'NOTPAY',
+  CLOSED: 'CLOSED',
+  REVOKED: 'REVOKED',
+  USERPAYING: 'USERPAYING',
+  PAYERROR: 'PAYERROR'
+};
+
 exports.bookkeep_type = exports.$Enums.bookkeep_type = {
   income: 'income',
   expense: 'expense'
@@ -453,6 +517,8 @@ exports.Prisma.ModelName = {
   sys_role: 'sys_role',
   sys_media: 'sys_media',
   sys_user_media: 'sys_user_media',
+  sys_order: 'sys_order',
+  sys_goods: 'sys_goods',
   blog_categories: 'blog_categories',
   blog_posts: 'blog_posts',
   blog_posts_on_tags: 'blog_posts_on_tags',

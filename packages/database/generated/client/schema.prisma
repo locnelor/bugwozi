@@ -34,6 +34,8 @@ model sys_user {
   blog_posts       blog_posts[]
   blog_comments    blog_comments[]
   bookkeep_records bookkeep_record[]
+  orders           sys_order[]
+  goods            sys_goods[]
 }
 
 //系统账号
@@ -94,7 +96,6 @@ model sys_menu_on_role {
   @@id([roleId, menuId])
 }
 
-//角色
 model sys_role {
   uid       String             @id @default(uuid())
   createdAt DateTime           @default(now())
@@ -136,6 +137,63 @@ model sys_user_media {
   mediaId String
 
   @@id([userId, mediaId])
+}
+
+enum order_trade_type {
+  SYSTEM //系统生成
+  NATIVE // 二维码
+  JSAPI //公众号支付、小程序支付
+  APP //APP支付
+  MICROPAY //付款码支付
+  MWEB //H5支付
+  FACEPAY //刷脸支付
+}
+
+enum order_state {
+  SUCCESS //支付成功
+  REFUND //转入退款
+  NOTPAY //未支付
+  CLOSED //已关闭
+  REVOKED //已撤销（仅付款码支付会返回）
+  USERPAYING //用户支付中（仅付款码支付会返回）
+  PAYERROR //支付失败（仅付款码支付会返回）
+}
+
+//系统订单
+model sys_order {
+  out_trade_no   String           @id
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @default(now()) @updatedAt
+  url            String?
+  transaction_id String?          @unique //微信订单号
+  amount         Int
+  description    String
+  payOpenId      String? //支付人openid
+  trade_type     order_trade_type // 支付方式
+  state          order_state      @default(NOTPAY) //状态
+  bank_type      String? //支付方式
+  attach         String?
+
+  user   sys_user? @relation(fields: [userId], references: [uid])
+  userId String?
+
+  goods   sys_goods @relation(fields: [goodsId], references: [uid])
+  goodsId String
+}
+
+/**
+ * 商品，由用户创建。
+ */
+model sys_goods {
+  uid       String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  user      sys_user @relation(fields: [userId], references: [uid])
+  userId    String
+
+  amount      Int
+  description String
+  orders      sys_order[]
 }
 
 //*********************** 博客系统

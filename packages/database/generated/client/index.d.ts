@@ -58,6 +58,17 @@ export type sys_media = $Result.DefaultSelection<Prisma.$sys_mediaPayload>
  */
 export type sys_user_media = $Result.DefaultSelection<Prisma.$sys_user_mediaPayload>
 /**
+ * Model sys_order
+ * 
+ */
+export type sys_order = $Result.DefaultSelection<Prisma.$sys_orderPayload>
+/**
+ * Model sys_goods
+ * *
+ *  * 商品，由用户创建。
+ */
+export type sys_goods = $Result.DefaultSelection<Prisma.$sys_goodsPayload>
+/**
  * Model blog_categories
  * 
  */
@@ -124,6 +135,32 @@ export namespace $Enums {
 export type sys_account_provider = (typeof sys_account_provider)[keyof typeof sys_account_provider]
 
 
+export const order_trade_type: {
+  SYSTEM: 'SYSTEM',
+  NATIVE: 'NATIVE',
+  JSAPI: 'JSAPI',
+  APP: 'APP',
+  MICROPAY: 'MICROPAY',
+  MWEB: 'MWEB',
+  FACEPAY: 'FACEPAY'
+};
+
+export type order_trade_type = (typeof order_trade_type)[keyof typeof order_trade_type]
+
+
+export const order_state: {
+  SUCCESS: 'SUCCESS',
+  REFUND: 'REFUND',
+  NOTPAY: 'NOTPAY',
+  CLOSED: 'CLOSED',
+  REVOKED: 'REVOKED',
+  USERPAYING: 'USERPAYING',
+  PAYERROR: 'PAYERROR'
+};
+
+export type order_state = (typeof order_state)[keyof typeof order_state]
+
+
 export const bookkeep_type: {
   income: 'income',
   expense: 'expense'
@@ -136,6 +173,14 @@ export type bookkeep_type = (typeof bookkeep_type)[keyof typeof bookkeep_type]
 export type sys_account_provider = $Enums.sys_account_provider
 
 export const sys_account_provider: typeof $Enums.sys_account_provider
+
+export type order_trade_type = $Enums.order_trade_type
+
+export const order_trade_type: typeof $Enums.order_trade_type
+
+export type order_state = $Enums.order_state
+
+export const order_state: typeof $Enums.order_state
 
 export type bookkeep_type = $Enums.bookkeep_type
 
@@ -345,6 +390,26 @@ export class PrismaClient<
     * ```
     */
   get sys_user_media(): Prisma.sys_user_mediaDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.sys_order`: Exposes CRUD operations for the **sys_order** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Sys_orders
+    * const sys_orders = await prisma.sys_order.findMany()
+    * ```
+    */
+  get sys_order(): Prisma.sys_orderDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.sys_goods`: Exposes CRUD operations for the **sys_goods** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Sys_goods
+    * const sys_goods = await prisma.sys_goods.findMany()
+    * ```
+    */
+  get sys_goods(): Prisma.sys_goodsDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.blog_categories`: Exposes CRUD operations for the **blog_categories** model.
@@ -893,6 +958,8 @@ export namespace Prisma {
     sys_role: 'sys_role',
     sys_media: 'sys_media',
     sys_user_media: 'sys_user_media',
+    sys_order: 'sys_order',
+    sys_goods: 'sys_goods',
     blog_categories: 'blog_categories',
     blog_posts: 'blog_posts',
     blog_posts_on_tags: 'blog_posts_on_tags',
@@ -921,7 +988,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "sys_user" | "sys_account" | "sys_menu" | "sys_user_ban_menu" | "sys_menu_on_role" | "sys_role" | "sys_media" | "sys_user_media" | "blog_categories" | "blog_posts" | "blog_posts_on_tags" | "blog_tag" | "blog_comments" | "blog_links" | "blog_announcements" | "bookkeep_record" | "bookkeep_tag" | "bookkeep_record_on_tags"
+      modelProps: "sys_user" | "sys_account" | "sys_menu" | "sys_user_ban_menu" | "sys_menu_on_role" | "sys_role" | "sys_media" | "sys_user_media" | "sys_order" | "sys_goods" | "blog_categories" | "blog_posts" | "blog_posts_on_tags" | "blog_tag" | "blog_comments" | "blog_links" | "blog_announcements" | "bookkeep_record" | "bookkeep_tag" | "bookkeep_record_on_tags"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1450,6 +1517,138 @@ export namespace Prisma {
           count: {
             args: Prisma.sys_user_mediaCountArgs<ExtArgs>
             result: $Utils.Optional<Sys_user_mediaCountAggregateOutputType> | number
+          }
+        }
+      }
+      sys_order: {
+        payload: Prisma.$sys_orderPayload<ExtArgs>
+        fields: Prisma.sys_orderFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.sys_orderFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_orderPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.sys_orderFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_orderPayload>
+          }
+          findFirst: {
+            args: Prisma.sys_orderFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_orderPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.sys_orderFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_orderPayload>
+          }
+          findMany: {
+            args: Prisma.sys_orderFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_orderPayload>[]
+          }
+          create: {
+            args: Prisma.sys_orderCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_orderPayload>
+          }
+          createMany: {
+            args: Prisma.sys_orderCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.sys_orderDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_orderPayload>
+          }
+          update: {
+            args: Prisma.sys_orderUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_orderPayload>
+          }
+          deleteMany: {
+            args: Prisma.sys_orderDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.sys_orderUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.sys_orderUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_orderPayload>
+          }
+          aggregate: {
+            args: Prisma.Sys_orderAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSys_order>
+          }
+          groupBy: {
+            args: Prisma.sys_orderGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Sys_orderGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.sys_orderCountArgs<ExtArgs>
+            result: $Utils.Optional<Sys_orderCountAggregateOutputType> | number
+          }
+        }
+      }
+      sys_goods: {
+        payload: Prisma.$sys_goodsPayload<ExtArgs>
+        fields: Prisma.sys_goodsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.sys_goodsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_goodsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.sys_goodsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_goodsPayload>
+          }
+          findFirst: {
+            args: Prisma.sys_goodsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_goodsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.sys_goodsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_goodsPayload>
+          }
+          findMany: {
+            args: Prisma.sys_goodsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_goodsPayload>[]
+          }
+          create: {
+            args: Prisma.sys_goodsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_goodsPayload>
+          }
+          createMany: {
+            args: Prisma.sys_goodsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.sys_goodsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_goodsPayload>
+          }
+          update: {
+            args: Prisma.sys_goodsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_goodsPayload>
+          }
+          deleteMany: {
+            args: Prisma.sys_goodsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.sys_goodsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.sys_goodsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sys_goodsPayload>
+          }
+          aggregate: {
+            args: Prisma.Sys_goodsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSys_goods>
+          }
+          groupBy: {
+            args: Prisma.sys_goodsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Sys_goodsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.sys_goodsCountArgs<ExtArgs>
+            result: $Utils.Optional<Sys_goodsCountAggregateOutputType> | number
           }
         }
       }
@@ -2205,6 +2404,8 @@ export namespace Prisma {
     sys_role?: sys_roleOmit
     sys_media?: sys_mediaOmit
     sys_user_media?: sys_user_mediaOmit
+    sys_order?: sys_orderOmit
+    sys_goods?: sys_goodsOmit
     blog_categories?: blog_categoriesOmit
     blog_posts?: blog_postsOmit
     blog_posts_on_tags?: blog_posts_on_tagsOmit
@@ -2315,6 +2516,8 @@ export namespace Prisma {
     blog_posts: number
     blog_comments: number
     bookkeep_records: number
+    orders: number
+    goods: number
   }
 
   export type Sys_userCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2324,6 +2527,8 @@ export namespace Prisma {
     blog_posts?: boolean | Sys_userCountOutputTypeCountBlog_postsArgs
     blog_comments?: boolean | Sys_userCountOutputTypeCountBlog_commentsArgs
     bookkeep_records?: boolean | Sys_userCountOutputTypeCountBookkeep_recordsArgs
+    orders?: boolean | Sys_userCountOutputTypeCountOrdersArgs
+    goods?: boolean | Sys_userCountOutputTypeCountGoodsArgs
   }
 
   // Custom InputTypes
@@ -2377,6 +2582,20 @@ export namespace Prisma {
    */
   export type Sys_userCountOutputTypeCountBookkeep_recordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: bookkeep_recordWhereInput
+  }
+
+  /**
+   * Sys_userCountOutputType without action
+   */
+  export type Sys_userCountOutputTypeCountOrdersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: sys_orderWhereInput
+  }
+
+  /**
+   * Sys_userCountOutputType without action
+   */
+  export type Sys_userCountOutputTypeCountGoodsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: sys_goodsWhereInput
   }
 
 
@@ -2506,6 +2725,37 @@ export namespace Prisma {
    */
   export type Sys_mediaCountOutputTypeCountBookkeep_recordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: bookkeep_recordWhereInput
+  }
+
+
+  /**
+   * Count Type Sys_goodsCountOutputType
+   */
+
+  export type Sys_goodsCountOutputType = {
+    orders: number
+  }
+
+  export type Sys_goodsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    orders?: boolean | Sys_goodsCountOutputTypeCountOrdersArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Sys_goodsCountOutputType without action
+   */
+  export type Sys_goodsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sys_goodsCountOutputType
+     */
+    select?: Sys_goodsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Sys_goodsCountOutputType without action
+   */
+  export type Sys_goodsCountOutputTypeCountOrdersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: sys_orderWhereInput
   }
 
 
@@ -2887,6 +3137,8 @@ export namespace Prisma {
     blog_posts?: boolean | sys_user$blog_postsArgs<ExtArgs>
     blog_comments?: boolean | sys_user$blog_commentsArgs<ExtArgs>
     bookkeep_records?: boolean | sys_user$bookkeep_recordsArgs<ExtArgs>
+    orders?: boolean | sys_user$ordersArgs<ExtArgs>
+    goods?: boolean | sys_user$goodsArgs<ExtArgs>
     _count?: boolean | Sys_userCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["sys_user"]>
 
@@ -2910,6 +3162,8 @@ export namespace Prisma {
     blog_posts?: boolean | sys_user$blog_postsArgs<ExtArgs>
     blog_comments?: boolean | sys_user$blog_commentsArgs<ExtArgs>
     bookkeep_records?: boolean | sys_user$bookkeep_recordsArgs<ExtArgs>
+    orders?: boolean | sys_user$ordersArgs<ExtArgs>
+    goods?: boolean | sys_user$goodsArgs<ExtArgs>
     _count?: boolean | Sys_userCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -2923,6 +3177,8 @@ export namespace Prisma {
       blog_posts: Prisma.$blog_postsPayload<ExtArgs>[]
       blog_comments: Prisma.$blog_commentsPayload<ExtArgs>[]
       bookkeep_records: Prisma.$bookkeep_recordPayload<ExtArgs>[]
+      orders: Prisma.$sys_orderPayload<ExtArgs>[]
+      goods: Prisma.$sys_goodsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       uid: string
@@ -3278,6 +3534,8 @@ export namespace Prisma {
     blog_posts<T extends sys_user$blog_postsArgs<ExtArgs> = {}>(args?: Subset<T, sys_user$blog_postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$blog_postsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     blog_comments<T extends sys_user$blog_commentsArgs<ExtArgs> = {}>(args?: Subset<T, sys_user$blog_commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$blog_commentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     bookkeep_records<T extends sys_user$bookkeep_recordsArgs<ExtArgs> = {}>(args?: Subset<T, sys_user$bookkeep_recordsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$bookkeep_recordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    orders<T extends sys_user$ordersArgs<ExtArgs> = {}>(args?: Subset<T, sys_user$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sys_orderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    goods<T extends sys_user$goodsArgs<ExtArgs> = {}>(args?: Subset<T, sys_user$goodsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sys_goodsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3816,6 +4074,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Bookkeep_recordScalarFieldEnum | Bookkeep_recordScalarFieldEnum[]
+  }
+
+  /**
+   * sys_user.orders
+   */
+  export type sys_user$ordersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_order
+     */
+    select?: sys_orderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_order
+     */
+    omit?: sys_orderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_orderInclude<ExtArgs> | null
+    where?: sys_orderWhereInput
+    orderBy?: sys_orderOrderByWithRelationInput | sys_orderOrderByWithRelationInput[]
+    cursor?: sys_orderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Sys_orderScalarFieldEnum | Sys_orderScalarFieldEnum[]
+  }
+
+  /**
+   * sys_user.goods
+   */
+  export type sys_user$goodsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_goods
+     */
+    select?: sys_goodsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_goods
+     */
+    omit?: sys_goodsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_goodsInclude<ExtArgs> | null
+    where?: sys_goodsWhereInput
+    orderBy?: sys_goodsOrderByWithRelationInput | sys_goodsOrderByWithRelationInput[]
+    cursor?: sys_goodsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Sys_goodsScalarFieldEnum | Sys_goodsScalarFieldEnum[]
   }
 
   /**
@@ -10835,6 +11141,2095 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: sys_user_mediaInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model sys_order
+   */
+
+  export type AggregateSys_order = {
+    _count: Sys_orderCountAggregateOutputType | null
+    _avg: Sys_orderAvgAggregateOutputType | null
+    _sum: Sys_orderSumAggregateOutputType | null
+    _min: Sys_orderMinAggregateOutputType | null
+    _max: Sys_orderMaxAggregateOutputType | null
+  }
+
+  export type Sys_orderAvgAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type Sys_orderSumAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type Sys_orderMinAggregateOutputType = {
+    out_trade_no: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    url: string | null
+    transaction_id: string | null
+    amount: number | null
+    description: string | null
+    payOpenId: string | null
+    trade_type: $Enums.order_trade_type | null
+    state: $Enums.order_state | null
+    bank_type: string | null
+    attach: string | null
+    userId: string | null
+    goodsId: string | null
+  }
+
+  export type Sys_orderMaxAggregateOutputType = {
+    out_trade_no: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    url: string | null
+    transaction_id: string | null
+    amount: number | null
+    description: string | null
+    payOpenId: string | null
+    trade_type: $Enums.order_trade_type | null
+    state: $Enums.order_state | null
+    bank_type: string | null
+    attach: string | null
+    userId: string | null
+    goodsId: string | null
+  }
+
+  export type Sys_orderCountAggregateOutputType = {
+    out_trade_no: number
+    createdAt: number
+    updatedAt: number
+    url: number
+    transaction_id: number
+    amount: number
+    description: number
+    payOpenId: number
+    trade_type: number
+    state: number
+    bank_type: number
+    attach: number
+    userId: number
+    goodsId: number
+    _all: number
+  }
+
+
+  export type Sys_orderAvgAggregateInputType = {
+    amount?: true
+  }
+
+  export type Sys_orderSumAggregateInputType = {
+    amount?: true
+  }
+
+  export type Sys_orderMinAggregateInputType = {
+    out_trade_no?: true
+    createdAt?: true
+    updatedAt?: true
+    url?: true
+    transaction_id?: true
+    amount?: true
+    description?: true
+    payOpenId?: true
+    trade_type?: true
+    state?: true
+    bank_type?: true
+    attach?: true
+    userId?: true
+    goodsId?: true
+  }
+
+  export type Sys_orderMaxAggregateInputType = {
+    out_trade_no?: true
+    createdAt?: true
+    updatedAt?: true
+    url?: true
+    transaction_id?: true
+    amount?: true
+    description?: true
+    payOpenId?: true
+    trade_type?: true
+    state?: true
+    bank_type?: true
+    attach?: true
+    userId?: true
+    goodsId?: true
+  }
+
+  export type Sys_orderCountAggregateInputType = {
+    out_trade_no?: true
+    createdAt?: true
+    updatedAt?: true
+    url?: true
+    transaction_id?: true
+    amount?: true
+    description?: true
+    payOpenId?: true
+    trade_type?: true
+    state?: true
+    bank_type?: true
+    attach?: true
+    userId?: true
+    goodsId?: true
+    _all?: true
+  }
+
+  export type Sys_orderAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which sys_order to aggregate.
+     */
+    where?: sys_orderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of sys_orders to fetch.
+     */
+    orderBy?: sys_orderOrderByWithRelationInput | sys_orderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: sys_orderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` sys_orders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` sys_orders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned sys_orders
+    **/
+    _count?: true | Sys_orderCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Sys_orderAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Sys_orderSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Sys_orderMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Sys_orderMaxAggregateInputType
+  }
+
+  export type GetSys_orderAggregateType<T extends Sys_orderAggregateArgs> = {
+        [P in keyof T & keyof AggregateSys_order]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSys_order[P]>
+      : GetScalarType<T[P], AggregateSys_order[P]>
+  }
+
+
+
+
+  export type sys_orderGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: sys_orderWhereInput
+    orderBy?: sys_orderOrderByWithAggregationInput | sys_orderOrderByWithAggregationInput[]
+    by: Sys_orderScalarFieldEnum[] | Sys_orderScalarFieldEnum
+    having?: sys_orderScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Sys_orderCountAggregateInputType | true
+    _avg?: Sys_orderAvgAggregateInputType
+    _sum?: Sys_orderSumAggregateInputType
+    _min?: Sys_orderMinAggregateInputType
+    _max?: Sys_orderMaxAggregateInputType
+  }
+
+  export type Sys_orderGroupByOutputType = {
+    out_trade_no: string
+    createdAt: Date
+    updatedAt: Date
+    url: string | null
+    transaction_id: string | null
+    amount: number
+    description: string
+    payOpenId: string | null
+    trade_type: $Enums.order_trade_type
+    state: $Enums.order_state
+    bank_type: string | null
+    attach: string | null
+    userId: string | null
+    goodsId: string
+    _count: Sys_orderCountAggregateOutputType | null
+    _avg: Sys_orderAvgAggregateOutputType | null
+    _sum: Sys_orderSumAggregateOutputType | null
+    _min: Sys_orderMinAggregateOutputType | null
+    _max: Sys_orderMaxAggregateOutputType | null
+  }
+
+  type GetSys_orderGroupByPayload<T extends sys_orderGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Sys_orderGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Sys_orderGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Sys_orderGroupByOutputType[P]>
+            : GetScalarType<T[P], Sys_orderGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type sys_orderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    out_trade_no?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    url?: boolean
+    transaction_id?: boolean
+    amount?: boolean
+    description?: boolean
+    payOpenId?: boolean
+    trade_type?: boolean
+    state?: boolean
+    bank_type?: boolean
+    attach?: boolean
+    userId?: boolean
+    goodsId?: boolean
+    user?: boolean | sys_order$userArgs<ExtArgs>
+    goods?: boolean | sys_goodsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sys_order"]>
+
+
+
+  export type sys_orderSelectScalar = {
+    out_trade_no?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    url?: boolean
+    transaction_id?: boolean
+    amount?: boolean
+    description?: boolean
+    payOpenId?: boolean
+    trade_type?: boolean
+    state?: boolean
+    bank_type?: boolean
+    attach?: boolean
+    userId?: boolean
+    goodsId?: boolean
+  }
+
+  export type sys_orderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"out_trade_no" | "createdAt" | "updatedAt" | "url" | "transaction_id" | "amount" | "description" | "payOpenId" | "trade_type" | "state" | "bank_type" | "attach" | "userId" | "goodsId", ExtArgs["result"]["sys_order"]>
+  export type sys_orderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | sys_order$userArgs<ExtArgs>
+    goods?: boolean | sys_goodsDefaultArgs<ExtArgs>
+  }
+
+  export type $sys_orderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "sys_order"
+    objects: {
+      user: Prisma.$sys_userPayload<ExtArgs> | null
+      goods: Prisma.$sys_goodsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      out_trade_no: string
+      createdAt: Date
+      updatedAt: Date
+      url: string | null
+      transaction_id: string | null
+      amount: number
+      description: string
+      payOpenId: string | null
+      trade_type: $Enums.order_trade_type
+      state: $Enums.order_state
+      bank_type: string | null
+      attach: string | null
+      userId: string | null
+      goodsId: string
+    }, ExtArgs["result"]["sys_order"]>
+    composites: {}
+  }
+
+  type sys_orderGetPayload<S extends boolean | null | undefined | sys_orderDefaultArgs> = $Result.GetResult<Prisma.$sys_orderPayload, S>
+
+  type sys_orderCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<sys_orderFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Sys_orderCountAggregateInputType | true
+    }
+
+  export interface sys_orderDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['sys_order'], meta: { name: 'sys_order' } }
+    /**
+     * Find zero or one Sys_order that matches the filter.
+     * @param {sys_orderFindUniqueArgs} args - Arguments to find a Sys_order
+     * @example
+     * // Get one Sys_order
+     * const sys_order = await prisma.sys_order.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends sys_orderFindUniqueArgs>(args: SelectSubset<T, sys_orderFindUniqueArgs<ExtArgs>>): Prisma__sys_orderClient<$Result.GetResult<Prisma.$sys_orderPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Sys_order that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {sys_orderFindUniqueOrThrowArgs} args - Arguments to find a Sys_order
+     * @example
+     * // Get one Sys_order
+     * const sys_order = await prisma.sys_order.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends sys_orderFindUniqueOrThrowArgs>(args: SelectSubset<T, sys_orderFindUniqueOrThrowArgs<ExtArgs>>): Prisma__sys_orderClient<$Result.GetResult<Prisma.$sys_orderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Sys_order that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sys_orderFindFirstArgs} args - Arguments to find a Sys_order
+     * @example
+     * // Get one Sys_order
+     * const sys_order = await prisma.sys_order.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends sys_orderFindFirstArgs>(args?: SelectSubset<T, sys_orderFindFirstArgs<ExtArgs>>): Prisma__sys_orderClient<$Result.GetResult<Prisma.$sys_orderPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Sys_order that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sys_orderFindFirstOrThrowArgs} args - Arguments to find a Sys_order
+     * @example
+     * // Get one Sys_order
+     * const sys_order = await prisma.sys_order.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends sys_orderFindFirstOrThrowArgs>(args?: SelectSubset<T, sys_orderFindFirstOrThrowArgs<ExtArgs>>): Prisma__sys_orderClient<$Result.GetResult<Prisma.$sys_orderPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Sys_orders that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sys_orderFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Sys_orders
+     * const sys_orders = await prisma.sys_order.findMany()
+     * 
+     * // Get first 10 Sys_orders
+     * const sys_orders = await prisma.sys_order.findMany({ take: 10 })
+     * 
+     * // Only select the `out_trade_no`
+     * const sys_orderWithOut_trade_noOnly = await prisma.sys_order.findMany({ select: { out_trade_no: true } })
+     * 
+     */
+    findMany<T extends sys_orderFindManyArgs>(args?: SelectSubset<T, sys_orderFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sys_orderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Sys_order.
+     * @param {sys_orderCreateArgs} args - Arguments to create a Sys_order.
+     * @example
+     * // Create one Sys_order
+     * const Sys_order = await prisma.sys_order.create({
+     *   data: {
+     *     // ... data to create a Sys_order
+     *   }
+     * })
+     * 
+     */
+    create<T extends sys_orderCreateArgs>(args: SelectSubset<T, sys_orderCreateArgs<ExtArgs>>): Prisma__sys_orderClient<$Result.GetResult<Prisma.$sys_orderPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Sys_orders.
+     * @param {sys_orderCreateManyArgs} args - Arguments to create many Sys_orders.
+     * @example
+     * // Create many Sys_orders
+     * const sys_order = await prisma.sys_order.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends sys_orderCreateManyArgs>(args?: SelectSubset<T, sys_orderCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Sys_order.
+     * @param {sys_orderDeleteArgs} args - Arguments to delete one Sys_order.
+     * @example
+     * // Delete one Sys_order
+     * const Sys_order = await prisma.sys_order.delete({
+     *   where: {
+     *     // ... filter to delete one Sys_order
+     *   }
+     * })
+     * 
+     */
+    delete<T extends sys_orderDeleteArgs>(args: SelectSubset<T, sys_orderDeleteArgs<ExtArgs>>): Prisma__sys_orderClient<$Result.GetResult<Prisma.$sys_orderPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Sys_order.
+     * @param {sys_orderUpdateArgs} args - Arguments to update one Sys_order.
+     * @example
+     * // Update one Sys_order
+     * const sys_order = await prisma.sys_order.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends sys_orderUpdateArgs>(args: SelectSubset<T, sys_orderUpdateArgs<ExtArgs>>): Prisma__sys_orderClient<$Result.GetResult<Prisma.$sys_orderPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Sys_orders.
+     * @param {sys_orderDeleteManyArgs} args - Arguments to filter Sys_orders to delete.
+     * @example
+     * // Delete a few Sys_orders
+     * const { count } = await prisma.sys_order.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends sys_orderDeleteManyArgs>(args?: SelectSubset<T, sys_orderDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Sys_orders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sys_orderUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Sys_orders
+     * const sys_order = await prisma.sys_order.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends sys_orderUpdateManyArgs>(args: SelectSubset<T, sys_orderUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Sys_order.
+     * @param {sys_orderUpsertArgs} args - Arguments to update or create a Sys_order.
+     * @example
+     * // Update or create a Sys_order
+     * const sys_order = await prisma.sys_order.upsert({
+     *   create: {
+     *     // ... data to create a Sys_order
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Sys_order we want to update
+     *   }
+     * })
+     */
+    upsert<T extends sys_orderUpsertArgs>(args: SelectSubset<T, sys_orderUpsertArgs<ExtArgs>>): Prisma__sys_orderClient<$Result.GetResult<Prisma.$sys_orderPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Sys_orders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sys_orderCountArgs} args - Arguments to filter Sys_orders to count.
+     * @example
+     * // Count the number of Sys_orders
+     * const count = await prisma.sys_order.count({
+     *   where: {
+     *     // ... the filter for the Sys_orders we want to count
+     *   }
+     * })
+    **/
+    count<T extends sys_orderCountArgs>(
+      args?: Subset<T, sys_orderCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Sys_orderCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Sys_order.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Sys_orderAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Sys_orderAggregateArgs>(args: Subset<T, Sys_orderAggregateArgs>): Prisma.PrismaPromise<GetSys_orderAggregateType<T>>
+
+    /**
+     * Group by Sys_order.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sys_orderGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends sys_orderGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: sys_orderGroupByArgs['orderBy'] }
+        : { orderBy?: sys_orderGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, sys_orderGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSys_orderGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the sys_order model
+   */
+  readonly fields: sys_orderFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for sys_order.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__sys_orderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends sys_order$userArgs<ExtArgs> = {}>(args?: Subset<T, sys_order$userArgs<ExtArgs>>): Prisma__sys_userClient<$Result.GetResult<Prisma.$sys_userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    goods<T extends sys_goodsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, sys_goodsDefaultArgs<ExtArgs>>): Prisma__sys_goodsClient<$Result.GetResult<Prisma.$sys_goodsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the sys_order model
+   */
+  interface sys_orderFieldRefs {
+    readonly out_trade_no: FieldRef<"sys_order", 'String'>
+    readonly createdAt: FieldRef<"sys_order", 'DateTime'>
+    readonly updatedAt: FieldRef<"sys_order", 'DateTime'>
+    readonly url: FieldRef<"sys_order", 'String'>
+    readonly transaction_id: FieldRef<"sys_order", 'String'>
+    readonly amount: FieldRef<"sys_order", 'Int'>
+    readonly description: FieldRef<"sys_order", 'String'>
+    readonly payOpenId: FieldRef<"sys_order", 'String'>
+    readonly trade_type: FieldRef<"sys_order", 'order_trade_type'>
+    readonly state: FieldRef<"sys_order", 'order_state'>
+    readonly bank_type: FieldRef<"sys_order", 'String'>
+    readonly attach: FieldRef<"sys_order", 'String'>
+    readonly userId: FieldRef<"sys_order", 'String'>
+    readonly goodsId: FieldRef<"sys_order", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * sys_order findUnique
+   */
+  export type sys_orderFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_order
+     */
+    select?: sys_orderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_order
+     */
+    omit?: sys_orderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_orderInclude<ExtArgs> | null
+    /**
+     * Filter, which sys_order to fetch.
+     */
+    where: sys_orderWhereUniqueInput
+  }
+
+  /**
+   * sys_order findUniqueOrThrow
+   */
+  export type sys_orderFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_order
+     */
+    select?: sys_orderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_order
+     */
+    omit?: sys_orderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_orderInclude<ExtArgs> | null
+    /**
+     * Filter, which sys_order to fetch.
+     */
+    where: sys_orderWhereUniqueInput
+  }
+
+  /**
+   * sys_order findFirst
+   */
+  export type sys_orderFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_order
+     */
+    select?: sys_orderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_order
+     */
+    omit?: sys_orderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_orderInclude<ExtArgs> | null
+    /**
+     * Filter, which sys_order to fetch.
+     */
+    where?: sys_orderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of sys_orders to fetch.
+     */
+    orderBy?: sys_orderOrderByWithRelationInput | sys_orderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for sys_orders.
+     */
+    cursor?: sys_orderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` sys_orders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` sys_orders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of sys_orders.
+     */
+    distinct?: Sys_orderScalarFieldEnum | Sys_orderScalarFieldEnum[]
+  }
+
+  /**
+   * sys_order findFirstOrThrow
+   */
+  export type sys_orderFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_order
+     */
+    select?: sys_orderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_order
+     */
+    omit?: sys_orderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_orderInclude<ExtArgs> | null
+    /**
+     * Filter, which sys_order to fetch.
+     */
+    where?: sys_orderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of sys_orders to fetch.
+     */
+    orderBy?: sys_orderOrderByWithRelationInput | sys_orderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for sys_orders.
+     */
+    cursor?: sys_orderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` sys_orders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` sys_orders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of sys_orders.
+     */
+    distinct?: Sys_orderScalarFieldEnum | Sys_orderScalarFieldEnum[]
+  }
+
+  /**
+   * sys_order findMany
+   */
+  export type sys_orderFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_order
+     */
+    select?: sys_orderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_order
+     */
+    omit?: sys_orderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_orderInclude<ExtArgs> | null
+    /**
+     * Filter, which sys_orders to fetch.
+     */
+    where?: sys_orderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of sys_orders to fetch.
+     */
+    orderBy?: sys_orderOrderByWithRelationInput | sys_orderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing sys_orders.
+     */
+    cursor?: sys_orderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` sys_orders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` sys_orders.
+     */
+    skip?: number
+    distinct?: Sys_orderScalarFieldEnum | Sys_orderScalarFieldEnum[]
+  }
+
+  /**
+   * sys_order create
+   */
+  export type sys_orderCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_order
+     */
+    select?: sys_orderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_order
+     */
+    omit?: sys_orderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_orderInclude<ExtArgs> | null
+    /**
+     * The data needed to create a sys_order.
+     */
+    data: XOR<sys_orderCreateInput, sys_orderUncheckedCreateInput>
+  }
+
+  /**
+   * sys_order createMany
+   */
+  export type sys_orderCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many sys_orders.
+     */
+    data: sys_orderCreateManyInput | sys_orderCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * sys_order update
+   */
+  export type sys_orderUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_order
+     */
+    select?: sys_orderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_order
+     */
+    omit?: sys_orderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_orderInclude<ExtArgs> | null
+    /**
+     * The data needed to update a sys_order.
+     */
+    data: XOR<sys_orderUpdateInput, sys_orderUncheckedUpdateInput>
+    /**
+     * Choose, which sys_order to update.
+     */
+    where: sys_orderWhereUniqueInput
+  }
+
+  /**
+   * sys_order updateMany
+   */
+  export type sys_orderUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update sys_orders.
+     */
+    data: XOR<sys_orderUpdateManyMutationInput, sys_orderUncheckedUpdateManyInput>
+    /**
+     * Filter which sys_orders to update
+     */
+    where?: sys_orderWhereInput
+    /**
+     * Limit how many sys_orders to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * sys_order upsert
+   */
+  export type sys_orderUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_order
+     */
+    select?: sys_orderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_order
+     */
+    omit?: sys_orderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_orderInclude<ExtArgs> | null
+    /**
+     * The filter to search for the sys_order to update in case it exists.
+     */
+    where: sys_orderWhereUniqueInput
+    /**
+     * In case the sys_order found by the `where` argument doesn't exist, create a new sys_order with this data.
+     */
+    create: XOR<sys_orderCreateInput, sys_orderUncheckedCreateInput>
+    /**
+     * In case the sys_order was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<sys_orderUpdateInput, sys_orderUncheckedUpdateInput>
+  }
+
+  /**
+   * sys_order delete
+   */
+  export type sys_orderDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_order
+     */
+    select?: sys_orderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_order
+     */
+    omit?: sys_orderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_orderInclude<ExtArgs> | null
+    /**
+     * Filter which sys_order to delete.
+     */
+    where: sys_orderWhereUniqueInput
+  }
+
+  /**
+   * sys_order deleteMany
+   */
+  export type sys_orderDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which sys_orders to delete
+     */
+    where?: sys_orderWhereInput
+    /**
+     * Limit how many sys_orders to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * sys_order.user
+   */
+  export type sys_order$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_user
+     */
+    select?: sys_userSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_user
+     */
+    omit?: sys_userOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_userInclude<ExtArgs> | null
+    where?: sys_userWhereInput
+  }
+
+  /**
+   * sys_order without action
+   */
+  export type sys_orderDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_order
+     */
+    select?: sys_orderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_order
+     */
+    omit?: sys_orderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_orderInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model sys_goods
+   */
+
+  export type AggregateSys_goods = {
+    _count: Sys_goodsCountAggregateOutputType | null
+    _avg: Sys_goodsAvgAggregateOutputType | null
+    _sum: Sys_goodsSumAggregateOutputType | null
+    _min: Sys_goodsMinAggregateOutputType | null
+    _max: Sys_goodsMaxAggregateOutputType | null
+  }
+
+  export type Sys_goodsAvgAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type Sys_goodsSumAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type Sys_goodsMinAggregateOutputType = {
+    uid: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: string | null
+    amount: number | null
+    description: string | null
+  }
+
+  export type Sys_goodsMaxAggregateOutputType = {
+    uid: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: string | null
+    amount: number | null
+    description: string | null
+  }
+
+  export type Sys_goodsCountAggregateOutputType = {
+    uid: number
+    createdAt: number
+    updatedAt: number
+    userId: number
+    amount: number
+    description: number
+    _all: number
+  }
+
+
+  export type Sys_goodsAvgAggregateInputType = {
+    amount?: true
+  }
+
+  export type Sys_goodsSumAggregateInputType = {
+    amount?: true
+  }
+
+  export type Sys_goodsMinAggregateInputType = {
+    uid?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+    amount?: true
+    description?: true
+  }
+
+  export type Sys_goodsMaxAggregateInputType = {
+    uid?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+    amount?: true
+    description?: true
+  }
+
+  export type Sys_goodsCountAggregateInputType = {
+    uid?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+    amount?: true
+    description?: true
+    _all?: true
+  }
+
+  export type Sys_goodsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which sys_goods to aggregate.
+     */
+    where?: sys_goodsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of sys_goods to fetch.
+     */
+    orderBy?: sys_goodsOrderByWithRelationInput | sys_goodsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: sys_goodsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` sys_goods from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` sys_goods.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned sys_goods
+    **/
+    _count?: true | Sys_goodsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Sys_goodsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Sys_goodsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Sys_goodsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Sys_goodsMaxAggregateInputType
+  }
+
+  export type GetSys_goodsAggregateType<T extends Sys_goodsAggregateArgs> = {
+        [P in keyof T & keyof AggregateSys_goods]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSys_goods[P]>
+      : GetScalarType<T[P], AggregateSys_goods[P]>
+  }
+
+
+
+
+  export type sys_goodsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: sys_goodsWhereInput
+    orderBy?: sys_goodsOrderByWithAggregationInput | sys_goodsOrderByWithAggregationInput[]
+    by: Sys_goodsScalarFieldEnum[] | Sys_goodsScalarFieldEnum
+    having?: sys_goodsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Sys_goodsCountAggregateInputType | true
+    _avg?: Sys_goodsAvgAggregateInputType
+    _sum?: Sys_goodsSumAggregateInputType
+    _min?: Sys_goodsMinAggregateInputType
+    _max?: Sys_goodsMaxAggregateInputType
+  }
+
+  export type Sys_goodsGroupByOutputType = {
+    uid: string
+    createdAt: Date
+    updatedAt: Date
+    userId: string
+    amount: number
+    description: string
+    _count: Sys_goodsCountAggregateOutputType | null
+    _avg: Sys_goodsAvgAggregateOutputType | null
+    _sum: Sys_goodsSumAggregateOutputType | null
+    _min: Sys_goodsMinAggregateOutputType | null
+    _max: Sys_goodsMaxAggregateOutputType | null
+  }
+
+  type GetSys_goodsGroupByPayload<T extends sys_goodsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Sys_goodsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Sys_goodsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Sys_goodsGroupByOutputType[P]>
+            : GetScalarType<T[P], Sys_goodsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type sys_goodsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    uid?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    amount?: boolean
+    description?: boolean
+    user?: boolean | sys_userDefaultArgs<ExtArgs>
+    orders?: boolean | sys_goods$ordersArgs<ExtArgs>
+    _count?: boolean | Sys_goodsCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sys_goods"]>
+
+
+
+  export type sys_goodsSelectScalar = {
+    uid?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    amount?: boolean
+    description?: boolean
+  }
+
+  export type sys_goodsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "createdAt" | "updatedAt" | "userId" | "amount" | "description", ExtArgs["result"]["sys_goods"]>
+  export type sys_goodsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | sys_userDefaultArgs<ExtArgs>
+    orders?: boolean | sys_goods$ordersArgs<ExtArgs>
+    _count?: boolean | Sys_goodsCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $sys_goodsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "sys_goods"
+    objects: {
+      user: Prisma.$sys_userPayload<ExtArgs>
+      orders: Prisma.$sys_orderPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      uid: string
+      createdAt: Date
+      updatedAt: Date
+      userId: string
+      amount: number
+      description: string
+    }, ExtArgs["result"]["sys_goods"]>
+    composites: {}
+  }
+
+  type sys_goodsGetPayload<S extends boolean | null | undefined | sys_goodsDefaultArgs> = $Result.GetResult<Prisma.$sys_goodsPayload, S>
+
+  type sys_goodsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<sys_goodsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Sys_goodsCountAggregateInputType | true
+    }
+
+  export interface sys_goodsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['sys_goods'], meta: { name: 'sys_goods' } }
+    /**
+     * Find zero or one Sys_goods that matches the filter.
+     * @param {sys_goodsFindUniqueArgs} args - Arguments to find a Sys_goods
+     * @example
+     * // Get one Sys_goods
+     * const sys_goods = await prisma.sys_goods.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends sys_goodsFindUniqueArgs>(args: SelectSubset<T, sys_goodsFindUniqueArgs<ExtArgs>>): Prisma__sys_goodsClient<$Result.GetResult<Prisma.$sys_goodsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Sys_goods that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {sys_goodsFindUniqueOrThrowArgs} args - Arguments to find a Sys_goods
+     * @example
+     * // Get one Sys_goods
+     * const sys_goods = await prisma.sys_goods.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends sys_goodsFindUniqueOrThrowArgs>(args: SelectSubset<T, sys_goodsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__sys_goodsClient<$Result.GetResult<Prisma.$sys_goodsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Sys_goods that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sys_goodsFindFirstArgs} args - Arguments to find a Sys_goods
+     * @example
+     * // Get one Sys_goods
+     * const sys_goods = await prisma.sys_goods.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends sys_goodsFindFirstArgs>(args?: SelectSubset<T, sys_goodsFindFirstArgs<ExtArgs>>): Prisma__sys_goodsClient<$Result.GetResult<Prisma.$sys_goodsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Sys_goods that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sys_goodsFindFirstOrThrowArgs} args - Arguments to find a Sys_goods
+     * @example
+     * // Get one Sys_goods
+     * const sys_goods = await prisma.sys_goods.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends sys_goodsFindFirstOrThrowArgs>(args?: SelectSubset<T, sys_goodsFindFirstOrThrowArgs<ExtArgs>>): Prisma__sys_goodsClient<$Result.GetResult<Prisma.$sys_goodsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Sys_goods that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sys_goodsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Sys_goods
+     * const sys_goods = await prisma.sys_goods.findMany()
+     * 
+     * // Get first 10 Sys_goods
+     * const sys_goods = await prisma.sys_goods.findMany({ take: 10 })
+     * 
+     * // Only select the `uid`
+     * const sys_goodsWithUidOnly = await prisma.sys_goods.findMany({ select: { uid: true } })
+     * 
+     */
+    findMany<T extends sys_goodsFindManyArgs>(args?: SelectSubset<T, sys_goodsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sys_goodsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Sys_goods.
+     * @param {sys_goodsCreateArgs} args - Arguments to create a Sys_goods.
+     * @example
+     * // Create one Sys_goods
+     * const Sys_goods = await prisma.sys_goods.create({
+     *   data: {
+     *     // ... data to create a Sys_goods
+     *   }
+     * })
+     * 
+     */
+    create<T extends sys_goodsCreateArgs>(args: SelectSubset<T, sys_goodsCreateArgs<ExtArgs>>): Prisma__sys_goodsClient<$Result.GetResult<Prisma.$sys_goodsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Sys_goods.
+     * @param {sys_goodsCreateManyArgs} args - Arguments to create many Sys_goods.
+     * @example
+     * // Create many Sys_goods
+     * const sys_goods = await prisma.sys_goods.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends sys_goodsCreateManyArgs>(args?: SelectSubset<T, sys_goodsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Sys_goods.
+     * @param {sys_goodsDeleteArgs} args - Arguments to delete one Sys_goods.
+     * @example
+     * // Delete one Sys_goods
+     * const Sys_goods = await prisma.sys_goods.delete({
+     *   where: {
+     *     // ... filter to delete one Sys_goods
+     *   }
+     * })
+     * 
+     */
+    delete<T extends sys_goodsDeleteArgs>(args: SelectSubset<T, sys_goodsDeleteArgs<ExtArgs>>): Prisma__sys_goodsClient<$Result.GetResult<Prisma.$sys_goodsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Sys_goods.
+     * @param {sys_goodsUpdateArgs} args - Arguments to update one Sys_goods.
+     * @example
+     * // Update one Sys_goods
+     * const sys_goods = await prisma.sys_goods.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends sys_goodsUpdateArgs>(args: SelectSubset<T, sys_goodsUpdateArgs<ExtArgs>>): Prisma__sys_goodsClient<$Result.GetResult<Prisma.$sys_goodsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Sys_goods.
+     * @param {sys_goodsDeleteManyArgs} args - Arguments to filter Sys_goods to delete.
+     * @example
+     * // Delete a few Sys_goods
+     * const { count } = await prisma.sys_goods.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends sys_goodsDeleteManyArgs>(args?: SelectSubset<T, sys_goodsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Sys_goods.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sys_goodsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Sys_goods
+     * const sys_goods = await prisma.sys_goods.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends sys_goodsUpdateManyArgs>(args: SelectSubset<T, sys_goodsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Sys_goods.
+     * @param {sys_goodsUpsertArgs} args - Arguments to update or create a Sys_goods.
+     * @example
+     * // Update or create a Sys_goods
+     * const sys_goods = await prisma.sys_goods.upsert({
+     *   create: {
+     *     // ... data to create a Sys_goods
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Sys_goods we want to update
+     *   }
+     * })
+     */
+    upsert<T extends sys_goodsUpsertArgs>(args: SelectSubset<T, sys_goodsUpsertArgs<ExtArgs>>): Prisma__sys_goodsClient<$Result.GetResult<Prisma.$sys_goodsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Sys_goods.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sys_goodsCountArgs} args - Arguments to filter Sys_goods to count.
+     * @example
+     * // Count the number of Sys_goods
+     * const count = await prisma.sys_goods.count({
+     *   where: {
+     *     // ... the filter for the Sys_goods we want to count
+     *   }
+     * })
+    **/
+    count<T extends sys_goodsCountArgs>(
+      args?: Subset<T, sys_goodsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Sys_goodsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Sys_goods.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Sys_goodsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Sys_goodsAggregateArgs>(args: Subset<T, Sys_goodsAggregateArgs>): Prisma.PrismaPromise<GetSys_goodsAggregateType<T>>
+
+    /**
+     * Group by Sys_goods.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sys_goodsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends sys_goodsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: sys_goodsGroupByArgs['orderBy'] }
+        : { orderBy?: sys_goodsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, sys_goodsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSys_goodsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the sys_goods model
+   */
+  readonly fields: sys_goodsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for sys_goods.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__sys_goodsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends sys_userDefaultArgs<ExtArgs> = {}>(args?: Subset<T, sys_userDefaultArgs<ExtArgs>>): Prisma__sys_userClient<$Result.GetResult<Prisma.$sys_userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    orders<T extends sys_goods$ordersArgs<ExtArgs> = {}>(args?: Subset<T, sys_goods$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sys_orderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the sys_goods model
+   */
+  interface sys_goodsFieldRefs {
+    readonly uid: FieldRef<"sys_goods", 'String'>
+    readonly createdAt: FieldRef<"sys_goods", 'DateTime'>
+    readonly updatedAt: FieldRef<"sys_goods", 'DateTime'>
+    readonly userId: FieldRef<"sys_goods", 'String'>
+    readonly amount: FieldRef<"sys_goods", 'Int'>
+    readonly description: FieldRef<"sys_goods", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * sys_goods findUnique
+   */
+  export type sys_goodsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_goods
+     */
+    select?: sys_goodsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_goods
+     */
+    omit?: sys_goodsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_goodsInclude<ExtArgs> | null
+    /**
+     * Filter, which sys_goods to fetch.
+     */
+    where: sys_goodsWhereUniqueInput
+  }
+
+  /**
+   * sys_goods findUniqueOrThrow
+   */
+  export type sys_goodsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_goods
+     */
+    select?: sys_goodsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_goods
+     */
+    omit?: sys_goodsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_goodsInclude<ExtArgs> | null
+    /**
+     * Filter, which sys_goods to fetch.
+     */
+    where: sys_goodsWhereUniqueInput
+  }
+
+  /**
+   * sys_goods findFirst
+   */
+  export type sys_goodsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_goods
+     */
+    select?: sys_goodsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_goods
+     */
+    omit?: sys_goodsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_goodsInclude<ExtArgs> | null
+    /**
+     * Filter, which sys_goods to fetch.
+     */
+    where?: sys_goodsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of sys_goods to fetch.
+     */
+    orderBy?: sys_goodsOrderByWithRelationInput | sys_goodsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for sys_goods.
+     */
+    cursor?: sys_goodsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` sys_goods from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` sys_goods.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of sys_goods.
+     */
+    distinct?: Sys_goodsScalarFieldEnum | Sys_goodsScalarFieldEnum[]
+  }
+
+  /**
+   * sys_goods findFirstOrThrow
+   */
+  export type sys_goodsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_goods
+     */
+    select?: sys_goodsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_goods
+     */
+    omit?: sys_goodsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_goodsInclude<ExtArgs> | null
+    /**
+     * Filter, which sys_goods to fetch.
+     */
+    where?: sys_goodsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of sys_goods to fetch.
+     */
+    orderBy?: sys_goodsOrderByWithRelationInput | sys_goodsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for sys_goods.
+     */
+    cursor?: sys_goodsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` sys_goods from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` sys_goods.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of sys_goods.
+     */
+    distinct?: Sys_goodsScalarFieldEnum | Sys_goodsScalarFieldEnum[]
+  }
+
+  /**
+   * sys_goods findMany
+   */
+  export type sys_goodsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_goods
+     */
+    select?: sys_goodsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_goods
+     */
+    omit?: sys_goodsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_goodsInclude<ExtArgs> | null
+    /**
+     * Filter, which sys_goods to fetch.
+     */
+    where?: sys_goodsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of sys_goods to fetch.
+     */
+    orderBy?: sys_goodsOrderByWithRelationInput | sys_goodsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing sys_goods.
+     */
+    cursor?: sys_goodsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` sys_goods from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` sys_goods.
+     */
+    skip?: number
+    distinct?: Sys_goodsScalarFieldEnum | Sys_goodsScalarFieldEnum[]
+  }
+
+  /**
+   * sys_goods create
+   */
+  export type sys_goodsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_goods
+     */
+    select?: sys_goodsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_goods
+     */
+    omit?: sys_goodsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_goodsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a sys_goods.
+     */
+    data: XOR<sys_goodsCreateInput, sys_goodsUncheckedCreateInput>
+  }
+
+  /**
+   * sys_goods createMany
+   */
+  export type sys_goodsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many sys_goods.
+     */
+    data: sys_goodsCreateManyInput | sys_goodsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * sys_goods update
+   */
+  export type sys_goodsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_goods
+     */
+    select?: sys_goodsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_goods
+     */
+    omit?: sys_goodsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_goodsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a sys_goods.
+     */
+    data: XOR<sys_goodsUpdateInput, sys_goodsUncheckedUpdateInput>
+    /**
+     * Choose, which sys_goods to update.
+     */
+    where: sys_goodsWhereUniqueInput
+  }
+
+  /**
+   * sys_goods updateMany
+   */
+  export type sys_goodsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update sys_goods.
+     */
+    data: XOR<sys_goodsUpdateManyMutationInput, sys_goodsUncheckedUpdateManyInput>
+    /**
+     * Filter which sys_goods to update
+     */
+    where?: sys_goodsWhereInput
+    /**
+     * Limit how many sys_goods to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * sys_goods upsert
+   */
+  export type sys_goodsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_goods
+     */
+    select?: sys_goodsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_goods
+     */
+    omit?: sys_goodsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_goodsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the sys_goods to update in case it exists.
+     */
+    where: sys_goodsWhereUniqueInput
+    /**
+     * In case the sys_goods found by the `where` argument doesn't exist, create a new sys_goods with this data.
+     */
+    create: XOR<sys_goodsCreateInput, sys_goodsUncheckedCreateInput>
+    /**
+     * In case the sys_goods was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<sys_goodsUpdateInput, sys_goodsUncheckedUpdateInput>
+  }
+
+  /**
+   * sys_goods delete
+   */
+  export type sys_goodsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_goods
+     */
+    select?: sys_goodsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_goods
+     */
+    omit?: sys_goodsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_goodsInclude<ExtArgs> | null
+    /**
+     * Filter which sys_goods to delete.
+     */
+    where: sys_goodsWhereUniqueInput
+  }
+
+  /**
+   * sys_goods deleteMany
+   */
+  export type sys_goodsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which sys_goods to delete
+     */
+    where?: sys_goodsWhereInput
+    /**
+     * Limit how many sys_goods to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * sys_goods.orders
+   */
+  export type sys_goods$ordersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_order
+     */
+    select?: sys_orderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_order
+     */
+    omit?: sys_orderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_orderInclude<ExtArgs> | null
+    where?: sys_orderWhereInput
+    orderBy?: sys_orderOrderByWithRelationInput | sys_orderOrderByWithRelationInput[]
+    cursor?: sys_orderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Sys_orderScalarFieldEnum | Sys_orderScalarFieldEnum[]
+  }
+
+  /**
+   * sys_goods without action
+   */
+  export type sys_goodsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sys_goods
+     */
+    select?: sys_goodsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sys_goods
+     */
+    omit?: sys_goodsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sys_goodsInclude<ExtArgs> | null
   }
 
 
@@ -20811,6 +23206,38 @@ export namespace Prisma {
   export type Sys_user_mediaScalarFieldEnum = (typeof Sys_user_mediaScalarFieldEnum)[keyof typeof Sys_user_mediaScalarFieldEnum]
 
 
+  export const Sys_orderScalarFieldEnum: {
+    out_trade_no: 'out_trade_no',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    url: 'url',
+    transaction_id: 'transaction_id',
+    amount: 'amount',
+    description: 'description',
+    payOpenId: 'payOpenId',
+    trade_type: 'trade_type',
+    state: 'state',
+    bank_type: 'bank_type',
+    attach: 'attach',
+    userId: 'userId',
+    goodsId: 'goodsId'
+  };
+
+  export type Sys_orderScalarFieldEnum = (typeof Sys_orderScalarFieldEnum)[keyof typeof Sys_orderScalarFieldEnum]
+
+
+  export const Sys_goodsScalarFieldEnum: {
+    uid: 'uid',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    userId: 'userId',
+    amount: 'amount',
+    description: 'description'
+  };
+
+  export type Sys_goodsScalarFieldEnum = (typeof Sys_goodsScalarFieldEnum)[keyof typeof Sys_goodsScalarFieldEnum]
+
+
   export const Blog_categoriesScalarFieldEnum: {
     uid: 'uid',
     createdAt: 'createdAt',
@@ -21037,6 +23464,30 @@ export namespace Prisma {
   export type sys_user_mediaOrderByRelevanceFieldEnum = (typeof sys_user_mediaOrderByRelevanceFieldEnum)[keyof typeof sys_user_mediaOrderByRelevanceFieldEnum]
 
 
+  export const sys_orderOrderByRelevanceFieldEnum: {
+    out_trade_no: 'out_trade_no',
+    url: 'url',
+    transaction_id: 'transaction_id',
+    description: 'description',
+    payOpenId: 'payOpenId',
+    bank_type: 'bank_type',
+    attach: 'attach',
+    userId: 'userId',
+    goodsId: 'goodsId'
+  };
+
+  export type sys_orderOrderByRelevanceFieldEnum = (typeof sys_orderOrderByRelevanceFieldEnum)[keyof typeof sys_orderOrderByRelevanceFieldEnum]
+
+
+  export const sys_goodsOrderByRelevanceFieldEnum: {
+    uid: 'uid',
+    userId: 'userId',
+    description: 'description'
+  };
+
+  export type sys_goodsOrderByRelevanceFieldEnum = (typeof sys_goodsOrderByRelevanceFieldEnum)[keyof typeof sys_goodsOrderByRelevanceFieldEnum]
+
+
   export const blog_categoriesOrderByRelevanceFieldEnum: {
     uid: 'uid',
     name: 'name',
@@ -21177,6 +23628,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'order_trade_type'
+   */
+  export type Enumorder_trade_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'order_trade_type'>
+    
+
+
+  /**
+   * Reference to a field of type 'order_state'
+   */
+  export type Enumorder_stateFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'order_state'>
+    
+
+
+  /**
    * Reference to a field of type 'bookkeep_type'
    */
   export type Enumbookkeep_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'bookkeep_type'>
@@ -21210,6 +23675,8 @@ export namespace Prisma {
     blog_posts?: Blog_postsListRelationFilter
     blog_comments?: Blog_commentsListRelationFilter
     bookkeep_records?: Bookkeep_recordListRelationFilter
+    orders?: Sys_orderListRelationFilter
+    goods?: Sys_goodsListRelationFilter
   }
 
   export type sys_userOrderByWithRelationInput = {
@@ -21226,6 +23693,8 @@ export namespace Prisma {
     blog_posts?: blog_postsOrderByRelationAggregateInput
     blog_comments?: blog_commentsOrderByRelationAggregateInput
     bookkeep_records?: bookkeep_recordOrderByRelationAggregateInput
+    orders?: sys_orderOrderByRelationAggregateInput
+    goods?: sys_goodsOrderByRelationAggregateInput
     _relevance?: sys_userOrderByRelevanceInput
   }
 
@@ -21246,6 +23715,8 @@ export namespace Prisma {
     blog_posts?: Blog_postsListRelationFilter
     blog_comments?: Blog_commentsListRelationFilter
     bookkeep_records?: Bookkeep_recordListRelationFilter
+    orders?: Sys_orderListRelationFilter
+    goods?: Sys_goodsListRelationFilter
   }, "uid" | "account">
 
   export type sys_userOrderByWithAggregationInput = {
@@ -21753,6 +24224,178 @@ export namespace Prisma {
     NOT?: sys_user_mediaScalarWhereWithAggregatesInput | sys_user_mediaScalarWhereWithAggregatesInput[]
     userId?: StringWithAggregatesFilter<"sys_user_media"> | string
     mediaId?: StringWithAggregatesFilter<"sys_user_media"> | string
+  }
+
+  export type sys_orderWhereInput = {
+    AND?: sys_orderWhereInput | sys_orderWhereInput[]
+    OR?: sys_orderWhereInput[]
+    NOT?: sys_orderWhereInput | sys_orderWhereInput[]
+    out_trade_no?: StringFilter<"sys_order"> | string
+    createdAt?: DateTimeFilter<"sys_order"> | Date | string
+    updatedAt?: DateTimeFilter<"sys_order"> | Date | string
+    url?: StringNullableFilter<"sys_order"> | string | null
+    transaction_id?: StringNullableFilter<"sys_order"> | string | null
+    amount?: IntFilter<"sys_order"> | number
+    description?: StringFilter<"sys_order"> | string
+    payOpenId?: StringNullableFilter<"sys_order"> | string | null
+    trade_type?: Enumorder_trade_typeFilter<"sys_order"> | $Enums.order_trade_type
+    state?: Enumorder_stateFilter<"sys_order"> | $Enums.order_state
+    bank_type?: StringNullableFilter<"sys_order"> | string | null
+    attach?: StringNullableFilter<"sys_order"> | string | null
+    userId?: StringNullableFilter<"sys_order"> | string | null
+    goodsId?: StringFilter<"sys_order"> | string
+    user?: XOR<Sys_userNullableScalarRelationFilter, sys_userWhereInput> | null
+    goods?: XOR<Sys_goodsScalarRelationFilter, sys_goodsWhereInput>
+  }
+
+  export type sys_orderOrderByWithRelationInput = {
+    out_trade_no?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    url?: SortOrderInput | SortOrder
+    transaction_id?: SortOrderInput | SortOrder
+    amount?: SortOrder
+    description?: SortOrder
+    payOpenId?: SortOrderInput | SortOrder
+    trade_type?: SortOrder
+    state?: SortOrder
+    bank_type?: SortOrderInput | SortOrder
+    attach?: SortOrderInput | SortOrder
+    userId?: SortOrderInput | SortOrder
+    goodsId?: SortOrder
+    user?: sys_userOrderByWithRelationInput
+    goods?: sys_goodsOrderByWithRelationInput
+    _relevance?: sys_orderOrderByRelevanceInput
+  }
+
+  export type sys_orderWhereUniqueInput = Prisma.AtLeast<{
+    out_trade_no?: string
+    transaction_id?: string
+    AND?: sys_orderWhereInput | sys_orderWhereInput[]
+    OR?: sys_orderWhereInput[]
+    NOT?: sys_orderWhereInput | sys_orderWhereInput[]
+    createdAt?: DateTimeFilter<"sys_order"> | Date | string
+    updatedAt?: DateTimeFilter<"sys_order"> | Date | string
+    url?: StringNullableFilter<"sys_order"> | string | null
+    amount?: IntFilter<"sys_order"> | number
+    description?: StringFilter<"sys_order"> | string
+    payOpenId?: StringNullableFilter<"sys_order"> | string | null
+    trade_type?: Enumorder_trade_typeFilter<"sys_order"> | $Enums.order_trade_type
+    state?: Enumorder_stateFilter<"sys_order"> | $Enums.order_state
+    bank_type?: StringNullableFilter<"sys_order"> | string | null
+    attach?: StringNullableFilter<"sys_order"> | string | null
+    userId?: StringNullableFilter<"sys_order"> | string | null
+    goodsId?: StringFilter<"sys_order"> | string
+    user?: XOR<Sys_userNullableScalarRelationFilter, sys_userWhereInput> | null
+    goods?: XOR<Sys_goodsScalarRelationFilter, sys_goodsWhereInput>
+  }, "out_trade_no" | "transaction_id">
+
+  export type sys_orderOrderByWithAggregationInput = {
+    out_trade_no?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    url?: SortOrderInput | SortOrder
+    transaction_id?: SortOrderInput | SortOrder
+    amount?: SortOrder
+    description?: SortOrder
+    payOpenId?: SortOrderInput | SortOrder
+    trade_type?: SortOrder
+    state?: SortOrder
+    bank_type?: SortOrderInput | SortOrder
+    attach?: SortOrderInput | SortOrder
+    userId?: SortOrderInput | SortOrder
+    goodsId?: SortOrder
+    _count?: sys_orderCountOrderByAggregateInput
+    _avg?: sys_orderAvgOrderByAggregateInput
+    _max?: sys_orderMaxOrderByAggregateInput
+    _min?: sys_orderMinOrderByAggregateInput
+    _sum?: sys_orderSumOrderByAggregateInput
+  }
+
+  export type sys_orderScalarWhereWithAggregatesInput = {
+    AND?: sys_orderScalarWhereWithAggregatesInput | sys_orderScalarWhereWithAggregatesInput[]
+    OR?: sys_orderScalarWhereWithAggregatesInput[]
+    NOT?: sys_orderScalarWhereWithAggregatesInput | sys_orderScalarWhereWithAggregatesInput[]
+    out_trade_no?: StringWithAggregatesFilter<"sys_order"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"sys_order"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"sys_order"> | Date | string
+    url?: StringNullableWithAggregatesFilter<"sys_order"> | string | null
+    transaction_id?: StringNullableWithAggregatesFilter<"sys_order"> | string | null
+    amount?: IntWithAggregatesFilter<"sys_order"> | number
+    description?: StringWithAggregatesFilter<"sys_order"> | string
+    payOpenId?: StringNullableWithAggregatesFilter<"sys_order"> | string | null
+    trade_type?: Enumorder_trade_typeWithAggregatesFilter<"sys_order"> | $Enums.order_trade_type
+    state?: Enumorder_stateWithAggregatesFilter<"sys_order"> | $Enums.order_state
+    bank_type?: StringNullableWithAggregatesFilter<"sys_order"> | string | null
+    attach?: StringNullableWithAggregatesFilter<"sys_order"> | string | null
+    userId?: StringNullableWithAggregatesFilter<"sys_order"> | string | null
+    goodsId?: StringWithAggregatesFilter<"sys_order"> | string
+  }
+
+  export type sys_goodsWhereInput = {
+    AND?: sys_goodsWhereInput | sys_goodsWhereInput[]
+    OR?: sys_goodsWhereInput[]
+    NOT?: sys_goodsWhereInput | sys_goodsWhereInput[]
+    uid?: StringFilter<"sys_goods"> | string
+    createdAt?: DateTimeFilter<"sys_goods"> | Date | string
+    updatedAt?: DateTimeFilter<"sys_goods"> | Date | string
+    userId?: StringFilter<"sys_goods"> | string
+    amount?: IntFilter<"sys_goods"> | number
+    description?: StringFilter<"sys_goods"> | string
+    user?: XOR<Sys_userScalarRelationFilter, sys_userWhereInput>
+    orders?: Sys_orderListRelationFilter
+  }
+
+  export type sys_goodsOrderByWithRelationInput = {
+    uid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    amount?: SortOrder
+    description?: SortOrder
+    user?: sys_userOrderByWithRelationInput
+    orders?: sys_orderOrderByRelationAggregateInput
+    _relevance?: sys_goodsOrderByRelevanceInput
+  }
+
+  export type sys_goodsWhereUniqueInput = Prisma.AtLeast<{
+    uid?: string
+    AND?: sys_goodsWhereInput | sys_goodsWhereInput[]
+    OR?: sys_goodsWhereInput[]
+    NOT?: sys_goodsWhereInput | sys_goodsWhereInput[]
+    createdAt?: DateTimeFilter<"sys_goods"> | Date | string
+    updatedAt?: DateTimeFilter<"sys_goods"> | Date | string
+    userId?: StringFilter<"sys_goods"> | string
+    amount?: IntFilter<"sys_goods"> | number
+    description?: StringFilter<"sys_goods"> | string
+    user?: XOR<Sys_userScalarRelationFilter, sys_userWhereInput>
+    orders?: Sys_orderListRelationFilter
+  }, "uid">
+
+  export type sys_goodsOrderByWithAggregationInput = {
+    uid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    amount?: SortOrder
+    description?: SortOrder
+    _count?: sys_goodsCountOrderByAggregateInput
+    _avg?: sys_goodsAvgOrderByAggregateInput
+    _max?: sys_goodsMaxOrderByAggregateInput
+    _min?: sys_goodsMinOrderByAggregateInput
+    _sum?: sys_goodsSumOrderByAggregateInput
+  }
+
+  export type sys_goodsScalarWhereWithAggregatesInput = {
+    AND?: sys_goodsScalarWhereWithAggregatesInput | sys_goodsScalarWhereWithAggregatesInput[]
+    OR?: sys_goodsScalarWhereWithAggregatesInput[]
+    NOT?: sys_goodsScalarWhereWithAggregatesInput | sys_goodsScalarWhereWithAggregatesInput[]
+    uid?: StringWithAggregatesFilter<"sys_goods"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"sys_goods"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"sys_goods"> | Date | string
+    userId?: StringWithAggregatesFilter<"sys_goods"> | string
+    amount?: IntWithAggregatesFilter<"sys_goods"> | number
+    description?: StringWithAggregatesFilter<"sys_goods"> | string
   }
 
   export type blog_categoriesWhereInput = {
@@ -22472,6 +25115,8 @@ export namespace Prisma {
     blog_posts?: blog_postsCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsCreateNestedManyWithoutUserInput
     bookkeep_records?: bookkeep_recordCreateNestedManyWithoutUserInput
+    orders?: sys_orderCreateNestedManyWithoutUserInput
+    goods?: sys_goodsCreateNestedManyWithoutUserInput
   }
 
   export type sys_userUncheckedCreateInput = {
@@ -22487,6 +25132,8 @@ export namespace Prisma {
     blog_posts?: blog_postsUncheckedCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsUncheckedCreateNestedManyWithoutUserInput
     bookkeep_records?: bookkeep_recordUncheckedCreateNestedManyWithoutUserInput
+    orders?: sys_orderUncheckedCreateNestedManyWithoutUserInput
+    goods?: sys_goodsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type sys_userUpdateInput = {
@@ -22502,6 +25149,8 @@ export namespace Prisma {
     blog_posts?: blog_postsUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUpdateManyWithoutUserNestedInput
     bookkeep_records?: bookkeep_recordUpdateManyWithoutUserNestedInput
+    orders?: sys_orderUpdateManyWithoutUserNestedInput
+    goods?: sys_goodsUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userUncheckedUpdateInput = {
@@ -22517,6 +25166,8 @@ export namespace Prisma {
     blog_posts?: blog_postsUncheckedUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUncheckedUpdateManyWithoutUserNestedInput
     bookkeep_records?: bookkeep_recordUncheckedUpdateManyWithoutUserNestedInput
+    orders?: sys_orderUncheckedUpdateManyWithoutUserNestedInput
+    goods?: sys_goodsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userCreateManyInput = {
@@ -23034,6 +25685,189 @@ export namespace Prisma {
   export type sys_user_mediaUncheckedUpdateManyInput = {
     userId?: StringFieldUpdateOperationsInput | string
     mediaId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type sys_orderCreateInput = {
+    out_trade_no: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    url?: string | null
+    transaction_id?: string | null
+    amount: number
+    description: string
+    payOpenId?: string | null
+    trade_type: $Enums.order_trade_type
+    state?: $Enums.order_state
+    bank_type?: string | null
+    attach?: string | null
+    user?: sys_userCreateNestedOneWithoutOrdersInput
+    goods: sys_goodsCreateNestedOneWithoutOrdersInput
+  }
+
+  export type sys_orderUncheckedCreateInput = {
+    out_trade_no: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    url?: string | null
+    transaction_id?: string | null
+    amount: number
+    description: string
+    payOpenId?: string | null
+    trade_type: $Enums.order_trade_type
+    state?: $Enums.order_state
+    bank_type?: string | null
+    attach?: string | null
+    userId?: string | null
+    goodsId: string
+  }
+
+  export type sys_orderUpdateInput = {
+    out_trade_no?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    payOpenId?: NullableStringFieldUpdateOperationsInput | string | null
+    trade_type?: Enumorder_trade_typeFieldUpdateOperationsInput | $Enums.order_trade_type
+    state?: Enumorder_stateFieldUpdateOperationsInput | $Enums.order_state
+    bank_type?: NullableStringFieldUpdateOperationsInput | string | null
+    attach?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: sys_userUpdateOneWithoutOrdersNestedInput
+    goods?: sys_goodsUpdateOneRequiredWithoutOrdersNestedInput
+  }
+
+  export type sys_orderUncheckedUpdateInput = {
+    out_trade_no?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    payOpenId?: NullableStringFieldUpdateOperationsInput | string | null
+    trade_type?: Enumorder_trade_typeFieldUpdateOperationsInput | $Enums.order_trade_type
+    state?: Enumorder_stateFieldUpdateOperationsInput | $Enums.order_state
+    bank_type?: NullableStringFieldUpdateOperationsInput | string | null
+    attach?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    goodsId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type sys_orderCreateManyInput = {
+    out_trade_no: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    url?: string | null
+    transaction_id?: string | null
+    amount: number
+    description: string
+    payOpenId?: string | null
+    trade_type: $Enums.order_trade_type
+    state?: $Enums.order_state
+    bank_type?: string | null
+    attach?: string | null
+    userId?: string | null
+    goodsId: string
+  }
+
+  export type sys_orderUpdateManyMutationInput = {
+    out_trade_no?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    payOpenId?: NullableStringFieldUpdateOperationsInput | string | null
+    trade_type?: Enumorder_trade_typeFieldUpdateOperationsInput | $Enums.order_trade_type
+    state?: Enumorder_stateFieldUpdateOperationsInput | $Enums.order_state
+    bank_type?: NullableStringFieldUpdateOperationsInput | string | null
+    attach?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type sys_orderUncheckedUpdateManyInput = {
+    out_trade_no?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    payOpenId?: NullableStringFieldUpdateOperationsInput | string | null
+    trade_type?: Enumorder_trade_typeFieldUpdateOperationsInput | $Enums.order_trade_type
+    state?: Enumorder_stateFieldUpdateOperationsInput | $Enums.order_state
+    bank_type?: NullableStringFieldUpdateOperationsInput | string | null
+    attach?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    goodsId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type sys_goodsCreateInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    amount: number
+    description: string
+    user: sys_userCreateNestedOneWithoutGoodsInput
+    orders?: sys_orderCreateNestedManyWithoutGoodsInput
+  }
+
+  export type sys_goodsUncheckedCreateInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: string
+    amount: number
+    description: string
+    orders?: sys_orderUncheckedCreateNestedManyWithoutGoodsInput
+  }
+
+  export type sys_goodsUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    user?: sys_userUpdateOneRequiredWithoutGoodsNestedInput
+    orders?: sys_orderUpdateManyWithoutGoodsNestedInput
+  }
+
+  export type sys_goodsUncheckedUpdateInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    orders?: sys_orderUncheckedUpdateManyWithoutGoodsNestedInput
+  }
+
+  export type sys_goodsCreateManyInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: string
+    amount: number
+    description: string
+  }
+
+  export type sys_goodsUpdateManyMutationInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type sys_goodsUncheckedUpdateManyInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
   }
 
   export type blog_categoriesCreateInput = {
@@ -23851,6 +26685,18 @@ export namespace Prisma {
     none?: bookkeep_recordWhereInput
   }
 
+  export type Sys_orderListRelationFilter = {
+    every?: sys_orderWhereInput
+    some?: sys_orderWhereInput
+    none?: sys_orderWhereInput
+  }
+
+  export type Sys_goodsListRelationFilter = {
+    every?: sys_goodsWhereInput
+    some?: sys_goodsWhereInput
+    none?: sys_goodsWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -23877,6 +26723,14 @@ export namespace Prisma {
   }
 
   export type bookkeep_recordOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type sys_orderOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type sys_goodsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -24403,6 +27257,156 @@ export namespace Prisma {
   export type sys_user_mediaMinOrderByAggregateInput = {
     userId?: SortOrder
     mediaId?: SortOrder
+  }
+
+  export type Enumorder_trade_typeFilter<$PrismaModel = never> = {
+    equals?: $Enums.order_trade_type | Enumorder_trade_typeFieldRefInput<$PrismaModel>
+    in?: $Enums.order_trade_type[]
+    notIn?: $Enums.order_trade_type[]
+    not?: NestedEnumorder_trade_typeFilter<$PrismaModel> | $Enums.order_trade_type
+  }
+
+  export type Enumorder_stateFilter<$PrismaModel = never> = {
+    equals?: $Enums.order_state | Enumorder_stateFieldRefInput<$PrismaModel>
+    in?: $Enums.order_state[]
+    notIn?: $Enums.order_state[]
+    not?: NestedEnumorder_stateFilter<$PrismaModel> | $Enums.order_state
+  }
+
+  export type Sys_userNullableScalarRelationFilter = {
+    is?: sys_userWhereInput | null
+    isNot?: sys_userWhereInput | null
+  }
+
+  export type Sys_goodsScalarRelationFilter = {
+    is?: sys_goodsWhereInput
+    isNot?: sys_goodsWhereInput
+  }
+
+  export type sys_orderOrderByRelevanceInput = {
+    fields: sys_orderOrderByRelevanceFieldEnum | sys_orderOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type sys_orderCountOrderByAggregateInput = {
+    out_trade_no?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    url?: SortOrder
+    transaction_id?: SortOrder
+    amount?: SortOrder
+    description?: SortOrder
+    payOpenId?: SortOrder
+    trade_type?: SortOrder
+    state?: SortOrder
+    bank_type?: SortOrder
+    attach?: SortOrder
+    userId?: SortOrder
+    goodsId?: SortOrder
+  }
+
+  export type sys_orderAvgOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type sys_orderMaxOrderByAggregateInput = {
+    out_trade_no?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    url?: SortOrder
+    transaction_id?: SortOrder
+    amount?: SortOrder
+    description?: SortOrder
+    payOpenId?: SortOrder
+    trade_type?: SortOrder
+    state?: SortOrder
+    bank_type?: SortOrder
+    attach?: SortOrder
+    userId?: SortOrder
+    goodsId?: SortOrder
+  }
+
+  export type sys_orderMinOrderByAggregateInput = {
+    out_trade_no?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    url?: SortOrder
+    transaction_id?: SortOrder
+    amount?: SortOrder
+    description?: SortOrder
+    payOpenId?: SortOrder
+    trade_type?: SortOrder
+    state?: SortOrder
+    bank_type?: SortOrder
+    attach?: SortOrder
+    userId?: SortOrder
+    goodsId?: SortOrder
+  }
+
+  export type sys_orderSumOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type Enumorder_trade_typeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.order_trade_type | Enumorder_trade_typeFieldRefInput<$PrismaModel>
+    in?: $Enums.order_trade_type[]
+    notIn?: $Enums.order_trade_type[]
+    not?: NestedEnumorder_trade_typeWithAggregatesFilter<$PrismaModel> | $Enums.order_trade_type
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumorder_trade_typeFilter<$PrismaModel>
+    _max?: NestedEnumorder_trade_typeFilter<$PrismaModel>
+  }
+
+  export type Enumorder_stateWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.order_state | Enumorder_stateFieldRefInput<$PrismaModel>
+    in?: $Enums.order_state[]
+    notIn?: $Enums.order_state[]
+    not?: NestedEnumorder_stateWithAggregatesFilter<$PrismaModel> | $Enums.order_state
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumorder_stateFilter<$PrismaModel>
+    _max?: NestedEnumorder_stateFilter<$PrismaModel>
+  }
+
+  export type sys_goodsOrderByRelevanceInput = {
+    fields: sys_goodsOrderByRelevanceFieldEnum | sys_goodsOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type sys_goodsCountOrderByAggregateInput = {
+    uid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    amount?: SortOrder
+    description?: SortOrder
+  }
+
+  export type sys_goodsAvgOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type sys_goodsMaxOrderByAggregateInput = {
+    uid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    amount?: SortOrder
+    description?: SortOrder
+  }
+
+  export type sys_goodsMinOrderByAggregateInput = {
+    uid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    amount?: SortOrder
+    description?: SortOrder
+  }
+
+  export type sys_goodsSumOrderByAggregateInput = {
+    amount?: SortOrder
   }
 
   export type blog_categoriesOrderByRelevanceInput = {
@@ -24989,6 +27993,20 @@ export namespace Prisma {
     connect?: bookkeep_recordWhereUniqueInput | bookkeep_recordWhereUniqueInput[]
   }
 
+  export type sys_orderCreateNestedManyWithoutUserInput = {
+    create?: XOR<sys_orderCreateWithoutUserInput, sys_orderUncheckedCreateWithoutUserInput> | sys_orderCreateWithoutUserInput[] | sys_orderUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: sys_orderCreateOrConnectWithoutUserInput | sys_orderCreateOrConnectWithoutUserInput[]
+    createMany?: sys_orderCreateManyUserInputEnvelope
+    connect?: sys_orderWhereUniqueInput | sys_orderWhereUniqueInput[]
+  }
+
+  export type sys_goodsCreateNestedManyWithoutUserInput = {
+    create?: XOR<sys_goodsCreateWithoutUserInput, sys_goodsUncheckedCreateWithoutUserInput> | sys_goodsCreateWithoutUserInput[] | sys_goodsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: sys_goodsCreateOrConnectWithoutUserInput | sys_goodsCreateOrConnectWithoutUserInput[]
+    createMany?: sys_goodsCreateManyUserInputEnvelope
+    connect?: sys_goodsWhereUniqueInput | sys_goodsWhereUniqueInput[]
+  }
+
   export type sys_accountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<sys_accountCreateWithoutUserInput, sys_accountUncheckedCreateWithoutUserInput> | sys_accountCreateWithoutUserInput[] | sys_accountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: sys_accountCreateOrConnectWithoutUserInput | sys_accountCreateOrConnectWithoutUserInput[]
@@ -25029,6 +28047,20 @@ export namespace Prisma {
     connectOrCreate?: bookkeep_recordCreateOrConnectWithoutUserInput | bookkeep_recordCreateOrConnectWithoutUserInput[]
     createMany?: bookkeep_recordCreateManyUserInputEnvelope
     connect?: bookkeep_recordWhereUniqueInput | bookkeep_recordWhereUniqueInput[]
+  }
+
+  export type sys_orderUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<sys_orderCreateWithoutUserInput, sys_orderUncheckedCreateWithoutUserInput> | sys_orderCreateWithoutUserInput[] | sys_orderUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: sys_orderCreateOrConnectWithoutUserInput | sys_orderCreateOrConnectWithoutUserInput[]
+    createMany?: sys_orderCreateManyUserInputEnvelope
+    connect?: sys_orderWhereUniqueInput | sys_orderWhereUniqueInput[]
+  }
+
+  export type sys_goodsUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<sys_goodsCreateWithoutUserInput, sys_goodsUncheckedCreateWithoutUserInput> | sys_goodsCreateWithoutUserInput[] | sys_goodsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: sys_goodsCreateOrConnectWithoutUserInput | sys_goodsCreateOrConnectWithoutUserInput[]
+    createMany?: sys_goodsCreateManyUserInputEnvelope
+    connect?: sys_goodsWhereUniqueInput | sys_goodsWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -25133,6 +28165,34 @@ export namespace Prisma {
     deleteMany?: bookkeep_recordScalarWhereInput | bookkeep_recordScalarWhereInput[]
   }
 
+  export type sys_orderUpdateManyWithoutUserNestedInput = {
+    create?: XOR<sys_orderCreateWithoutUserInput, sys_orderUncheckedCreateWithoutUserInput> | sys_orderCreateWithoutUserInput[] | sys_orderUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: sys_orderCreateOrConnectWithoutUserInput | sys_orderCreateOrConnectWithoutUserInput[]
+    upsert?: sys_orderUpsertWithWhereUniqueWithoutUserInput | sys_orderUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: sys_orderCreateManyUserInputEnvelope
+    set?: sys_orderWhereUniqueInput | sys_orderWhereUniqueInput[]
+    disconnect?: sys_orderWhereUniqueInput | sys_orderWhereUniqueInput[]
+    delete?: sys_orderWhereUniqueInput | sys_orderWhereUniqueInput[]
+    connect?: sys_orderWhereUniqueInput | sys_orderWhereUniqueInput[]
+    update?: sys_orderUpdateWithWhereUniqueWithoutUserInput | sys_orderUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: sys_orderUpdateManyWithWhereWithoutUserInput | sys_orderUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: sys_orderScalarWhereInput | sys_orderScalarWhereInput[]
+  }
+
+  export type sys_goodsUpdateManyWithoutUserNestedInput = {
+    create?: XOR<sys_goodsCreateWithoutUserInput, sys_goodsUncheckedCreateWithoutUserInput> | sys_goodsCreateWithoutUserInput[] | sys_goodsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: sys_goodsCreateOrConnectWithoutUserInput | sys_goodsCreateOrConnectWithoutUserInput[]
+    upsert?: sys_goodsUpsertWithWhereUniqueWithoutUserInput | sys_goodsUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: sys_goodsCreateManyUserInputEnvelope
+    set?: sys_goodsWhereUniqueInput | sys_goodsWhereUniqueInput[]
+    disconnect?: sys_goodsWhereUniqueInput | sys_goodsWhereUniqueInput[]
+    delete?: sys_goodsWhereUniqueInput | sys_goodsWhereUniqueInput[]
+    connect?: sys_goodsWhereUniqueInput | sys_goodsWhereUniqueInput[]
+    update?: sys_goodsUpdateWithWhereUniqueWithoutUserInput | sys_goodsUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: sys_goodsUpdateManyWithWhereWithoutUserInput | sys_goodsUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: sys_goodsScalarWhereInput | sys_goodsScalarWhereInput[]
+  }
+
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
   }
@@ -25219,6 +28279,34 @@ export namespace Prisma {
     update?: bookkeep_recordUpdateWithWhereUniqueWithoutUserInput | bookkeep_recordUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: bookkeep_recordUpdateManyWithWhereWithoutUserInput | bookkeep_recordUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: bookkeep_recordScalarWhereInput | bookkeep_recordScalarWhereInput[]
+  }
+
+  export type sys_orderUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<sys_orderCreateWithoutUserInput, sys_orderUncheckedCreateWithoutUserInput> | sys_orderCreateWithoutUserInput[] | sys_orderUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: sys_orderCreateOrConnectWithoutUserInput | sys_orderCreateOrConnectWithoutUserInput[]
+    upsert?: sys_orderUpsertWithWhereUniqueWithoutUserInput | sys_orderUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: sys_orderCreateManyUserInputEnvelope
+    set?: sys_orderWhereUniqueInput | sys_orderWhereUniqueInput[]
+    disconnect?: sys_orderWhereUniqueInput | sys_orderWhereUniqueInput[]
+    delete?: sys_orderWhereUniqueInput | sys_orderWhereUniqueInput[]
+    connect?: sys_orderWhereUniqueInput | sys_orderWhereUniqueInput[]
+    update?: sys_orderUpdateWithWhereUniqueWithoutUserInput | sys_orderUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: sys_orderUpdateManyWithWhereWithoutUserInput | sys_orderUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: sys_orderScalarWhereInput | sys_orderScalarWhereInput[]
+  }
+
+  export type sys_goodsUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<sys_goodsCreateWithoutUserInput, sys_goodsUncheckedCreateWithoutUserInput> | sys_goodsCreateWithoutUserInput[] | sys_goodsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: sys_goodsCreateOrConnectWithoutUserInput | sys_goodsCreateOrConnectWithoutUserInput[]
+    upsert?: sys_goodsUpsertWithWhereUniqueWithoutUserInput | sys_goodsUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: sys_goodsCreateManyUserInputEnvelope
+    set?: sys_goodsWhereUniqueInput | sys_goodsWhereUniqueInput[]
+    disconnect?: sys_goodsWhereUniqueInput | sys_goodsWhereUniqueInput[]
+    delete?: sys_goodsWhereUniqueInput | sys_goodsWhereUniqueInput[]
+    connect?: sys_goodsWhereUniqueInput | sys_goodsWhereUniqueInput[]
+    update?: sys_goodsUpdateWithWhereUniqueWithoutUserInput | sys_goodsUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: sys_goodsUpdateManyWithWhereWithoutUserInput | sys_goodsUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: sys_goodsScalarWhereInput | sys_goodsScalarWhereInput[]
   }
 
   export type sys_userCreateNestedOneWithoutAccountsInput = {
@@ -25651,6 +28739,100 @@ export namespace Prisma {
     upsert?: sys_mediaUpsertWithoutUsersInput
     connect?: sys_mediaWhereUniqueInput
     update?: XOR<XOR<sys_mediaUpdateToOneWithWhereWithoutUsersInput, sys_mediaUpdateWithoutUsersInput>, sys_mediaUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type sys_userCreateNestedOneWithoutOrdersInput = {
+    create?: XOR<sys_userCreateWithoutOrdersInput, sys_userUncheckedCreateWithoutOrdersInput>
+    connectOrCreate?: sys_userCreateOrConnectWithoutOrdersInput
+    connect?: sys_userWhereUniqueInput
+  }
+
+  export type sys_goodsCreateNestedOneWithoutOrdersInput = {
+    create?: XOR<sys_goodsCreateWithoutOrdersInput, sys_goodsUncheckedCreateWithoutOrdersInput>
+    connectOrCreate?: sys_goodsCreateOrConnectWithoutOrdersInput
+    connect?: sys_goodsWhereUniqueInput
+  }
+
+  export type Enumorder_trade_typeFieldUpdateOperationsInput = {
+    set?: $Enums.order_trade_type
+  }
+
+  export type Enumorder_stateFieldUpdateOperationsInput = {
+    set?: $Enums.order_state
+  }
+
+  export type sys_userUpdateOneWithoutOrdersNestedInput = {
+    create?: XOR<sys_userCreateWithoutOrdersInput, sys_userUncheckedCreateWithoutOrdersInput>
+    connectOrCreate?: sys_userCreateOrConnectWithoutOrdersInput
+    upsert?: sys_userUpsertWithoutOrdersInput
+    disconnect?: sys_userWhereInput | boolean
+    delete?: sys_userWhereInput | boolean
+    connect?: sys_userWhereUniqueInput
+    update?: XOR<XOR<sys_userUpdateToOneWithWhereWithoutOrdersInput, sys_userUpdateWithoutOrdersInput>, sys_userUncheckedUpdateWithoutOrdersInput>
+  }
+
+  export type sys_goodsUpdateOneRequiredWithoutOrdersNestedInput = {
+    create?: XOR<sys_goodsCreateWithoutOrdersInput, sys_goodsUncheckedCreateWithoutOrdersInput>
+    connectOrCreate?: sys_goodsCreateOrConnectWithoutOrdersInput
+    upsert?: sys_goodsUpsertWithoutOrdersInput
+    connect?: sys_goodsWhereUniqueInput
+    update?: XOR<XOR<sys_goodsUpdateToOneWithWhereWithoutOrdersInput, sys_goodsUpdateWithoutOrdersInput>, sys_goodsUncheckedUpdateWithoutOrdersInput>
+  }
+
+  export type sys_userCreateNestedOneWithoutGoodsInput = {
+    create?: XOR<sys_userCreateWithoutGoodsInput, sys_userUncheckedCreateWithoutGoodsInput>
+    connectOrCreate?: sys_userCreateOrConnectWithoutGoodsInput
+    connect?: sys_userWhereUniqueInput
+  }
+
+  export type sys_orderCreateNestedManyWithoutGoodsInput = {
+    create?: XOR<sys_orderCreateWithoutGoodsInput, sys_orderUncheckedCreateWithoutGoodsInput> | sys_orderCreateWithoutGoodsInput[] | sys_orderUncheckedCreateWithoutGoodsInput[]
+    connectOrCreate?: sys_orderCreateOrConnectWithoutGoodsInput | sys_orderCreateOrConnectWithoutGoodsInput[]
+    createMany?: sys_orderCreateManyGoodsInputEnvelope
+    connect?: sys_orderWhereUniqueInput | sys_orderWhereUniqueInput[]
+  }
+
+  export type sys_orderUncheckedCreateNestedManyWithoutGoodsInput = {
+    create?: XOR<sys_orderCreateWithoutGoodsInput, sys_orderUncheckedCreateWithoutGoodsInput> | sys_orderCreateWithoutGoodsInput[] | sys_orderUncheckedCreateWithoutGoodsInput[]
+    connectOrCreate?: sys_orderCreateOrConnectWithoutGoodsInput | sys_orderCreateOrConnectWithoutGoodsInput[]
+    createMany?: sys_orderCreateManyGoodsInputEnvelope
+    connect?: sys_orderWhereUniqueInput | sys_orderWhereUniqueInput[]
+  }
+
+  export type sys_userUpdateOneRequiredWithoutGoodsNestedInput = {
+    create?: XOR<sys_userCreateWithoutGoodsInput, sys_userUncheckedCreateWithoutGoodsInput>
+    connectOrCreate?: sys_userCreateOrConnectWithoutGoodsInput
+    upsert?: sys_userUpsertWithoutGoodsInput
+    connect?: sys_userWhereUniqueInput
+    update?: XOR<XOR<sys_userUpdateToOneWithWhereWithoutGoodsInput, sys_userUpdateWithoutGoodsInput>, sys_userUncheckedUpdateWithoutGoodsInput>
+  }
+
+  export type sys_orderUpdateManyWithoutGoodsNestedInput = {
+    create?: XOR<sys_orderCreateWithoutGoodsInput, sys_orderUncheckedCreateWithoutGoodsInput> | sys_orderCreateWithoutGoodsInput[] | sys_orderUncheckedCreateWithoutGoodsInput[]
+    connectOrCreate?: sys_orderCreateOrConnectWithoutGoodsInput | sys_orderCreateOrConnectWithoutGoodsInput[]
+    upsert?: sys_orderUpsertWithWhereUniqueWithoutGoodsInput | sys_orderUpsertWithWhereUniqueWithoutGoodsInput[]
+    createMany?: sys_orderCreateManyGoodsInputEnvelope
+    set?: sys_orderWhereUniqueInput | sys_orderWhereUniqueInput[]
+    disconnect?: sys_orderWhereUniqueInput | sys_orderWhereUniqueInput[]
+    delete?: sys_orderWhereUniqueInput | sys_orderWhereUniqueInput[]
+    connect?: sys_orderWhereUniqueInput | sys_orderWhereUniqueInput[]
+    update?: sys_orderUpdateWithWhereUniqueWithoutGoodsInput | sys_orderUpdateWithWhereUniqueWithoutGoodsInput[]
+    updateMany?: sys_orderUpdateManyWithWhereWithoutGoodsInput | sys_orderUpdateManyWithWhereWithoutGoodsInput[]
+    deleteMany?: sys_orderScalarWhereInput | sys_orderScalarWhereInput[]
+  }
+
+  export type sys_orderUncheckedUpdateManyWithoutGoodsNestedInput = {
+    create?: XOR<sys_orderCreateWithoutGoodsInput, sys_orderUncheckedCreateWithoutGoodsInput> | sys_orderCreateWithoutGoodsInput[] | sys_orderUncheckedCreateWithoutGoodsInput[]
+    connectOrCreate?: sys_orderCreateOrConnectWithoutGoodsInput | sys_orderCreateOrConnectWithoutGoodsInput[]
+    upsert?: sys_orderUpsertWithWhereUniqueWithoutGoodsInput | sys_orderUpsertWithWhereUniqueWithoutGoodsInput[]
+    createMany?: sys_orderCreateManyGoodsInputEnvelope
+    set?: sys_orderWhereUniqueInput | sys_orderWhereUniqueInput[]
+    disconnect?: sys_orderWhereUniqueInput | sys_orderWhereUniqueInput[]
+    delete?: sys_orderWhereUniqueInput | sys_orderWhereUniqueInput[]
+    connect?: sys_orderWhereUniqueInput | sys_orderWhereUniqueInput[]
+    update?: sys_orderUpdateWithWhereUniqueWithoutGoodsInput | sys_orderUpdateWithWhereUniqueWithoutGoodsInput[]
+    updateMany?: sys_orderUpdateManyWithWhereWithoutGoodsInput | sys_orderUpdateManyWithWhereWithoutGoodsInput[]
+    deleteMany?: sys_orderScalarWhereInput | sys_orderScalarWhereInput[]
   }
 
   export type blog_postsCreateNestedManyWithoutCategoriesInput = {
@@ -26320,6 +29502,40 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedEnumorder_trade_typeFilter<$PrismaModel = never> = {
+    equals?: $Enums.order_trade_type | Enumorder_trade_typeFieldRefInput<$PrismaModel>
+    in?: $Enums.order_trade_type[]
+    notIn?: $Enums.order_trade_type[]
+    not?: NestedEnumorder_trade_typeFilter<$PrismaModel> | $Enums.order_trade_type
+  }
+
+  export type NestedEnumorder_stateFilter<$PrismaModel = never> = {
+    equals?: $Enums.order_state | Enumorder_stateFieldRefInput<$PrismaModel>
+    in?: $Enums.order_state[]
+    notIn?: $Enums.order_state[]
+    not?: NestedEnumorder_stateFilter<$PrismaModel> | $Enums.order_state
+  }
+
+  export type NestedEnumorder_trade_typeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.order_trade_type | Enumorder_trade_typeFieldRefInput<$PrismaModel>
+    in?: $Enums.order_trade_type[]
+    notIn?: $Enums.order_trade_type[]
+    not?: NestedEnumorder_trade_typeWithAggregatesFilter<$PrismaModel> | $Enums.order_trade_type
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumorder_trade_typeFilter<$PrismaModel>
+    _max?: NestedEnumorder_trade_typeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumorder_stateWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.order_state | Enumorder_stateFieldRefInput<$PrismaModel>
+    in?: $Enums.order_state[]
+    notIn?: $Enums.order_state[]
+    not?: NestedEnumorder_stateWithAggregatesFilter<$PrismaModel> | $Enums.order_state
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumorder_stateFilter<$PrismaModel>
+    _max?: NestedEnumorder_stateFilter<$PrismaModel>
+  }
+
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | null
@@ -26583,6 +29799,76 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type sys_orderCreateWithoutUserInput = {
+    out_trade_no: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    url?: string | null
+    transaction_id?: string | null
+    amount: number
+    description: string
+    payOpenId?: string | null
+    trade_type: $Enums.order_trade_type
+    state?: $Enums.order_state
+    bank_type?: string | null
+    attach?: string | null
+    goods: sys_goodsCreateNestedOneWithoutOrdersInput
+  }
+
+  export type sys_orderUncheckedCreateWithoutUserInput = {
+    out_trade_no: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    url?: string | null
+    transaction_id?: string | null
+    amount: number
+    description: string
+    payOpenId?: string | null
+    trade_type: $Enums.order_trade_type
+    state?: $Enums.order_state
+    bank_type?: string | null
+    attach?: string | null
+    goodsId: string
+  }
+
+  export type sys_orderCreateOrConnectWithoutUserInput = {
+    where: sys_orderWhereUniqueInput
+    create: XOR<sys_orderCreateWithoutUserInput, sys_orderUncheckedCreateWithoutUserInput>
+  }
+
+  export type sys_orderCreateManyUserInputEnvelope = {
+    data: sys_orderCreateManyUserInput | sys_orderCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type sys_goodsCreateWithoutUserInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    amount: number
+    description: string
+    orders?: sys_orderCreateNestedManyWithoutGoodsInput
+  }
+
+  export type sys_goodsUncheckedCreateWithoutUserInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    amount: number
+    description: string
+    orders?: sys_orderUncheckedCreateNestedManyWithoutGoodsInput
+  }
+
+  export type sys_goodsCreateOrConnectWithoutUserInput = {
+    where: sys_goodsWhereUniqueInput
+    create: XOR<sys_goodsCreateWithoutUserInput, sys_goodsUncheckedCreateWithoutUserInput>
+  }
+
+  export type sys_goodsCreateManyUserInputEnvelope = {
+    data: sys_goodsCreateManyUserInput | sys_goodsCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type sys_accountUpsertWithWhereUniqueWithoutUserInput = {
     where: sys_accountWhereUniqueInput
     update: XOR<sys_accountUpdateWithoutUserInput, sys_accountUncheckedUpdateWithoutUserInput>
@@ -26791,6 +30077,70 @@ export namespace Prisma {
     mediaId?: StringNullableFilter<"bookkeep_record"> | string | null
   }
 
+  export type sys_orderUpsertWithWhereUniqueWithoutUserInput = {
+    where: sys_orderWhereUniqueInput
+    update: XOR<sys_orderUpdateWithoutUserInput, sys_orderUncheckedUpdateWithoutUserInput>
+    create: XOR<sys_orderCreateWithoutUserInput, sys_orderUncheckedCreateWithoutUserInput>
+  }
+
+  export type sys_orderUpdateWithWhereUniqueWithoutUserInput = {
+    where: sys_orderWhereUniqueInput
+    data: XOR<sys_orderUpdateWithoutUserInput, sys_orderUncheckedUpdateWithoutUserInput>
+  }
+
+  export type sys_orderUpdateManyWithWhereWithoutUserInput = {
+    where: sys_orderScalarWhereInput
+    data: XOR<sys_orderUpdateManyMutationInput, sys_orderUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type sys_orderScalarWhereInput = {
+    AND?: sys_orderScalarWhereInput | sys_orderScalarWhereInput[]
+    OR?: sys_orderScalarWhereInput[]
+    NOT?: sys_orderScalarWhereInput | sys_orderScalarWhereInput[]
+    out_trade_no?: StringFilter<"sys_order"> | string
+    createdAt?: DateTimeFilter<"sys_order"> | Date | string
+    updatedAt?: DateTimeFilter<"sys_order"> | Date | string
+    url?: StringNullableFilter<"sys_order"> | string | null
+    transaction_id?: StringNullableFilter<"sys_order"> | string | null
+    amount?: IntFilter<"sys_order"> | number
+    description?: StringFilter<"sys_order"> | string
+    payOpenId?: StringNullableFilter<"sys_order"> | string | null
+    trade_type?: Enumorder_trade_typeFilter<"sys_order"> | $Enums.order_trade_type
+    state?: Enumorder_stateFilter<"sys_order"> | $Enums.order_state
+    bank_type?: StringNullableFilter<"sys_order"> | string | null
+    attach?: StringNullableFilter<"sys_order"> | string | null
+    userId?: StringNullableFilter<"sys_order"> | string | null
+    goodsId?: StringFilter<"sys_order"> | string
+  }
+
+  export type sys_goodsUpsertWithWhereUniqueWithoutUserInput = {
+    where: sys_goodsWhereUniqueInput
+    update: XOR<sys_goodsUpdateWithoutUserInput, sys_goodsUncheckedUpdateWithoutUserInput>
+    create: XOR<sys_goodsCreateWithoutUserInput, sys_goodsUncheckedCreateWithoutUserInput>
+  }
+
+  export type sys_goodsUpdateWithWhereUniqueWithoutUserInput = {
+    where: sys_goodsWhereUniqueInput
+    data: XOR<sys_goodsUpdateWithoutUserInput, sys_goodsUncheckedUpdateWithoutUserInput>
+  }
+
+  export type sys_goodsUpdateManyWithWhereWithoutUserInput = {
+    where: sys_goodsScalarWhereInput
+    data: XOR<sys_goodsUpdateManyMutationInput, sys_goodsUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type sys_goodsScalarWhereInput = {
+    AND?: sys_goodsScalarWhereInput | sys_goodsScalarWhereInput[]
+    OR?: sys_goodsScalarWhereInput[]
+    NOT?: sys_goodsScalarWhereInput | sys_goodsScalarWhereInput[]
+    uid?: StringFilter<"sys_goods"> | string
+    createdAt?: DateTimeFilter<"sys_goods"> | Date | string
+    updatedAt?: DateTimeFilter<"sys_goods"> | Date | string
+    userId?: StringFilter<"sys_goods"> | string
+    amount?: IntFilter<"sys_goods"> | number
+    description?: StringFilter<"sys_goods"> | string
+  }
+
   export type sys_userCreateWithoutAccountsInput = {
     uid?: string
     createdAt?: Date | string
@@ -26803,6 +30153,8 @@ export namespace Prisma {
     blog_posts?: blog_postsCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsCreateNestedManyWithoutUserInput
     bookkeep_records?: bookkeep_recordCreateNestedManyWithoutUserInput
+    orders?: sys_orderCreateNestedManyWithoutUserInput
+    goods?: sys_goodsCreateNestedManyWithoutUserInput
   }
 
   export type sys_userUncheckedCreateWithoutAccountsInput = {
@@ -26817,6 +30169,8 @@ export namespace Prisma {
     blog_posts?: blog_postsUncheckedCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsUncheckedCreateNestedManyWithoutUserInput
     bookkeep_records?: bookkeep_recordUncheckedCreateNestedManyWithoutUserInput
+    orders?: sys_orderUncheckedCreateNestedManyWithoutUserInput
+    goods?: sys_goodsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type sys_userCreateOrConnectWithoutAccountsInput = {
@@ -26847,6 +30201,8 @@ export namespace Prisma {
     blog_posts?: blog_postsUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUpdateManyWithoutUserNestedInput
     bookkeep_records?: bookkeep_recordUpdateManyWithoutUserNestedInput
+    orders?: sys_orderUpdateManyWithoutUserNestedInput
+    goods?: sys_goodsUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userUncheckedUpdateWithoutAccountsInput = {
@@ -26861,6 +30217,8 @@ export namespace Prisma {
     blog_posts?: blog_postsUncheckedUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUncheckedUpdateManyWithoutUserNestedInput
     bookkeep_records?: bookkeep_recordUncheckedUpdateManyWithoutUserNestedInput
+    orders?: sys_orderUncheckedUpdateManyWithoutUserNestedInput
+    goods?: sys_goodsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type sys_menuCreateWithoutChildrenInput = {
@@ -27095,6 +30453,8 @@ export namespace Prisma {
     blog_posts?: blog_postsCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsCreateNestedManyWithoutUserInput
     bookkeep_records?: bookkeep_recordCreateNestedManyWithoutUserInput
+    orders?: sys_orderCreateNestedManyWithoutUserInput
+    goods?: sys_goodsCreateNestedManyWithoutUserInput
   }
 
   export type sys_userUncheckedCreateWithoutBan_menusInput = {
@@ -27109,6 +30469,8 @@ export namespace Prisma {
     blog_posts?: blog_postsUncheckedCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsUncheckedCreateNestedManyWithoutUserInput
     bookkeep_records?: bookkeep_recordUncheckedCreateNestedManyWithoutUserInput
+    orders?: sys_orderUncheckedCreateNestedManyWithoutUserInput
+    goods?: sys_goodsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type sys_userCreateOrConnectWithoutBan_menusInput = {
@@ -27172,6 +30534,8 @@ export namespace Prisma {
     blog_posts?: blog_postsUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUpdateManyWithoutUserNestedInput
     bookkeep_records?: bookkeep_recordUpdateManyWithoutUserNestedInput
+    orders?: sys_orderUpdateManyWithoutUserNestedInput
+    goods?: sys_goodsUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userUncheckedUpdateWithoutBan_menusInput = {
@@ -27186,6 +30550,8 @@ export namespace Prisma {
     blog_posts?: blog_postsUncheckedUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUncheckedUpdateManyWithoutUserNestedInput
     bookkeep_records?: bookkeep_recordUncheckedUpdateManyWithoutUserNestedInput
+    orders?: sys_orderUncheckedUpdateManyWithoutUserNestedInput
+    goods?: sys_goodsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type sys_menuUpsertWithoutUser_bansInput = {
@@ -27391,6 +30757,8 @@ export namespace Prisma {
     blog_posts?: blog_postsCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsCreateNestedManyWithoutUserInput
     bookkeep_records?: bookkeep_recordCreateNestedManyWithoutUserInput
+    orders?: sys_orderCreateNestedManyWithoutUserInput
+    goods?: sys_goodsCreateNestedManyWithoutUserInput
   }
 
   export type sys_userUncheckedCreateWithoutRoleInput = {
@@ -27405,6 +30773,8 @@ export namespace Prisma {
     blog_posts?: blog_postsUncheckedCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsUncheckedCreateNestedManyWithoutUserInput
     bookkeep_records?: bookkeep_recordUncheckedCreateNestedManyWithoutUserInput
+    orders?: sys_orderUncheckedCreateNestedManyWithoutUserInput
+    goods?: sys_goodsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type sys_userCreateOrConnectWithoutRoleInput = {
@@ -27559,6 +30929,8 @@ export namespace Prisma {
     blog_posts?: blog_postsCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsCreateNestedManyWithoutUserInput
     bookkeep_records?: bookkeep_recordCreateNestedManyWithoutUserInput
+    orders?: sys_orderCreateNestedManyWithoutUserInput
+    goods?: sys_goodsCreateNestedManyWithoutUserInput
   }
 
   export type sys_userUncheckedCreateWithoutUser_mediaInput = {
@@ -27573,6 +30945,8 @@ export namespace Prisma {
     blog_posts?: blog_postsUncheckedCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsUncheckedCreateNestedManyWithoutUserInput
     bookkeep_records?: bookkeep_recordUncheckedCreateNestedManyWithoutUserInput
+    orders?: sys_orderUncheckedCreateNestedManyWithoutUserInput
+    goods?: sys_goodsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type sys_userCreateOrConnectWithoutUser_mediaInput = {
@@ -27650,6 +31024,8 @@ export namespace Prisma {
     blog_posts?: blog_postsUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUpdateManyWithoutUserNestedInput
     bookkeep_records?: bookkeep_recordUpdateManyWithoutUserNestedInput
+    orders?: sys_orderUpdateManyWithoutUserNestedInput
+    goods?: sys_goodsUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userUncheckedUpdateWithoutUser_mediaInput = {
@@ -27664,6 +31040,8 @@ export namespace Prisma {
     blog_posts?: blog_postsUncheckedUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUncheckedUpdateManyWithoutUserNestedInput
     bookkeep_records?: bookkeep_recordUncheckedUpdateManyWithoutUserNestedInput
+    orders?: sys_orderUncheckedUpdateManyWithoutUserNestedInput
+    goods?: sys_goodsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type sys_mediaUpsertWithoutUsersInput = {
@@ -27717,6 +31095,276 @@ export namespace Prisma {
     height?: NullableIntFieldUpdateOperationsInput | number | null
     duration?: NullableIntFieldUpdateOperationsInput | number | null
     bookkeep_records?: bookkeep_recordUncheckedUpdateManyWithoutMediaNestedInput
+  }
+
+  export type sys_userCreateWithoutOrdersInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+    account: string
+    accounts?: sys_accountCreateNestedManyWithoutUserInput
+    role?: sys_roleCreateNestedOneWithoutUsersInput
+    ban_menus?: sys_user_ban_menuCreateNestedManyWithoutUserInput
+    user_media?: sys_user_mediaCreateNestedManyWithoutUserInput
+    blog_posts?: blog_postsCreateNestedManyWithoutUserInput
+    blog_comments?: blog_commentsCreateNestedManyWithoutUserInput
+    bookkeep_records?: bookkeep_recordCreateNestedManyWithoutUserInput
+    goods?: sys_goodsCreateNestedManyWithoutUserInput
+  }
+
+  export type sys_userUncheckedCreateWithoutOrdersInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+    roleId?: string | null
+    account: string
+    accounts?: sys_accountUncheckedCreateNestedManyWithoutUserInput
+    ban_menus?: sys_user_ban_menuUncheckedCreateNestedManyWithoutUserInput
+    user_media?: sys_user_mediaUncheckedCreateNestedManyWithoutUserInput
+    blog_posts?: blog_postsUncheckedCreateNestedManyWithoutUserInput
+    blog_comments?: blog_commentsUncheckedCreateNestedManyWithoutUserInput
+    bookkeep_records?: bookkeep_recordUncheckedCreateNestedManyWithoutUserInput
+    goods?: sys_goodsUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type sys_userCreateOrConnectWithoutOrdersInput = {
+    where: sys_userWhereUniqueInput
+    create: XOR<sys_userCreateWithoutOrdersInput, sys_userUncheckedCreateWithoutOrdersInput>
+  }
+
+  export type sys_goodsCreateWithoutOrdersInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    amount: number
+    description: string
+    user: sys_userCreateNestedOneWithoutGoodsInput
+  }
+
+  export type sys_goodsUncheckedCreateWithoutOrdersInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: string
+    amount: number
+    description: string
+  }
+
+  export type sys_goodsCreateOrConnectWithoutOrdersInput = {
+    where: sys_goodsWhereUniqueInput
+    create: XOR<sys_goodsCreateWithoutOrdersInput, sys_goodsUncheckedCreateWithoutOrdersInput>
+  }
+
+  export type sys_userUpsertWithoutOrdersInput = {
+    update: XOR<sys_userUpdateWithoutOrdersInput, sys_userUncheckedUpdateWithoutOrdersInput>
+    create: XOR<sys_userCreateWithoutOrdersInput, sys_userUncheckedCreateWithoutOrdersInput>
+    where?: sys_userWhereInput
+  }
+
+  export type sys_userUpdateToOneWithWhereWithoutOrdersInput = {
+    where?: sys_userWhereInput
+    data: XOR<sys_userUpdateWithoutOrdersInput, sys_userUncheckedUpdateWithoutOrdersInput>
+  }
+
+  export type sys_userUpdateWithoutOrdersInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    account?: StringFieldUpdateOperationsInput | string
+    accounts?: sys_accountUpdateManyWithoutUserNestedInput
+    role?: sys_roleUpdateOneWithoutUsersNestedInput
+    ban_menus?: sys_user_ban_menuUpdateManyWithoutUserNestedInput
+    user_media?: sys_user_mediaUpdateManyWithoutUserNestedInput
+    blog_posts?: blog_postsUpdateManyWithoutUserNestedInput
+    blog_comments?: blog_commentsUpdateManyWithoutUserNestedInput
+    bookkeep_records?: bookkeep_recordUpdateManyWithoutUserNestedInput
+    goods?: sys_goodsUpdateManyWithoutUserNestedInput
+  }
+
+  export type sys_userUncheckedUpdateWithoutOrdersInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    account?: StringFieldUpdateOperationsInput | string
+    accounts?: sys_accountUncheckedUpdateManyWithoutUserNestedInput
+    ban_menus?: sys_user_ban_menuUncheckedUpdateManyWithoutUserNestedInput
+    user_media?: sys_user_mediaUncheckedUpdateManyWithoutUserNestedInput
+    blog_posts?: blog_postsUncheckedUpdateManyWithoutUserNestedInput
+    blog_comments?: blog_commentsUncheckedUpdateManyWithoutUserNestedInput
+    bookkeep_records?: bookkeep_recordUncheckedUpdateManyWithoutUserNestedInput
+    goods?: sys_goodsUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type sys_goodsUpsertWithoutOrdersInput = {
+    update: XOR<sys_goodsUpdateWithoutOrdersInput, sys_goodsUncheckedUpdateWithoutOrdersInput>
+    create: XOR<sys_goodsCreateWithoutOrdersInput, sys_goodsUncheckedCreateWithoutOrdersInput>
+    where?: sys_goodsWhereInput
+  }
+
+  export type sys_goodsUpdateToOneWithWhereWithoutOrdersInput = {
+    where?: sys_goodsWhereInput
+    data: XOR<sys_goodsUpdateWithoutOrdersInput, sys_goodsUncheckedUpdateWithoutOrdersInput>
+  }
+
+  export type sys_goodsUpdateWithoutOrdersInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    user?: sys_userUpdateOneRequiredWithoutGoodsNestedInput
+  }
+
+  export type sys_goodsUncheckedUpdateWithoutOrdersInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type sys_userCreateWithoutGoodsInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+    account: string
+    accounts?: sys_accountCreateNestedManyWithoutUserInput
+    role?: sys_roleCreateNestedOneWithoutUsersInput
+    ban_menus?: sys_user_ban_menuCreateNestedManyWithoutUserInput
+    user_media?: sys_user_mediaCreateNestedManyWithoutUserInput
+    blog_posts?: blog_postsCreateNestedManyWithoutUserInput
+    blog_comments?: blog_commentsCreateNestedManyWithoutUserInput
+    bookkeep_records?: bookkeep_recordCreateNestedManyWithoutUserInput
+    orders?: sys_orderCreateNestedManyWithoutUserInput
+  }
+
+  export type sys_userUncheckedCreateWithoutGoodsInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+    roleId?: string | null
+    account: string
+    accounts?: sys_accountUncheckedCreateNestedManyWithoutUserInput
+    ban_menus?: sys_user_ban_menuUncheckedCreateNestedManyWithoutUserInput
+    user_media?: sys_user_mediaUncheckedCreateNestedManyWithoutUserInput
+    blog_posts?: blog_postsUncheckedCreateNestedManyWithoutUserInput
+    blog_comments?: blog_commentsUncheckedCreateNestedManyWithoutUserInput
+    bookkeep_records?: bookkeep_recordUncheckedCreateNestedManyWithoutUserInput
+    orders?: sys_orderUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type sys_userCreateOrConnectWithoutGoodsInput = {
+    where: sys_userWhereUniqueInput
+    create: XOR<sys_userCreateWithoutGoodsInput, sys_userUncheckedCreateWithoutGoodsInput>
+  }
+
+  export type sys_orderCreateWithoutGoodsInput = {
+    out_trade_no: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    url?: string | null
+    transaction_id?: string | null
+    amount: number
+    description: string
+    payOpenId?: string | null
+    trade_type: $Enums.order_trade_type
+    state?: $Enums.order_state
+    bank_type?: string | null
+    attach?: string | null
+    user?: sys_userCreateNestedOneWithoutOrdersInput
+  }
+
+  export type sys_orderUncheckedCreateWithoutGoodsInput = {
+    out_trade_no: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    url?: string | null
+    transaction_id?: string | null
+    amount: number
+    description: string
+    payOpenId?: string | null
+    trade_type: $Enums.order_trade_type
+    state?: $Enums.order_state
+    bank_type?: string | null
+    attach?: string | null
+    userId?: string | null
+  }
+
+  export type sys_orderCreateOrConnectWithoutGoodsInput = {
+    where: sys_orderWhereUniqueInput
+    create: XOR<sys_orderCreateWithoutGoodsInput, sys_orderUncheckedCreateWithoutGoodsInput>
+  }
+
+  export type sys_orderCreateManyGoodsInputEnvelope = {
+    data: sys_orderCreateManyGoodsInput | sys_orderCreateManyGoodsInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type sys_userUpsertWithoutGoodsInput = {
+    update: XOR<sys_userUpdateWithoutGoodsInput, sys_userUncheckedUpdateWithoutGoodsInput>
+    create: XOR<sys_userCreateWithoutGoodsInput, sys_userUncheckedCreateWithoutGoodsInput>
+    where?: sys_userWhereInput
+  }
+
+  export type sys_userUpdateToOneWithWhereWithoutGoodsInput = {
+    where?: sys_userWhereInput
+    data: XOR<sys_userUpdateWithoutGoodsInput, sys_userUncheckedUpdateWithoutGoodsInput>
+  }
+
+  export type sys_userUpdateWithoutGoodsInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    account?: StringFieldUpdateOperationsInput | string
+    accounts?: sys_accountUpdateManyWithoutUserNestedInput
+    role?: sys_roleUpdateOneWithoutUsersNestedInput
+    ban_menus?: sys_user_ban_menuUpdateManyWithoutUserNestedInput
+    user_media?: sys_user_mediaUpdateManyWithoutUserNestedInput
+    blog_posts?: blog_postsUpdateManyWithoutUserNestedInput
+    blog_comments?: blog_commentsUpdateManyWithoutUserNestedInput
+    bookkeep_records?: bookkeep_recordUpdateManyWithoutUserNestedInput
+    orders?: sys_orderUpdateManyWithoutUserNestedInput
+  }
+
+  export type sys_userUncheckedUpdateWithoutGoodsInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    account?: StringFieldUpdateOperationsInput | string
+    accounts?: sys_accountUncheckedUpdateManyWithoutUserNestedInput
+    ban_menus?: sys_user_ban_menuUncheckedUpdateManyWithoutUserNestedInput
+    user_media?: sys_user_mediaUncheckedUpdateManyWithoutUserNestedInput
+    blog_posts?: blog_postsUncheckedUpdateManyWithoutUserNestedInput
+    blog_comments?: blog_commentsUncheckedUpdateManyWithoutUserNestedInput
+    bookkeep_records?: bookkeep_recordUncheckedUpdateManyWithoutUserNestedInput
+    orders?: sys_orderUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type sys_orderUpsertWithWhereUniqueWithoutGoodsInput = {
+    where: sys_orderWhereUniqueInput
+    update: XOR<sys_orderUpdateWithoutGoodsInput, sys_orderUncheckedUpdateWithoutGoodsInput>
+    create: XOR<sys_orderCreateWithoutGoodsInput, sys_orderUncheckedCreateWithoutGoodsInput>
+  }
+
+  export type sys_orderUpdateWithWhereUniqueWithoutGoodsInput = {
+    where: sys_orderWhereUniqueInput
+    data: XOR<sys_orderUpdateWithoutGoodsInput, sys_orderUncheckedUpdateWithoutGoodsInput>
+  }
+
+  export type sys_orderUpdateManyWithWhereWithoutGoodsInput = {
+    where: sys_orderScalarWhereInput
+    data: XOR<sys_orderUpdateManyMutationInput, sys_orderUncheckedUpdateManyWithoutGoodsInput>
   }
 
   export type blog_postsCreateWithoutCategoriesInput = {
@@ -27816,6 +31464,8 @@ export namespace Prisma {
     user_media?: sys_user_mediaCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsCreateNestedManyWithoutUserInput
     bookkeep_records?: bookkeep_recordCreateNestedManyWithoutUserInput
+    orders?: sys_orderCreateNestedManyWithoutUserInput
+    goods?: sys_goodsCreateNestedManyWithoutUserInput
   }
 
   export type sys_userUncheckedCreateWithoutBlog_postsInput = {
@@ -27830,6 +31480,8 @@ export namespace Prisma {
     user_media?: sys_user_mediaUncheckedCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsUncheckedCreateNestedManyWithoutUserInput
     bookkeep_records?: bookkeep_recordUncheckedCreateNestedManyWithoutUserInput
+    orders?: sys_orderUncheckedCreateNestedManyWithoutUserInput
+    goods?: sys_goodsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type sys_userCreateOrConnectWithoutBlog_postsInput = {
@@ -27937,6 +31589,8 @@ export namespace Prisma {
     user_media?: sys_user_mediaUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUpdateManyWithoutUserNestedInput
     bookkeep_records?: bookkeep_recordUpdateManyWithoutUserNestedInput
+    orders?: sys_orderUpdateManyWithoutUserNestedInput
+    goods?: sys_goodsUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userUncheckedUpdateWithoutBlog_postsInput = {
@@ -27951,6 +31605,8 @@ export namespace Prisma {
     user_media?: sys_user_mediaUncheckedUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUncheckedUpdateManyWithoutUserNestedInput
     bookkeep_records?: bookkeep_recordUncheckedUpdateManyWithoutUserNestedInput
+    orders?: sys_orderUncheckedUpdateManyWithoutUserNestedInput
+    goods?: sys_goodsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type blog_posts_on_tagsUpsertWithWhereUniqueWithoutPostsInput = {
@@ -28179,6 +31835,8 @@ export namespace Prisma {
     user_media?: sys_user_mediaCreateNestedManyWithoutUserInput
     blog_posts?: blog_postsCreateNestedManyWithoutUserInput
     bookkeep_records?: bookkeep_recordCreateNestedManyWithoutUserInput
+    orders?: sys_orderCreateNestedManyWithoutUserInput
+    goods?: sys_goodsCreateNestedManyWithoutUserInput
   }
 
   export type sys_userUncheckedCreateWithoutBlog_commentsInput = {
@@ -28193,6 +31851,8 @@ export namespace Prisma {
     user_media?: sys_user_mediaUncheckedCreateNestedManyWithoutUserInput
     blog_posts?: blog_postsUncheckedCreateNestedManyWithoutUserInput
     bookkeep_records?: bookkeep_recordUncheckedCreateNestedManyWithoutUserInput
+    orders?: sys_orderUncheckedCreateNestedManyWithoutUserInput
+    goods?: sys_goodsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type sys_userCreateOrConnectWithoutBlog_commentsInput = {
@@ -28325,6 +31985,8 @@ export namespace Prisma {
     user_media?: sys_user_mediaUpdateManyWithoutUserNestedInput
     blog_posts?: blog_postsUpdateManyWithoutUserNestedInput
     bookkeep_records?: bookkeep_recordUpdateManyWithoutUserNestedInput
+    orders?: sys_orderUpdateManyWithoutUserNestedInput
+    goods?: sys_goodsUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userUncheckedUpdateWithoutBlog_commentsInput = {
@@ -28339,6 +32001,8 @@ export namespace Prisma {
     user_media?: sys_user_mediaUncheckedUpdateManyWithoutUserNestedInput
     blog_posts?: blog_postsUncheckedUpdateManyWithoutUserNestedInput
     bookkeep_records?: bookkeep_recordUncheckedUpdateManyWithoutUserNestedInput
+    orders?: sys_orderUncheckedUpdateManyWithoutUserNestedInput
+    goods?: sys_goodsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type blog_postsUpsertWithoutCommentsInput = {
@@ -28451,6 +32115,8 @@ export namespace Prisma {
     user_media?: sys_user_mediaCreateNestedManyWithoutUserInput
     blog_posts?: blog_postsCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsCreateNestedManyWithoutUserInput
+    orders?: sys_orderCreateNestedManyWithoutUserInput
+    goods?: sys_goodsCreateNestedManyWithoutUserInput
   }
 
   export type sys_userUncheckedCreateWithoutBookkeep_recordsInput = {
@@ -28465,6 +32131,8 @@ export namespace Prisma {
     user_media?: sys_user_mediaUncheckedCreateNestedManyWithoutUserInput
     blog_posts?: blog_postsUncheckedCreateNestedManyWithoutUserInput
     blog_comments?: blog_commentsUncheckedCreateNestedManyWithoutUserInput
+    orders?: sys_orderUncheckedCreateNestedManyWithoutUserInput
+    goods?: sys_goodsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type sys_userCreateOrConnectWithoutBookkeep_recordsInput = {
@@ -28560,6 +32228,8 @@ export namespace Prisma {
     user_media?: sys_user_mediaUpdateManyWithoutUserNestedInput
     blog_posts?: blog_postsUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUpdateManyWithoutUserNestedInput
+    orders?: sys_orderUpdateManyWithoutUserNestedInput
+    goods?: sys_goodsUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userUncheckedUpdateWithoutBookkeep_recordsInput = {
@@ -28574,6 +32244,8 @@ export namespace Prisma {
     user_media?: sys_user_mediaUncheckedUpdateManyWithoutUserNestedInput
     blog_posts?: blog_postsUncheckedUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUncheckedUpdateManyWithoutUserNestedInput
+    orders?: sys_orderUncheckedUpdateManyWithoutUserNestedInput
+    goods?: sys_goodsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type sys_mediaUpsertWithoutBookkeep_recordsInput = {
@@ -28854,6 +32526,30 @@ export namespace Prisma {
     mediaId?: string | null
   }
 
+  export type sys_orderCreateManyUserInput = {
+    out_trade_no: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    url?: string | null
+    transaction_id?: string | null
+    amount: number
+    description: string
+    payOpenId?: string | null
+    trade_type: $Enums.order_trade_type
+    state?: $Enums.order_state
+    bank_type?: string | null
+    attach?: string | null
+    goodsId: string
+  }
+
+  export type sys_goodsCreateManyUserInput = {
+    uid?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    amount: number
+    description: string
+  }
+
   export type sys_accountUpdateWithoutUserInput = {
     uid?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29027,6 +32723,80 @@ export namespace Prisma {
     mediaId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type sys_orderUpdateWithoutUserInput = {
+    out_trade_no?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    payOpenId?: NullableStringFieldUpdateOperationsInput | string | null
+    trade_type?: Enumorder_trade_typeFieldUpdateOperationsInput | $Enums.order_trade_type
+    state?: Enumorder_stateFieldUpdateOperationsInput | $Enums.order_state
+    bank_type?: NullableStringFieldUpdateOperationsInput | string | null
+    attach?: NullableStringFieldUpdateOperationsInput | string | null
+    goods?: sys_goodsUpdateOneRequiredWithoutOrdersNestedInput
+  }
+
+  export type sys_orderUncheckedUpdateWithoutUserInput = {
+    out_trade_no?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    payOpenId?: NullableStringFieldUpdateOperationsInput | string | null
+    trade_type?: Enumorder_trade_typeFieldUpdateOperationsInput | $Enums.order_trade_type
+    state?: Enumorder_stateFieldUpdateOperationsInput | $Enums.order_state
+    bank_type?: NullableStringFieldUpdateOperationsInput | string | null
+    attach?: NullableStringFieldUpdateOperationsInput | string | null
+    goodsId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type sys_orderUncheckedUpdateManyWithoutUserInput = {
+    out_trade_no?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    payOpenId?: NullableStringFieldUpdateOperationsInput | string | null
+    trade_type?: Enumorder_trade_typeFieldUpdateOperationsInput | $Enums.order_trade_type
+    state?: Enumorder_stateFieldUpdateOperationsInput | $Enums.order_state
+    bank_type?: NullableStringFieldUpdateOperationsInput | string | null
+    attach?: NullableStringFieldUpdateOperationsInput | string | null
+    goodsId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type sys_goodsUpdateWithoutUserInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    orders?: sys_orderUpdateManyWithoutGoodsNestedInput
+  }
+
+  export type sys_goodsUncheckedUpdateWithoutUserInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    orders?: sys_orderUncheckedUpdateManyWithoutGoodsNestedInput
+  }
+
+  export type sys_goodsUncheckedUpdateManyWithoutUserInput = {
+    uid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+  }
+
   export type sys_menuCreateManyParentInput = {
     uid?: string
     createdAt?: Date | string
@@ -29153,6 +32923,8 @@ export namespace Prisma {
     blog_posts?: blog_postsUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUpdateManyWithoutUserNestedInput
     bookkeep_records?: bookkeep_recordUpdateManyWithoutUserNestedInput
+    orders?: sys_orderUpdateManyWithoutUserNestedInput
+    goods?: sys_goodsUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userUncheckedUpdateWithoutRoleInput = {
@@ -29167,6 +32939,8 @@ export namespace Prisma {
     blog_posts?: blog_postsUncheckedUpdateManyWithoutUserNestedInput
     blog_comments?: blog_commentsUncheckedUpdateManyWithoutUserNestedInput
     bookkeep_records?: bookkeep_recordUncheckedUpdateManyWithoutUserNestedInput
+    orders?: sys_orderUncheckedUpdateManyWithoutUserNestedInput
+    goods?: sys_goodsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type sys_userUncheckedUpdateManyWithoutRoleInput = {
@@ -29241,6 +33015,70 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type sys_orderCreateManyGoodsInput = {
+    out_trade_no: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    url?: string | null
+    transaction_id?: string | null
+    amount: number
+    description: string
+    payOpenId?: string | null
+    trade_type: $Enums.order_trade_type
+    state?: $Enums.order_state
+    bank_type?: string | null
+    attach?: string | null
+    userId?: string | null
+  }
+
+  export type sys_orderUpdateWithoutGoodsInput = {
+    out_trade_no?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    payOpenId?: NullableStringFieldUpdateOperationsInput | string | null
+    trade_type?: Enumorder_trade_typeFieldUpdateOperationsInput | $Enums.order_trade_type
+    state?: Enumorder_stateFieldUpdateOperationsInput | $Enums.order_state
+    bank_type?: NullableStringFieldUpdateOperationsInput | string | null
+    attach?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: sys_userUpdateOneWithoutOrdersNestedInput
+  }
+
+  export type sys_orderUncheckedUpdateWithoutGoodsInput = {
+    out_trade_no?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    payOpenId?: NullableStringFieldUpdateOperationsInput | string | null
+    trade_type?: Enumorder_trade_typeFieldUpdateOperationsInput | $Enums.order_trade_type
+    state?: Enumorder_stateFieldUpdateOperationsInput | $Enums.order_state
+    bank_type?: NullableStringFieldUpdateOperationsInput | string | null
+    attach?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type sys_orderUncheckedUpdateManyWithoutGoodsInput = {
+    out_trade_no?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    transaction_id?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    payOpenId?: NullableStringFieldUpdateOperationsInput | string | null
+    trade_type?: Enumorder_trade_typeFieldUpdateOperationsInput | $Enums.order_trade_type
+    state?: Enumorder_stateFieldUpdateOperationsInput | $Enums.order_state
+    bank_type?: NullableStringFieldUpdateOperationsInput | string | null
+    attach?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type blog_postsCreateManyCategoriesInput = {

@@ -21,19 +21,21 @@ enum sys_account_provider {
 
 //系统角色
 model sys_user {
-  uid           String              @id @default(uuid())
-  createdAt     DateTime            @default(now())
-  updatedAt     DateTime            @default(now()) @updatedAt
-  name          String
-  roleId        String?
-  account       String              @unique
-  accounts      sys_account[]
-  role          sys_role?           @relation(fields: [roleId], references: [uid])
-  ban_menus     sys_user_ban_menu[]
-  user_media    sys_user_media[]
-  blog_posts    blog_posts[]
-  blog_comments blog_comments[]
+  uid              String              @id @default(uuid())
+  createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @default(now()) @updatedAt
+  name             String
+  roleId           String?
+  account          String              @unique
+  accounts         sys_account[]
+  role             sys_role?           @relation(fields: [roleId], references: [uid])
+  ban_menus        sys_user_ban_menu[]
+  user_media       sys_user_media[]
+  blog_posts       blog_posts[]
+  blog_comments    blog_comments[]
   bookkeep_records bookkeep_record[]
+  orders           sys_order[]
+  goods            sys_goods[]
 }
 
 //系统账号
@@ -94,7 +96,6 @@ model sys_menu_on_role {
   @@id([roleId, menuId])
 }
 
-//角色
 model sys_role {
   uid       String             @id @default(uuid())
   createdAt DateTime           @default(now())
@@ -108,24 +109,24 @@ model sys_role {
 }
 
 model sys_media {
-  uid       String           @id @default(uuid())
-  createdAt DateTime         @default(now())
-  updatedAt DateTime         @default(now()) @updatedAt
-  name      String // 文件名
-  size      Int // 文件大小(字节)
-  hash      String           @unique // 文件hash值
-  mimeType  String // 文件MIME类型
-  extension String // 文件扩展名
-  path      String // 文件存储路径
-  url       String? // 文件访问URL
-  isWechat  Boolean          @default(false) // 是否为微信素材
-  wechat_id String?          @unique // 微信素材ID
-  enabled   Boolean          @default(true) // 是否可用
-  type      String           @default("file") // 文件类型:file,image,video,audio等
-  width     Int? // 图片/视频宽度
-  height    Int? // 图片/视频高度
-  duration  Int? // 音视频时长(秒)
-  users     sys_user_media[]
+  uid              String            @id @default(uuid())
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @default(now()) @updatedAt
+  name             String // 文件名
+  size             Int // 文件大小(字节)
+  hash             String            @unique // 文件hash值
+  mimeType         String // 文件MIME类型
+  extension        String // 文件扩展名
+  path             String // 文件存储路径
+  url              String? // 文件访问URL
+  isWechat         Boolean           @default(false) // 是否为微信素材
+  wechat_id        String?           @unique // 微信素材ID
+  enabled          Boolean           @default(true) // 是否可用
+  type             String            @default("file") // 文件类型:file,image,video,audio等
+  width            Int? // 图片/视频宽度
+  height           Int? // 图片/视频高度
+  duration         Int? // 音视频时长(秒)
+  users            sys_user_media[]
   bookkeep_records bookkeep_record[]
 }
 
@@ -136,6 +137,63 @@ model sys_user_media {
   mediaId String
 
   @@id([userId, mediaId])
+}
+
+enum order_trade_type {
+  SYSTEM //系统生成
+  NATIVE // 二维码
+  JSAPI //公众号支付、小程序支付
+  APP //APP支付
+  MICROPAY //付款码支付
+  MWEB //H5支付
+  FACEPAY //刷脸支付
+}
+
+enum order_state {
+  SUCCESS //支付成功
+  REFUND //转入退款
+  NOTPAY //未支付
+  CLOSED //已关闭
+  REVOKED //已撤销（仅付款码支付会返回）
+  USERPAYING //用户支付中（仅付款码支付会返回）
+  PAYERROR //支付失败（仅付款码支付会返回）
+}
+
+//系统订单
+model sys_order {
+  out_trade_no   String           @id
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @default(now()) @updatedAt
+  url            String?
+  transaction_id String?          @unique //微信订单号
+  amount         Int
+  description    String
+  payOpenId      String? //支付人openid
+  trade_type     order_trade_type // 支付方式
+  state          order_state      @default(NOTPAY) //状态
+  bank_type      String? //支付方式
+  attach         String?
+
+  user   sys_user? @relation(fields: [userId], references: [uid])
+  userId String?
+
+  goods   sys_goods @relation(fields: [goodsId], references: [uid])
+  goodsId String
+}
+
+/**
+ * 商品，由用户创建。
+ */
+model sys_goods {
+  uid       String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  user      sys_user @relation(fields: [userId], references: [uid])
+  userId    String
+
+  amount      Int
+  description String
+  orders      sys_order[]
 }
 
 //*********************** 博客系统
@@ -157,10 +215,10 @@ model blog_posts {
   title        String
   content      String               @db.Text
   excerpt      String?              @db.Text // 文章摘要
-  coverImage   String?              // 封面图片URL
+  coverImage   String? // 封面图片URL
   status       Boolean              @default(true)
   published    Boolean              @default(false) // 是否已发布
-  publishedAt  DateTime?            // 发布时间
+  publishedAt  DateTime? // 发布时间
   views        Int                  @default(0) // 浏览量
   likes        Int                  @default(0) // 点赞数
   userId       String
@@ -192,24 +250,24 @@ model blog_tag {
   createdAt   DateTime             @default(now())
   updatedAt   DateTime             @default(now()) @updatedAt
   name        String
-  description String?              // 标签描述
+  description String? // 标签描述
   blogs       blog_posts_on_tags[]
 }
 
 // 博客评论
 model blog_comments {
-  uid         String          @id @default(uuid())
-  createdAt   DateTime        @default(now())
-  updatedAt   DateTime        @default(now()) @updatedAt
-  content     String          @db.Text
-  status      Boolean         @default(true)
-  userId      String
-  postId      String
-  parentId    String?         // 父评论ID，用于回复
-  user        sys_user        @relation(fields: [userId], references: [uid])
-  post        blog_posts      @relation(fields: [postId], references: [uid])
-  parent      blog_comments?  @relation("CommentReplies", fields: [parentId], references: [uid])
-  replies     blog_comments[] @relation("CommentReplies")
+  uid       String          @id @default(uuid())
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @default(now()) @updatedAt
+  content   String          @db.Text
+  status    Boolean         @default(true)
+  userId    String
+  postId    String
+  parentId  String? // 父评论ID，用于回复
+  user      sys_user        @relation(fields: [userId], references: [uid])
+  post      blog_posts      @relation(fields: [postId], references: [uid])
+  parent    blog_comments?  @relation("CommentReplies", fields: [parentId], references: [uid])
+  replies   blog_comments[] @relation("CommentReplies")
 }
 
 // 友情链接
@@ -217,10 +275,10 @@ model blog_links {
   uid         String   @id @default(uuid())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @default(now()) @updatedAt
-  name        String   // 链接名称
-  url         String   // 链接地址
-  logo        String?  // logo地址
-  description String?  // 链接描述
+  name        String // 链接名称
+  url         String // 链接地址
+  logo        String? // logo地址
+  description String? // 链接描述
   sort        Int      @default(0) // 排序
   status      Boolean  @default(true) // 是否显示
   clicks      Int      @default(0) // 点击次数
@@ -228,17 +286,17 @@ model blog_links {
 
 // 公告
 model blog_announcements {
-  uid         String   @id @default(uuid())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @default(now()) @updatedAt
-  title       String   // 公告标题
-  content     String   @db.Text // 公告内容
-  sort        Int      @default(0) // 排序
-  status      Boolean  @default(true) // 是否显示
-  startTime   DateTime? // 开始时间
-  endTime     DateTime? // 结束时间
-  important   Boolean  @default(false) // 是否重要
-  author      String?  // 作者
+  uid       String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now()) @updatedAt
+  title     String // 公告标题
+  content   String    @db.Text // 公告内容
+  sort      Int       @default(0) // 排序
+  status    Boolean   @default(true) // 是否显示
+  startTime DateTime? // 开始时间
+  endTime   DateTime? // 结束时间
+  important Boolean   @default(false) // 是否重要
+  author    String? // 作者
 }
 
 //*********************** 记账系统
@@ -250,19 +308,19 @@ enum bookkeep_type {
 
 // 记账记录
 model bookkeep_record {
-  uid       String        @id @default(uuid())
-  createdAt DateTime      @default(now())
-  updatedAt DateTime      @default(now()) @updatedAt
-  type      bookkeep_type
-  amount    Float
-  category  String
-  description String?     @db.Text
-  date      DateTime
-  userId    String
-  user      sys_user      @relation(fields: [userId], references: [uid])
-  mediaId   String?
-  media     sys_media?    @relation(fields: [mediaId], references: [uid])
-  tags      bookkeep_record_on_tags[]
+  uid         String                    @id @default(uuid())
+  createdAt   DateTime                  @default(now())
+  updatedAt   DateTime                  @default(now()) @updatedAt
+  type        bookkeep_type
+  amount      Float
+  category    String
+  description String?                   @db.Text
+  date        DateTime
+  userId      String
+  user        sys_user                  @relation(fields: [userId], references: [uid])
+  mediaId     String?
+  media       sys_media?                @relation(fields: [mediaId], references: [uid])
+  tags        bookkeep_record_on_tags[]
 
   @@index([userId])
   @@index([date])
@@ -286,8 +344,3 @@ model bookkeep_record_on_tags {
 
   @@id([recordId, tagId])
 }
-
-
-
-
-
