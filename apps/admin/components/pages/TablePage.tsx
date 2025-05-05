@@ -16,17 +16,20 @@ const TablePage = ({
 }: Props) => {
   const ref = useRef<HTMLDivElement>(null)
   return (
-    <div className="h-full w-full">
+    <div
+      className="h-full w-full"
+    >
       <Table
         dataSource={dataSource}
         loading={loading}
         columns={columns}
         scroll={{
-          y: '100%'
+          y: '60vh',
+          x: 100
         }}
         pagination={false}
       />
-      <div className="flex pr-4 bg-white items-center justify-end absolute bottom-0 left-0 w-full h-16">
+      <div className="flex pr-4 z-10 bg-white items-center justify-end absolute bottom-0 left-0 w-full h-16">
         {pagination}
       </div>
     </div>

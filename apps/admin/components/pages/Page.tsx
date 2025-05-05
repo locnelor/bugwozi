@@ -18,9 +18,9 @@ const Page = ({
     <BasePage className="h-full">
       <div className="flex gap-4 flex-col h-full">
         {!!header && <PageCard className={headerClassName}>{header}</PageCard>}
-        <div className="flex gap-4">
+        <div className="flex gap-4 w-full">
           {!!side && <PageCard className={sideClassName}>{side}</PageCard>}
-          <PageCard className="h-full">{children}</PageCard>
+          <PageCard className="h-full flex-1 w-full">{children}</PageCard>
         </div>
       </div>
     </BasePage>

@@ -9,10 +9,35 @@ import usePay from "#/hooks/usePay"
 const PayQrCode = ({ goods }: any) => {
   const { getOrder, state, order, url, loading } = usePay()
   useEffect(() => {
+    console.log(1)
     getOrder(goods.uid);
   }, [])
-  console.log(order)
-
+  if (order?.state === "SUCCESS") {
+    return (
+      <div className="h-96 flex flex-col justify-center items-center">
+        <div className="flex flex-col items-center">
+          <div className="mb-4 text-center">
+            <h3 className="text-lg font-medium">{order?.description}</h3>
+            <p className="text-xl font-bold text-green-500 mt-2">¥{order?.amount ? (order.amount / 100).toFixed(2) : '0.00'}</p>
+            <div className="mt-4 text-green-600 text-lg font-bold">支付成功</div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+  if (order?.state === "CLOSED") {
+    return (
+      <div className="h-96 flex flex-col justify-center items-center">
+        <div className="flex flex-col items-center">
+          <div className="mb-4 text-center">
+            <h3 className="text-lg font-medium">{order?.description}</h3>
+            <p className="text-xl font-bold text-gray-500 mt-2">¥{order?.amount ? (order.amount / 100).toFixed(2) : '0.00'}</p>
+            <div className="mt-4 text-gray-600 text-lg font-bold">订单已关闭</div>
+          </div>
+        </div>
+      </div>
+    )
+  }
   return (
     <div className="h-96 flex flex-col justify-center items-center">
       <Spin spinning={loading}>
@@ -35,10 +60,12 @@ const PayQrCode = ({ goods }: any) => {
   )
 }
 const GoodsCard = () => {
-  const [{ loading, data, onRefresh }, pagination] = usePagination({
+  const [{ loading, data }, pagination] = usePagination({
     query: FindGoodsQuery,
   })
-
+  useEffect(()=>{
+    console.log("card")
+  },[])
   const [open, onOpen, onClose] = useOpen()
   const [selectedGoods, setSelectedGoods] = useState<any>(null)
 

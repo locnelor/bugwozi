@@ -43,7 +43,7 @@ const RemoveOrderMutation = gql`
   }
 `
 
-import { useCallback } from "react"
+import { useCallback, useEffect } from "react"
 import { useMutation } from "@apollo/client"
 import { useOpen, usePagination } from "@pkg/hooks"
 import AutoPage from "#/components/pages/AutoPage"
@@ -100,7 +100,7 @@ const OrderListPage = () => {
     try {
       await removeOrder({
         variables: {
-          out_trade_no: values.out_trade_no
+          out_trade_no: values.uid
         }
       })
       onRefresh()
@@ -108,7 +108,6 @@ const OrderListPage = () => {
       console.error(error)
     }
   }, [removeOrder, onRefresh])
-
   const stateMap: Record<string, string> = {
     SUCCESS: '支付成功',
     REFUND: '转入退款',
@@ -118,13 +117,20 @@ const OrderListPage = () => {
     USERPAYING: '用户支付中',
     PAYERROR: '支付失败'
   }
-  const [open, onOpen, onClose] = useOpen();
+  const [open, onOpen, onCancel] = useOpen();
 
   return (
     <AutoPage
-      dataSource={data}
+      dataSource={data.map((e) => ({ ...e, uid: e.out_trade_no }))}
       loading={loading}
       columns={[
+        {
+          title: '商品',
+          dataIndex: ['goods', 'description'],
+          key: 'goods',
+          width: 140,
+          fixed: "left"
+        },
         {
           title: '订单号',
           dataIndex: 'out_trade_no',
@@ -142,38 +148,39 @@ const OrderListPage = () => {
           dataIndex: 'amount',
           key: 'amount',
           render: (amount: number) => `${amount / 100} 元`,
+          width: 100,
         },
         {
           title: '描述',
           dataIndex: 'description',
           key: 'description',
+          width: 200
         },
         {
           title: '状态',
           dataIndex: 'state',
           key: 'state',
           render: (state: string) => stateMap[state] || state,
+          width: 60
         },
         {
           title: '支付方式',
           dataIndex: 'trade_type',
           key: 'trade_type',
-        },
-        {
-          title: '商品',
-          dataIndex: ['goods', 'description'],
-          key: 'goods',
+          width: 100
         },
         {
           title: '用户',
           dataIndex: ['user', 'name'],
           key: 'user',
+          width: 140,
         },
         {
           title: '创建时间',
           dataIndex: 'createdAt',
           key: 'createdAt',
           render: (value: string) => new Date(value).toLocaleString(),
+          width: 100,
         },
       ]}
       search={{
@@ -203,18 +210,7 @@ const OrderListPage = () => {
           },
         ]
       }}
-      headerChildren={(
-        <div>
-          <Button onClick={onOpen} type="primary">创建订单</Button>
-          <Modal
-            open={open}
-            onClose={onClose}
-            title="创建订单"
-          >
-            <GoodsCard />
-          </Modal>
-        </div>
-      )}
+
       update={{
         onSubmit: handleUpdate,
         name: '更新订单',

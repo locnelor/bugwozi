@@ -2,7 +2,7 @@ import { DocumentType } from "@apollo/client";
 import Page from "./Page";
 import PageCard from "./PageCard";
 import TablePage from "./TablePage";
-import { PropsWithChildren, ReactNode, useState } from "react";
+import { PropsWithChildren, ReactNode, useEffect, useState } from "react";
 import { useColumns } from "#/hooks/useTable";
 import { Button, Space, message, Form, Input, InputNumber, Select, DatePicker, Switch, TreeSelect, ButtonProps, Popconfirm, FormProps } from "antd";
 import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
@@ -76,7 +76,6 @@ const AutoPage = ({
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [editingRecord, setEditingRecord] = useState<any>(null);
     const [searchForm] = Form.useForm();
-
     const handleCreate = () => {
         setEditingRecord(null);
         setIsModalVisible(true);
@@ -127,6 +126,8 @@ const AutoPage = ({
         ...columns,
         {
             title: "操作",
+            fixed: "right",
+            width: 200,
             render: (_, record) => {
                 return (
                     <Space>
@@ -202,11 +203,11 @@ const AutoPage = ({
         <Page
             header={header}
         >
-            <div className="flex flex-col gap-2 h-full">
-                <div className="flex gap-2 flex-1">
+            <div className="flex flex-col gap-2 h-full w-full">
+                <div className="flex gap-2 flex-1 w-full">
                     {side}
-                    <PageCard className="flex-1">
-                        <div className="flex justify-end gap-2 mb-4">
+                    <PageCard className="flex-1 w-full">
+                        {(create || headerChildren) && <div className="flex justify-end gap-2 mb-4">
                             {create && (
                                 <Button
                                     type="primary"
@@ -217,7 +218,7 @@ const AutoPage = ({
                                 </Button>
                             )}
                             {headerChildren}
-                        </div>
+                        </div>}
                         <TablePage
                             dataSource={dataSource}
                             columns={col}

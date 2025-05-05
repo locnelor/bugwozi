@@ -3,7 +3,7 @@ import { ColumnsType } from "antd/es/table"
 export const useColumns = (columns: ColumnsType<any>) => {
     return columns.map((item, index) => {
         return {
-            width: typeof item.title === 'string' ? item.title.length * 20 : 100,
+            width: item.width || (typeof item.title === 'string' ? item.title.length * 20 : 100),
             ...item,
             key: item.key || index,
         }

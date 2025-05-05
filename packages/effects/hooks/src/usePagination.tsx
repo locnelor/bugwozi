@@ -57,7 +57,10 @@ export const usePagination = ({
   const onPageChange = useCallback((page: number, size: number) => {
     setPage(page)
     setSize(size)
-    onRefresh()
+    onRefresh({
+      skip: (page - 1) * size,
+      take: size,
+    })
   }, [onRefresh])
 
   const onNext = useCallback(() => {
