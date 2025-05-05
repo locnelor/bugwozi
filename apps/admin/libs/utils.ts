@@ -21,7 +21,7 @@ interface Array2treeOptions<T> {
   parentNodeName: string;
 }
 const defaultOptions: Array2treeOptions<any> = {
-  nodeName: 'id',
+  nodeName: 'uid',
   parentNodeName: 'parentId',
   defaultParentId: null,
   cbk: (item) => item,
@@ -41,8 +41,8 @@ export const array2tree = <T>(
     return acc;
   }, {} as any);
   const buildTree: any = (parentId: any) => {
-    const children = nodeMap[parentId] || [];
-    return children.map((child: any) => {
+    const children = nodeMap[parentId];
+    return children?.map((child: any) => {
       child.children = buildTree(child[options.nodeName]);
       return !!options.cbk ? options.cbk(child) : child
     });

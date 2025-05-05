@@ -7,6 +7,8 @@ import dayjs from "dayjs";
 import Page from "#/components/pages/Page";
 import TablePage from "#/components/pages/TablePage";
 import { useColumns, useDataSource } from "#/hooks/useTable";
+import { useMemo } from "react";
+import { array2tree } from "#/libs/utils";
 
 export const FindAllMenuQuery = gql`
   query FindAllMenu {
@@ -26,6 +28,9 @@ const SystemMenuPage = () => {
   const { data, loading } = useQuery(FindAllMenuQuery);
   const dataSource = useDataSource(data?.menus)
 
+  const treeData = useMemo(() => {
+    return array2tree(dataSource)
+  }, [dataSource])
   const columns = useColumns([
     {
       title: '菜单名称',
@@ -66,7 +71,7 @@ const SystemMenuPage = () => {
     <Page>
       <Table
         columns={columns}
-        dataSource={dataSource}
+        dataSource={treeData}
         rowKey="uid"
         loading={loading}
         pagination={false}

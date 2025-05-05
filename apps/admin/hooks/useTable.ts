@@ -16,7 +16,7 @@ export const useDataSource = (data?: any[]) => {
             ...item,
             key: item.key || item.uid || item.id || index
         }
-    })
+    }) || []
 }
 
 export const timeColumns = [

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   Card,
   Input,
@@ -13,62 +13,70 @@ import {
   Divider,
 } from "antd";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import { gql, useQuery, useMutation } from "@apollo/client";
 
 const { TextArea } = Input;
 const { Option } = Select;
 
+// GraphQL Queries
+const GET_WECHAT_CONFIG = gql`
+  query GetWechatConfig {
+    getWechatConfig
+  }
+`;
+
+const SET_WECHAT_CONFIG = gql`
+  mutation SetWechatConfig($config: String!) {
+    setWechatConfig(config: $config)
+  }
+`;
+
 const WechatAutoReplyPage = () => {
   const [form] = Form.useForm();
-  const [loading, setLoading] = useState(false);
 
-  // Mock fetch config
-  const fetchConfig = async () => {
-    setLoading(true);
-    try {
-      // Replace with real API
-      const res = await fetch("/api/getWechatConfig");
-      const data = await res.json();
-      form.setFieldsValue(data);
-    } catch (err) {
-      message.error("加载配置失败");
-    } finally {
-      setLoading(false);
+  // Apollo hooks
+  const { data, loading, refetch } = useQuery(GET_WECHAT_CONFIG);
+  const [setWechatConfigMutation, { loading: saving }] = useMutation(SET_WECHAT_CONFIG);
+
+  useEffect(() => {
+    if (data?.getWechatConfig) {
+      try {
+        const parsed = JSON.parse(data.getWechatConfig);
+        form.setFieldsValue(parsed);
+      } catch {
+        message.error("配置解析失败");
+      }
     }
-  };
+  }, [data, form]);
 
   const onFinish = async (values: any) => {
     try {
-      // Replace with real API
-      await fetch("/api/setWechatConfig", {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const res = await setWechatConfigMutation({
+        variables: { config: JSON.stringify(values) },
       });
-      message.success("保存成功");
+      if (res.data.setWechatConfig) {
+        message.success("保存成功");
+        refetch();
+      }
     } catch (err) {
+      console.error(err);
       message.error("保存失败");
     }
   };
 
-  useEffect(() => {
-    fetchConfig();
-  }, []);
-
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <Card title="微信公众号自动回复配置" loading={loading}>
+      <Card title="微信公众号自动回复配置" loading={loading || saving}>
         <Form form={form} layout="vertical" onFinish={onFinish}>
-          {/* 自动回复设置 */}
-          <Form.Item label="启用自动回复" name={["autoReply", "enabled"]} valuePropName="checked">
+          <Form.Item
+            label="启用自动回复"
+            name={["autoReply", "enabled"]}
+            valuePropName="checked"
+          >
             <Switch />
           </Form.Item>
 
-          <Form.Item
-            label="默认回复内容"
-            name={["autoReply", "defaultReply"]}
-          >
+          <Form.Item label="默认回复内容" name={["autoReply", "defaultReply"]}>
             <TextArea rows={3} placeholder="请输入默认回复内容" />
           </Form.Item>
 
@@ -107,7 +115,7 @@ const WechatAutoReplyPage = () => {
                       className="flex-1"
                       rules={[{ required: true, message: "请输入回复内容" }]}
                     >
-                      <Input.TextArea placeholder="请输入回复内容" />
+                      <TextArea placeholder="请输入回复内容" />
                     </Form.Item>
                     <MinusCircleOutlined
                       onClick={() => remove(name)}
@@ -147,7 +155,7 @@ const WechatAutoReplyPage = () => {
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit" loading={saving}>
               保存配置
             </Button>
           </Form.Item>
