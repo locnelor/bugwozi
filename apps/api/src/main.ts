@@ -26,7 +26,15 @@ async function bootstrap() {
   });
   const configService: any = app.get(ConfigService);
   app.enableCors({
-    origin: ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:25001'],
+    origin: [
+      'http://localhost:3000',
+      'http://localhost:5173',
+      'http://localhost:25001',
+      'http://admin.bugwozi.top',
+      'https://blog.bugwozi.top',
+      'http://bugwozi.top',
+      'https://bugwozi.top'
+    ],
     credentials: true,
   });
 
