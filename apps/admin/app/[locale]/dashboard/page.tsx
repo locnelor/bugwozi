@@ -50,10 +50,10 @@ async function getSystemStats() {
     },
     orders: {
       total: orderCount,
-      success: orderStats[0]?.successCount || 0,
-      notPay: orderStats[0]?.notPayCount || 0,
-      refund: orderStats[0]?.refundCount || 0,
-      revenue: orderStats[0]?.totalRevenue || 0
+      success: Number(orderStats[0]?.successCount || 0),
+      notPay: Number(orderStats[0]?.notPayCount || 0),
+      refund: Number(orderStats[0]?.refundCount || 0),
+      revenue: Number(orderStats[0]?.totalRevenue || 0),
     },
     blog: {
       posts: postCount,
@@ -113,7 +113,7 @@ async function getRecentActivities() {
       ]
     },
     orderBy: [
-      { important: 'desc' }, 
+      { important: 'desc' },
       { createdAt: 'desc' }
     ],
     take: 5
@@ -131,7 +131,7 @@ async function getRecentActivities() {
 const DashboardPage = async () => {
   // 获取统计数据
   const stats = await getSystemStats()
-  
+
   // 获取最近活动
   const activities = await getRecentActivities()
 
