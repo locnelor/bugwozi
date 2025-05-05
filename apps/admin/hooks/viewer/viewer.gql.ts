@@ -8,6 +8,21 @@ export const ViewerQuery = gql`
       ${BaseUFields}
       name
       roleId
+      account
+      role{
+        name
+        uid
+        menus{
+          menuId
+          menu{
+            name
+            path
+            parentId
+            uid
+            sort
+          }
+        }
+      }
     }
   }
 `

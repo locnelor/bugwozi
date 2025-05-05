@@ -10,16 +10,18 @@ import { Link } from '#/i18n/navigation'
 const AdminLayoutHeader = () => {
   const { viewer } = useViewer();
   const menus = useMemo(() => {
-    return [{
-      href: "/account",
-      label: "账户"
-    }, {
-      href: "/setting",
-      label: "设置"
-    }, {
-      href: "/about",
-      label: "关于"
-    }]
+    return [
+      //   {
+      //   href: "/account",
+      //   label: "账户"
+      // },
+      {
+        href: "/setting",
+        label: "设置"
+      }, {
+        href: "/about",
+        label: "关于"
+      }]
   }, [])
   const client = useApolloClient();
   const onLogout = useCallback(() => {
@@ -44,8 +46,7 @@ const AdminLayoutHeader = () => {
 
       {/* 右侧功能区 */}
       <div className="flex items-center space-x-4">
-        {/* 通知 */}
-        <Badge count={5} size="small">
+        {/* <Badge count={5} size="small">
           <Button
             type="text"
             icon={<BellOutlined className="text-lg" />}
@@ -53,12 +54,11 @@ const AdminLayoutHeader = () => {
           />
         </Badge>
 
-        {/* 设置 */}
         <Button
           type="text"
           icon={<SettingOutlined className="text-lg" />}
           className="flex items-center justify-center"
-        />
+        /> */}
 
         <Popover
           placement="bottomRight"

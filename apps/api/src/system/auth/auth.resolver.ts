@@ -18,10 +18,50 @@ class QrCodeResult {
 @Resolver()
 export class AuthResolver {
     constructor(
-        private readonly prismaService: PrismaService,
         private readonly authService: AuthService,
-        private readonly hashService: HashService
     ) { }
+
+    /**
+     * 获取邮箱验证码，返回ID。
+     */
+    @Mutation(() => String)
+    @UseGuards(GqlAuthGuard)
+    getEmailCode(
+        @Args("email") email: string,
+        @GqlCurrentUser() user: SysUserEntity
+    ) {
+        
+    }
+
+    /**
+     * 绑定邮箱
+     */
+    @Mutation(() => String)
+    @UseGuards(GqlAuthGuard)
+    bindEmail(
+        @Args("email") email: string,
+        @Args("code") code: string,
+        @GqlCurrentUser() user: SysUserEntity
+    ) { }
+
+    @Mutation(() => Boolean)
+    @UseGuards(GqlAuthGuard)
+    updateAccountInfo(
+        @Args("account") account: string,
+        @Args("name") name: string,
+        @GqlCurrentUser() user: SysUserEntity
+    ) {
+        return this.authService.updateAccountInfo(user, account, name)
+    }
+
+    @Mutation(() => Boolean)
+    @UseGuards(GqlAuthGuard)
+    updatePassword(
+        @Args("password") password: string,
+        @GqlCurrentUser() user: SysUserEntity
+    ) {
+        return this.authService.updatePassword(user, password)
+    }
 
     @Query(() => SysUserEntity)
     @UseGuards(GqlAuthGuard)

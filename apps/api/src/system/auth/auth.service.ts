@@ -12,6 +12,7 @@ import { randomUUID } from 'crypto';
 import { RedisCacheService } from '@app/redis-cache';
 import { UserService } from '../user/user.service';
 import { RandomNameService } from '@app/utils/random-name/random-name.service';
+import { ForbiddenError } from '@nestjs/apollo';
 
 const expire_seconds = 300;//300秒
 
@@ -39,7 +40,6 @@ export class AuthService {
         private readonly randomNameService: RandomNameService
     ) {
     }
-
     public create(
         data: CreateAccountInput
     ) {
@@ -62,6 +62,38 @@ export class AuthService {
     private hashAccount(account: SysAccountEntity) {
         const hash = this.hash.sha1(account.value)
         return this.hash.md5(`${account.userId}_${hash}`)
+    }
+
+    public async updateAccountInfo(user: SysUserEntity, account: string, name: string) {
+        const find = await this.prisma.sys_user.findUnique({ where: { account } });
+        if (!!find && find.uid !== user.uid) return false;
+        if (!account) return false;
+        await this.prisma.sys_user.update({ where: { uid: user.uid }, data: { name, account } });
+        return true;
+    }
+    public async updatePassword(user: SysUserEntity, password: string) {
+        const account = await this.prisma.sys_user.findUnique({ where: { uid: user.uid }, include: { accounts: true } });
+        const ac = account.accounts.find(e => e.provider === "account")
+        const value = this.cryptoValue('account', this.cryptoPassword(user, password))
+        if (!!ac) {
+            await this.prisma.sys_account.update({
+                where: {
+                    uid: ac.uid
+                },
+                data: {
+                    value
+                }
+            })
+            return true;
+        }
+        await this.prisma.sys_account.create({
+            data: {
+                provider: "account",
+                value,
+                userId: user.uid
+            }
+        })
+        return true;
     }
 
     /**

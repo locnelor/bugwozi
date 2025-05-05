@@ -15,10 +15,12 @@ const Page = ({
   sideClassName
 }: PageProps) => {
   return (
-    <BasePage className="h-full">
+    <BasePage style={{
+      height: `calc(100% - 64px)`
+    }}>
       <div className="flex gap-4 flex-col h-full">
         {!!header && <PageCard className={headerClassName}>{header}</PageCard>}
-        <div className="flex gap-4 w-full">
+        <div className="flex gap-4 w-full grow">
           {!!side && <PageCard className={sideClassName}>{side}</PageCard>}
           <PageCard className="h-full flex-1 w-full">{children}</PageCard>
         </div>

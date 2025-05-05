@@ -81,7 +81,6 @@ export default async function LocaleLayout({
   }
   const client = getPrismaClient();
   await client.$connect()
-  const menus = await client.sys_menu.findMany();
   return (
     <HomeLayout locale={locale}>
       <div className="fixed inset-0 flex flex-col w-full">
@@ -90,7 +89,7 @@ export default async function LocaleLayout({
         </div>
         <div className="flex flex-1 overflow-hidden">
           <div className="flex-none w-64">
-            <AdminLayoutSide menus={menus} />
+            <AdminLayoutSide menus={viewer?.role?.menus?.map((e: any) => e.menu)} />
           </div>
           <div className="flex-1 overflow-auto bg-gray-100">
             {children}

@@ -6,8 +6,27 @@ import { cwd } from 'process';
 @Injectable()
 export class FileService {
   constructor() {
-    console.log(FileService.Root)
+    this.createWithDefaultContent(this.getWechatConfigPath(), "{}")
   }
+  /**
+   * 创建文件并填充默认内容
+   * @param path 文件路径
+   * @param defaultValue 默认内容
+   * @returns 文件路径
+   */
+  public createWithDefaultContent(path: string, defaultValue: string | Buffer): string {
+    if (!existsSync(path)) {
+      // 确保目录存在
+      const directory = join(path, '..');
+      if (!existsSync(directory)) {
+        mkdirSync(directory, { recursive: true });
+      }
+      // 写入默认内容
+      writeFileSync(path, defaultValue);
+    }
+    return path;
+  }
+
   public static readonly Root = cwd();
   private readonly Assets = join(FileService.Root, "assets")
   public makeAssets(path: string) {
@@ -45,6 +64,10 @@ export class FileService {
     }
     return null;
   }
+  public getFile(path: string, defaultValue?: string) {
+    if (existsSync(path)) return readFileSync(path)
+    return defaultValue
+  }
   public setConfig(config: Object) {
     if (!existsSync(this.configFile)) {
       mkdirSync(join(this.configFile, ".."), { recursive: true })
@@ -59,5 +82,16 @@ export class FileService {
   }
   public exists(path: string) {
     return existsSync(path)
+  }
+
+
+  public getWechatConfigPath() {
+    return join(this.Assets, "wechatConfig.json")
+  }
+  public getWechatConfig() {
+    return JSON.parse(this.getFile(this.getWechatConfigPath(), "{}").toString())
+  }
+  public setWechatConfig(data: any) {
+    this.writeFile(this.getWechatConfigPath(), JSON.stringify(data))
   }
 }

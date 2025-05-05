@@ -1,162 +1,276 @@
 import { WeChatService } from '@app/wechat';
 import { Injectable, Logger } from '@nestjs/common';
-import { AccountAccessTokenResult, DefaultRequestResult, SignatureResult, TicketResult, UserAccessTokenResult, UserInfoResult } from '@app/wechat';
-import { Request, Response } from 'express';
+import { FileService } from '@app/file';
+import { XMLBuilder } from 'fast-xml-parser';
+import { AuthService } from 'src/system/auth/auth.service';
+
+// 微信消息接口
+export interface WxMessageData {
+  ToUserName: string;
+  FromUserName: string;
+  CreateTime: string;
+  MsgType: string;
+  Event?: 'subscribe' | 'unsubscribe' | 'SCAN';
+  EventKey?: string;
+  Content?: string;
+  Ticket?: string;
+}
+
+export interface WechatConfig {
+  /**
+   * 自动回复配置
+   */
+  autoReply?: {
+    /**
+     * 是否启用自动回复
+     */
+    enabled: boolean;
+    /**
+     * 默认回复内容
+     */
+    defaultReply?: string;
+    /**
+     * 关键词回复规则
+     */
+    rules?: Array<{
+      /**
+       * 关键词
+       */
+      keywords: string[];
+      /**
+       * 回复内容
+       */
+      content: string;
+      /**
+       * 匹配模式：exact(完全匹配) | contains(包含匹配)
+       */
+      matchMode?: 'exact' | 'contains';
+    }>;
+  };
+  /**
+   * 关注后回复配置
+   */
+  subscribeReply?: {
+    /**
+     * 是否启用关注后回复
+     */
+    enabled: boolean;
+    /**
+     * 关注后回复内容
+     */
+    content: string;
+  };
+}
 
 @Injectable()
 export class WxService {
-  private readonly logger = new Logger(WxService.name);
+  private logger = new Logger(WxService.name);
+  private config: WechatConfig = {
+    autoReply: {
+      enabled: true,
+      defaultReply: 'helloWorld!',
+      rules: []
+    },
+    subscribeReply: {
+      enabled: true,
+      content: '感谢您的关注！'
+    }
+  };
 
   constructor(
-    private readonly wechatService: WeChatService
+    // private readonly wechat: WeChatService,
+    private readonly file: FileService,
+    private readonly auth: AuthService
   ) {
-    // 初始化时测试获取访问令牌
-    this.getAccessToken()
-      .then(token => this.logger.log(`微信公众号服务初始化成功，获取到访问令牌：`, token))
-      .catch(err => this.logger.error(`微信公众号服务初始化失败：${err.message}`, err.stack));
+    this.loadConfig();
   }
 
   /**
-   * 获取公众号访问令牌
-   * @returns 访问令牌结果
+   * 加载微信配置
    */
-  async getAccessToken(): Promise<AccountAccessTokenResult> {
-    return this.wechatService.getAccountAccessToken();
+  private loadConfig() {
+    try {
+      const savedConfig = this.file.getWechatConfig(); // 默认数据为{}
+      if (savedConfig && Object.keys(savedConfig).length > 0) {
+        this.config = { ...this.config, ...savedConfig };
+      }
+      this.logger.log('微信配置已加载');
+    } catch (error) {
+      this.logger.error('加载微信配置失败', error);
+    }
   }
 
   /**
-   * 获取稳定版访问令牌
-   * @param force 是否强制刷新
-   * @returns 访问令牌结果
+   * 获取微信配置
    */
-  async getStableAccessToken(force = false): Promise<AccountAccessTokenResult> {
-    return this.wechatService.getStableAccessToken(undefined, undefined, force);
+  public getWechatConfig(): WechatConfig {
+    return this.config;
   }
 
   /**
-   * 获取JS-SDK票据
-   * @returns 票据结果
+   * 设置微信配置
+   * @param config 配置对象
    */
-  async getJsApiTicket(): Promise<TicketResult> {
-    return this.wechatService.getJSApiTicket();
+  public setWechatConfig(config: WechatConfig) {
+    this.config = { ...this.config, ...config };
+    // 保存配置到文件
+    this.file.setWechatConfig(this.config);
+    this.logger.log('微信配置已更新并保存');
+    return this.config;
   }
 
   /**
-   * 生成JS-SDK签名
-   * @param url 当前网页的URL，不包含#及其后面部分
-   * @returns 签名结果
+   * 处理微信消息
+   * @param msg 微信消息数据
+   * @returns XML响应或空字符串
    */
-  async createJssdkSignature(url: string): Promise<SignatureResult> {
-    return this.wechatService.jssdkSignature(url);
+  public async handleWxMessage(msg: WxMessageData): Promise<string> {
+    this.logger.debug(`收到微信消息：${JSON.stringify(msg)}`);
+
+    // 如果是扫描二维码事件
+    if (msg.Event === 'SCAN') {
+      // 处理扫码事件，返回空字符串
+      this.handleScanQrCode(msg.FromUserName, msg.EventKey);
+      return '';
+    }
+
+    // 如果是订阅事件
+    if (msg.Event === 'subscribe') {
+      // 处理订阅事件
+      const response = this.handleSubscribe(msg);
+      // 同时处理二维码扫描
+      if (msg.EventKey && msg.EventKey.startsWith('qrscene_')) {
+        const sceneId = msg.EventKey.substring(8); // 去掉 'qrscene_' 前缀
+        this.handleScanQrCode(msg.FromUserName, sceneId);
+      }
+      return response;
+    }
+
+    // 如果是文本消息
+    if (msg.MsgType === 'text' && msg.Content) {
+      return this.handleTextMessage(msg);
+    }
+
+    // 其他类型消息，返回默认回复
+    return this.buildDefaultReply(msg);
   }
 
   /**
-   * 处理微信服务器发来的消息推送请求
-   * @param req Express请求对象
-   * @param res Express响应对象
-   * @param resText 回复给微信服务器的文本（可选）
+   * 处理扫描二维码事件
+   * @param openid 用户openid
+   * @param sceneId 场景ID/EventKey
    */
-  async handleMessagePush(req: Request, res: Response, resText?: string): Promise<void> {
-    await this.wechatService.messagePushExpressHandler(req, res, resText);
+  private handleScanQrCode(openid: string, sceneId: string) {
+    this.logger.log(`用户 ${openid} 扫描二维码，场景ID: ${sceneId}`);
+    // 这里可以调用其他服务的方法处理扫码逻辑，例如登录认证等
+    this.auth.setQrCode(sceneId, openid);
   }
 
   /**
-   * 处理明文格式的消息推送
-   * @param req Express请求对象
-   * @param res Express响应对象
-   * @param resText 回复给微信服务器的文本（可选）
+   * 处理订阅事件
+   * @param msg 微信消息数据
+   * @returns XML响应
    */
-  async handlePlainMessagePush(req: Request, res: Response, resText?: string): Promise<void> {
-    await this.wechatService.plainMessagePushExpressHandler(req, res, resText);
+  private handleSubscribe(msg: WxMessageData): string {
+    // 检查是否启用了订阅回复
+    if (this.config.subscribeReply?.enabled && this.config.subscribeReply.content) {
+      const response = {
+        xml: {
+          ToUserName: msg.FromUserName,
+          FromUserName: msg.ToUserName,
+          CreateTime: Math.floor(Date.now() / 1000),
+          MsgType: 'text',
+          Content: this.config.subscribeReply.content,
+        },
+      };
+      return this.buildXmlResponse(response);
+    }
+
+    // 如果未启用订阅回复，返回空字符串
+    return '';
   }
 
   /**
-   * 检查微信服务器签名
-   * @param req Express请求对象
-   * @param res Express响应对象
+   * 处理文本消息
+   * @param msg 微信消息数据
+   * @returns XML响应
    */
-  checkSignature(req: Request, res: Response): void {
-    this.wechatService.checkSignatureExpress(req, res);
-  }
+  private handleTextMessage(msg: WxMessageData): string {
+    // 检查是否启用了自动回复
+    if (!this.config.autoReply?.enabled) {
+      return '';
+    }
 
-  /**
-   * 通过授权码获取用户访问令牌
-   * @param code 授权码
-   * @returns 用户访问令牌结果
-   */
-  async getAccessTokenByCode(code: string): Promise<UserAccessTokenResult> {
-    return this.wechatService.getAccessTokenByCode(code);
-  }
+    const userContent = msg.Content;
+    let replyContent = this.config.autoReply.defaultReply || '';
 
-  /**
-   * 获取用户信息
-   * @param accessToken 用户访问令牌
-   * @param openid 用户OpenID
-   * @param lang 语言
-   * @returns 用户信息结果
-   */
-  async getUserInfo(accessToken: string, openid: string, lang: 'zh_CN' | 'zh_TW' | 'en' = 'zh_CN'): Promise<UserInfoResult> {
-    return this.wechatService.getUserInfo(accessToken, openid, lang);
-  }
+    // 检查是否有匹配的关键词规则
+    if (this.config.autoReply.rules && this.config.autoReply.rules.length > 0) {
+      for (const rule of this.config.autoReply.rules) {
+        const matchMode = rule.matchMode || 'contains';
 
-  /**
-   * 发送模板消息
-   * @param openid 接收者openid
-   * @param templateId 模板ID
-   * @param data 模板数据
-   * @param url 点击跳转的URL（可选）
-   * @returns 发送结果
-   */
-  async sendTemplateMessage(openid: string, templateId: string, data: any, url?: string): Promise<DefaultRequestResult & { msgid: string }> {
-    const message = {
-      touser: openid,
-      template_id: templateId,
-      url,
-      data
+        // 检查是否有匹配的关键词
+        const hasMatchedKeyword = rule.keywords.some(keyword => {
+          if (matchMode === 'exact') {
+            return keyword === userContent;
+          } else {
+            return userContent.includes(keyword);
+          }
+        });
+
+        // 如果找到匹配的关键词，使用对应的回复内容
+        if (hasMatchedKeyword) {
+          replyContent = rule.content;
+          break;
+        }
+      }
+    }
+
+    // 构建回复消息
+    const response = {
+      xml: {
+        ToUserName: msg.FromUserName,
+        FromUserName: msg.ToUserName,
+        CreateTime: Math.floor(Date.now() / 1000),
+        MsgType: 'text',
+        Content: replyContent,
+      },
     };
-    return this.wechatService.sendTemplateMessage(message);
+
+    return this.buildXmlResponse(response);
   }
 
   /**
-   * 创建公众号二维码
-   * @param sceneStr 场景值字符串
-   * @param expireSeconds 过期时间（秒），默认30天
-   * @returns 二维码创建结果
+   * 构建默认回复
+   * @param msg 微信消息数据
+   * @returns XML响应
    */
-  async createQRCode(sceneStr: string, expireSeconds: number = 2592000) {
-    return this.wechatService.createQRCode({
-      action_name: 'QR_STR_SCENE',
-      expire_seconds: expireSeconds,
-      action_info: {
-        scene: {
-          scene_str: sceneStr
-        }
-      }
-    });
+  private buildDefaultReply(msg: WxMessageData): string {
+    // 如果未启用自动回复，返回空字符串
+    if (!this.config.autoReply?.enabled) {
+      return '';
+    }
+
+    const response = {
+      xml: {
+        ToUserName: msg.FromUserName,
+        FromUserName: msg.ToUserName,
+        CreateTime: Math.floor(Date.now() / 1000),
+        MsgType: 'text',
+        Content: this.config.autoReply.defaultReply || '谢谢您的留言！',
+      },
+    };
+
+    return this.buildXmlResponse(response);
   }
 
   /**
-   * 获取永久二维码
-   * @param sceneStr 场景值字符串
-   * @returns 二维码创建结果
+   * 构建XML响应
+   * @param response 响应对象
+   * @returns XML字符串
    */
-  async createLimitQRCode(sceneStr: string) {
-    return this.wechatService.createQRCode({
-      action_name: 'QR_LIMIT_STR_SCENE',
-      action_info: {
-        scene: {
-          scene_str: sceneStr
-        }
-      }
-    });
-  }
-
-  /**
-   * 获取二维码图片URL
-   * @param ticket 二维码ticket
-   * @returns 二维码图片URL
-   */
-  getQRCodeUrl(ticket: string): string {
-    return `https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=${encodeURIComponent(ticket)}`;
+  private buildXmlResponse(response: any): string {
+    const builder = new XMLBuilder({ ignoreAttributes: false });
+    return builder.build(response);
   }
 }

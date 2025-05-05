@@ -233,6 +233,11 @@ type AnnouncementsPaginationEntity {
   data: [BlogAnnouncementsEntity!]!
 }
 
+type ScanOrder {
+  out_trade_no: String
+  state: String
+}
+
 type OrderPaginationEntity {
   total: Int!
   data: [SysOrderEntity!]!
@@ -266,9 +271,11 @@ type Query {
   link(uid: String!): BlogLinksEntity!
   announcements(pagination: AnnouncementsPaginationInput!): AnnouncementsPaginationEntity!
   announcement(uid: String!): BlogAnnouncementsEntity!
+  queryOrder(out_trade_no: String!): SysOrderEntity!
   orderList(pagination: OrderPaginationInput!): OrderPaginationEntity!
   goodsList(pagination: GoodsPaginationInput!): GoodsPaginationEntity!
   findOneGoods(uid: String!, all: Boolean): SysGoodsEntity
+  getWechatConfig: String!
 }
 
 input UserPaginationInput {
@@ -353,6 +360,10 @@ type Mutation {
   updateRole(data: UpdateRoleInput!): SysRoleEntity!
   assignRole(data: AssignRoleInput!): Int!
   removeRole(uid: String!): SysRoleEntity!
+  getEmailCode(email: String!): String!
+  bindEmail(email: String!, code: String!): String!
+  updateAccountInfo(account: String!, name: String!): Boolean!
+  updatePassword(password: String!): Boolean!
   authAccountLogin(account: String!, password: String!): SysUserEntity!
   scan(uuid: String!): SysUserEntity
   getQrCode: QrCodeResult!
@@ -375,12 +386,13 @@ type Mutation {
   updateAnnouncement(updateAnnouncementInput: UpdateAnnouncementInput!): BlogAnnouncementsEntity!
   removeAnnouncement(uid: String!): BlogAnnouncementsEntity!
   getNativeOrder(id: String!): SysOrderEntity!
-  scanNativeOrder(uid: String!): String!
+  scanNativeOrder(uid: String!): ScanOrder!
   updateOrder(updateInput: UpdateOrderInput!): SysOrderEntity
   removeOrder(out_trade_no: String!): SysOrderEntity
   createGoods(createInput: CreateGoodsInput!): SysGoodsEntity!
   updateGoods(updateInput: UpdateGoodsInput!): SysGoodsEntity
   removeGoods(uid: String!, all: Boolean): SysGoodsEntity
+  setWechatConfig(config: String!): String!
 }
 
 input CreateUserInput {
