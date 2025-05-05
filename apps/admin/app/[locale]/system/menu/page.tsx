@@ -1,28 +1,15 @@
 "use client"
 
-import { gql, useQuery } from "@apollo/client"
+import { useQuery } from "@apollo/client"
 import { Table } from "antd";
-import { BaseUFields } from "#/libs/fields";
 import dayjs from "dayjs";
 import Page from "#/components/pages/Page";
-import TablePage from "#/components/pages/TablePage";
 import { useColumns, useDataSource } from "#/hooks/useTable";
 import { useMemo } from "react";
 import { array2tree } from "#/libs/utils";
+import { FindAllMenuQuery } from "./gql";
 
-export const FindAllMenuQuery = gql`
-  query FindAllMenu {
-    menus {
-      ${BaseUFields}
-      name
-      path
-      sort
-      powers
-      comment
-      parentId
-    }
-  }
-`
+
 
 const SystemMenuPage = () => {
   const { data, loading } = useQuery(FindAllMenuQuery);

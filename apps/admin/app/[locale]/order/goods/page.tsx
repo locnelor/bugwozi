@@ -1,55 +1,12 @@
 "use client"
-import { gql } from "@apollo/client"
 
-export const FindGoodsQuery = gql`
-  query GoodsList($pagination: GoodsPaginationInput!) {
-    goodsList(pagination: $pagination) {
-      total
-      data {
-        uid
-        amount
-        description
-        createdAt
-        updatedAt
-        user {
-          name
-        }
-      }
-    }
-  }
-`
-
-const CreateGoodsMutation = gql`
-  mutation CreateGoods($createInput: CreateGoodsInput!) {
-    createGoods(createInput: $createInput) {
-      uid
-      description
-    }
-  }
-`
-
-const UpdateGoodsMutation = gql`
-  mutation UpdateGoods($updateInput: UpdateGoodsInput!) {
-    updateGoods(updateInput: $updateInput) {
-      uid
-      description
-    }
-  }
-`
-
-const RemoveGoodsMutation = gql`
-  mutation RemoveGoods($uid: String!, $all: Boolean) {
-    removeGoods(uid: $uid, all: $all) {
-      uid
-    }
-  }
-`
 
 import { useCallback } from "react"
 import { useMutation } from "@apollo/client"
 import { usePagination } from "@pkg/hooks"
 import AutoPage from "#/components/pages/AutoPage"
 import { timeColumns } from "#/hooks/useTable"
+import { FindGoodsQuery, CreateGoodsMutation, UpdateGoodsMutation, RemoveGoodsMutation } from "./gql"
 
 interface Goods {
   uid: string;

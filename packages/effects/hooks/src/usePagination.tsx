@@ -22,7 +22,7 @@ export const usePagination = ({
   const [size, setSize] = useState(defaultSize)
   const [total, setTotal] = useState(0)
   const [data, setData] = useState<any[]>([])
-  const [time, setTime] = useState<number>()
+  const [time, setTime] = useState<any>()
   useEffect(() => {
     return () => clearTimeout(time);
   }, [time])

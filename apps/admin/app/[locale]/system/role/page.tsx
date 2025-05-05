@@ -1,65 +1,15 @@
 "use client"
-import { BaseUFields } from "#/libs/fields"
-import { gql, useQuery, useMutation, useLazyQuery, DocumentType } from "@apollo/client"
-import { FindAllMenuQuery } from "../menu/page"
-import { Button, Card, Form, Input, message, Modal, Space, Table, Tree } from "antd"
+import { useQuery, useMutation, useLazyQuery } from "@apollo/client"
+import { message, Modal, Tree } from "antd"
 import { useEffect, useMemo, useState } from "react"
-import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons"
 import { array2tree } from "#/libs/utils"
 import gqlError from "#/libs/gqlError"
-import Page from "#/components/pages/Page"
-import TablePage from "#/components/pages/TablePage"
 import { useColumns, useDataSource } from "#/hooks/useTable"
 import AutoPage, { TableBaseButton } from "#/components/pages/AutoPage"
+import { FindAllMenuQuery } from "../menu/gql"
+import { RolesQuery, CreateRoleMutation, UpdateRoleMutation, DeleteRoleMutation, FindMenuOnRolesQuery, AssignRoleMutation } from "./gql"
 
-export const RolesQuery = gql`
-    query Roles{
-        roles{
-            ${BaseUFields}
-            name
-        }
-    }
-`
 
-export const CreateRoleMutation = gql`
-    mutation CreateRole($data: CreateRoleInput!) {
-        createRole(data: $data) {
-            ${BaseUFields}
-            name
-        }
-    }
-`
-
-export const UpdateRoleMutation = gql`
-    mutation UpdateRole($data: UpdateRoleInput!) {
-        updateRole(data: $data) {
-            ${BaseUFields}
-            name
-        }
-    }
-`
-
-export const DeleteRoleMutation = gql`
-    mutation RemoveRole($uid: String!) {
-        removeRole(uid: $uid) {
-            ${BaseUFields}
-        }
-    }
-`
-
-export const AssignRoleMutation = gql`
-    mutation AssignRole($data: AssignRoleInput!) {
-        assignRole(data: $data)
-    }
-`
-
-export const FindMenuOnRolesQuery = gql`
-    query FindMenuOnRoles($id: String!) {
-        findMenuOnRoles(id: $id) {
-            menuId
-        }
-    }
-`
 
 const SystemRolePage = () => {
     const { data: menuData } = useQuery(FindAllMenuQuery);

@@ -1,9 +1,9 @@
 import { usePagination } from "@pkg/hooks"
-import { FindGoodsQuery } from "../goods/page"
 import { List, Modal, Button, QRCode, Spin } from "antd"
 import { useOpen } from "@pkg/hooks"
 import { useEffect, useState } from "react"
 import usePay from "#/hooks/usePay"
+import { FindGoodsQuery } from "../goods/gql"
 
 
 const PayQrCode = ({ goods }: any) => {

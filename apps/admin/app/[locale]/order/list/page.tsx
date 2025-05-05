@@ -43,13 +43,10 @@ const RemoveOrderMutation = gql`
   }
 `
 
-import { useCallback, useEffect } from "react"
+import { useCallback } from "react"
 import { useMutation } from "@apollo/client"
 import { useOpen, usePagination } from "@pkg/hooks"
 import AutoPage from "#/components/pages/AutoPage"
-import { Button, Modal } from "antd"
-import GoodsCard from "./GoodsCard"
-import { FindGoodsQuery } from "../goods/page"
 
 // interface Order {
 //   out_trade_no: string;

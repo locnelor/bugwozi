@@ -6,7 +6,7 @@
     "dev": "next dev -p 24500",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint -p 22002"
   },
   "imports": {
     "#/": "./"
