@@ -89,7 +89,7 @@ export default async function LocaleLayout({
         </div>
         <div className="flex flex-1 overflow-hidden">
           <div className="flex-none w-64">
-            <AdminLayoutSide menus={viewer?.role?.menus?.map((e: any) => e.menu)} />
+            <AdminLayoutSide menus={viewer?.role?.menus?.map((e: any) => e.menu) || []} />
           </div>
           <div className="flex-1 overflow-auto bg-gray-100">
             {children}
