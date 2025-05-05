@@ -13,7 +13,8 @@ export interface FormField {
     type: FieldType;
     name: string;
     label: string;
-    rest?: any
+    rest?: any;
+    [key: string]: any;
 }
 
 interface AutoPageProps extends PropsWithChildren {

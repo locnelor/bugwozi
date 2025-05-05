@@ -82,7 +82,7 @@ const AnnouncementsPage = ({ queries }: AnnouncementsPageProps) => {
     if (!data || typeof data !== 'object') return { total: 0, data: [] };
     const dataKeys = Object.keys(data);
     if (dataKeys.length === 0) return { total: 0, data: [] };
-    
+
     const firstKey = dataKeys[0];
     return (data as Record<string, any>)[firstKey] || { total: 0, data: [] };
   }, [data])
@@ -158,20 +158,20 @@ const AnnouncementsPage = ({ queries }: AnnouncementsPageProps) => {
             type: 'input',
             name: 'title',
             label: '标题',
-            rest: { rules: [{ required: true, message: '请输入标题' }] }
+            required: true
           },
           {
             type: 'textarea',
             name: 'content',
             label: '内容',
-            rest: { rules: [{ required: true, message: '请输入内容' }] }
+            required: true
           },
           {
             type: 'select',
             name: 'status',
+            required: true,
             label: '状态',
             rest: {
-              rules: [{ required: true, message: '请选择状态' }],
               options: [
                 { label: '显示', value: true },
                 { label: '隐藏', value: false },

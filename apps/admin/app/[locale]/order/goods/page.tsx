@@ -117,13 +117,13 @@ const OrderGoodsPage = () => {
             type: 'input',
             name: 'description',
             label: '描述',
-            rest: { rules: [{ required: true, message: '请输入描述' }] }
+            required: true
           },
           {
             type: 'number',
             name: 'amount',
             label: '金额（分）',
-            rest: { rules: [{ required: true, message: '请输入金额' }] }
+            required: true
           },
         ]
       }}

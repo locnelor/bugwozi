@@ -112,19 +112,19 @@ const PostsPage = ({ queries }: PostsPageProps) => {
             type: 'input',
             name: 'title',
             label: '标题',
-            rest: { rules: [{ required: true, message: '请输入标题' }] }
+            required: true
           },
           {
             type: 'select',
             name: 'status',
             label: '状态',
             rest: {
-              rules: [{ required: true, message: '请选择状态' }],
               options: [
                 { label: '已发布', value: true },
                 { label: '草稿', value: false },
               ]
-            }
+            },
+            required: true
           },
           {
             type: 'input',

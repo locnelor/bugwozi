@@ -115,19 +115,19 @@ const CommentsPage = ({ queries }: CommentsPageProps) => {
             type: 'textarea',
             name: 'content',
             label: '内容',
-            rest: { rules: [{ required: true, message: '请输入内容' }] }
+            required: true
           },
           {
             type: 'select',
             name: 'status',
             label: '状态',
             rest: {
-              rules: [{ required: true, message: '请选择状态' }],
               options: [
                 { label: '已审核', value: true },
                 { label: '待审核', value: false },
               ]
-            }
+            },
+            required: true
           },
         ]
       }}

@@ -154,9 +154,7 @@ const SystemRolePage = () => {
                         type: "input",
                         name: "name",
                         label: "角色名称",
-                        rest: {
-                            rules: [{ required: true, message: '请输入角色名称' }]
-                        }
+                        required: true
                     }
                 ]
             }}

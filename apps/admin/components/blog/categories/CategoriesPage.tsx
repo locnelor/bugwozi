@@ -103,7 +103,7 @@ const CategoriesPage = ({ queries }: CategoriesPageProps) => {
             type: 'input',
             name: 'name',
             label: '名称',
-            rest: { rules: [{ required: true, message: '请输入名称' }] }
+            required: true
           },
           {
             type: 'textarea',
@@ -120,7 +120,7 @@ const CategoriesPage = ({ queries }: CategoriesPageProps) => {
             type: 'input',
             name: 'name',
             label: '名称',
-            rest: { rules: [{ required: true, message: '请输入名称' }] }
+            required: true
           },
           {
             type: 'textarea',

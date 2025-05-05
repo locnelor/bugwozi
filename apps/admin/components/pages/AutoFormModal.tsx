@@ -35,32 +35,32 @@ const AutoFormModal = ({
     }, [visible, initialValues])
 
     const renderFormItem = (field: FormField) => {
-        const { type, name, label, rest } = field;
+        const { type, name, label, rest, ...itemProps } = field;
         const commonProps = {
             name,
             label,
-            ...rest
+            ...itemProps
         };
 
         switch (type) {
             case 'input':
-                return <Form.Item {...commonProps}><Input /></Form.Item>;
+                return <Form.Item {...commonProps}><Input  {...rest} /></Form.Item>;
             case 'number':
-                return <Form.Item {...commonProps}><InputNumber style={{ width: '100%' }} /></Form.Item>;
+                return <Form.Item {...commonProps}><InputNumber {...rest} style={{ width: '100%' }} /></Form.Item>;
             case 'textarea':
-                return <Form.Item {...commonProps}><Input.TextArea /></Form.Item>;
+                return <Form.Item {...commonProps}><Input.TextArea {...rest} /></Form.Item>;
             case 'select':
-                return <Form.Item {...commonProps}><Select options={rest?.options} /></Form.Item>;
+                return <Form.Item {...commonProps}><Select {...rest} /></Form.Item>;
             case 'date':
-                return <Form.Item {...commonProps}><DatePicker style={{ width: '100%' }} /></Form.Item>;
+                return <Form.Item {...commonProps}><DatePicker {...rest} style={{ width: '100%' }} /></Form.Item>;
             case 'switch':
-                return <Form.Item {...commonProps} valuePropName="checked"><Switch /></Form.Item>;
+                return <Form.Item {...commonProps} valuePropName="checked"><Switch {...rest} /></Form.Item>;
             case 'treeSelect':
-                return <Form.Item {...commonProps}><TreeSelect treeData={rest?.treeData} /></Form.Item>;
+                return <Form.Item {...commonProps}><TreeSelect  {...rest} /></Form.Item>;
             case 'treeCheck':
-                return <Form.Item {...commonProps}><TreeSelect treeData={rest?.treeData} treeCheckable /></Form.Item>;
+                return <Form.Item {...commonProps}><TreeSelect  {...rest} treeCheckable /></Form.Item>;
             case 'treeRadio':
-                return <Form.Item {...commonProps}><TreeSelect treeData={rest?.treeData} treeDefaultExpandAll /></Form.Item>;
+                return <Form.Item {...commonProps}><TreeSelect  {...rest} treeDefaultExpandAll /></Form.Item>;
             default:
                 return null;
         }

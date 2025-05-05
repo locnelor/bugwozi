@@ -99,7 +99,7 @@ const TagsPage = ({ queries }: TagsPageProps) => {
             type: 'input',
             name: 'name',
             label: '名称',
-            rest: { rules: [{ required: true, message: '请输入名称' }] }
+            required: true
           },
           {
             type: 'textarea',
@@ -116,7 +116,7 @@ const TagsPage = ({ queries }: TagsPageProps) => {
             type: 'input',
             name: 'name',
             label: '名称',
-            rest: { rules: [{ required: true, message: '请输入名称' }] }
+            required: true
           },
           {
             type: 'textarea',

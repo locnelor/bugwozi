@@ -125,13 +125,13 @@ const LinksPage = ({ queries }: LinksPageProps) => {
             type: 'input',
             name: 'name',
             label: '名称',
-            rest: { rules: [{ required: true, message: '请输入名称' }] }
+            required: true
           },
           {
             type: 'input',
             name: 'url',
             label: '链接',
-            rest: { rules: [{ required: true, message: '请输入链接' }] }
+            required: true
           },
           {
             type: "number",
@@ -143,12 +143,12 @@ const LinksPage = ({ queries }: LinksPageProps) => {
             name: 'status',
             label: '状态',
             rest: {
-              rules: [{ required: true, message: '请选择状态' }],
               options: [
                 { label: '显示', value: true },
                 { label: '隐藏', value: false },
               ]
-            }
+            },
+            required: true
           },
         ]
       }}
@@ -160,13 +160,13 @@ const LinksPage = ({ queries }: LinksPageProps) => {
             type: 'input',
             name: 'name',
             label: '名称',
-            rest: { rules: [{ required: true, message: '请输入名称' }] }
+            required: true
           },
           {
             type: 'input',
             name: 'url',
             label: '链接',
-            rest: { rules: [{ required: true, message: '请输入链接' }] }
+            required: true
           },
           {
             type: 'textarea',
@@ -178,12 +178,12 @@ const LinksPage = ({ queries }: LinksPageProps) => {
             name: 'status',
             label: '状态',
             rest: {
-              rules: [{ required: true, message: '请选择状态' }],
               options: [
                 { label: '显示', value: true },
                 { label: '隐藏', value: false },
               ]
-            }
+            },
+            required: true
           },
         ]
       }}

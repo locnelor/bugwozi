@@ -47,7 +47,10 @@ export class UserService {
     const data = await this.prisma.sys_user.findMany({
       where,
       skip,
-      take
+      take,
+      include: {
+        role: true
+      }
     })
     return {
       total,

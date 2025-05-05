@@ -1,11 +1,12 @@
 "use client"
 import { usePagination } from "@pkg/hooks"
-import { gql } from "@apollo/client"
+import { gql, useQuery } from "@apollo/client"
 import { BaseUFields } from "#/libs/fields"
 import AutoPage from "#/components/pages/AutoPage"
-import { message } from "antd"
 import { useMutation } from "@apollo/client"
 import { useDataSource } from "#/hooks/useTable"
+import { RolesQuery } from "../role/gql"
+import { useMemo } from "react"
 
 const FindUserListQuery = gql`
   query FindUserList($pagination: UserPaginationInput!) {
@@ -15,6 +16,10 @@ const FindUserListQuery = gql`
         ${BaseUFields}
         name
         account
+        roleId
+        role{
+          name
+        }
       }
     }
   }
@@ -60,7 +65,8 @@ const SystemUserPage = () => {
   const [createUser] = useMutation(CreateUserMutation)
   const [updateUser] = useMutation(UpdateUserMutation)
   const [removeUser] = useMutation(RemoveUserMutation)
-
+  const { data: rolesQuery } = useQuery(RolesQuery)
+  const roles = useMemo(() => rolesQuery?.roles || [], [rolesQuery]);
   const handleCreate = async (variables: any) => {
     try {
       await createUser({
@@ -121,18 +127,19 @@ const SystemUserPage = () => {
         {
           title: '用户ID',
           dataIndex: 'uid',
-          key: 'uid',
         },
         {
           title: '用户名',
           dataIndex: 'name',
-          key: 'name',
         },
         {
           title: '账号',
           dataIndex: 'account',
-          key: 'account',
         },
+        {
+          title: "角色",
+          dataIndex: ['role', 'name']
+        }
       ]}
       loading={loading}
       search={{
@@ -158,13 +165,13 @@ const SystemUserPage = () => {
             type: 'input',
             name: 'name',
             label: '用户名',
-            rest: { rules: [{ required: true, message: '请输入用户名' }] }
+            required: true
           },
           {
             type: 'input',
             name: 'account',
             label: '账号',
-            rest: { rules: [{ required: true, message: '请输入账号' }] }
+            required: true
           },
         ]
       }}
@@ -176,14 +183,26 @@ const SystemUserPage = () => {
             type: 'input',
             name: 'name',
             label: '用户名',
-            rest: { rules: [{ required: true, message: '请输入用户名' }] }
+            required: true
           },
           {
             type: 'input',
             name: 'account',
             label: '账号',
-            rest: { rules: [{ required: true, message: '请输入账号' }] }
+            required: true
           },
+          {
+            type: "select",
+            name: "roleId",
+            label: "角色",
+            rest: {
+              options: roles.map((role: any) => ({
+                label: role.name,
+                value: role.uid
+              })),
+              allowClear: true
+            },
+          }
         ]
       }}
       remove={{
