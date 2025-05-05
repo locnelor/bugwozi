@@ -13,7 +13,7 @@ interface BlogContentProps {
 const BlogContent = ({ children }: BlogContentProps) => {
   const t = useTranslations();
   const currentYear = new Date().getFullYear();
-  
+
   return (
     <Layout>
       <Content className="min-h-screen pt-8 pb-16">

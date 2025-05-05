@@ -1,6 +1,4 @@
-"use client";
-
-import { Card, Typography, Avatar, Row, Col, Divider, Space, Timeline, Breadcrumb, Form, Input, Button, message } from "antd";
+import { Card, Typography, Avatar, Row, Col, Divider, Space, Timeline, Breadcrumb } from "antd";
 import { 
   TeamOutlined, 
   HomeOutlined, 
@@ -10,15 +8,19 @@ import {
   LinkedinOutlined,
   CalendarOutlined,
   PhoneOutlined,
-  MessageOutlined,
-  UserOutlined,
-  SendOutlined
+  FileTextOutlined,
+  CommentOutlined,
+  HistoryOutlined
 } from "@ant-design/icons";
 import Link from "next/link";
-import { useState } from "react";
+import { prisma } from "@pkg/database";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
 
 const { Title, Paragraph, Text } = Typography;
-const { TextArea } = Input;
+
+// Client-side component for the contact form
+const ContactForm = dynamic(() => import('./ContactForm'), { ssr: false });
 
 interface TeamMember {
   name: string;
@@ -32,11 +34,10 @@ interface TeamMember {
   };
 }
 
-export default function AboutPage() {
-  const [contactForm] = Form.useForm();
-  const [submitting, setSubmitting] = useState(false);
-  
-  // Mock team members data
+// Server-side function to fetch team members from database (if available)
+async function getTeamMembers() {
+  // In a real app, you would fetch this from the database
+  // For now, we're using mock data
   const teamMembers: TeamMember[] = [
     {
       name: "Alex Johnson",
@@ -82,8 +83,13 @@ export default function AboutPage() {
     }
   ];
   
-  // Blog milestones/history
-  const blogHistory = [
+  return teamMembers;
+}
+
+// Server-side function to fetch blog history
+async function getBlogHistory() {
+  // In a real app, this could be stored in the database
+  return [
     {
       date: "June 2021",
       title: "Blog Launch",
@@ -120,18 +126,55 @@ export default function AboutPage() {
       description: "Continuing to expand our content library and community features."
     }
   ];
-  
-  // Handle contact form submission
-  const handleContactSubmit = (values: any) => {
-    setSubmitting(true);
+}
+
+// Server-side function to fetch blog statistics
+async function getBlogStats() {
+  try {
+    // Get article count
+    const articleCount = await prisma.blog_posts.count({
+      where: {
+        published: true
+      }
+    });
     
-    // In a real app, this would be an API call
-    setTimeout(() => {
-      message.success('Your message has been sent. We\'ll get back to you soon!');
-      contactForm.resetFields();
-      setSubmitting(false);
-    }, 1500);
-  };
+    // Get comment count
+    const commentCount = await prisma.blog_comments.count({
+      where: {
+        status: true
+      }
+    });
+    
+    // Get category count
+    const categoryCount = await prisma.blog_categories.count();
+    
+    // Get tag count
+    const tagCount = await prisma.blog_tag.count();
+    
+    return {
+      articles: articleCount,
+      comments: commentCount,
+      categories: categoryCount,
+      tags: tagCount
+    };
+  } catch (error) {
+    console.error('Error fetching blog stats:', error);
+    return {
+      articles: 200, // Fallback values if DB query fails
+      comments: 1500,
+      categories: 12,
+      tags: 45
+    };
+  }
+}
+
+export default async function AboutPage() {
+  // Fetch data
+  const [teamMembers, blogHistory, blogStats] = await Promise.all([
+    getTeamMembers(),
+    getBlogHistory(),
+    getBlogStats()
+  ]);
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -185,23 +228,21 @@ export default function AboutPage() {
                     </div>
                   </li>
                   <li className="flex items-start">
-                    <UserOutlined className="mt-1 mr-3 text-blue-500" />
+                    <TeamOutlined className="mt-1 mr-3 text-blue-500" />
                     <div>
                       <strong>Team Members:</strong> {teamMembers.length}
                     </div>
                   </li>
                   <li className="flex items-start">
-                    <MessageOutlined className="mt-1 mr-3 text-blue-500" />
+                    <FileTextOutlined className="mt-1 mr-3 text-blue-500" />
                     <div>
-                      <strong>Articles:</strong> 200+
+                      <strong>Articles:</strong> {blogStats.articles}+
                     </div>
                   </li>
                   <li className="flex items-start">
-                    <PhoneOutlined className="mt-1 mr-3 text-blue-500" />
+                    <CommentOutlined className="mt-1 mr-3 text-blue-500" />
                     <div>
-                      <strong>Contact:</strong><br />
-                      contact@techblog.com<br />
-                      +1 (555) 123-4567
+                      <strong>Comments:</strong> {blogStats.comments}+
                     </div>
                   </li>
                 </ul>
@@ -210,37 +251,34 @@ export default function AboutPage() {
           </Row>
         </div>
         
-        <Divider />
-        
         {/* Team Section */}
         <div className="mb-12">
           <Title level={2} className="flex items-center mb-6">
-            <TeamOutlined className="mr-2" /> Meet Our Team
+            <TeamOutlined className="mr-2" /> Our Team
           </Title>
           
           <Row gutter={[24, 24]}>
-            {teamMembers.map(member => (
-              <Col xs={24} sm={12} lg={6} key={member.name}>
+            {teamMembers.map((member, index) => (
+              <Col xs={24} sm={12} md={8} lg={6} key={index}>
                 <Card 
                   hoverable 
-                  className="text-center h-full"
+                  className="text-center h-full flex flex-col"
                   cover={
                     <div className="pt-6 pb-2 flex justify-center">
-                      <Avatar 
-                        src={member.avatar} 
-                        size={100} 
-                        icon={<UserOutlined />}
-                      />
+                      <Avatar size={100} src={member.avatar} alt={member.name} />
                     </div>
                   }
                 >
-                  <Title level={4}>{member.name}</Title>
-                  <div className="text-blue-500 font-medium mb-3">{member.role}</div>
-                  <Paragraph ellipsis={{ rows: 3 }} className="mb-4">
+                  <Card.Meta
+                    title={<span className="text-lg">{member.name}</span>}
+                    description={<div className="text-blue-500">{member.role}</div>}
+                  />
+                  
+                  <Paragraph className="mt-4 text-gray-600">
                     {member.bio}
                   </Paragraph>
                   
-                  <Space>
+                  <div className="mt-auto pt-4 flex justify-center space-x-3">
                     {member.socialLinks?.github && (
                       <a href={member.socialLinks.github} target="_blank" rel="noopener noreferrer">
                         <GithubOutlined className="text-xl hover:text-blue-500 transition-colors" />
@@ -256,157 +294,84 @@ export default function AboutPage() {
                         <LinkedinOutlined className="text-xl hover:text-blue-500 transition-colors" />
                       </a>
                     )}
-                  </Space>
+                  </div>
                 </Card>
               </Col>
             ))}
           </Row>
         </div>
         
-        <Divider />
-        
         {/* History Section */}
         <div className="mb-12">
           <Title level={2} className="flex items-center mb-6">
-            <CalendarOutlined className="mr-2" /> Our Journey
+            <HistoryOutlined className="mr-2" /> Our Journey
           </Title>
           
-          <Timeline
-            mode="alternate"
-            items={blogHistory.map(item => ({
-              children: (
-                <div>
-                  <Title level={5}>{item.title}</Title>
-                  <Text type="secondary">{item.date}</Text>
-                  <Paragraph className="mt-2">{item.description}</Paragraph>
-                </div>
-              )
-            }))}
-          />
+          <div className="bg-gray-50 p-6 rounded-lg">
+            <Timeline
+              mode="alternate"
+              items={blogHistory.map(item => ({
+                children: (
+                  <div>
+                    <Title level={5}>{item.title}</Title>
+                    <p className="text-gray-500">{item.date}</p>
+                    <p>{item.description}</p>
+                  </div>
+                )
+              }))}
+            />
+          </div>
         </div>
-        
-        <Divider />
         
         {/* Contact Section */}
         <div>
           <Title level={2} className="flex items-center mb-6">
-            <MailOutlined className="mr-2" /> Get In Touch
+            <MailOutlined className="mr-2" /> Contact Us
           </Title>
           
           <Row gutter={24}>
-            <Col xs={24} lg={12}>
-              <Paragraph className="mb-4">
-                Have a question, suggestion, or want to contribute to our blog? 
-                We'd love to hear from you! Fill out the form and we'll get back to you as soon as possible.
-              </Paragraph>
-              
-              <div className="bg-gray-50 p-6 rounded-lg mb-6">
-                <Title level={4}>Contact Information</Title>
-                <ul className="space-y-4 mt-4">
-                  <li className="flex items-start">
-                    <MailOutlined className="mt-1 mr-3 text-blue-500" />
-                    <div>
-                      <strong>Email:</strong><br />
+            <Col xs={24} md={10}>
+              <div className="bg-gray-50 p-6 rounded-lg h-full">
+                <Title level={4}>Get in Touch</Title>
+                <Paragraph>
+                  Have a question, suggestion, or want to contribute to our blog? 
+                  Reach out to us using the contact form or through any of the following channels:
+                </Paragraph>
+                
+                <ul className="space-y-4 mt-6">
+                  <li className="flex items-center">
+                    <MailOutlined className="mr-4 text-xl text-blue-500" />
+                    <a href="mailto:contact@techblog.com" className="text-blue-600 hover:text-blue-800">
                       contact@techblog.com
-                    </div>
+                    </a>
                   </li>
-                  <li className="flex items-start">
-                    <PhoneOutlined className="mt-1 mr-3 text-blue-500" />
-                    <div>
-                      <strong>Phone:</strong><br />
-                      +1 (555) 123-4567
-                    </div>
+                  <li className="flex items-center">
+                    <PhoneOutlined className="mr-4 text-xl text-blue-500" />
+                    <a href="tel:+1234567890" className="text-blue-600 hover:text-blue-800">
+                      +1 (234) 567-890
+                    </a>
                   </li>
-                  <li className="flex items-start">
-                    <HomeOutlined className="mt-1 mr-3 text-blue-500" />
-                    <div>
-                      <strong>Address:</strong><br />
-                      123 Tech Street<br />
-                      San Francisco, CA 94107
-                    </div>
+                  <li className="flex items-center">
+                    <GithubOutlined className="mr-4 text-xl text-blue-500" />
+                    <a href="https://github.com/techblog" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
+                      github.com/techblog
+                    </a>
+                  </li>
+                  <li className="flex items-center">
+                    <TwitterOutlined className="mr-4 text-xl text-blue-500" />
+                    <a href="https://twitter.com/techblog" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
+                      @techblog
+                    </a>
                   </li>
                 </ul>
               </div>
-              
-              <div>
-                <Title level={4}>Follow Us</Title>
-                <Space size="large" className="mt-4">
-                  <a href="https://github.com/techblog" target="_blank" rel="noopener noreferrer">
-                    <GithubOutlined className="text-2xl hover:text-blue-500 transition-colors" />
-                  </a>
-                  <a href="https://twitter.com/techblog" target="_blank" rel="noopener noreferrer">
-                    <TwitterOutlined className="text-2xl hover:text-blue-500 transition-colors" />
-                  </a>
-                  <a href="https://linkedin.com/company/techblog" target="_blank" rel="noopener noreferrer">
-                    <LinkedinOutlined className="text-2xl hover:text-blue-500 transition-colors" />
-                  </a>
-                </Space>
-              </div>
             </Col>
             
-            <Col xs={24} lg={12}>
-              <Card title="Contact Form">
-                <Form 
-                  form={contactForm} 
-                  layout="vertical" 
-                  onFinish={handleContactSubmit}
-                >
-                  <Row gutter={16}>
-                    <Col span={12}>
-                      <Form.Item 
-                        label="Name" 
-                        name="name"
-                        rules={[{ required: true, message: 'Please enter your name' }]}
-                      >
-                        <Input placeholder="Your name" prefix={<UserOutlined />} />
-                      </Form.Item>
-                    </Col>
-                    <Col span={12}>
-                      <Form.Item 
-                        label="Email" 
-                        name="email"
-                        rules={[
-                          { required: true, message: 'Please enter your email' },
-                          { type: 'email', message: 'Please enter a valid email' }
-                        ]}
-                      >
-                        <Input placeholder="Your email" prefix={<MailOutlined />} />
-                      </Form.Item>
-                    </Col>
-                  </Row>
-                  
-                  <Form.Item 
-                    label="Subject" 
-                    name="subject"
-                    rules={[{ required: true, message: 'Please enter a subject' }]}
-                  >
-                    <Input placeholder="What is this regarding?" />
-                  </Form.Item>
-                  
-                  <Form.Item 
-                    label="Message" 
-                    name="message"
-                    rules={[{ required: true, message: 'Please enter your message' }]}
-                  >
-                    <TextArea 
-                      rows={6} 
-                      placeholder="Write your message here..." 
-                    />
-                  </Form.Item>
-                  
-                  <Form.Item>
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      icon={<SendOutlined />}
-                      loading={submitting}
-                      size="large"
-                      block
-                    >
-                      Send Message
-                    </Button>
-                  </Form.Item>
-                </Form>
+            <Col xs={24} md={14}>
+              <Card title="Send Us a Message" className="h-full">
+                <Suspense fallback={<div>Loading contact form...</div>}>
+                  <ContactForm />
+                </Suspense>
               </Card>
             </Col>
           </Row>
