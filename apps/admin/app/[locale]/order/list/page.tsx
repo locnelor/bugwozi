@@ -247,7 +247,7 @@ const OrderListPage = () => {
           <Button onClick={onOpen} type="primary">创建订单</Button>
           <Modal
             open={open}
-            onClose={onCancel}
+            onCancel={onCancel}
             title="创建订单"
           >
             <GoodsCard />
