@@ -47,6 +47,8 @@ import { useCallback } from "react"
 import { useMutation } from "@apollo/client"
 import { useOpen, usePagination } from "@pkg/hooks"
 import AutoPage from "#/components/pages/AutoPage"
+import { Button, Modal } from "antd"
+import GoodsCard from "./GoodsCard"
 
 // interface Order {
 //   out_trade_no: string;
@@ -240,6 +242,19 @@ const OrderListPage = () => {
           },
         ]
       }}
+      headerChildren={(
+        <div>
+          <Button onClick={onOpen} type="primary">创建订单</Button>
+          <Modal
+            open={open}
+            onCancel={onCancel}
+            title="创建订单"
+          >
+            <GoodsCard />
+          </Modal>
+        </div>
+      )}
+
       remove={{
         onSubmit: handleRemove,
         name: '删除订单',
