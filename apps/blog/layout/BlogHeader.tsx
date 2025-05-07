@@ -1,14 +1,15 @@
 "use client";
 
 import { useState, useCallback } from 'react';
-import { Button, Input, Menu, Dropdown } from 'antd';
-import { 
-  SearchOutlined, 
-  MenuOutlined, 
-  GlobalOutlined 
+import { Button, Input, Dropdown } from 'antd';
+import {
+  SearchOutlined,
+  MenuOutlined,
+  GlobalOutlined
 } from '@ant-design/icons';
 import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '#/i18n/navigation';
+import UserButton from '#/components/UserButton';
 
 const BlogHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -63,32 +64,25 @@ const BlogHeader = () => {
             </Link>
           </nav>
 
-          {/* Search and Menu Buttons */}
           <div className="flex items-center space-x-4">
-            <div className="hidden md:block">
-              <Input
-                placeholder={t('Page.searchPlaceholder')}
-                prefix={<SearchOutlined />}
-                className="rounded-full"
-              />
-            </div>
-            
+
             <Dropdown menu={{ items: languageItems }} placement="bottomRight">
               <Button type="text" icon={<GlobalOutlined />}>
                 {locale === 'zh' ? '中文' : 'English'}
               </Button>
             </Dropdown>
 
-            <Button
-              type="text"
-              className="md:hidden"
-              icon={<MenuOutlined />}
-              onClick={toggleMenu}
-            />
+            <UserButton />
+            <div className='md:hidden'>
+              <Button
+                type="text"
+                icon={<MenuOutlined />}
+                onClick={toggleMenu}
+              />
+            </div>
           </div>
         </div>
 
-        {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="mt-4 md:hidden">
             <div className="mb-4">

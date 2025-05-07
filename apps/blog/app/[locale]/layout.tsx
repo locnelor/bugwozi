@@ -4,7 +4,12 @@ import { routing } from '#/i18n/routing';
 import './globals.css';
 import BlogHeader from '../../layout/BlogHeader';
 import BlogContent from '../../layout/BlogContent';
-
+import { ApolloWrapper } from '#/libs/apollo-wrapper';
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/locale/zh_CN';
+import { AntdRegistry } from '@ant-design/nextjs-registry';
+import 'dayjs/locale/zh-cn';
+import MessageProvider from '#/hooks/MessageProvider';
 export default async function LocaleLayout({
   children,
   params
@@ -13,20 +18,28 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  
+
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
-  
+
   return (
     <html lang={locale}>
       <body>
-        <NextIntlClientProvider>
-          <BlogHeader />
-          <BlogContent>
-            {children}
-          </BlogContent>
-        </NextIntlClientProvider>
+        <ApolloWrapper>
+          <AntdRegistry>
+            <ConfigProvider locale={zhCN}>
+              <NextIntlClientProvider>
+                <MessageProvider>
+                  <BlogHeader />
+                  <BlogContent>
+                    {children}
+                  </BlogContent>
+                </MessageProvider>
+              </NextIntlClientProvider>
+            </ConfigProvider>
+          </AntdRegistry>
+        </ApolloWrapper>
       </body>
     </html>
   );

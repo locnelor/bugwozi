@@ -1,13 +1,9 @@
-import { Card, Tabs, Tag, List, Button, Space, Divider } from "antd";
+import { Card, Tag, Divider } from "antd";
 import {
-  HomeOutlined,
-  FileTextOutlined,
-  NotificationOutlined,
   CommentOutlined,
   LinkOutlined,
   TagsOutlined,
   FolderOutlined,
-  CalendarOutlined,
 } from "@ant-design/icons";
 import { Link } from "#/i18n/navigation";
 import { prisma } from "@pkg/database";
@@ -33,7 +29,7 @@ async function getArticles() {
         },
         comments: true
       },
-      take: 5 // Just the recent ones
+      take: 5
     });
 
     return articles.map(article => ({
@@ -49,38 +45,10 @@ async function getArticles() {
     console.error("Error fetching articles:", error);
     // Return mock data if database query fails
     return [
-      {
-        id: "1",
-        title: "Getting Started with Next.js",
-        date: "2023-05-15",
-        excerpt: "Learn how to set up a Next.js project and explore its key features.",
-        category: "Programming",
-        tags: ["Next.js", "React", "Web Development"],
-        comments: 5,
-      },
-      {
-        id: "2",
-        title: "Tailwind CSS Best Practices",
-        date: "2023-06-20",
-        excerpt: "Discover the most efficient ways to use Tailwind CSS in your projects.",
-        category: "CSS",
-        tags: ["Tailwind", "CSS", "Styling"],
-        comments: 8,
-      },
-      {
-        id: "3",
-        title: "Understanding TypeScript Generics",
-        date: "2023-07-10",
-        excerpt: "A comprehensive guide to using generics in TypeScript.",
-        category: "TypeScript",
-        tags: ["TypeScript", "JavaScript", "Programming"],
-        comments: 3,
-      },
-    ];
+    ]
   }
 }
 
-// Get announcements from the database
 async function getAnnouncements() {
   try {
     const announcements = await prisma.blog_announcements.findMany({
@@ -102,10 +70,7 @@ async function getAnnouncements() {
   } catch (error) {
     console.error("Error fetching announcements:", error);
     // Return mock data if database query fails
-    return [
-      { id: "1", title: "Site Maintenance", date: "2023-08-01", content: "The blog will be under maintenance on August 5th from 2-4pm UTC." },
-      { id: "2", title: "New Features Added", date: "2023-07-25", content: "We've added a new comment system and improved tagging functionality." },
-    ];
+    return [];
   }
 }
 
@@ -129,13 +94,7 @@ async function getCategories() {
   } catch (error) {
     console.error("Error fetching categories:", error);
     // Return mock data if database query fails
-    return [
-      { name: "Programming", count: 15 },
-      { name: "Web Development", count: 12 },
-      { name: "CSS", count: 8 },
-      { name: "JavaScript", count: 20 },
-      { name: "TypeScript", count: 10 },
-    ];
+    return [];
   }
 }
 
@@ -226,10 +185,7 @@ async function getRecentComments() {
   } catch (error) {
     console.error("Error fetching comments:", error);
     // Return mock data
-    return [
-      { id: "1", author: "John", content: "This was really helpful, thanks!", postTitle: "Getting Started with Next.js", postId: "1" },
-      { id: "2", author: "Sarah", content: "Great article! I learned a lot.", postTitle: "Tailwind CSS Best Practices", postId: "2" }
-    ];
+    return [];
   }
 }
 
@@ -271,10 +227,7 @@ async function getArchiveStructure() {
   } catch (error) {
     console.error("Error creating archive structure:", error);
     // Return mock data
-    return [
-      { year: "2023", months: ["July", "June", "May"] },
-      { year: "2022", months: ["December", "November", "October"] },
-    ];
+    return [];
   }
 }
 
@@ -302,7 +255,7 @@ export default async function HomePage() {
           />
         </div>
 
-        <div className="space-y-6">
+        <div className="flex flex-col gap-2">
           <Card title={<span><FolderOutlined /> Categories</span>} className="shadow-sm">
             <div className="space-y-2">
               {categories.map(category => (

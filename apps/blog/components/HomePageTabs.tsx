@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { Tabs, Tag, List, Button, Card } from "antd";
-import { 
-  HomeOutlined, 
-  FileTextOutlined, 
-  NotificationOutlined, 
+import {
+  HomeOutlined,
+  FileTextOutlined,
+  NotificationOutlined,
   CommentOutlined,
   TagsOutlined,
   FolderOutlined,
@@ -43,13 +43,13 @@ interface HomePageTabsProps {
   archiveStructure: ArchiveItem[];
 }
 
-export default function HomePageTabs({ 
-  articles, 
-  announcements, 
-  archiveStructure 
+export default function HomePageTabs({
+  articles,
+  announcements,
+  archiveStructure
 }: HomePageTabsProps) {
   const t = useTranslations('Page');
-  
+
   const tabItems = [
     {
       key: "home",
@@ -150,8 +150,8 @@ export default function HomePageTabs({
             itemLayout="vertical"
             dataSource={announcements}
             renderItem={(item) => (
-              <Card 
-                title={item.title} 
+              <Card
+                title={item.title}
                 className="mb-4 shadow-sm"
                 extra={<span className="text-gray-500 text-sm">{item.date}</span>}
               >
@@ -165,10 +165,12 @@ export default function HomePageTabs({
   ];
 
   return (
-    <Tabs 
-      items={tabItems} 
-      defaultActiveKey="home" 
-      className="bg-white rounded-lg p-6 shadow-sm" 
-    />
+    <div
+      className="bg-white rounded-lg px-4 py-2 shadow-sm" >
+      <Tabs
+        items={tabItems}
+        defaultActiveKey="home"
+      />
+    </div>
   );
 } 

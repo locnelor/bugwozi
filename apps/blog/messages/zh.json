@@ -41,5 +41,37 @@
     "popularTags": "热门标签",
     "articles": "篇文章",
     "viewArticles": "查看文章"
+  },
+  "auth": {
+    "title": "登录",
+    "subtitle": "请输入您的账号和密码",
+    "account": "账号",
+    "accountRequired": "请输入账号",
+    "accountPlaceholder": "请输入账号",
+    "password": "密码",
+    "passwordRequired": "请输入密码",
+    "passwordPlaceholder": "请输入密码",
+    "submit": "登录",
+    "init": {
+      "title": "初始化网站信息",
+      "subtitle": "请填写以下信息以初始化您的网站",
+      "roleName": "角色名称",
+      "roleNameRequired": "请输入角色名称",
+      "roleNamePlaceholder": "请输入角色名称",
+      "username": "用户名",
+      "usernameRequired": "请输入用户名",
+      "usernamePlaceholder": "请输入用户名",
+      "account": "账号",
+      "accountRequired": "请输入账号",
+      "accountPlaceholder": "请输入账号",
+      "password": "密码",
+      "passwordRequired": "请输入密码",
+      "passwordPlaceholder": "请输入密码",
+      "confirmPassword": "确认密码",
+      "confirmPasswordRequired": "请确认密码",
+      "confirmPasswordPlaceholder": "请再次输入密码",
+      "passwordMismatch": "两次输入的密码不一致",
+      "submit": "提交"
+    }
   }
 }
