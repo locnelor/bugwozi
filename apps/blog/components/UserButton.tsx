@@ -1,11 +1,35 @@
+"use client"
 import useViewer from "#/hooks/viewer/useViewer"
-import { Link } from "#/i18n/navigation"
+import { Link, useRouter } from "#/i18n/navigation"
 import { Avatar, Button, Menu, Popover } from "antd"
+import { useCallback, useMemo } from "react"
 
 
 const UserButton = () => {
     const { viewer } = useViewer()
+    const router = useRouter()
 
+    const onClick = useCallback(({ key }: any) => {
+        router.push({
+            pathname: key
+        })
+    }, [])
+    const menuItems = useMemo(() => {
+        return [
+            {
+                key: '/creator',
+                label: `发布`
+            },
+            {
+                key: '/home',
+                label: `个人中心`
+            },
+            {
+                key: '/auth/logout',
+                label: `退出登录`
+            }
+        ]
+    }, [])
     if (!viewer) {
         return (
             <Link href="/auth">
@@ -15,22 +39,6 @@ const UserButton = () => {
             </Link>
         )
     }
-
-    const menuItems = [
-        {
-            key: 'account',
-            label: `账号`
-        },
-        {
-            key: 'name',
-            label: `名称`
-        },
-        {
-            key: 'role',
-            label: `角色`
-        }
-    ]
-
     return (
 
         <div className="flex gap-2 items-center">
@@ -39,9 +47,8 @@ const UserButton = () => {
             </div>
             <Popover
                 content={
-                    <Menu items={menuItems} />
+                    <Menu onClick={onClick} items={menuItems} />
                 }
-                title="用户信息"
                 trigger="hover"
             >
                 <Avatar className="cursor-pointer">{viewer.name[0].toUpperCase()}</Avatar>

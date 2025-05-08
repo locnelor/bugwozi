@@ -5,7 +5,8 @@ import { CreatePostInput } from './dto/create-post.input';
 import { UpdatePostInput } from './dto/update-post.input';
 import { PostsPaginationInput, PostsPaginationEntity } from './dto/posts.pagination';
 import { UseGuards } from '@nestjs/common';
-import { BlogArticleGuards, CREATE_POWER, DELETE_POWER, UPDATE_POWER, VIEW_POWER } from '@app/auth-power';
+import { BlogArticleGuards, CREATE_POWER, DELETE_POWER, GqlCurrentUser, UPDATE_POWER, VIEW_POWER } from '@app/auth-power';
+import { SysUserEntity } from '@app/prisma';
 
 @Resolver(() => BlogPostsEntity)
 @UseGuards(BlogArticleGuards.GqlAuthGuard())
@@ -14,8 +15,11 @@ export class PostsResolver {
 
   @Mutation(() => BlogPostsEntity)
   @UseGuards(BlogArticleGuards.GqlAuthGuard([CREATE_POWER]))
-  createPost(@Args('createPostInput') createPostInput: CreatePostInput) {
-    return this.postsService.create(createPostInput);
+  createPost(
+    @Args('createPostInput') createPostInput: CreatePostInput,
+    @GqlCurrentUser() user: SysUserEntity
+  ) {
+    return this.postsService.create(createPostInput, user);
   }
 
   @Query(() => PostsPaginationEntity)
@@ -34,8 +38,9 @@ export class PostsResolver {
   @UseGuards(BlogArticleGuards.GqlAuthGuard([UPDATE_POWER]))
   updatePost(
     @Args('updatePostInput') updatePostInput: UpdatePostInput,
+    @GqlCurrentUser() user: SysUserEntity
   ) {
-    return this.postsService.update(updatePostInput);
+    return this.postsService.update(updatePostInput, user);
   }
 
   @Mutation(() => BlogPostsEntity)

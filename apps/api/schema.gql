@@ -145,17 +145,11 @@ type BlogPostsEntity {
   createdAt: DateTime!
   updatedAt: DateTime!
   uid: String!
-  excerpt: String!
-  coverImage: String!
-  published: Boolean!
-  publishedAt: DateTime!
   views: Int!
   likes: Int!
-  slug: String!
   categoriesId: String!
   title: String!
   content: String!
-  description: String
   status: Boolean!
   userId: String!
   user: SysUserEntity
@@ -429,20 +423,18 @@ input AssignRoleInput {
 }
 
 input CreatePostInput {
+  base64: String
   title: String!
   content: String!
-  description: String
-  status: Boolean!
-  userId: String!
-  categoriesId: String
+  tags: [String!]!
+  categoriesId: String!
 }
 
 input UpdatePostInput {
+  base64: String
   title: String
   content: String
-  description: String
-  status: Boolean
-  userId: String
+  tags: [String!]
   categoriesId: String
   uid: String!
 }

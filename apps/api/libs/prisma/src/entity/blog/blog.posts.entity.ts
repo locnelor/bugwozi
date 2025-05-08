@@ -7,27 +7,12 @@ import { SysUserEntity } from "../sys";
 
 @ObjectType()
 export class BlogPostsEntity extends BaseUEntity implements blog_posts {
-  @Field()
-  excerpt: string;
-
-  @Field()
-  coverImage: string;
-  
-  @Field(()=>Boolean)
-  published: boolean;
-
-  @Field()
-  publishedAt: Date;
-
   @Field(()=>Int)
   views: number;
 
   @Field(()=>Int)
   likes: number;
 
-  @Field()
-  slug: string;
-  
   @Field()
   categoriesId: string;
 
@@ -36,9 +21,6 @@ export class BlogPostsEntity extends BaseUEntity implements blog_posts {
 
   @Field(() => String)
   content: string
-
-  @Field(() => String, { nullable: true })
-  description?: string
 
   @Field(() => Boolean)
   status: boolean
