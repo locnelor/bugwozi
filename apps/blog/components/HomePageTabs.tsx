@@ -14,16 +14,6 @@ import {
 import { Link } from "#/i18n/navigation";
 import { useTranslations } from 'next-intl';
 
-// Define types for props
-interface Article {
-  id: string;
-  title: string;
-  date: string;
-  excerpt: string;
-  category: string;
-  tags: string[];
-  comments: number;
-}
 
 interface Announcement {
   id: string;
@@ -38,7 +28,7 @@ interface ArchiveItem {
 }
 
 interface HomePageTabsProps {
-  articles: Article[];
+  articles: any[];
   announcements: Announcement[];
   archiveStructure: ArchiveItem[];
 }
@@ -87,7 +77,7 @@ export default function HomePageTabs({
                     <div>
                       <p>{item.excerpt}</p>
                       <div className="mt-2">
-                        {item.tags.map(tag => (
+                        {item.tags.map((tag: any) => (
                           <Tag key={tag} color="processing">{tag}</Tag>
                         ))}
                       </div>

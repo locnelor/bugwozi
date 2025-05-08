@@ -15,10 +15,6 @@ async function getArticles() {
     const articles = await prisma.blog_posts.findMany({
       where: {
         status: true,
-        published: true
-      },
-      orderBy: {
-        publishedAt: 'desc'
       },
       include: {
         categories: true,
@@ -35,8 +31,6 @@ async function getArticles() {
     return articles.map(article => ({
       id: article.uid,
       title: article.title,
-      date: article.publishedAt ? new Date(article.publishedAt).toISOString().split('T')[0] : '',
-      excerpt: article.excerpt || '',
       category: article.categories?.name || 'Uncategorized',
       tags: article.tags.map(tag => tag.tag.name),
       comments: article.comments.length,
@@ -195,30 +189,11 @@ async function getArchiveStructure() {
     const posts = await prisma.blog_posts.findMany({
       where: {
         status: true,
-        published: true
       },
-      select: {
-        publishedAt: true
-      }
     });
 
     const archiveStructure: Record<string, string[]> = {};
 
-    posts.forEach(post => {
-      if (!post.publishedAt) return;
-
-      const date = new Date(post.publishedAt);
-      const year = date.getFullYear().toString();
-      const month = date.toLocaleString('default', { month: 'long' });
-
-      if (!archiveStructure[year]) {
-        archiveStructure[year] = [];
-      }
-
-      if (!archiveStructure[year].includes(month)) {
-        archiveStructure[year].push(month);
-      }
-    });
 
     return Object.entries(archiveStructure).map(([year, months]) => ({
       year,
