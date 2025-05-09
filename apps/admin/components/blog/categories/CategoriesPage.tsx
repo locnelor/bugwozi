@@ -80,6 +80,17 @@ const CategoriesPage = ({ queries }: CategoriesPageProps) => {
           title: '名称',
           dataIndex: 'name',
         },
+        {
+          title: "封面",
+          dataIndex: "uid",
+          render: (uid: string) => {
+            return (
+              <img
+                src={`${process.env.NEXT_PUBLIC_BASEURI}/categories/${uid}/cover`}
+              />
+            )
+          }
+        },
         ...timeColumns
       ]}
       search={{
@@ -100,6 +111,11 @@ const CategoriesPage = ({ queries }: CategoriesPageProps) => {
         name: '创建分类',
         fields: [
           {
+            type: "base64",
+            name: "base64",
+            label: "封面"
+          },
+          {
             type: 'input',
             name: 'name',
             label: '名称',
@@ -116,6 +132,11 @@ const CategoriesPage = ({ queries }: CategoriesPageProps) => {
         onSubmit: handleUpdate,
         name: '更新分类',
         fields: [
+          {
+            type: "base64",
+            name: "base64",
+            label: "封面"
+          },
           {
             type: 'input',
             name: 'name',

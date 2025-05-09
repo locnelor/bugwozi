@@ -7,8 +7,9 @@ import { useColumns } from "#/hooks/useTable";
 import { Button, Space, message, Form, Input, InputNumber, Select, DatePicker, Switch, TreeSelect, ButtonProps, Popconfirm, FormProps } from "antd";
 import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import AutoFormModal from "./AutoFormModal";
+import Base64Field from "./Base64Field";
 
-export type FieldType = "input" | "number" | "textarea" | "select" | "date" | "switch" | "treeSelect" | "treeCheck" | "treeRadio"
+export type FieldType = "input" | "number" | "textarea" | "select" | "date" | "switch" | "treeSelect" | "treeCheck" | "treeRadio" | "base64"
 export interface FormField {
     type: FieldType;
     name: string;
@@ -190,6 +191,7 @@ const AutoPage = ({
                         {field.type === 'treeSelect' && <TreeSelect treeData={field.rest?.treeData} />}
                         {field.type === 'treeCheck' && <TreeSelect treeData={field.rest?.treeData} treeCheckable />}
                         {field.type === 'treeRadio' && <TreeSelect treeData={field.rest?.treeData} treeDefaultExpandAll />}
+                        {field.type === "base64" && <Base64Field />}
                     </Form.Item>
                 ))}
                 <Form.Item>

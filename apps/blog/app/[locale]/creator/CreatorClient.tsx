@@ -17,6 +17,7 @@ import OmsViewMarkdown from "#/components/Markdown"
 import { useFileToBase64 } from "#/hooks/useFileToBase64"
 import { gql, useMutation } from "@apollo/client"
 import gqlError from "#/libs/gqlError"
+import { useRouter } from "#/i18n/navigation"
 
 const { TextArea } = Input
 const { Title } = Typography
@@ -75,28 +76,29 @@ const CreatorClient = ({ posts = {}, categories }: Props) => {
   const [update, { loading: updateLoading }] = useMutation(UpdatePostMutation)
 
   const loading = createLoading || updateLoading
-
+  const router = useRouter()
 
   const publish = useCallback(() => {
     const uid = posts.uid;
     const variables = {
-      title,
-      content,
-      tags,
-      categoriesId,
-      base64,
-      uid
+      data: {
+        title,
+        content,
+        tags,
+        categoriesId,
+        base64,
+        uid
+      }
     };
-    (!!uid ? update : create)({ variables }).then(({ createPost, updatePost }: any) => {
+    (!!uid ? update : create)({ variables }).then(({ data: { createPost, updatePost } }: any) => {
       const result = createPost || updatePost;
-      console.log(result)
+      router.push(`/posts/${result.uid}`)
     }).catch((err) => { gqlError(err) })
   }, [title, content, tags, categoriesId, base64, posts])
 
   return (
     <div className="max-w-7xl mx-auto px-8 py-10 bg-white rounded-2xl shadow-lg space-y-10">
       <Title level={2} className="!text-center">发布文章</Title>
-      {base64}
       <Form layout="vertical" className="space-y-8">
         <Form.Item label="文章封面">
           <Upload

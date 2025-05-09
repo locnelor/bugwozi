@@ -1,6 +1,8 @@
 import { Modal, Form, Input, InputNumber, Select, DatePicker, Switch, TreeSelect } from 'antd';
 import { FormField } from './AutoPage';
 import { useEffect } from 'react';
+import FormItem from 'antd/es/form/FormItem';
+import Base64Field from './Base64Field';
 
 interface AutoFormModalProps {
     visible: boolean;
@@ -61,6 +63,8 @@ const AutoFormModal = ({
                 return <Form.Item {...commonProps}><TreeSelect  {...rest} treeCheckable /></Form.Item>;
             case 'treeRadio':
                 return <Form.Item {...commonProps}><TreeSelect  {...rest} treeDefaultExpandAll /></Form.Item>;
+            case 'base64':
+                return <FormItem {...commonProps}><Base64Field {...rest} /></FormItem>
             default:
                 return null;
         }

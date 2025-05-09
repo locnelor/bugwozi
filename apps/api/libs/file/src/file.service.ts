@@ -109,7 +109,7 @@ export class FileService {
   public getCategoriesCoverPath(uid: string) {
     return join(this.Assets, "blog", "categories", uid + ".png")
   }
-  public defaultCategoriesCoverPath = join(this.Assets, "blog", "default.png");
+  public defaultCategoriesCoverPath = join(this.Assets, "categories", "default.png");
   public getRenderCategoriesCoverPath(uid: string) {
     const path = this.getCategoriesCoverPath(uid);
     if (existsSync(path)) return path;
