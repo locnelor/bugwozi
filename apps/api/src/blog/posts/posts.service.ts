@@ -5,9 +5,14 @@ import { UpdatePostInput } from './dto/update-post.input';
 import { PostsPaginationInput } from './dto/posts.pagination';
 import { Prisma } from '@pkg/database';
 import { BlogPostsEntity } from '@app/prisma/entity/blog';
+import { FileService } from '@app/file';
+import { UtilsService } from '@app/utils';
 @Injectable()
 export class PostsService {
-  constructor(private readonly prisma: PrismaService) { }
+  constructor(private readonly prisma: PrismaService,
+    private readonly file: FileService,
+    private readonly util: UtilsService
+  ) { }
   async mergeTag(posts: BlogPostsEntity, tags: string[]) {
     const list = await this.prisma.blog_tag.findMany({
       where: {
@@ -48,13 +53,22 @@ export class PostsService {
 
   }
 
-  async create({ tags, ...data }: CreatePostInput, user: SysUserEntity) {
+  private saveCover(
+    uid: string,
+    base64: string
+  ) {
+    this.file.writeFile(this.file.getPostsCoverPath(uid), this.util.base64ToBuffer(base64));
+  }
+
+
+  async create({ tags, base64, ...data }: CreatePostInput, user: SysUserEntity) {
     const posts = await this.prisma.blog_posts.create({
       data: {
         ...data,
         userId: user.uid
       },
     });
+    if (!!base64) this.saveCover(posts.uid, base64);
     await this.mergeTag(posts, tags)
     return posts
   }
@@ -99,11 +113,12 @@ export class PostsService {
     });
   }
 
-  async update({ uid, tags, ...data }: UpdatePostInput, user: SysUserEntity) {
+  async update({ uid, tags, base64, ...data }: UpdatePostInput) {
     const posts = await this.prisma.blog_posts.update({
       where: { uid },
       data,
     });
+    this.saveCover(posts.uid, base64)
     await this.mergeTag(posts, tags)
     return posts
   }
@@ -112,5 +127,9 @@ export class PostsService {
     return this.prisma.blog_posts.delete({
       where: { uid },
     });
+  }
+
+  setDefaultCover(base64: string) {
+    return this.saveCover(this.file.defaultPostsCoverPath, base64)
   }
 } 

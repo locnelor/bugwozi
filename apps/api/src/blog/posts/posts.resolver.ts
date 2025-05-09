@@ -40,7 +40,7 @@ export class PostsResolver {
     @Args('updatePostInput') updatePostInput: UpdatePostInput,
     @GqlCurrentUser() user: SysUserEntity
   ) {
-    return this.postsService.update(updatePostInput, user);
+    return this.postsService.update(updatePostInput);
   }
 
   @Mutation(() => BlogPostsEntity)

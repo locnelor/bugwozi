@@ -94,4 +94,15 @@ export class FileService {
   public setWechatConfig(data: any) {
     this.writeFile(this.getWechatConfigPath(), JSON.stringify(data))
   }
+
+
+  public getPostsCoverPath(uid: string) {
+    return join(this.Assets, "blog", "cover", uid + ".png")
+  }
+  public defaultPostsCoverPath = join(this.Assets, "blog", "default.png");
+  public getRenderPostsCoverPath(uid: string) {
+    const path = this.getPostsCoverPath(uid);
+    if (existsSync(path)) return path;
+    return this.defaultPostsCoverPath
+  }
 }
