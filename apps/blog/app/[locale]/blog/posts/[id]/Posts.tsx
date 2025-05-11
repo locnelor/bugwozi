@@ -44,7 +44,7 @@ interface Props extends PropsWithChildren {
   createdAt: Date;
   views: number;
   likes: number;
-  uid: string
+  uid: string·
 }
 const Posts = ({
   tags,
@@ -70,7 +70,7 @@ const Posts = ({
   const [commentForm] = Form.useForm()
   const comments = useMemo(() => {
     if (!!createData) {
-      return [...data, createData.createComment]
+      return [{ ...data, user: viewer }, createData.createComment]
     }
     return data
   }, [data, createData])
@@ -78,8 +78,10 @@ const Posts = ({
   const commentFinish = useCallback((data: any) => {
     createComment({
       variables: {
-        ...data,
-        postId: uid
+        data: {
+          ...data,
+          postId: uid
+        }
       }
     })
   }, [uid])
@@ -173,7 +175,7 @@ const Posts = ({
           onFinish={commentFinish}
         >
           <Form.Item
-            name="comment"
+            name="content"
             rules={[{ required: true, message: t('commentRequired') }]}
           >
             <TextArea rows={4} placeholder={t('commentPlaceholder')} />

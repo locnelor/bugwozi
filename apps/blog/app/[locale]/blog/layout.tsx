@@ -136,7 +136,7 @@ const V1Layout = async ({ children }: AppLayoutProps) => {
                     </div>
                   </Card>
 
-                  <Card title={<span><CommentOutlined /> <Translation name="recentPosts" /></span>} className="shadow-sm">
+                  <Card title={<span><CommentOutlined /> <Translation name="recentComments" /></span>} className="shadow-sm">
                     <div className="space-y-3">
                       {recentComments.map(comment => (
                         <div key={comment.uid}>

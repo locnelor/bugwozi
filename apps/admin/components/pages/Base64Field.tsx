@@ -1,13 +1,18 @@
 import useSelectFile from "#/hooks/useSelectFile"
 import { useEffect, useState } from "react"
 import { Image } from "antd"
+import { file2base64 } from "@pkg/hooks"
 
 interface Base64FieldProps {
   value?: string
   onChange?: (value: string) => void
 }
 
-const Base64Field: React.FC<Base64FieldProps> = ({ value, onChange }) => {
+const Base64Field: React.FC<Base64FieldProps> = ({
+  value,
+  onChange,
+  ...options
+}) => {
   const [preview, setPreview] = useState<string>()
 
   const [_, selectFile] = useSelectFile({
@@ -16,12 +21,8 @@ const Base64Field: React.FC<Base64FieldProps> = ({ value, onChange }) => {
     onSelected: async (files) => {
       if (files.length === 0) return
       const file = files[0]
-      const reader = new FileReader()
-      reader.onload = (e) => {
-        const base64 = e.target?.result as string
-        onChange?.(base64)
-      }
-      reader.readAsDataURL(file)
+      const base64 = await file2base64(file, options)
+      onChange?.(base64);
     }
   })
 

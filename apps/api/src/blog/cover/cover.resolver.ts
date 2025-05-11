@@ -20,7 +20,7 @@ export class CoverResolver {
   updateCategoriesCover(
     @Args("base64") base64: string
   ) {
-    return this.coverService.savePostDefaultCover(base64)
+    return this.coverService.saveCategoriesDefaultCover(base64)
   }
 
   @Mutation(() => String)

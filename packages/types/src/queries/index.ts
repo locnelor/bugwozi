@@ -1,2 +1,5 @@
-export * from "./comment"
+export * from "./blog_comment"
 export * from "./fields"
+export * from "./blog_links"
+export * from "./blog_tags"
+export * from "./blog_categories"

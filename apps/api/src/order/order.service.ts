@@ -48,6 +48,9 @@ export class OrderService {
         state: trade_state
       }
     })
+    if(attach === "vip"){
+      //..
+    }
     //更改redis
     await this.setOrderByKey(
       this.getGoodsOnUserUidKey(result.goodsId, result.userId),

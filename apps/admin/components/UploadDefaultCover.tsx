@@ -8,15 +8,19 @@ import { useCallback, useEffect, useMemo, useState } from "react"
 interface Props {
   defaultCover?: string
   name: string
+  maxWidth?: number
 }
 const UploadDefaultCover = ({
   defaultCover,
-  name
+  name,
+  maxWidth = 1000
 }: Props) => {
   const [cover, setCover] = useState(defaultCover);
   const [open, onOpen, onCancel] = useOpen();
   const [files, selectFile] = useSelectFile({ accept: "image/*" });
-  const [base64] = useFileToBase64(files[0])
+  const [base64] = useFileToBase64(files[0], {
+    maxWidth
+  })
   const query = useMemo(() => {
     return gql`
       mutation UpdateCover(

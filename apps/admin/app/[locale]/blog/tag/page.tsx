@@ -1,55 +1,129 @@
 "use client"
-import { gql } from "@apollo/client"
-import TagsPage from "#/components/blog/tag/TagsPage"
-import { BaseUFields } from "#/libs/fields"
+import { FindTagsQuery, CreateTagMutation, UpdateTagMutation, RemoveTagMutation } from "@pkg/types"
+import { useMutation } from "@apollo/client"
+import { usePagination } from "@pkg/hooks"
+import AutoPage from "#/components/pages/AutoPage"
+import { useCallback } from "react"
+import { timeColumns } from "#/hooks/useTable"
 
-export const dynamic = "force-dynamic"
+const TagsPage = () => {
+  const [{ loading, data, onRefresh }, pagination] = usePagination({
+    query: FindTagsQuery,
+  })
 
-const FindTagsQuery = gql`
-  query FindTags($pagination: TagPaginationInput!) {
-    tags(pagination: $pagination) {
-      total
-      data {
-        ${BaseUFields}
-        name
-      }
+  const [createTag] = useMutation(CreateTagMutation)
+  const [updateTag] = useMutation(UpdateTagMutation)
+  const [removeTag] = useMutation(RemoveTagMutation)
+
+  const handleCreate = useCallback(async (values: any) => {
+    try {
+      await createTag({
+        variables: {
+          createTagInput: {
+            name: values.name,
+            description: values.description,
+          }
+        }
+      })
+      onRefresh()
+    } catch (error) {
+      console.error(error)
     }
-  }
-`
+  }, [createTag, onRefresh])
 
-const CreateTagMutation = gql`
-  mutation CreateTag($createTagInput: CreateTagInput!) {
-    createTag(createTagInput: $createTagInput) {
-      uid
-      name
+  const handleUpdate = useCallback(async (values: any) => {
+    try {
+      await updateTag({
+        variables: {
+          updateTagInput: {
+            uid: values.uid,
+            name: values.name,
+            description: values.description,
+          }
+        }
+      })
+      onRefresh()
+    } catch (error) {
+      console.error(error)
     }
-  }
-`
+  }, [updateTag, onRefresh])
 
-const UpdateTagMutation = gql`
-  mutation UpdateTag($updateTagInput: UpdateTagInput!) {
-    updateTag(updateTagInput: $updateTagInput) {
-      uid
-      name
+  const handleRemove = useCallback(async (values: any) => {
+    try {
+      await removeTag({
+        variables: {
+          uid: values.uid
+        }
+      })
+      onRefresh()
+    } catch (error) {
+      console.error(error)
     }
-  }
-`
+  }, [removeTag, onRefresh])
 
-const RemoveTagMutation = gql`
-  mutation RemoveTag($uid: String!) {
-    removeTag(uid: $uid)
-  }
-`
-
-export default function TagsListPage() {
   return (
-    <TagsPage
-      queries={{
-        find: FindTagsQuery,
-        create: CreateTagMutation,
-        update: UpdateTagMutation,
-        remove: RemoveTagMutation,
+    <AutoPage
+      dataSource={data}
+      loading={loading}
+      columns={[
+        {
+          title: '名称',
+          dataIndex: 'name',
+          key: 'name',
+        },
+        ...timeColumns
+      ]}
+      search={{
+        onSubmit: values => onRefresh(values),
+        fields: [
+          {
+            type: 'input',
+            name: 'name',
+            label: '名称',
+          },
+        ]
       }}
+      create={{
+        onSubmit: handleCreate,
+        name: '创建标签',
+        fields: [
+          {
+            type: 'input',
+            name: 'name',
+            label: '名称',
+            required: true
+          },
+          {
+            type: 'textarea',
+            name: 'description',
+            label: '描述',
+          },
+        ]
+      }}
+      update={{
+        onSubmit: handleUpdate,
+        name: '更新标签',
+        fields: [
+          {
+            type: 'input',
+            name: 'name',
+            label: '名称',
+            required: true
+          },
+          {
+            type: 'textarea',
+            name: 'description',
+            label: '描述',
+          },
+        ]
+      }}
+      remove={{
+        onSubmit: handleRemove,
+        name: '删除标签',
+      }}
+      pagination={pagination}
     />
   )
-} 
+}
+
+export default TagsPage 
