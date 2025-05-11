@@ -1,9 +1,6 @@
 
 import { prisma } from "@pkg/database";
-import About from "./About";
-import { TeamMember } from "./about";
-
-
+import About, { TeamMember } from "./about"
 async function getTeamMembers() {
   const teamMembers: TeamMember[] = [
     {
@@ -118,9 +115,8 @@ const AboutPage = async () => {
     getBlogStats()
   ]);
 
-  return <About
-    data={data}
-  />
-
+  return (
+    <About data={data} />
+  )
 }
 export default AboutPage

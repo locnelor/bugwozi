@@ -44,7 +44,7 @@ interface Props extends PropsWithChildren {
   createdAt: Date;
   views: number;
   likes: number;
-  uid: string·
+  uid: string
 }
 const Posts = ({
   tags,

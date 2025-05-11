@@ -12,9 +12,20 @@ import {
   CommentOutlined,
   HistoryOutlined
 } from "@ant-design/icons";
-import { Suspense } from "react";
-import ContactForm from "./ContactForm";
-import { TeamMember } from "./about";
+export interface TeamMember {
+  name: string;
+  role: string;
+  bio: string;
+  avatar: string;
+  socialLinks?: {
+    github?: string;
+    twitter?: string;
+    linkedin?: string;
+  };
+}
+
+import React from "react";
+import { useTranslations } from "next-intl";
 const { Title, Paragraph } = Typography;
 
 const About = ({
@@ -31,67 +42,53 @@ const About = ({
     tags: number;
   }]
 }) => {
+  const t = useTranslations("About");
 
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="bg-white rounded-lg p-6 shadow-sm">
-        {/* About Section */}
         <div className="mb-12">
           <Title level={2} className="flex items-center mb-6">
-            About Our Blog
+            {t("aboutTitle")}
           </Title>
 
           <Row gutter={24}>
             <Col xs={24} md={16}>
               <Paragraph className="text-lg leading-relaxed">
-                Welcome to our tech blog! We're dedicated to sharing knowledge, insights, and tutorials
-                on web development, programming, and design. Our goal is to help developers of all skill
-                levels stay up-to-date with the latest technologies and best practices.
+                {t("aboutParagraph1")}
               </Paragraph>
 
               <Paragraph className="text-lg leading-relaxed mt-4">
-                Whether you're looking to master React, dive into TypeScript, or explore the latest
-                in CSS techniques, our team of experienced writers creates content that is both
-                informative and practical. We believe in learning by doing, which is why our
-                tutorials are hands-on and include real-world examples.
+                {t("aboutParagraph2")}
               </Paragraph>
 
               <div className="mt-8 bg-blue-50 p-6 rounded-lg">
-                <Title level={4}>Our Mission</Title>
+                <Title level={4}>{t("missionTitle")}</Title>
                 <Paragraph>
-                  To empower developers with high-quality, accessible content that helps them
-                  build better applications and advance their careers.
+                  {t("missionContent")}
                 </Paragraph>
               </div>
             </Col>
 
             <Col xs={24} md={8}>
               <Card className="h-full">
-                <Title level={4}>Quick Facts</Title>
+                <Title level={4}>{t("quickFacts")}</Title>
                 <ul className="space-y-4 mt-4">
                   <li className="flex items-start">
                     <CalendarOutlined className="mt-1 mr-3 text-blue-500" />
-                    <div>
-                      <strong>Founded:</strong> June 2021
-                    </div>
+                    <div><strong>{t("founded")}</strong>: June 2021</div>
                   </li>
                   <li className="flex items-start">
                     <TeamOutlined className="mt-1 mr-3 text-blue-500" />
-                    <div>
-                      <strong>Team Members:</strong> {teamMembers.length}
-                    </div>
+                    <div><strong>{t("teamMembers")}</strong>: {teamMembers.length}</div>
                   </li>
                   <li className="flex items-start">
                     <FileTextOutlined className="mt-1 mr-3 text-blue-500" />
-                    <div>
-                      <strong>Articles:</strong> {blogStats.articles}+
-                    </div>
+                    <div><strong>{t("articles")}</strong>: {blogStats.articles}+</div>
                   </li>
                   <li className="flex items-start">
                     <CommentOutlined className="mt-1 mr-3 text-blue-500" />
-                    <div>
-                      <strong>Comments:</strong> {blogStats.comments}+
-                    </div>
+                    <div><strong>{t("comments")}</strong>: {blogStats.comments}+</div>
                   </li>
                 </ul>
               </Card>
@@ -101,7 +98,7 @@ const About = ({
 
         <div className="mb-12">
           <Title level={2} className="flex items-center mb-6">
-            <TeamOutlined className="mr-2" /> Our Team
+            <TeamOutlined className="mr-2" /> {t("ourTeam")}
           </Title>
 
           <Row gutter={[24, 24]}>
@@ -120,11 +117,7 @@ const About = ({
                     title={<span className="text-lg">{member.name}</span>}
                     description={<div className="text-blue-500">{member.role}</div>}
                   />
-
-                  <Paragraph className="mt-4 text-gray-600">
-                    {member.bio}
-                  </Paragraph>
-
+                  <Paragraph className="mt-4 text-gray-600">{member.bio}</Paragraph>
                   <div className="mt-auto pt-4 flex justify-center space-x-3">
                     {member.socialLinks?.github && (
                       <a href={member.socialLinks.github} target="_blank" rel="noopener noreferrer">
@@ -147,10 +140,9 @@ const About = ({
             ))}
           </Row>
         </div>
-
         <div className="mb-12">
           <Title level={2} className="flex items-center mb-6">
-            <HistoryOutlined className="mr-2" /> Our Journey
+            <HistoryOutlined className="mr-2" /> {t("ourJourney")}
           </Title>
 
           <div className="bg-gray-50 p-6 rounded-lg">
@@ -168,20 +160,16 @@ const About = ({
             />
           </div>
         </div>
-
         <div>
           <Title level={2} className="flex items-center mb-6">
-            <MailOutlined className="mr-2" /> Contact Us
+            <MailOutlined className="mr-2" /> {t("contactUs")}
           </Title>
 
           <Row gutter={24}>
             <Col xs={24} md={10}>
               <div className="bg-gray-50 p-6 rounded-lg h-full">
-                <Title level={4}>Get in Touch</Title>
-                <Paragraph>
-                  Have a question, suggestion, or want to contribute to our blog?
-                  Reach out to us using the contact form or through any of the following channels:
-                </Paragraph>
+                <Title level={4}>{t("getInTouch")}</Title>
+                <Paragraph>{t("contactIntro")}</Paragraph>
 
                 <ul className="space-y-4 mt-6">
                   <li className="flex items-center">
@@ -211,18 +199,11 @@ const About = ({
                 </ul>
               </div>
             </Col>
-
-            <Col xs={24} md={14}>
-              <Card title="Send Us a Message" className="h-full">
-                <Suspense fallback={<div>Loading contact form...</div>}>
-                  <ContactForm />
-                </Suspense>
-              </Card>
-            </Col>
           </Row>
         </div>
       </div>
     </div>
   );
-}
-export default About
+};
+
+export default About;

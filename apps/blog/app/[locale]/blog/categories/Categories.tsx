@@ -12,9 +12,9 @@ import {
   FolderOutlined,
   ReadOutlined,
 } from "@ant-design/icons";
-import Link from "next/link";
 import { blog_categories } from "@pkg/database";
 import BlogLink from "#/components/BlogLink";
+import { getCategoriesCover } from "@pkg/hooks";
 
 const { Title, Paragraph } = Typography;
 
@@ -60,20 +60,20 @@ const Categories = ({ categories, postsCount }: Props) => {
                 title={
                   <BlogLink
 
-                    href={`/category/${category.name}`}
+                    href={`/categories/${category.uid}`}
                     className="text-lg font-semibold hover:text-blue-600"
                   >
                     {category.name}
                   </BlogLink>
                 }
                 actions={[
-                  <BlogLink key="view" href={`/category/${category.name}`}>
+                  <BlogLink key="view" href={`/categories/${category.uid}`}>
                     <ReadOutlined /> View Articles
                   </BlogLink>,
                 ]}
               >
                 <img
-                  src={`${process.env.NEXT_PUBLIC_BASE_URI}/categories/${category.uid}/cover`}
+                  src={getCategoriesCover(category.uid)}
                   alt="cover"
                   className="w-full h-40 object-cover rounded mb-4 shadow-sm"
                 />

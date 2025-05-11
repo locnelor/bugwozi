@@ -16,7 +16,6 @@ export class CoverService {
   }
   public savePostDefaultCover(base64: string) {
     this.saveCover(this.file.defaultPostsCoverPath, base64);
-    return "success"
   }
 
 

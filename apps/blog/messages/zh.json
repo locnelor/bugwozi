@@ -94,5 +94,22 @@
       "passwordMismatch": "两次输入的密码不一致",
       "submit": "提交"
     }
+  },
+  "About": {
+    "aboutTitle": "关于我们的博客",
+    "aboutParagraph1": "欢迎来到我们的技术博客！我们致力于分享有关 Web 开发、编程和设计的知识、见解与教程，帮助各阶段开发者紧跟技术潮流。",
+    "aboutParagraph2": "无论你是想掌握 React，深入了解 TypeScript，还是探索最新的 CSS 技巧，我们经验丰富的团队都将为你带来实用的内容与真实案例。",
+    "missionTitle": "我们的使命",
+    "missionContent": "通过高质量、易获取的内容，助力开发者构建更好的应用、提升职业技能。",
+    "quickFacts": "博客简况",
+    "founded": "成立时间",
+    "teamMembers": "团队成员",
+    "articles": "文章数量",
+    "comments": "评论数",
+    "ourTeam": "我们的团队",
+    "ourJourney": "发展历程",
+    "contactUs": "联系我们",
+    "getInTouch": "保持联系",
+    "contactIntro": "如有问题、建议或想为博客贡献内容，请通过下方联系方式与我们沟通："
   }
 }

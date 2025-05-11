@@ -10,18 +10,16 @@ import { blog_announcements } from "@pkg/database";
 import OmsViewMarkdown from "./Markdown";
 import PostsItem from "#/app/[locale]/PostsItem";
 import { formatDateTime } from "@pkg/hooks";
+import { PropsWithChildren } from "react";
 
 
-interface HomePageTabsProps {
-  posts: any[];
+interface HomePageTabsProps extends PropsWithChildren {
   announcements: blog_announcements[];
-  postsCount: number;
 }
 
 export default function HomePageTabs({
-  posts,
   announcements,
-  postsCount,
+  children,
 }: HomePageTabsProps) {
   const t = useTranslations('Page');
 
@@ -33,12 +31,7 @@ export default function HomePageTabs({
           <HomeOutlined /> {t('article',)}
         </span>
       ),
-      children: (
-        <PostsItem
-          postsCount={postsCount}
-          posts={posts}
-        />
-      ),
+      children,
     },
     {
       key: "announcements",

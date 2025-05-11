@@ -12,7 +12,8 @@ export class CoverResolver {
   updatePostCover(
     @Args("base64") base64: string
   ) {
-    return this.coverService.savePostDefaultCover(base64)
+    this.coverService.savePostDefaultCover(base64)
+    return "success"
   }
 
   @Mutation(() => String)
@@ -20,7 +21,8 @@ export class CoverResolver {
   updateCategoriesCover(
     @Args("base64") base64: string
   ) {
-    return this.coverService.saveCategoriesDefaultCover(base64)
+    this.coverService.saveCategoriesDefaultCover(base64)
+    return "success"
   }
 
   @Mutation(() => String)
@@ -28,7 +30,8 @@ export class CoverResolver {
   updateLinkCover(
     @Args("base64") base64: string
   ) {
-    return this.coverService.saveLinkDefaultCover(base64)
+    this.coverService.saveLinkDefaultCover(base64)
+    return "success"
   }
 
 
@@ -37,6 +40,7 @@ export class CoverResolver {
   updateUserCover(
     @Args("base64") base64: string
   ) {
-    return this.coverService.saveUserDefaultAvatar(base64)
+    this.coverService.saveUserDefaultAvatar(base64)
+    return "success"
   }
 }

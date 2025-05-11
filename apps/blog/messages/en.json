@@ -19,7 +19,7 @@
     "latestPosts": {
       "title": "Latest Posts",
       "uncategorized": "Uncategorized",
-    "viewAll": "View All"
+      "viewAll": "View All"
     }
   },
   "Page": {
@@ -94,5 +94,22 @@
       "passwordMismatch": "The two passwords do not match",
       "submit": "Submit"
     }
+  },
+  "About": {
+    "aboutTitle": "About Our Blog",
+    "aboutParagraph1": "Welcome to our tech blog! We're dedicated to sharing knowledge, insights, and tutorials on web development, programming, and design.",
+    "aboutParagraph2": "Whether you're looking to master React, dive into TypeScript, or explore CSS techniques, our team creates content that's practical and informative.",
+    "missionTitle": "Our Mission",
+    "missionContent": "To empower developers with high-quality, accessible content that helps them build better applications and grow their careers.",
+    "quickFacts": "Quick Facts",
+    "founded": "Founded",
+    "teamMembers": "Team Members",
+    "articles": "Articles",
+    "comments": "Comments",
+    "ourTeam": "Our Team",
+    "ourJourney": "Our Journey",
+    "contactUs": "Contact Us",
+    "getInTouch": "Get in Touch",
+    "contactIntro": "Have a question, suggestion, or want to contribute? Reach out via the contact form or any of the following channels:"
   }
 }
