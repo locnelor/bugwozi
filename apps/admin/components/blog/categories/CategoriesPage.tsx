@@ -1,10 +1,11 @@
 "use client"
 import { useMutation } from "@apollo/client"
-import { usePagination } from "@pkg/hooks"
+import { DEFAULT_CATEGORIES_COVER, usePagination } from "@pkg/hooks"
 import AutoPage from "#/components/pages/AutoPage"
 import { useCallback } from "react"
 import { DocumentNode } from "@apollo/client"
 import { timeColumns } from "#/hooks/useTable"
+import UploadDefaultCover from "#/components/UploadDefaultCover"
 
 interface CategoriesPageProps {
   queries: {
@@ -73,6 +74,10 @@ const CategoriesPage = ({ queries }: CategoriesPageProps) => {
 
   return (
     <AutoPage
+      headerChildren={<UploadDefaultCover
+        defaultCover={DEFAULT_CATEGORIES_COVER}
+        name="updateCategoriesCover"
+      />}
       dataSource={data}
       loading={loading}
       columns={[

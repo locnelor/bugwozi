@@ -3,6 +3,8 @@ import useViewer from "#/hooks/viewer/useViewer"
 import { Link, useRouter } from "#/i18n/navigation"
 import { Avatar, Button, Menu, Popover } from "antd"
 import { useCallback, useMemo } from "react"
+import BlogLink, { getBlogHref } from "./BlogLink"
+import { setCookie } from "#/libs/cookie"
 
 
 const UserButton = () => {
@@ -10,8 +12,13 @@ const UserButton = () => {
     const router = useRouter()
 
     const onClick = useCallback(({ key }: any) => {
+        if (key === "/auth/logout") {
+            setCookie("token", "");
+            router.push("/auth")
+            return;
+        }
         router.push({
-            pathname: key
+            pathname: getBlogHref(key)
         })
     }, [])
     const menuItems = useMemo(() => {

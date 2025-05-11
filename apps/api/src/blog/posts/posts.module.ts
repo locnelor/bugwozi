@@ -2,14 +2,11 @@ import { Module } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { PostsResolver } from './posts.resolver';
 import { PrismaModule } from '@app/prisma';
-import { FileModule } from '@app/file';
-import { UtilsModule } from '@app/utils';
-import { PostsController } from './posts.controller';
+import { CoverModule } from '../cover/cover.module';
 
 @Module({
-  imports: [PrismaModule,FileModule,UtilsModule],
+  imports: [PrismaModule, CoverModule],
   providers: [PostsService, PostsResolver],
   exports: [PostsService],
-  controllers: [PostsController],
 })
-export class PostsModule {} 
+export class PostsModule { } 

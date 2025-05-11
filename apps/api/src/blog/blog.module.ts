@@ -5,6 +5,7 @@ import { CategoriesModule } from './categories/categories.module';
 import { CommentsModule } from './comments/comments.module';
 import { LinksModule } from './links/links.module';
 import { AnnouncementsModule } from './announcements/announcements.module';
+import { CoverModule } from './cover/cover.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { AnnouncementsModule } from './announcements/announcements.module';
     CommentsModule,
     LinksModule,
     AnnouncementsModule,
+    CoverModule,
   ],
 })
 export class BlogModule {}

@@ -2,8 +2,6 @@ import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { routing } from '#/i18n/routing';
 import './globals.css';
-import BlogHeader from '../../layout/BlogHeader';
-import BlogContent from '../../layout/BlogContent';
 import { ApolloWrapper } from '#/libs/apollo-wrapper';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/locale/zh_CN';
@@ -31,10 +29,7 @@ export default async function LocaleLayout({
             <ConfigProvider locale={zhCN}>
               <NextIntlClientProvider>
                 <MessageProvider>
-                  <BlogHeader />
-                  <BlogContent>
-                    {children}
-                  </BlogContent>
+                  {children}
                 </MessageProvider>
               </NextIntlClientProvider>
             </ConfigProvider>

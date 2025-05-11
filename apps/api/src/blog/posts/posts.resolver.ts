@@ -13,6 +13,9 @@ import { SysUserEntity } from '@app/prisma';
 export class PostsResolver {
   constructor(private readonly postsService: PostsService) { }
 
+
+
+
   @Mutation(() => BlogPostsEntity)
   @UseGuards(BlogArticleGuards.GqlAuthGuard([CREATE_POWER]))
   createPost(

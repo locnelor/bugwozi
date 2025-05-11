@@ -115,5 +115,26 @@ export class FileService {
     if (existsSync(path)) return path;
     return this.defaultCategoriesCoverPath
   }
-  
+
+
+  public getLinksCoverPath(uid: string) {
+    return join(this.Assets, "blog", "links", uid + ".png")
+  }
+  public defaultLinksCoverPath = join(this.Assets, "links", "default.png");
+  public getRenderLinksCoverPath(uid: string) {
+    const path = this.getLinksCoverPath(uid);
+    if (existsSync(path)) return path;
+    return this.defaultLinksCoverPath
+  }
+
+
+  public getUserAvatarPath(uid: string) {
+    return join(this.Assets, "user", "avatar", uid + ".png")
+  }
+  public defaultUserAvatarPath = join(this.Assets, "user", "default.png");
+  public getRenderUserAvatarPath(uid: string) {
+    const path = this.getUserAvatarPath(uid);
+    if (existsSync(path)) return path;
+    return this.defaultUserAvatarPath
+  }
 }

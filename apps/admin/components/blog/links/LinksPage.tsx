@@ -1,9 +1,10 @@
 "use client"
 import { useMutation, DocumentNode } from "@apollo/client"
-import { usePagination } from "@pkg/hooks"
+import { DEFAULT_LINK_COVER, usePagination } from "@pkg/hooks"
 import AutoPage from "#/components/pages/AutoPage"
 import { useCallback } from "react"
 import { timeColumns } from "#/hooks/useTable"
+import UploadDefaultCover from "#/components/UploadDefaultCover"
 
 interface LinksPageProps {
   queries: {
@@ -71,6 +72,10 @@ const LinksPage = ({ queries }: LinksPageProps) => {
     <AutoPage
       dataSource={data}
       loading={loading}
+      headerChildren={<UploadDefaultCover
+        defaultCover={DEFAULT_LINK_COVER}
+        name="updateLinkCover"
+      />}
       columns={[
         {
           title: '名称',

@@ -156,9 +156,9 @@ const AuthLoginPage = () => {
                     <Button icon={<WechatOutlined />} onClick={showWechatModal}>
                         微信登录
                     </Button>
-                    <Button icon={<GithubOutlined />} onClick={handleGiteeLogin}>
+                    {/* <Button icon={<GithubOutlined />} onClick={handleGiteeLogin}>
                         Gitee登录
-                    </Button>
+                    </Button> */}
                 </div>
             </Form>
 

@@ -1,10 +1,10 @@
 "use client"
 import { useMutation, DocumentNode } from "@apollo/client"
-import { usePagination } from "@pkg/hooks"
+import { DEFAULT_POST_COVER, usePagination } from "@pkg/hooks"
 import AutoPage from "#/components/pages/AutoPage"
 import { useCallback } from "react"
 import { timeColumns } from "#/hooks/useTable"
-import { Button } from "antd"
+import UploadDefaultCover from "#/components/UploadDefaultCover"
 
 interface PostsPageProps {
   queries: {
@@ -104,6 +104,10 @@ const PostsPage = ({ queries }: PostsPageProps) => {
           },
         ]
       }}
+      headerChildren={<UploadDefaultCover
+        defaultCover={DEFAULT_POST_COVER}
+        name="updatePostCover"
+      />}
       update={{
         onSubmit: handleUpdate,
         name: '更新文章',

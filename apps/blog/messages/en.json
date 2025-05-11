@@ -1,6 +1,29 @@
 {
+  "Index": {
+    "hero": {
+      "title": "Welcome to My Blog",
+      "typing": [
+        "Sharing tech insights",
+        "Documenting learning notes",
+        "Exploring coding beauty",
+        "Growing with you"
+      ],
+      "description": "This is my personal tech blog where I document thoughts and ideas on my coding journey. Whether you're a beginner or experienced, I hope you'll find something helpful here.",
+      "scrollDown": "Scroll down to explore more"
+    },
+    "stats": {
+      "totalPosts": "Total Posts",
+      "totalCategories": "Post Categories",
+      "possibilities": "Endless Possibilities"
+    },
+    "latestPosts": {
+      "title": "Latest Posts",
+      "uncategorized": "Uncategorized",
+    "viewAll": "View All"
+    }
+  },
   "Page": {
-    "logo": "Bug's Nest",
+    "logo": "Bug Nest",
     "article": "Articles",
     "about": "About",
     "search": "Search",
@@ -10,36 +33,66 @@
     "archives": "Archives",
     "recentPosts": "Recent Posts",
     "recentComments": "Recent Comments",
-    "comment": "Comments",
-    "author": "Xiaomuhe",
+    "comment": "Comment",
+    "author": "Xiao Muhe",
     "copyright": "Copyright",
     "license": "License",
-    "links": "Links",
+    "links": "Friend Links",
     "announcements": "Announcements",
-    "loadMore": "Load More"
+    "loadMore": "Load More",
+    "total": "Total",
+    "items": "items"
   },
   "HomePage": {
     "title": "Blog",
     "description": "This is my blog"
   },
-  "Article": {
+  "Posts": {
     "views": "Views",
+    "comment": "Comment",
     "like": "Like",
-    "likeSuccess": "Liked successfully",
+    "backToList": "Back to List",
     "comments": "Comments",
     "leaveComment": "Leave a Comment",
-    "commentRequired": "Please enter your comment",
-    "commentPlaceholder": "Write your comment here...",
-    "commentSuccess": "Comment submitted successfully",
-    "submit": "Submit",
-    "notFound": "Article Not Found",
-    "notFoundDesc": "The article you are looking for does not exist or has been removed",
-    "backToHome": "Back to Home",
-    "backToList": "Back to List"
+    "commentRequired": "Please enter a comment",
+    "commentPlaceholder": "Please enter your comment...",
+    "submit": "Submit"
   },
   "Tags": {
     "popularTags": "Popular Tags",
     "articles": "articles",
     "viewArticles": "View Articles"
+  },
+  "auth": {
+    "title": "Login",
+    "subtitle": "Please enter your account and password",
+    "account": "Account",
+    "accountRequired": "Please enter account",
+    "accountPlaceholder": "Please enter account",
+    "password": "Password",
+    "passwordRequired": "Please enter password",
+    "passwordPlaceholder": "Please enter password",
+    "submit": "Login",
+    "init": {
+      "title": "Initialize Website Information",
+      "subtitle": "Please fill in the following information to initialize your website",
+      "roleName": "Role Name",
+      "roleNameRequired": "Please enter role name",
+      "roleNamePlaceholder": "Please enter role name",
+      "username": "Username",
+      "usernameRequired": "Please enter username",
+      "usernamePlaceholder": "Please enter username",
+      "account": "Account",
+      "accountRequired": "Please enter account",
+      "accountPlaceholder": "Please enter account",
+      "password": "Password",
+      "passwordRequired": "Please enter password",
+      "passwordPlaceholder": "Please enter password",
+      "confirmPassword": "Confirm Password",
+      "confirmPasswordRequired": "Please confirm password",
+      "confirmPasswordPlaceholder": "Please re-enter password",
+      "passwordMismatch": "The two passwords do not match",
+      "submit": "Submit"
+    }
   }
 }

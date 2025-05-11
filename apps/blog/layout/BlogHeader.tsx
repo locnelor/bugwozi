@@ -10,24 +10,36 @@ import {
 import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '#/i18n/navigation';
 import UserButton from '#/components/UserButton';
+import { usePathname } from 'next/navigation';
+import BlogLink from '#/components/BlogLink';
 
 const BlogHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const t = useTranslations();
   const locale = useLocale();
+  const pathname = usePathname();
 
   const toggleMenu = useCallback(() => {
     setIsMenuOpen(prev => !prev);
   }, []);
 
+  const getLocalePath = useCallback((targetLocale: string) => {
+    if (locale === 'zh') {
+      return targetLocale === 'zh' ? pathname : pathname;
+    }
+
+    const pathWithoutLocale = pathname.replace(/^\/en/, '');
+    return pathWithoutLocale || '/';
+  }, [pathname, locale]);
+
   const languageItems = [
     {
       key: 'zh',
-      label: <Link href="/" locale="zh">中文</Link>,
+      label: <Link href={getLocalePath('zh')} locale="zh">中文</Link>,
     },
     {
       key: 'en',
-      label: <Link href="/" locale="en">English</Link>,
+      label: <Link href={getLocalePath('en')} locale="en">English</Link>,
     },
   ];
 
@@ -44,24 +56,24 @@ const BlogHeader = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
-            <Link href="/" className="text-gray-700 hover:text-blue-600">
+            <BlogLink href="/" className="text-gray-700 hover:text-blue-600">
               {t('Page.article')}
-            </Link>
-            <Link href="/archives" className="text-gray-700 hover:text-blue-600">
+            </BlogLink>
+            {/* <Link href="/archives" className="text-gray-700 hover:text-blue-600">
               {t('Page.archives')}
-            </Link>
-            <Link href="/categories" className="text-gray-700 hover:text-blue-600">
+            </Link> */}
+            <BlogLink href="/categories" className="text-gray-700 hover:text-blue-600">
               {t('Page.categories')}
-            </Link>
-            <Link href="/tags" className="text-gray-700 hover:text-blue-600">
+            </BlogLink>
+            <BlogLink href="/tags" className="text-gray-700 hover:text-blue-600">
               {t('Page.tags')}
-            </Link>
-            <Link href="/links" className="text-gray-700 hover:text-blue-600">
+            </BlogLink>
+            <BlogLink href="/links" className="text-gray-700 hover:text-blue-600">
               {t('Page.links')}
-            </Link>
-            <Link href="/about" className="text-gray-700 hover:text-blue-600">
+            </BlogLink>
+            <BlogLink href="/about" className="text-gray-700 hover:text-blue-600">
               {t('Page.about')}
-            </Link>
+            </BlogLink>
           </nav>
 
           <div className="flex items-center space-x-4">

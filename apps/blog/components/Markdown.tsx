@@ -25,29 +25,31 @@ const OmsViewMarkdown = (props: tProps) => {
     them.light = coyWithoutShadows;
   }
   return (
-    <ReactMarkdown
-      components={{
-        code({ node, className, children, ...props }) {
-          const match = /language-(\w+)/.exec(className || '');
-          return match ? (
-            <SyntaxHighlighter
-              showLineNumbers={true}
-              language={match[1]}
-              PreTag='div'
-              {...props as any}
-            >
-              {String(children).replace(/\n$/, '')}
-            </SyntaxHighlighter>
-          ) : (
-            <code className={className} {...props}>
-              {children}
-            </code>
-          );
-        }
-      }}
-    >
-      {textContent}
-    </ReactMarkdown>
+    <div className="markdown">
+      <ReactMarkdown
+        components={{
+          code({ node, className, children, ...props }) {
+            const match = /language-(\w+)/.exec(className || '');
+            return match ? (
+              <SyntaxHighlighter
+                showLineNumbers={true}
+                language={match[1]}
+                PreTag='div'
+                {...props as any}
+              >
+                {String(children).replace(/\n$/, '')}
+              </SyntaxHighlighter>
+            ) : (
+              <code className={className} {...props}>
+                {children}
+              </code>
+            );
+          }
+        }}
+      >
+        {textContent}
+      </ReactMarkdown>
+    </div>
   );
 };
 

@@ -5,7 +5,8 @@ import { CreateCommentInput } from './dto/create-comment.input';
 import { UpdateCommentInput } from './dto/update-comment.input';
 import { CommentsPaginationInput, CommentsPaginationEntity } from './dto/comments.pagination';
 import { UseGuards } from '@nestjs/common';
-import { BlogCommentGuards, CREATE_POWER, DELETE_POWER, UPDATE_POWER, VIEW_POWER } from '@app/auth-power';
+import { BlogCommentGuards, CREATE_POWER, DELETE_POWER, GqlCurrentUser, UPDATE_POWER, VIEW_POWER } from '@app/auth-power';
+import { SysUserEntity } from '@app/prisma';
 
 @Resolver(() => BlogCommentsEntity)
 @UseGuards(BlogCommentGuards.GqlAuthGuard())
@@ -14,8 +15,14 @@ export class CommentsResolver {
 
   @Mutation(() => BlogCommentsEntity)
   @UseGuards(BlogCommentGuards.GqlAuthGuard([CREATE_POWER]))
-  createComment(@Args('createCommentInput') createCommentInput: CreateCommentInput) {
-    return this.commentsService.create(createCommentInput);
+  createComment(
+    @Args('createCommentInput') createCommentInput: CreateCommentInput,
+    @GqlCurrentUser() user: SysUserEntity
+  ) {
+    return this.commentsService.create({
+      ...createCommentInput,
+      userId: user.uid
+    });
   }
 
   @Query(() => CommentsPaginationEntity)

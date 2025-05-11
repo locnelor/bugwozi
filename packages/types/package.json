@@ -10,6 +10,7 @@
     "@internal/tsconfig": "workspace:*",
     "react":"19",
     "@nestjs/graphql": "^13.0.3",
+    "@apollo/client": "^3.13.8",
     "@pkg/database": "workspace:*"
   },
   "devDependencies": {

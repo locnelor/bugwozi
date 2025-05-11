@@ -5,12 +5,6 @@ export class CreateCommentInput {
   @Field(() => String)
   content: string;
 
-  @Field(() => Boolean)
-  status: boolean;
-
-  @Field(() => String)
-  userId: string;
-
   @Field(() => String)
   postId: string;
 } 

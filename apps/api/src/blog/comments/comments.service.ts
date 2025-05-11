@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@app/prisma';
-import { CreateCommentInput } from './dto/create-comment.input';
 import { UpdateCommentInput } from './dto/update-comment.input';
 import { CommentsPaginationInput } from './dto/comments.pagination';
 import { Prisma } from '@pkg/database';
@@ -8,7 +7,7 @@ import { Prisma } from '@pkg/database';
 export class CommentsService {
   constructor(private readonly prisma: PrismaService) { }
 
-  create(createCommentInput: CreateCommentInput) {
+  create(createCommentInput) {
     return this.prisma.blog_comments.create({
       data: {
         content: createCommentInput.content,

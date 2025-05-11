@@ -1,4 +1,27 @@
 {
+  "Index": {
+    "hero": {
+      "title": "欢迎来到我的博客",
+      "typing": [
+        "分享技术见解",
+        "记录学习心得",
+        "探讨编程之美",
+        "与你一起成长"
+      ],
+      "description": "这里是我的个人技术博客，记录着我在编程之路上的所思所想。无论你是初学者还是老手，都希望能在这里找到对你有帮助的内容。",
+      "scrollDown": "向下滚动探索更多"
+    },
+    "stats": {
+      "totalPosts": "文章总数",
+      "totalCategories": "文章分类",
+      "possibilities": "无限可能"
+    },
+    "latestPosts": {
+      "title": "最新文章",
+      "uncategorized": "未分类",
+      "viewAll": "查看全部"
+    }
+  },
   "Page": {
     "logo": "Bug窝子",
     "article": "文章",
@@ -16,26 +39,24 @@
     "license": "协议",
     "links": "友链",
     "announcements": "公告",
-    "loadMore": "加载更多"
+    "loadMore": "加载更多",
+    "total": "共",
+    "items": "条数据"
   },
   "HomePage": {
     "title": "博客",
     "description": "这是我的博客"
   },
-  "Article": {
+  "Posts": {
     "views": "浏览",
+    "comment": "评论",
     "like": "点赞",
-    "likeSuccess": "点赞成功",
+    "backToList": "返回列表",
     "comments": "评论",
     "leaveComment": "发表评论",
     "commentRequired": "请输入评论内容",
     "commentPlaceholder": "请输入您的评论...",
-    "commentSuccess": "评论发表成功",
-    "submit": "提交",
-    "notFound": "文章未找到",
-    "notFoundDesc": "您要查找的文章不存在或已被删除",
-    "backToHome": "返回首页",
-    "backToList": "返回列表"
+    "submit": "提交"
   },
   "Tags": {
     "popularTags": "热门标签",
