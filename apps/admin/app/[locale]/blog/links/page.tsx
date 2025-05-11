@@ -1,7 +1,7 @@
 "use client"
 import { FindLinksQuery, CreateLinkMutation, UpdateLinkMutation, RemoveLinkMutation } from "@pkg/types"
 import { useMutation } from "@apollo/client"
-import { DEFAULT_LINK_COVER, usePagination } from "@pkg/hooks"
+import { DEFAULT_LINK_COVER, getLinkCover, usePagination } from "@pkg/hooks"
 import AutoPage from "#/components/pages/AutoPage"
 import { useCallback } from "react"
 import { timeColumns } from "#/hooks/useTable"
@@ -70,6 +70,17 @@ const LinksPage = () => {
         name="updateLinkCover"
       />}
       columns={[
+        {
+          title: "封面",
+          dataIndex: "uid",
+          render: (uid: string) => {
+            return (
+              <img
+                src={getLinkCover(uid)}
+              />
+            )
+          }
+        },
         {
           title: '名称',
           dataIndex: 'name',

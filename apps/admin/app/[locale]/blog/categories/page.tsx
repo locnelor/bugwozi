@@ -1,7 +1,7 @@
 "use client"
 import { FindCategoriesQuery, CreateCategoryMutation, UpdateCategoryMutation, RemoveCategoryMutation } from "@pkg/types"
 import { useMutation } from "@apollo/client"
-import { DEFAULT_CATEGORIES_COVER, usePagination } from "@pkg/hooks"
+import { DEFAULT_CATEGORIES_COVER, getCategoriesCover, usePagination } from "@pkg/hooks"
 import AutoPage from "#/components/pages/AutoPage"
 import { useCallback } from "react"
 import { timeColumns } from "#/hooks/useTable"
@@ -82,7 +82,7 @@ const CategoriesPage = () => {
           render: (uid: string) => {
             return (
               <img
-                src={`${process.env.NEXT_PUBLIC_BASEURI}/categories/${uid}/cover`}
+                src={getCategoriesCover(uid)}
               />
             )
           }

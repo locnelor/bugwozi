@@ -87,9 +87,6 @@ const UploadDefaultCover = ({
                 maxHeight: '100%',
                 objectFit: 'contain'
               }}
-              onError={(e) => {
-                e.currentTarget.style.display = 'none';
-              }}
             />
           ) : (
             <div style={{

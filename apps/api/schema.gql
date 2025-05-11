@@ -364,6 +364,10 @@ type Mutation {
   createPost(createPostInput: CreatePostInput!): BlogPostsEntity!
   updatePost(updatePostInput: UpdatePostInput!): BlogPostsEntity!
   removePost(uid: String!): BlogPostsEntity!
+  updatePostCover(base64: String!): String!
+  updateCategoriesCover(base64: String!): String!
+  updateLinkCover(base64: String!): String!
+  updateUserCover(base64: String!): String!
   createTag(createTagInput: CreateTagInput!): BlogTagEntity!
   updateTag(updateTagInput: UpdateTagInput!): BlogTagEntity!
   removeTag(uid: String!): BlogTagEntity!
@@ -451,27 +455,26 @@ input UpdateTagInput {
 input CreateCategoryInput {
   name: String!
   description: String
+  base64: String
 }
 
 input UpdateCategoryInput {
   name: String
   description: String
+  base64: String
   uid: String!
 }
 
 input CreateCommentInput {
   content: String!
-  status: Boolean!
-  userId: String!
   postId: String!
 }
 
 input UpdateCommentInput {
   content: String
-  status: Boolean
-  userId: String
   postId: String
   uid: String!
+  status: Boolean!
 }
 
 input CreateLinkInput {

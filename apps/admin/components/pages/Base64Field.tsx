@@ -33,7 +33,7 @@ const Base64Field: React.FC<Base64FieldProps> = ({
   return (
     <div onClick={selectFile} style={{ cursor: 'pointer' }}>
       {preview ? (
-        <Image src={preview} alt="preview" width={200} />
+        <Image src={preview?.startsWith('data:image') ? preview.substring(preview.indexOf(',') + 1) : preview} alt="preview" width={200} />
       ) : (
         <div style={{
           width: 200,
