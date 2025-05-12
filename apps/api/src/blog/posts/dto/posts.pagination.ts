@@ -1,6 +1,7 @@
 import { Field, InputType, ObjectType } from '@nestjs/graphql';
 import { BlogPostsEntity } from '@app/prisma/entity/blog/blog.posts.entity';
 import { BasePagination, BasePaginationInput } from '@app/prisma/entity/base.pagination';
+import { BlogCategoriesEntity } from '@app/prisma/entity/blog';
 
 @ObjectType()
 export class PostsPaginationEntity extends BasePagination {
@@ -21,4 +22,7 @@ export class PostsPaginationInput extends BasePaginationInput {
 
   @Field(() => String, { nullable: true })
   categoriesId?: string;
+
+  @Field(() => BlogCategoriesEntity, { nullable: true })
+  categories?: BlogCategoriesEntity
 } 
