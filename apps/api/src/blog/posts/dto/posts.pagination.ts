@@ -22,7 +22,4 @@ export class PostsPaginationInput extends BasePaginationInput {
 
   @Field(() => String, { nullable: true })
   categoriesId?: string;
-
-  @Field(() => BlogCategoriesEntity, { nullable: true })
-  categories?: BlogCategoriesEntity
 } 

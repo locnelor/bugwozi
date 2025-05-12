@@ -154,7 +154,7 @@ type BlogPostsEntity {
   userId: String!
   user: SysUserEntity
   tags: [BlogPostsOnTagsEntity!]
-  categories: [BlogCategoriesEntity!]
+  categories: BlogCategoriesEntity
 }
 
 type PostsPaginationEntity {

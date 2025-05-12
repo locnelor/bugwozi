@@ -7,10 +7,10 @@ import { SysUserEntity } from "../sys";
 
 @ObjectType()
 export class BlogPostsEntity extends BaseUEntity implements blog_posts {
-  @Field(()=>Int)
+  @Field(() => Int)
   views: number;
 
-  @Field(()=>Int)
+  @Field(() => Int)
   likes: number;
 
   @Field()
@@ -34,6 +34,6 @@ export class BlogPostsEntity extends BaseUEntity implements blog_posts {
   @Field(() => [BlogPostsOnTagsEntity], { nullable: true })
   tags?: BlogPostsOnTagsEntity[]
 
-  @Field(() => [BlogCategoriesEntity], { nullable: true })
-  categories?: BlogCategoriesEntity[]
+  @Field(() => BlogCategoriesEntity, { nullable: true })
+  categories?: BlogCategoriesEntity
 }
