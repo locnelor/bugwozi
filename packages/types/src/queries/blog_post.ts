@@ -1,10 +1,12 @@
 import { gql } from "@apollo/client"
+import { BaseUFields } from "./fields"
 
 export const FindPostsQuery = gql`
   query FindPosts($pagination: PostsPaginationInput!) {
     posts(pagination: $pagination) {
       total
       data {
+        ${BaseUFields}
         title
         content
         status
