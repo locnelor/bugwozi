@@ -4,8 +4,6 @@ import ClientPage from "./ClientPage";
 
 const HomePage = async () => {
   const { viewer } = await getViewer();
-
-  // 获取用户基本信息及统计数据
   const user = await prisma.sys_user.findUnique({
     where: {
       uid: viewer.uid
@@ -58,8 +56,6 @@ const HomePage = async () => {
 
   return (
     <div className="flex flex-col gap-6 w-full">
-
-
       <ClientPage user={user} />
       <div className="grid grid-cols-3 gap-4">
         <div className="p-4 bg-white rounded-lg shadow">
@@ -71,7 +67,6 @@ const HomePage = async () => {
           <p className="text-2xl">{user._count.blog_comments}</p>
         </div>
       </div>
-
       <div className="grid grid-cols-2 gap-6">
         <div className="bg-white rounded-lg shadow p-6">
           <h3 className="text-xl font-semibold mb-4">最近发布的文章</h3>

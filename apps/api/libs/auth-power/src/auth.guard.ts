@@ -228,3 +228,5 @@ export const DELETE_POWER = 1 << 3; //增加权限
 export const EXPORT_POWER = 1 << 4; //导出权限
 export const IMPORT_POWER = 1 << 5; //导入权限
 export const ASSIGN_POWER = 1 << 6; //分配权限
+export const UPDATE_SELF_POWER = 1 << 7//修改自己数据的权限
+export const DELETE_SELF_POWER = 1 << 8;//删除自己数据的权限
