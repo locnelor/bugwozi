@@ -31,15 +31,9 @@ const ArticlePage = async (props: AppPageProps) => {
 
   return (
     <Posts
-      title={posts.title}
-      views={posts.views}
-      likes={posts.likes}
-      createdAt={posts.createdAt}
-      uid={posts.uid}
+      {...posts}
       posts={posts}
-      user={posts.user}
       tags={posts.tags.map(e => e.tag)}
-      categories={posts.categories}
       commentTotal={posts._count.comments}
     >
       <OmsViewMarkdown

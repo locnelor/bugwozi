@@ -56,9 +56,6 @@ export const CurrentUser = createParamDecorator(
 
 const handleRequest = (user: SysUserEntity, path: string, power?: number[]) => {
   if (!power) return user as any;
-  // const { menu: { powers } } = user?.role?.menus?.find((e) => {
-  //   return e?.menu.path === path
-  // }) || { powers: 0 };
   const find = user?.role?.menus?.find((e) => {
     return e?.menu?.path === path
   })

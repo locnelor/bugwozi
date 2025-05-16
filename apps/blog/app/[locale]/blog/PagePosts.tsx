@@ -1,5 +1,5 @@
 import { Prisma, prisma } from "@pkg/database"
-import PostsItem from "../PostsItem"
+import PostRender from "../PostRender"
 
 
 interface Props {
@@ -43,7 +43,7 @@ const PagePosts = async ({
   })
   const postsCount = await prisma.blog_posts.count({ where })
   return (
-    <PostsItem
+    <PostRender
       postsCount={postsCount}
       posts={posts.map(e => ({ ...e, content: e.content.substring(0, 200) + "..." }))}
     />

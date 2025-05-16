@@ -104,9 +104,9 @@ export class PostsService {
     });
   }
 
-  async update({ uid, tags, base64, ...data }: UpdatePostInput) {
+  async update({ uid, tags, base64, ...data }: UpdatePostInput, user?: SysUserEntity) {
     const posts = await this.prisma.blog_posts.update({
-      where: { uid },
+      where: { uid, userId: user?.uid },
       data,
     });
     this.cover.savePostCover(posts.uid, base64)

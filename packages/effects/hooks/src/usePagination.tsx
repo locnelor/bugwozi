@@ -26,14 +26,15 @@ export const usePagination = ({
   useEffect(() => {
     return () => clearTimeout(time);
   }, [time])
-  const onRefresh = useCallback((variables?: any) => {
+  const onRefresh = useCallback((data = variables) => {
     setTime(setTimeout(() => {
       refetch({
         variables: {
           pagination: {
             skip: (page - 1) * size,
             take: size,
-            ...variables
+            ...variables,
+            ...data
           },
         }
       })

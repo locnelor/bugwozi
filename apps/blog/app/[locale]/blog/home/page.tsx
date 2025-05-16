@@ -1,6 +1,8 @@
 import { getViewer } from "#/hooks/viewer/getViewer"
 import { prisma } from "@pkg/database";
 import ClientPage from "./ClientPage";
+import ArticleItem from "#/components/PostList";
+import PostList from "#/components/PostList";
 
 const HomePage = async () => {
   const { viewer } = await getViewer();
@@ -26,10 +28,13 @@ const HomePage = async () => {
       createdAt: 'desc'
     },
     take: 5,
-    select: {
-      uid: true,
-      title: true,
-      createdAt: true
+    include: {
+      categories: true,
+      tags: {
+        include: {
+          tag: true
+        }
+      }
     }
   });
 
@@ -70,7 +75,7 @@ const HomePage = async () => {
       <div className="grid grid-cols-2 gap-6">
         <div className="bg-white rounded-lg shadow p-6">
           <h3 className="text-xl font-semibold mb-4">最近发布的文章</h3>
-          <ul className="space-y-3">
+          {/* <ul className="space-y-3">
             {recentPosts.map(post => (
               <li key={post.uid} className="border-b pb-2">
                 <h4 className="font-medium">{post.title}</h4>
@@ -79,7 +84,10 @@ const HomePage = async () => {
                 </p>
               </li>
             ))}
-          </ul>
+          </ul> */}
+          <PostList
+            posts={recentPosts.map(e => ({ ...e, content: e.content.substring(0, 100) + '...' }))}
+          />
         </div>
         <div className="bg-white rounded-lg shadow p-6">
           <h3 className="text-xl font-semibold mb-4">最近的评论</h3>

@@ -8,12 +8,13 @@ import { useCallback, useEffect, useMemo, useState } from "react"
 interface Props {
   defaultCover?: string
   name: string
-  maxWidth?: number
+  maxWidth?: number,
+  title?: string
 }
 const UploadDefaultCover = ({
   defaultCover,
   name,
-  maxWidth = 1000
+  maxWidth = 1000,
 }: Props) => {
   const [cover, setCover] = useState(defaultCover);
   const [open, onOpen, onCancel] = useOpen();

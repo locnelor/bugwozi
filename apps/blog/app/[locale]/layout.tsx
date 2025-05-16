@@ -8,6 +8,18 @@ import zhCN from 'antd/locale/zh_CN';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import 'dayjs/locale/zh-cn';
 import MessageProvider from '#/hooks/MessageProvider';
+
+import { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'Bug窝子',
+  description: '欢迎来到bug窝子',
+  applicationName: "我的博客",
+  authors: {
+    name: "locnelor",
+    url: "https://github.com/locnelor"
+  },
+  keywords: ['blog', 'nextjs', 'react', 'locnelor', 'bug', '窝子'],
+}
 export default async function LocaleLayout({
   children,
   params

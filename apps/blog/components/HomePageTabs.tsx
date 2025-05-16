@@ -8,7 +8,7 @@ import {
 import { useTranslations } from 'next-intl';
 import { blog_announcements } from "@pkg/database";
 import OmsViewMarkdown from "./Markdown";
-import PostsItem from "#/app/[locale]/PostsItem";
+import PostsItem from "#/app/[locale]/PostRender";
 import { formatDateTime } from "@pkg/hooks";
 import { PropsWithChildren } from "react";
 

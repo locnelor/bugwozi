@@ -12,7 +12,6 @@ import { getPrismaClient } from '#/libs/db';
 import { PropsWithChildren } from "react"
 import RedirectPage from "#/app/[locale]/redirectPage";
 import zhCN from 'antd/locale/zh_CN';
-// for date-picker i18n
 import 'dayjs/locale/zh-cn';
 import { ConfigProvider } from 'antd';
 

@@ -18,6 +18,7 @@ import { gql, useMutation } from "@apollo/client"
 import gqlError from "#/libs/gqlError"
 import { useRouter } from "#/i18n/navigation"
 import { useFileToBase64 } from "@pkg/hooks"
+import { getBlogHref } from "#/components/BlogLink"
 
 const { TextArea } = Input
 const { Title } = Typography
@@ -92,13 +93,13 @@ const CreatorClient = ({ posts = {}, categories }: Props) => {
     };
     (!!uid ? update : create)({ variables }).then(({ data: { createPost, updatePost } }: any) => {
       const result = createPost || updatePost;
-      router.push(`/posts/${result.uid}`)
+      router.push(getBlogHref(`/posts/${result.uid}`))
     }).catch((err) => { gqlError(err) })
   }, [title, content, tags, categoriesId, base64, posts])
 
   return (
     <div className="max-w-7xl mx-auto px-8 py-10 bg-white rounded-2xl shadow-lg space-y-10">
-      <Title level={2} className="!text-center">发布文章</Title>
+      <Title level={2} className="!text-center">{posts.uid ? '修改文章' : '发布文章'}</Title>
       <Form layout="vertical" className="space-y-8">
         <Form.Item label="文章封面">
           <Upload

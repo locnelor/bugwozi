@@ -1,57 +1,14 @@
 "use client"
-import { usePagination } from "@pkg/hooks"
-import { gql, useQuery } from "@apollo/client"
-import { BaseUFields } from "#/libs/fields"
+import { DEFAULT_USER_AVATAR, getUserAvatar, usePagination } from "@pkg/hooks"
+import { useQuery } from "@apollo/client"
 import AutoPage from "#/components/pages/AutoPage"
 import { useMutation } from "@apollo/client"
 import { useDataSource } from "#/hooks/useTable"
 import { RolesQuery } from "../role/gql"
 import { useMemo } from "react"
+import { FindUserListQuery, CreateUserMutation, UpdateUserMutation, RemoveUserMutation } from "@pkg/types"
+import UploadDefaultCover from "#/components/UploadDefaultCover"
 
-const FindUserListQuery = gql`
-  query FindUserList($pagination: UserPaginationInput!) {
-    userList(pagination: $pagination) {
-      total
-      data {
-        ${BaseUFields}
-        name
-        account
-        roleId
-        role{
-          name
-        }
-      }
-    }
-  }
-`
-
-const CreateUserMutation = gql`
-  mutation CreateUser($createInput: CreateUserInput!) {
-    createUser(createInput: $createInput) {
-      uid
-      name
-      account
-    }
-  }
-`
-
-const UpdateUserMutation = gql`
-  mutation UpdateUser($updateInput: UpdateUserInput!) {
-    updateUser(updateInput: $updateInput) {
-      uid
-      name
-      account
-    }
-  }
-`
-
-const RemoveUserMutation = gql`
-  mutation RemoveUser($uid: String!) {
-    removeUser(uid: $uid) {
-      uid
-    }
-  }
-`
 
 const SystemUserPage = () => {
   const [{
@@ -123,10 +80,21 @@ const SystemUserPage = () => {
   return (
     <AutoPage
       dataSource={dataSource}
+      headerChildren={<UploadDefaultCover
+        defaultCover={DEFAULT_USER_AVATAR}
+        name="updateUserCover"
+      />}
       columns={[
         {
-          title: '用户ID',
-          dataIndex: 'uid',
+          title: "用户头像",
+          dataIndex: "uid",
+          render: (uid: string) => {
+            return (
+              <img
+                src={getUserAvatar(uid)}
+              />
+            )
+          }
         },
         {
           title: '用户名',

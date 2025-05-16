@@ -21,7 +21,7 @@ export const getUserAvatar = (uid: string) => {
 export const DEFAULT_POST_COVER = `${baseURI}/cover/default/post`
 export const DEFAULT_CATEGORIES_COVER = `${baseURI}/cover/default/categories`
 export const DEFAULT_LINK_COVER = `${baseURI}/cover/default/link`
-
+export const DEFAULT_USER_AVATAR = `${baseURI}/cover/default/user`
 
 export const formatDate = (date: any) => dayjs(date).format("YYYY-MM-DD")
 export const formatDateTime = (date: any) => dayjs(date).format("YYYY-MM-DD HH:mm:ss")

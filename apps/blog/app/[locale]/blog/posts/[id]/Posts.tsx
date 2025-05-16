@@ -58,9 +58,9 @@ const Posts = ({
   likes,
   uid
 }: Props) => {
-  const { viewer } = useViewer();
+  // const { viewer } = useViewer();
   const t = useTranslations('Posts');
-  const [{ data }] = usePagination({
+  const [{ data, onRefresh }] = usePagination({
     query: FindCommentsQuery,
     variables: {
       postId: uid
@@ -69,9 +69,6 @@ const Posts = ({
   const [createComment, { data: createData, loading: createLoading }] = useMutation(CreateCommentMutation);
   const [commentForm] = Form.useForm()
   const comments = useMemo(() => {
-    if (!!createData) {
-      return [{ ...data, user: viewer }, createData.createComment]
-    }
     return data
   }, [data, createData])
 
@@ -83,6 +80,8 @@ const Posts = ({
           postId: uid
         }
       }
+    }).then(() => {
+      onRefresh()
     })
   }, [uid])
   return (
@@ -153,7 +152,7 @@ const Posts = ({
           itemLayout="horizontal"
           dataSource={comments}
           renderItem={(comment) => (
-            <List.Item>
+            <List.Item key={comment.uid}>
               <List.Item.Meta
                 avatar={<Avatar src={getUserAvatar(comment.user.uid)} icon={<UserOutlined />} />}
                 title={
@@ -181,7 +180,7 @@ const Posts = ({
             <TextArea rows={4} placeholder={t('commentPlaceholder')} />
           </Form.Item>
           <Form.Item>
-            <Button loading={createLoading} onClick={commentForm.submit} type="primary" htmlType="submit">
+            <Button loading={createLoading} type="primary" htmlType="submit">
               {t('submit')}
             </Button>
           </Form.Item>

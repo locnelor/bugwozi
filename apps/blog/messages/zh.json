@@ -95,6 +95,17 @@
       "submit": "提交"
     }
   },
+  "Categories": {
+    "title": "分类",
+    "description": "浏览我们博客中的所有分类。每个分类包含与特定主题相关的文章。",
+    "stat": {
+      "categories": "分类数",
+      "articles": "文章数"
+    },
+    "viewArticles": "查看文章",
+    "noDescription": "暂无描述。",
+    "empty": "未找到分类"
+  },
   "About": {
     "aboutTitle": "关于我们的博客",
     "aboutParagraph1": "欢迎来到我们的技术博客！我们致力于分享有关 Web 开发、编程和设计的知识、见解与教程，帮助各阶段开发者紧跟技术潮流。",
