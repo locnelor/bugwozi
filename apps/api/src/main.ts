@@ -1,40 +1,29 @@
 import { NestFactory } from '@nestjs/core';
-// import { StudyRoomModule } from './study-room.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { ConfigService } from '@nestjs/config';
-// import { LoggingInterceptor } from '@app/logger/logging.interceptor';
-// import { PrismaService } from '@app/prisma';
-import { FileService } from '@app/file';
 import { AppModule } from './app.module';
-import { XMLMiddleware } from './wx/xml.middleware';
 import * as bodyParser from 'body-parser';
 require('body-parser-xml')(bodyParser);
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     // logger: false,
-    httpsOptions:
-      process.env.HTTPS_ENABLED === 'true'
-        ? {
-          key: FileService.getSSLKey(),
-          cert: FileService.getSSLPem(),
-        }
-        : undefined,
+    // httpsOptions:
+    //   process.env.HTTPS_ENABLED === 'true'
+    //     ? {
+    //       key: FileService.getSSLKey(),
+    //       cert: FileService.getSSLPem(),
+    //     }
+    //     : undefined,
     rawBody: true,
   });
   const configService: any = app.get(ConfigService);
   app.enableCors({
-    origin: [
-      'http://localhost:3000',
-      'http://localhost:5173',
-      'http://localhost:25001',
-      'http://admin.bugwozi.top',
-      'https://blog.bugwozi.top',
-      'http://bugwozi.top',
-      'https://bugwozi.top'
-    ],
+    origin: (origin, callback) => {
+      callback(null, origin); // 允许任意来源
+    },
     credentials: true,
   });
 
@@ -45,7 +34,6 @@ async function bootstrap() {
       },
     }),
   );
-  // app.use(bodyParser.urlencoded({ extended: true }));
   app.useBodyParser('text');
   app.useBodyParser('raw');
   app.useBodyParser('json', { limit: '10mb' });

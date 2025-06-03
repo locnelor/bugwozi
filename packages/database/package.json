@@ -20,7 +20,7 @@
     "@prisma/client": "latest"
   },
   "devDependencies": {
-    "@internal/tsconfig": "workspace:*",
+    "@pkg/tsconfig": "workspace:*",
     "eslint": "^8.57.0",
     "prisma": "latest",
     "rimraf": "^5.0.5",

@@ -1,12 +1,12 @@
 {
-  "name": "@internal/tailwind-config",
+  "name": "@pkg/tailwind-config",
   "version": "0.0.0",
   "private": true,
   "exports": {
     ".": "./tailwind.config.ts"
   },
   "devDependencies": {
-    "@internal/tsconfig": "workspace:*",
+    "@pkg/tsconfig": "workspace:*",
     "tailwindcss": "^3.4.17"
   }
 }

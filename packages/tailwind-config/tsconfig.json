@@ -1,5 +1,5 @@
 {
-  "extends": "@internal/tsconfig/base.json",
+  "extends": "@pkg/tsconfig/base.json",
   "include": ["."],
   "exclude": ["dist", "build", "node_modules"]
 }

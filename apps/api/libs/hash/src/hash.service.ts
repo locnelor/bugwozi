@@ -1,6 +1,6 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
-import { BinaryLike, createHash, randomBytes, pbkdf2Sync } from "crypto";
+import { BinaryLike, createHash, randomBytes, pbkdf2Sync, randomUUID } from "crypto";
 // import {
 //   MODULE_OPTIONS_TOKEN,
 //   HashModuleOptions,
@@ -54,9 +54,7 @@ export class HashService {
     return hash === storedHash;
   }
 
-  public createUid(args = [] as string[]) {
-    return this.md5(
-      this.sha1(`${Math.random()}_${Date.now()}_${args.join("_")}`),
-    );
+  public createUid() {
+    return randomUUID()
   }
 }

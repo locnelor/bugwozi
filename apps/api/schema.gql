@@ -363,6 +363,7 @@ type Mutation {
   getQrCode: QrCodeResult!
   createPost(createPostInput: CreatePostInput!): BlogPostsEntity!
   updatePost(updatePostInput: UpdatePostInput!): BlogPostsEntity!
+  updateSelfPost(updatePostInput: UpdatePostInput!): BlogPostsEntity!
   removePost(uid: String!): BlogPostsEntity!
   updatePostCover(base64: String!): String!
   updateCategoriesCover(base64: String!): String!

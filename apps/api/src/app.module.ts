@@ -15,8 +15,6 @@ import { WxModule } from './wx/wx.module';
 import { BookkeepingModule } from './bookkeeping/bookkeeping.module';
 import { BookModule } from './book/book.module';
 import { RedisCacheModule } from '@app/redis-cache';
-import { cwd } from 'process';
-import { HashModule } from '@app/hash';
 import { FileModule, FileService } from '@app/file';
 import { ConfigureModule } from './configure/configure.module';
 @Module({

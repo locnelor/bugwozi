@@ -1,5 +1,5 @@
 {
-  "name": "@internal/eslint",
+  "name": "@pkg/eslint",
   "version": "1.0.0",
   "main": "eslint.config.mjs",
   "type": "module",
