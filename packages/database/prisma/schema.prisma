@@ -4,8 +4,9 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 //********************* system
@@ -25,10 +26,9 @@ model sys_user {
   createdAt        DateTime            @default(now())
   updatedAt        DateTime            @default(now()) @updatedAt
   name             String
-  roleId           String?
+  role_id          String?
   account          String              @unique
   accounts         sys_account[]
-  role             sys_role?           @relation(fields: [roleId], references: [uid])
   ban_menus        sys_user_ban_menu[]
   user_media       sys_user_media[]
   blog_posts       blog_posts[]
@@ -36,6 +36,7 @@ model sys_user {
   bookkeep_records bookkeep_record[]
   orders           sys_order[]
   goods            sys_goods[]
+  roles            sys_user_roles[]
 }
 
 //系统账号
@@ -51,11 +52,24 @@ model sys_account {
   updatedAt DateTime             @default(now()) @updatedAt
   provider  sys_account_provider
   value     String
-  userId    String
-  user      sys_user             @relation(fields: [userId], references: [uid])
+  user_id   String
+  user      sys_user             @relation(fields: [user_id], references: [uid])
 
   @@unique([provider, value])
-  @@index([userId])
+  @@index([user_id])
+}
+
+model sys_user_roles {
+  uid       String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  user_id   String
+  role_id   String
+  user      sys_user @relation(fields: [user_id], references: [uid])
+  role      sys_role @relation(fields: [role_id], references: [uid])
+
+  @@unique([user_id, role_id])
+  @@index([role_id])
 }
 
 //菜单
@@ -63,37 +77,51 @@ model sys_menu {
   uid       String              @id @default(uuid())
   createdAt DateTime            @default(now())
   updatedAt DateTime            @default(now()) @updatedAt
-  name      String
-  path      String              @unique
-  sort      Int                 @default(10)
-  powers    Int
-  comment   String?             @db.Text
-  parentId  String?
-  parent    sys_menu?           @relation("SysMenuParent", fields: [parentId], references: [uid])
+  name      String /// 菜单名称 
+  path      String? /// 菜单路径
+  sort      Int                 @default(10) /// 排序
+  power     Int                 @default(0) /// 权限
+  icon      String? /// 图标
+  hidden    Boolean             @default(false) /// 是否隐藏
+  type      String              @default("menu") /// 类型：menu、button、iframe、link
+  link      String? /// 链接地址
+  comment   String?             @db.Text /// 备注
+  parent_id String?
+  parent    sys_menu?           @relation("SysMenuParent", fields: [parent_id], references: [uid], onDelete: NoAction, onUpdate: NoAction)
   children  sys_menu[]          @relation("SysMenuParent")
   roles     sys_menu_on_role[]
   user_bans sys_user_ban_menu[]
+
+  @@index([parent_id])
 }
 
 //用户黑名单
 model sys_user_ban_menu {
-  user   sys_user @relation(fields: [userId], references: [uid])
-  menu   sys_menu @relation(fields: [menuId], references: [uid])
-  userId String
-  menuId String
+  uid       String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  user      sys_user @relation(fields: [user_id], references: [uid])
+  menu      sys_menu @relation(fields: [menu_id], references: [uid])
+  user_id   String
+  menu_id   String
 
-  @@id([userId, menuId])
+  @@unique([user_id, menu_id])
+  @@index([menu_id])
 }
 
 //角色菜单
 model sys_menu_on_role {
-  roleId String
-  menuId String
-  power  Int      @default(0)
-  menu   sys_menu @relation(fields: [menuId], references: [uid])
-  role   sys_role @relation(fields: [roleId], references: [uid])
+  uid       String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  role_id   String
+  menu_id   String
+  power     Int      @default(0)
+  menu      sys_menu @relation(fields: [menu_id], references: [uid])
+  role      sys_role @relation(fields: [role_id], references: [uid])
 
-  @@id([roleId, menuId])
+  @@unique([role_id, menu_id])
+  @@index([menu_id])
 }
 
 model sys_role {
@@ -104,8 +132,8 @@ model sys_role {
   status    Boolean            @default(true)
   comment   String?            @db.LongText
   menus     sys_menu_on_role[]
-  users     sys_user[]
   sort      Int                @default(10)
+  users     sys_user_roles[]
 }
 
 model sys_media {
@@ -131,12 +159,16 @@ model sys_media {
 }
 
 model sys_user_media {
-  user    sys_user  @relation(fields: [userId], references: [uid])
-  media   sys_media @relation(fields: [mediaId], references: [uid])
-  userId  String
-  mediaId String
+  uid       String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now()) @updatedAt
+  user      sys_user  @relation(fields: [user_id], references: [uid])
+  media     sys_media @relation(fields: [media_id], references: [uid])
+  user_id   String
+  media_id  String
 
-  @@id([userId, mediaId])
+  @@unique([user_id, media_id])
+  @@index([media_id])
 }
 
 enum order_trade_type {
@@ -168,32 +200,37 @@ model sys_order {
   transaction_id String?          @unique //微信订单号
   amount         Int
   description    String
-  payOpenId      String? //支付人openid
+  payOpen_id     String? //支付人openid
   trade_type     order_trade_type // 支付方式
   state          order_state      @default(NOTPAY) //状态
   bank_type      String? //支付方式
   attach         String?
 
-  user   sys_user? @relation(fields: [userId], references: [uid])
-  userId String?
+  user    sys_user? @relation(fields: [user_id], references: [uid])
+  user_id String?
 
-  goods   sys_goods @relation(fields: [goodsId], references: [uid])
-  goodsId String
+  goods    sys_goods @relation(fields: [goods_id], references: [uid])
+  goods_id String
+
+  @@index([user_id])
+  @@index([goods_id])
 }
 
 /**
  * 商品，由用户创建。
  */
 model sys_goods {
-  uid       String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
-  user      sys_user @relation(fields: [userId], references: [uid])
-  userId    String
-
-  amount      Int
-  description String
+  uid         String      @id @default(uuid())
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @default(now()) @updatedAt
+  user        sys_user    @relation(fields: [user_id], references: [uid])
+  user_id     String
+  key         String? /// 商品key
+  amount      Int /// 金额
+  description String /// 描述
   orders      sys_order[]
+
+  @@index([user_id])
 }
 
 //*********************** 博客系统
@@ -209,30 +246,37 @@ model blog_categories {
 
 // 博客文章
 model blog_posts {
-  uid          String               @id @default(uuid())
-  createdAt    DateTime             @default(now())
-  updatedAt    DateTime             @default(now()) @updatedAt
-  title        String
-  content      String               @db.Text
-  status       Boolean              @default(true)
-  views        Int                  @default(0) // 浏览量
-  likes        Int                  @default(0) // 点赞数
-  userId       String
-  categoriesId String?
-  categories   blog_categories?     @relation(fields: [categoriesId], references: [uid])
-  user         sys_user             @relation(fields: [userId], references: [uid])
-  tags         blog_posts_on_tags[]
-  comments     blog_comments[]
+  uid           String               @id @default(uuid())
+  createdAt     DateTime             @default(now())
+  updatedAt     DateTime             @default(now()) @updatedAt
+  title         String
+  content       String               @db.Text
+  status        Boolean              @default(true)
+  views         Int                  @default(0) // 浏览量
+  likes         Int                  @default(0) // 点赞数
+  user_id       String
+  categories_id String?
+  categories    blog_categories?     @relation(fields: [categories_id], references: [uid])
+  user          sys_user             @relation(fields: [user_id], references: [uid])
+  tags          blog_posts_on_tags[]
+  comments      blog_comments[]
+
+  @@index([user_id])
+  @@index([categories_id])
 }
 
 // 博客标签
 model blog_posts_on_tags {
-  postsId String
-  tagId   String
-  posts   blog_posts @relation(fields: [postsId], references: [uid])
-  tag     blog_tag   @relation(fields: [tagId], references: [uid])
+  uid       String     @id @default(uuid())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @default(now()) @updatedAt
+  posts_id  String
+  tag_id    String
+  posts     blog_posts @relation(fields: [posts_id], references: [uid])
+  tag       blog_tag   @relation(fields: [tag_id], references: [uid])
 
-  @@id([postsId, tagId])
+  @@unique([posts_id, tag_id])
+  @@index([tag_id])
 }
 
 // 博客标签
@@ -252,13 +296,17 @@ model blog_comments {
   updatedAt DateTime        @default(now()) @updatedAt
   content   String          @db.Text
   status    Boolean         @default(true)
-  userId    String
-  postId    String
-  parentId  String? // 父评论ID，用于回复
-  user      sys_user        @relation(fields: [userId], references: [uid])
-  post      blog_posts      @relation(fields: [postId], references: [uid])
-  parent    blog_comments?  @relation("CommentReplies", fields: [parentId], references: [uid])
+  user_id   String
+  post_id   String
+  parent_id String? // 父评论ID，用于回复
+  user      sys_user        @relation(fields: [user_id], references: [uid])
+  post      blog_posts      @relation(fields: [post_id], references: [uid])
+  parent    blog_comments?  @relation("CommentReplies", fields: [parent_id], references: [uid], onUpdate: NoAction, onDelete: NoAction)
   replies   blog_comments[] @relation("CommentReplies")
+
+  @@index([user_id])
+  @@index([post_id])
+  @@index([parent_id])
 }
 
 // 友情链接
@@ -307,14 +355,15 @@ model bookkeep_record {
   category    String
   description String?                   @db.Text
   date        DateTime
-  userId      String
-  user        sys_user                  @relation(fields: [userId], references: [uid])
-  mediaId     String?
-  media       sys_media?                @relation(fields: [mediaId], references: [uid])
+  user_id     String
+  user        sys_user                  @relation(fields: [user_id], references: [uid])
+  media_id    String?
+  media       sys_media?                @relation(fields: [media_id], references: [uid])
   tags        bookkeep_record_on_tags[]
 
-  @@index([userId])
+  @@index([user_id])
   @@index([date])
+  @@index([media_id])
 }
 
 // 记账标签
@@ -328,10 +377,14 @@ model bookkeep_tag {
 
 // 记账记录标签关联
 model bookkeep_record_on_tags {
-  recordId String
-  tagId    String
-  record   bookkeep_record @relation(fields: [recordId], references: [uid])
-  tag      bookkeep_tag    @relation(fields: [tagId], references: [uid])
+  uid       String          @id @default(uuid())
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @default(now()) @updatedAt
+  record_id String
+  tag_id    String
+  record    bookkeep_record @relation(fields: [record_id], references: [uid])
+  tag       bookkeep_tag    @relation(fields: [tag_id], references: [uid])
 
-  @@id([recordId, tagId])
+  @@unique([record_id, tag_id])
+  @@index([tag_id])
 }

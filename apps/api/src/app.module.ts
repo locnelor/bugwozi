@@ -13,7 +13,6 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { WeChatModule } from '@app/wechat';
 import { WxModule } from './wx/wx.module';
 import { BookkeepingModule } from './bookkeeping/bookkeeping.module';
-import { BookModule } from './book/book.module';
 import { RedisCacheModule } from '@app/redis-cache';
 import { FileModule, FileService } from '@app/file';
 import { ConfigureModule } from './configure/configure.module';
@@ -93,7 +92,6 @@ import { ConfigureModule } from './configure/configure.module';
     DashboardModule,
     WxModule,
     BookkeepingModule,
-    BookModule,
     ConfigureModule,
   ],
   controllers: [AppController],

@@ -14,25 +14,23 @@
     "dev:api": "turbo run dev --filter @web/api",
     "dev:admin": "turbo run dev --filter @web/admin",
     "dev:blog": "turbo run dev --filter @web/blog",
-    "dev:study": "turbo run dev --filter @web/study-room & pnpm --filter @web/api run dev study-room",
-    "dev:book": "turbo run dev --filter @web/admin-book & pnpm --filter @web/api run dev admin-book",
     "dev:server": "turbo run dev --filter @web/api & turbo run dev --filter @web/admin",
     "db:generate": "turbo run generate",
     "db:push": "turbo run push"
   },
   "dependencies": {
-    "@prisma/client": "^6.8.1",
+    "@prisma/client": "^6.9.0",
     "rimraf": "6.0.1"
   },
   "devDependencies": {
     "prettier": "^3.5.3",
-    "ts-jest": "^29.3.3",
+    "ts-jest": "^29.3.4",
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "turbo": "^2.5.3",
+    "turbo": "^2.5.4",
     "typescript": "5.8.2",
-    "typescript-eslint": "^8.32.1"
+    "typescript-eslint": "^8.33.1"
   },
   "packageManager": "pnpm@10.9.0",
   "engines": {

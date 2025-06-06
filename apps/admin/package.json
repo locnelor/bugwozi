@@ -21,7 +21,6 @@
     "@pkg/tsconfig": "workspace:*",
     "@pkg/database": "workspace:*",
     "@pkg/hooks": "workspace:*",
-    "@pkg/init": "workspace:*",
     "@pkg/types": "workspace:*",
     "antd": "^5.24.3",
     "axios": "^1.8.4",

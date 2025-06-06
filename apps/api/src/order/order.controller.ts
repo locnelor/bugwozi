@@ -28,7 +28,11 @@ export class OrderController {
         nonce
       }
     } = body
+    console.log('---------')
+    console.log('支付订单', body)
     const result: any = await this.wechatService.pay.decipher_gcm(ciphertext, associated_data, nonce, "a0673aea39ad90b6e667956a78b74ea3");
+    console.log('订单解析参数', result)
+    console.log('=========')
     await this.orderService.handleOrder(result)
     return {
       code: 200
